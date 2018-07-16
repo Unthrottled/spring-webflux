@@ -2,6 +2,7 @@ Introduction
 ---
 
 ### Definition (from reactor)
+
 >Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).
 
 The reactive programming paradigm is often presented in object-oriented languages as an extension of the Observer design pattern.
@@ -23,7 +24,31 @@ the programmer expresses the logic of the computation rather than describing its
 
 In addition to pushing values, the error handling and completion aspects are also covered in a well defined manner. 
 A Publisher can push new values to its Subscriber, but can also signal an error, or completion. 
-Both errors and completion terminate the sequence of events created from the publisher.-
+Both errors and completion terminate the sequence of events created from the publisher.
+
+Why?
+---
+
+Modern applications have the ability to reach huge numbers of concurrent users.
+Even though the capabilities of modern hardware have continued to improve,
+ performance of modern software is still a key concern.
+ 
+There are at least two general programming paradigms that can improve a program’s performance:
+
+    1. parallelize: use more threads and more hardware resources.
+    1. seek more efficiency in how current resources are used.
+
+Java developers have the ability to easily write programs using blocking code. 
+This practice is fine until there is a performance bottleneck arises.
+A solution would be to introduce even more threads threads, running similar blocking code.
+Scaling in resource utilization can quickly introduce thread contention and concurrency problems.
+
+Worse still, all of those new threads are just sitting there blocking and wasting resources. 
+If you look closely, as soon as a program involves some latency 
+(notably I/O, such as a database request or a network call), resources are wasted because a thread (or many threads) now are sitting idle, waiting for responses.
+
+So the parallelization approach is not a silver bullet. 
+However, it is necessary in order to harness the full power of the hardware.
 
 
 Sources
