@@ -93,6 +93,20 @@ This distinction mainly has to do with how the reactive stream reacts to subscri
 - A Cold sequence starts anew for each Subscriber, including at the source of data. If the source wraps an HTTP call, a new HTTP request is made for each subscription.
 - A Hot sequence does not start from scratch for each Subscriber. Rather, late subscribers receive signals emitted after they subscribed. Note, however, that some hot reactive streams can cache or replay the history of emissions totally or partially. From a general perspective, a hot sequence can even emit when no subscriber is listening (an exception to the "nothing happens before you subscribe" rule).
 
+
+THINGS TO COVER
+---
+
+- Reactor multi subscribe
+- Parallelization
+- Schedulers
+- Repeat, retry, replay
+- Reduction
+- Merging
+- Debugging
+- Testing
+- 
+
 Sources
 ---
 
