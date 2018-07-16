@@ -75,6 +75,24 @@ In addition to pushing values, the error handling and completion aspects are als
 A Publisher can push new values to its Subscriber, but can also signal an error, or completion. 
 Both errors and completion terminate the sequence of events created from the publisher.
 
+### From Imperative to Reactive Programming
+
+Are very, very, very, very, much like Java 8's streams.
+
+- Data as a flow manipulated with a rich vocabulary of operators
+- Nothing happens until you subscribe
+- Backpressure or the ability for the consumer to signal the producer that the rate of emission is too high (buffering)
+- High level but high value abstraction that is concurrency-agnostic
+
+#### Types of Streams 
+
+In the Rx family of reactive libraries,
+ one can distinguish two broad categories of reactive sequences: **hot** and **cold**.
+This distinction mainly has to do with how the reactive stream reacts to subscribers:
+
+- A Cold sequence starts anew for each Subscriber, including at the source of data. If the source wraps an HTTP call, a new HTTP request is made for each subscription.
+- A Hot sequence does not start from scratch for each Subscriber. Rather, late subscribers receive signals emitted after they subscribed. Note, however, that some hot reactive streams can cache or replay the history of emissions totally or partially. From a general perspective, a hot sequence can even emit when no subscriber is listening (an exception to the "nothing happens before you subscribe" rule).
+
 Sources
 ---
 
