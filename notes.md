@@ -51,6 +51,24 @@ So the parallelization approach is not a silver bullet.
 However, it is necessary in order to harness the full power of the hardware.
 
 
+Multi-Threading, how do I get the most bang for the buck?
+
+Large number of performance bottle-necks, as mentioned above are when processes are waiting for input and output I/O. 
+Whether it be a network call, reading from disk, or even a database query. 
+There is a way to reach the past the point of diminishing returns when introducing concurrency and throwing more threads at a problem.
+The CPU can only do so many things at once, and adding more threads exacerbates the problem.
+
+When a thread is blocked, no work is being done by that thread. 
+If another thread is added, to work on a similar process, eventually that thread is going to block as well.
+The more threads that are spawned to work, the less efficient the tasks become.
+
+The OS scheduler, is going to let a thread get N amount of clock time, and then it is going to context switch (which is a fairly expensive operation).
+Which involves moving things out of the memory cache, loading up next context of the thread and then trying to process a threads work.
+
+The more threads that are in need of being processed, the more the context switching needs to happen.
+As more and more threads spin up, there is point where **Thrashing** occurs. 
+Which means that all work being done for the all of the clock cycles is just setting up thread context, not doing any work (no time), and tearing down for the next thread to be processed. 
+
 Sources
 ---
 
