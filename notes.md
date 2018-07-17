@@ -212,6 +212,8 @@ Some annotated controller method arguments that represent String-based request i
 Spring WebFlux, unlike Spring MVC, supports reactive types in the model, e.g. Mono<Account> or io.reactivex.Single<Account>. An @ModelAttribute argument can be declared with or without a reactive type wrapper, and it will be resolved accordingly, to the actual value if necessary. Note however that in order to use a BindingResult argument, you must declare the @ModelAttribute argument before it without a reactive type wrapper, as shown earlier. Alternatively, you can handle any errors through the reactive type:
 
 
+Left off @ functional endpoints.
+
 Sources
 ---
 
