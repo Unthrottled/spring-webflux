@@ -105,9 +105,14 @@ THINGS TO COVER
 - Merging
 - Debugging
 - Testing
-- 
+- Netty
+- Event Loop/Reactor/Actors
 
 Sources
 ---
 
-http://projectreactor.io/docs/core/release/reference/
+- http://projectreactor.io/docs/core/release/reference/
+- https://vertx.io/docs/guide-for-java-devs/guide-for-java-devs.pdf
+- http://netty.io/wiki/user-guide-for-4.x.html
+- https://en.wikipedia.org/wiki/Event_loop
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html
