@@ -90,8 +90,13 @@ In the Rx family of reactive libraries,
  one can distinguish two broad categories of reactive sequences: **hot** and **cold**.
 This distinction mainly has to do with how the reactive stream reacts to subscribers:
 
-- A Cold sequence starts anew for each Subscriber, including at the source of data. If the source wraps an HTTP call, a new HTTP request is made for each subscription.
-- A Hot sequence does not start from scratch for each Subscriber. Rather, late subscribers receive signals emitted after they subscribed. Note, however, that some hot reactive streams can cache or replay the history of emissions totally or partially. From a general perspective, a hot sequence can even emit when no subscriber is listening (an exception to the "nothing happens before you subscribe" rule).
+- A Cold sequence starts anew for each Subscriber, including at the source of data.
+ If the source wraps an HTTP call, a new HTTP request is made for each subscription.
+- A Hot sequence does not start from scratch for each Subscriber.
+ Rather, late subscribers receive signals emitted after they subscribed. 
+ Note, however, that some hot reactive streams can cache or replay the history of emissions totally or partially. 
+ From a general perspective, a hot sequence can even emit when no subscriber is listening
+  (an exception to the "nothing happens before you subscribe" rule).
 
 
 THINGS TO COVER
@@ -107,6 +112,22 @@ THINGS TO COVER
 - Testing
 - Netty
 - Event Loop/Reactor/Actors
+- Tuples in reactor
+
+
+COPY PASTE BIN
+---
+
+In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
+
+The reactor design pattern is an event handling pattern for handling service requests delivered concurrently to a service handler by one or more inputs. The service handler then demultiplexes the incoming requests and dispatches them synchronously to the associated request handlers.[1]
+![demultiplexes](https://en.wikipedia.org/wiki/Multiplexing#/media/File:Multiplexing_diagram.svg)
+
+An actor is a computational entity that, in response to a message it receives, can concurrently:
+
+- send a finite number of messages to other actors;
+- create a finite number of new actors;
+- designate the behavior to be used for the next message it receives.
 
 Sources
 ---
@@ -115,4 +136,6 @@ Sources
 - https://vertx.io/docs/guide-for-java-devs/guide-for-java-devs.pdf
 - http://netty.io/wiki/user-guide-for-4.x.html
 - https://en.wikipedia.org/wiki/Event_loop
+- https://en.wikipedia.org/wiki/Actor_model
+- https://en.wikipedia.org/wiki/Reactor_pattern
 - https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html
