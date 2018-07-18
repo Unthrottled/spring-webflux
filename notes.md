@@ -219,6 +219,13 @@ Spring WebFlux includes a lightweight, functional programming model in which fun
 >For example, given a Publisher that is not a Mono, the Jackson JSON message writer expects multiple values. If the media type implies an infinite stream — e.g. "application/json+stream", values are written and flushed individually; otherwise values are buffered into a list and rendered as a JSON array.
 
 
+Reactive Streams.org
+---
+
+Handling streams of data—especially “live” data whose volume is not predetermined—requires special care in an asynchronous system. The most prominent issue is that resource consumption needs to be controlled such that a fast data source does not overwhelm the stream destination. Asynchrony is needed in order to enable the parallel use of computing resources, on collaborating network hosts or multiple CPU cores within a single machine.
+
+The main goal of Reactive Streams is to govern the exchange of stream data across an asynchronous boundary—think passing elements on to another thread or thread-pool—while ensuring that the receiving side is not forced to buffer arbitrary amounts of data.
+
 Sources
 ---
 
@@ -230,3 +237,4 @@ Sources
 - https://en.wikipedia.org/wiki/Reactor_pattern
 - https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html
 - https://github.com/reactor/reactor
+- https://github.com/reactive-streams/reactive-streams-jvm/blob/v1.0.2/README.md
