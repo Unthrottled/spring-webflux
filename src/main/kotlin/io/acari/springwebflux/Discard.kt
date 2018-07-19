@@ -26,9 +26,21 @@ class DiscardServerHandler : ChannelInboundHandlerAdapter() {
         ctx?.close()
     }
 }
+class TimSereverHandler : ChannelInboundHandlerAdapter() {
+    override fun channelRead(ctx: ChannelHandlerContext?, msg: Any?) {
+        val message = msg as ByteBuf
+        ctx?.write(message)
+        ctx?.flush()
+    }
+
+    override fun exceptionCaught(ctx: ChannelHandlerContext?, cause: Throwable?) {
+        cause?.printStackTrace()
+        ctx?.close()
+    }
+}
 
 
-class DiscardServer(val port: Int) {
+class DiscardServer(private val port: Int) {
 
     fun run() {
         val bossGroup = NioEventLoopGroup()
