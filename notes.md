@@ -66,7 +66,7 @@ The main goal of Reactive Streams is to govern the exchange of stream data acros
 Who?
 ---
 
-(May not be as important)
+![Who](assets/reactivex.png)
 
 Why?
 ---
