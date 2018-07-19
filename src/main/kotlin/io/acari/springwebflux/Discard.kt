@@ -19,7 +19,10 @@ class DiscardServerHandler : ChannelInboundHandlerAdapter() {
     override fun channelRead(ctx: ChannelHandlerContext?, msg: Any?) {
         val message = msg as ByteBuf
         try {
-
+            while (message.isReadable){
+                println(message.readByte().toChar())
+                System.out.flush()
+            }
         } finally {
             ReferenceCountUtil.release(msg)
         }
