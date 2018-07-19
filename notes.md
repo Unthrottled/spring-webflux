@@ -1,45 +1,43 @@
 Introduction to Reactive Programming
 ---
-What?
+What does _reactive_ mean?
 ---
 
-### Definition (from reactor)
+Means many things to many people.
+
+Project reactor defines it as:
 
 >Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).
 
-#### Wikipedia
-In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
 
-The reactor design pattern is an event handling pattern for handling service requests delivered concurrently to a service handler by one or more inputs. The service handler then demultiplexes the incoming requests and dispatches them synchronously to the associated request handlers.[1]
-![demultiplexes](https://en.wikipedia.org/wiki/Multiplexing#/media/File:Multiplexing_diagram.svg)
+The folks over at spring say:
 
-An actor is a computational entity that, in response to a message it receives, can concurrently:
+>The term "reactive" refers to programming models that are built around reacting to change — network component reacting to I/O events, UI controller reacting to mouse events, etc. 
 
-- send a finite number of messages to other actors;
-- create a finite number of new actors;
-- designate the behavior to be used for the next message it receives.
+>In that sense non-blocking is reactive because instead of being blocked we are now in the mode of reacting to notifications as operations complete or data becomes available.
 
-#### Spring
+There is even a **Reactive Manifesto** which defines *Reactive Systems* as the following:
 
-Why was Spring WebFlux created?
-
-Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with less hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. However, using it leads away from the rest of the Servlet API where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers such as Netty that are well established in the async, non-blocking space.
-
-The other part of the answer is functional programming. Much like the addition of annotations in Java 5 created opportunities — e.g. annotated REST controllers or unit tests, the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. This is a boon for non-blocking applications and continuation style APIs — as popularized by CompletableFuture and ReactiveX, that allow declarative composition of asynchronous logic. At the programming model level Java 8 enabled Spring WebFlux to offer functional web endpoints alongside with annotated controllers.
-
-We touched on non-blocking and functional but what does reactive mean?
-
-The term "reactive" refers to programming models that are built around reacting to change — network component reacting to I/O events, UI controller reacting to mouse events, etc. In that sense non-blocking is reactive because instead of being blocked we are now in the mode of reacting to notifications as operations complete or data becomes available.
-
-#### The reactive manifesto
-
-we want systems that are Responsive, Resilient, Elastic and Message Driven. We call these Reactive Systems.
+Systems that are Responsive, Resilient, Elastic and Message Driven.
 
 Reactive Systems are:
 
-- Responsive: The system responds in a timely manner if at all possible. Responsiveness is the cornerstone of usability and utility, but more than that, responsiveness means that problems may be detected quickly and dealt with effectively. Responsive systems focus on providing rapid and consistent response times, establishing reliable upper bounds so they deliver a consistent quality of service. This consistent behaviour in turn simplifies error handling, builds end user confidence, and encourages further interaction.
-- Resilient: The system stays responsive in the face of failure. This applies not only to highly-available, mission-critical systems — any system that is not resilient will be unresponsive after a failure. Resilience is achieved by replication, containment, isolation and delegation. Failures are contained within each component, isolating components from each other and thereby ensuring that parts of the system can fail and recover without compromising the system as a whole. Recovery of each component is delegated to another (external) component and high-availability is ensured by replication where necessary. The client of a component is not burdened with handling its failures.
-- Elastic: The system stays responsive under varying workload. Reactive Systems can react to changes in the input rate by increasing or decreasing the resources allocated to service these inputs. This implies designs that have no contention points or central bottlenecks, resulting in the ability to shard or replicate components and distribute inputs among them. Reactive Systems support predictive, as well as Reactive, scaling algorithms by providing relevant live performance measures. They achieve elasticity in a cost-effective way on commodity hardware and software platforms.
+##### Responsive
+ Responsiveness means request are almost always handled in a timely manner if at all possible. 
+ 
+ This is the cornerstone of usability and utility. Even more than that, responsiveness means that problems may be detected quickly and dealt with effectively. 
+ 
+ Systems that are responsive focus on providing rapid and consistent response times.
+ While establishing reliable upper bounds, so they deliver a consistent quality of service. 
+ 
+ This consistent behaviour in turn simplifies error handling, builds end-user confidence, and encourages further interaction.
+  
+###### Resilient
+   The system stays responsive in the face of failure. This applies not only to highly-available, mission-critical systems — any system that is not resilient will be unresponsive after a failure. Resilience is achieved by replication, containment, isolation and delegation. Failures are contained within each component, isolating components from each other and thereby ensuring that parts of the system can fail and recover without compromising the system as a whole. Recovery of each component is delegated to another (external) component and high-availability is ensured by replication where necessary. The client of a component is not burdened with handling its failures.
+
+####### Elastic
+ 
+ The system stays responsive under varying workload. Reactive Systems can react to changes in the input rate by increasing or decreasing the resources allocated to service these inputs. This implies designs that have no contention points or central bottlenecks, resulting in the ability to shard or replicate components and distribute inputs among them. Reactive Systems support predictive, as well as Reactive, scaling algorithms by providing relevant live performance measures. They achieve elasticity in a cost-effective way on commodity hardware and software platforms.
 - Message Driven: Reactive Systems rely on asynchronous message-passing to establish a boundary between components that ensures loose coupling, isolation and location transparency. This boundary also provides the means to delegate failures as messages. Employing explicit message-passing enables load management, elasticity, and flow control by shaping and monitoring the message queues in the system and applying back-pressure when necessary. Location transparent messaging as a means of communication makes it possible for the management of failure to work with the same constructs and semantics across a cluster or within a single host. Non-blocking communication allows recipients to only consume resources while active, leading to less system overhead.
 
 #### Reactive Streams.org
@@ -78,7 +76,7 @@ If you look closely, as soon as a program involves some latency
 So the parallelization approach is not a silver bullet. 
 However, it is necessary in order to harness the full power of the hardware.
 
-Multi-Threading, how do I get the most bang for the buck?
+Multi-Threading, is this how I get the most bang for the buck?
 
 Large number of performance bottle-necks, as mentioned above are when processes are waiting for input and output I/O. 
 Whether it be a network call, reading from disk, or even a database query. 
@@ -89,11 +87,11 @@ When a thread is blocked, no work is being done by that thread.
 If another thread is added, to work on a similar process, eventually that thread is going to block as well.
 The more threads that are spawned to work, the less efficient the tasks become.
 
-The OS scheduler, is going to let a thread get N amount of clock time, and then it is going to context switch (which is a fairly expensive operation).
+The OS scheduler, is going to let a thread get N amount of clock time, and then it is going to context switch (which can amount to  be a fairly expensive operation).
 Which involves moving things out of the memory cache, loading up next context of the thread and then trying to process a threads work.
 
 The more threads that are in need of being processed, the more the context switching needs to happen.
-As more and more threads spin up, there is point where **Thrashing** occurs. 
+As more and more threads spin up, there is point where **thrashing** occurs. 
 Which means that all work being done for the all of the clock cycles is just setting up thread context, not doing any work (no time), and tearing down for the next thread to be processed.
 
 Which means that the biggest bang for our buck would be having a few active threads that are always doing work.
@@ -124,6 +122,14 @@ In addition to pushing values, the error handling and completion aspects are als
 A Publisher can push new values to its Subscriber, but can also signal an error, or completion. 
 Both errors and completion terminate the sequence of events created from the publisher.
 
+#### Spring
+
+Why was Spring WebFlux created?
+
+Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with less hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. However, using it leads away from the rest of the Servlet API where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers such as Netty that are well established in the async, non-blocking space.
+
+The other part of the answer is functional programming. Much like the addition of annotations in Java 5 created opportunities — e.g. annotated REST controllers or unit tests, the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. This is a boon for non-blocking applications and continuation style APIs — as popularized by CompletableFuture and ReactiveX, that allow declarative composition of asynchronous logic. At the programming model level Java 8 enabled Spring WebFlux to offer functional web endpoints alongside with annotated controllers.
+
 ### From Imperative to Reactive Programming
 
 Are very, very, very, very, much like Java 8's streams.
@@ -149,6 +155,21 @@ This distinction mainly has to do with how the reactive stream reacts to subscri
 
 How?
 ---
+
+#### Wikipedia
+In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
+
+The reactor design pattern is an event handling pattern for handling service requests delivered concurrently to a service handler by one or more inputs. The service handler then demultiplexes the incoming requests and dispatches them synchronously to the associated request handlers.[1]
+![demultiplexes](https://en.wikipedia.org/wiki/Multiplexing#/media/File:Multiplexing_diagram.svg)
+
+An actor is a computational entity that, in response to a message it receives, can concurrently:
+
+- send a finite number of messages to other actors;
+- create a finite number of new actors;
+- designate the behavior to be used for the next message it receives.
+
+
+
 ### THINGS TO COVER
 - Reactor multi subscribe
 - Parallelization
