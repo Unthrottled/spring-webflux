@@ -86,6 +86,8 @@ There are at least two general programming paradigms that can improve a programâ
 1. parallelize: use more threads and more hardware resources.
 1. seek more efficiency in how current resources are used.
 
+**Multi-Threading**, is this how I get the most bang for the buck?
+
 Java developers have the ability to easily write programs using blocking code. 
 This practice is fine until there is a performance bottleneck arises.
 A solution would be to introduce even more threads threads, running similar blocking code.
@@ -93,30 +95,35 @@ Scaling in resource utilization can quickly introduce thread contention and conc
 
 Worse still, all of those new threads are just sitting there blocking and wasting resources. 
 If you look closely, as soon as a program involves some latency 
-(notably I/O, such as a database request or a network call), resources are wasted because a thread (or many threads) now are sitting idle, waiting for responses.
+(notably I/O, such as a database request or a network call), resources are wasted as a thread (or many threads) now are sitting idle, waiting for responses.
 
 So the parallelization approach is not a silver bullet. 
 However, it is necessary in order to harness the full power of the hardware.
 
-Multi-Threading, is this how I get the most bang for the buck?
-
-Large number of performance bottle-necks, as mentioned above are when processes are waiting for input and output I/O. 
+Large number of performance bottle-necks, as mentioned above, occur when processes are waiting for input and output I/O. 
 Whether it be a network call, reading from disk, or even a database query. 
+
 There is a way to reach the past the point of diminishing returns when introducing concurrency and throwing more threads at a problem.
 The CPU can only do so many things at once, and adding more threads exacerbates the problem.
 
 When a thread is blocked, no work is being done by that thread. 
+It will eventually have to be put back into context, so that it may be worked.
 If another thread is added, to work on a similar process, eventually that thread is going to block as well.
-The more threads that are spawned to work, the less efficient the tasks become.
+It too, will be waiting, have to be put back into context and get some CPU time.
+There is a point where spawning more threads to work, the less efficient the tasks come come to be processed.
 
-The OS scheduler, is going to let a thread get N amount of clock time, and then it is going to context switch (which can amount to  be a fairly expensive operation).
-Which involves moving things out of the memory cache, loading up next context of the thread and then trying to process a threads work.
+The OS scheduler, is going to let a thread get N amount of clock time, and then it is going to context switch (which can add up as more thnigs need to be process).
+Which involves moving things out of the direct memory cache, loading up next context of the thread and then trying to process a threads work.
 
 The more threads that are in need of being processed, the more the context switching needs to happen.
 As more and more threads spin up, there is point where **thrashing** occurs. 
 Which means that all work being done for the all of the clock cycles is just setting up thread context, not doing any work (no time), and tearing down for the next thread to be processed.
 
 Which means that the biggest bang for our buck would be having a few active threads that are always doing work.
+
+How?
+---
+
 This can be done by utilizing a **Non-Blocking** programming paradigm. 
 A **push-based** does not necessarily need to block work from happening. 
 When data is processed in time, then it will be directed to where it needs to go.
@@ -174,9 +181,6 @@ This distinction mainly has to do with how the reactive stream reacts to subscri
  Note, however, that some hot reactive streams can cache or replay the history of emissions totally or partially. 
  From a general perspective, a hot sequence can even emit when no subscriber is listening
   (an exception to the "nothing happens before you subscribe" rule).
-
-How?
----
 
 Asynchrony is needed in order to enable the parallel use of computing resources, on collaborating network hosts or multiple CPU cores within a single machine.
 
