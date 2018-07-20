@@ -34,15 +34,19 @@ There is even a **Reactive Manifesto** which defines *Reactive Systems* as the f
    Goes hand in hand with *Responsiveness*, in that system always replies, even in the face of failure. 
    Any system that is not resilient will be unresponsive after a failure including systems that are highly-available or mission-critical. 
    Resilience is achieved by replication, containment, isolation and delegation. 
+   
    Failures are contained within each component, isolating components from each other and thereby ensuring that parts of the system can fail and recover without compromising the system as a whole. 
    Recovery of each component is delegated to another (external) component and high-availability is ensured by replication where necessary. 
    The client of a component is not burdened with handling its failures.
 
 ###### Elastic
  
- The system stays responsive under varying workload. 
- Reactive Systems can react to changes in the input rate by increasing or decreasing the resources allocated to service these inputs. 
- This implies designs that have no contention points or central bottlenecks, resulting in the ability to shard or replicate components and distribute inputs among them. 
+ The system stays remains consistent under varying workload. 
+ Reacting to changes in the input rate by increasing or decreasing the resources allocated, in order to service these inputs.
+  
+ This implies designs that have no contention points or central bottlenecks.
+ Which results in the ability to shard or replicate components and distribute inputs among them. 
+ 
  Reactive Systems support predictive, as well as Reactive, scaling algorithms by providing relevant live performance measures. 
  They achieve elasticity in a cost-effective way on commodity hardware and software platforms.
  
