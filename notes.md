@@ -5,22 +5,19 @@ What does _reactive_ mean?
 
 Means many things to many people.
 
-Project reactor defines it as:
+Project Reactor defines it as:
 
->Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).
+>An asynchronous programming paradigm concerned with data streams and the propagation of change. This means that it becomes possible to express static (e.g. arrays) or dynamic (e.g. event emitters) data streams with ease via the employed programming language(s).
 
 
 The folks over at spring say:
 
->The term "reactive" refers to programming models that are built around reacting to change — network component reacting to I/O events, UI controller reacting to mouse events, etc. 
-
->In that sense non-blocking is reactive because instead of being blocked we are now in the mode of reacting to notifications as operations complete or data becomes available.
+>Refers to programming models that are built around reacting to change: network component reacting to I/O events, UI controller reacting to mouse events, etc. 
+In that sense, non-blocking is reactive because instead of being blocked we are now in the mode of reacting to notifications as operations complete or data becomes available.
 
 There is even a **Reactive Manifesto** which defines *Reactive Systems* as the following:
 
-Systems that are Responsive, Resilient, Elastic and Message Driven.
-
-Reactive Systems are:
+>Systems that are Responsive, Resilient, Elastic and Message Driven.
 
 ##### Responsive
  Responsiveness means request are almost always handled in a timely manner if at all possible. 
