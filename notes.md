@@ -20,12 +20,13 @@ There is even a **Reactive Manifesto** which defines *Reactive Systems* as the f
 >Systems that are Responsive, Resilient, Elastic and Message Driven.
 
 ##### Responsive
- Responsiveness means request are almost always handled in a timely manner if at all possible. 
+ Responsiveness means any request is _almost_ always handled in a timely manner. 
  
- This is the cornerstone of usability and utility. Even more than that, responsiveness means that problems may be detected quickly and dealt with effectively. 
+ This is the cornerstone of usability and utility. 
+ Even more than that, responsiveness allows for problems to be detected quickly and dealt with effectively. 
  
- Systems that are responsive focus on providing rapid and consistent response times.
- While establishing reliable upper bounds, so they deliver a consistent quality of service. 
+ Responsive systems focus on providing rapid and reply times that remain consistent.
+ So that the bar for quality remains high in consistently delivering quality service. 
  
  This consistent behaviour in turn simplifies error handling, builds end-user confidence, and encourages further interaction.
   
