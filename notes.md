@@ -31,11 +31,12 @@ There is even a **Reactive Manifesto** which defines *Reactive Systems* as the f
  This consistent behaviour in turn simplifies error handling, builds end-user confidence, and encourages further interaction.
   
 ###### Resilient
-   The system stays responsive in the face of failure. 
-   This applies not only to highly-available, mission-critical systems — any system that is not resilient will be unresponsive after a failure. 
+   Goes hand in hand with *Responsiveness*, in that system always replies, even in the face of failure. 
+   Any system that is not resilient will be unresponsive after a failure including systems that are highly-available or mission-critical. 
    Resilience is achieved by replication, containment, isolation and delegation. 
    Failures are contained within each component, isolating components from each other and thereby ensuring that parts of the system can fail and recover without compromising the system as a whole. 
-   Recovery of each component is delegated to another (external) component and high-availability is ensured by replication where necessary. The client of a component is not burdened with handling its failures.
+   Recovery of each component is delegated to another (external) component and high-availability is ensured by replication where necessary. 
+   The client of a component is not burdened with handling its failures.
 
 ###### Elastic
  
