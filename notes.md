@@ -61,11 +61,13 @@ Employing explicit message-passing enables load management, elasticity, and flow
 Transparent location messaging, as a means of communication, enables the management of failure to work across a cluster or within a single host with the same constructs and semantics . 
 Non-blocking communication allows recipients to only consume resources while active, leading to less system overhead.
 
-#### Reactive Streams.org
+-----
 
-Handling streams of data—especially “live” data whose volume is not predetermined—requires special care in an asynchronous system. The most prominent issue is that resource consumption needs to be controlled such that a fast data source does not overwhelm the stream destination. Asynchrony is needed in order to enable the parallel use of computing resources, on collaborating network hosts or multiple CPU cores within a single machine.
+Handling streams of data—especially “live” data whose volume is not predetermined—requires special care in an asynchronous system. 
+The most prominent issue is that resource consumption needs to be controlled such that, a fast data source does not overwhelm the stream destination. 
 
-The main goal of Reactive Streams is to govern the exchange of stream data across an asynchronous boundary—think passing elements on to another thread or thread-pool—while ensuring that the receiving side is not forced to buffer arbitrary amounts of data.
+The main goal of Reactive Streams is to govern the exchange of stream data across an asynchronous boundary—think passing elements on to another thread or thread-pool.
+While ensuring that the receiving side is not forced to buffer arbitrary amounts of data.
 
 Who?
 ---
@@ -175,6 +177,8 @@ This distinction mainly has to do with how the reactive stream reacts to subscri
 
 How?
 ---
+
+Asynchrony is needed in order to enable the parallel use of computing resources, on collaborating network hosts or multiple CPU cores within a single machine.
 
 #### Wikipedia
 In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
