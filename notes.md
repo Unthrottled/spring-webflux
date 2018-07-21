@@ -154,17 +154,18 @@ Both errors and completion terminate the sequence of events created from the pub
 Rather than blocking to wait for a method to return, just have the data sent over once it is ready.
 That way work can be done while that data is getting ready to be processed.
 
-
 ##### Moving from Imperative to Reactive Programming
 
-Are very, very, very, very, much like Java 8's streams.
+Reactive streams are very much like the Java 8 stream API.
 
-- Data as a flow manipulated with a rich vocabulary of operators
+Here are some of the characteristics of reactive steams:
+
+- Data as a flow, is manipulated with a rich vocabulary of operators
 - Nothing happens until you subscribe
-- Backpressure or the ability for the consumer to signal the producer that the rate of emission is too high (buffering)
-- High level but high value abstraction that is concurrency-agnostic
+- _Backpressure_: which is the ability for the consumer to signal the producer that the rate of emission is too high (buffering)
+- High level and a high value abstraction that is concurrency-agnostic
 
-#### Types of Streams 
+##### Types of Streams 
 
 In the Rx family of reactive libraries,
  one can distinguish two broad categories of reactive sequences: **hot** and **cold**.
