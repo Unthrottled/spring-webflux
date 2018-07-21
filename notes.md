@@ -124,7 +124,6 @@ Which means that the biggest bang for our buck would be having a few active thre
 How?
 ---
 
-
 This can be done by utilizing a **Non-Blocking** programming paradigm. 
 A **push-based** system does not necessarily need to block work from happening. 
 When data is processed in time, then it will be directed to where it needs to go.
@@ -161,12 +160,16 @@ That way work can be done while that data is getting ready to be processed.
  
 It also makes it easier to avoid issues with thread contention as most of the code is processed inside of a **event loop**
 
-In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
+Wikipedia is nice and gives a handy definition of an event loop:
+
+>The event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. 
+It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
 
 The reactor design pattern is an event handling pattern for handling service requests delivered concurrently to a service handler by one or more inputs. 
 The service handler then demultiplexes the incoming requests and dispatches them synchronously to the associated request handlers.
 ![demultiplexes](https://en.wikipedia.org/wiki/Multiplexing#/media/File:Multiplexing_diagram.svg)
 
+The term Actor is also another term to be familiar with.
 An actor is a computational entity that, in response to a message it receives, can concurrently:
 
 - send a finite number of messages to other actors;
@@ -192,7 +195,7 @@ Which should explain _why_ spring states that they created the WebFlux library.
  In synchronous, imperative code, blocking calls serve as a natural form of back pressure that forces the caller to wait. 
  In non-blocking code it becomes important to control the rate of events so that a fast producer does not overwhelm its destination.
  
-##### Moving from synchronous Imperative to asynchronous Reactive Programming
+### Moving from synchronous Imperative to asynchronous Reactive Programming
 
 ![Learning curve](./assets/the%20learning%20curve.png)
 
