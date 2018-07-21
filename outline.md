@@ -1,0 +1,24 @@
+### THINGS TO COVER
+- What?
+- Who?
+- Why?
+- How
+- Subscription
+- Runs on Daemon threads
+- Basic intermediaries
+- Terminal operations
+- Netty
+    - Trying to block on rest api handler
+- Reactor multi subscribe
+- Hot/Cold sequences
+- errors
+- Merging
+- Debugging
+- Reduction
+- Testing
+- Tuples in reactor
+- Repeat, retry, replay
+- Parallelization
+- Schedulers
+- Annotations/Functional routers
+- Streaming multiparts?

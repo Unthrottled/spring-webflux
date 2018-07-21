@@ -240,22 +240,6 @@ Every subscriber will see the entire sequence.
  From a general perspective, a hot sequence can even emit when no subscriber is listening
   (an exception to the "nothing happens before you subscribe" rule).
 
-
-### THINGS TO COVER
-- Reactor multi subscribe
-- errors
-- Merging
-- Debugging
-- Reduction
-- Testing
-- Tuples in reactor
-- Repeat, retry, replay
-- Parallelization
-- Schedulers
-- Annotations/Functional routers
-- Streaming multiparts?
-- Netty
-
 ###spring 
 
 Reactive Streams is a small spec, also adopted in Java 9, that defines the interaction between asynchronous components with back pressure. For example a data repository — acting as Publisher, can produce data that an HTTP server — acting as Subscriber, can then write to the response. The main purpose of Reactive Streams is to allow the subscriber to control how fast or how slow the publisher will produce data.
@@ -263,7 +247,6 @@ Reactive Streams is a small spec, also adopted in Java 9, that defines the inter
 - Annotated Controllers — consistent with Spring MVC, and based on the same annotations from the spring-web module. Both Spring MVC and WebFlux controllers support reactive (Reactor, RxJava) return types and as a result it is not easy to tell them apart. One notable difference is that WebFlux also supports reactive @RequestBody arguments.
 
 - Functional Endpoints — lambda-based, lightweight, functional programming model. Think of this as a small library or a set of utilities that an application can use to route and handle requests. The big difference with annotated controllers is that the application is in charge of request handling from start to finish vs declaring intent through annotations and being called back.
-
 
 Below are some specific points to consider:
 
