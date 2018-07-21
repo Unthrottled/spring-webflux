@@ -197,7 +197,23 @@ Which should explain _why_ spring states that they created the WebFlux library.
  
 ### Moving from synchronous Imperative to asynchronous Reactive Programming
 
+Granted there is a bit of a learning curve to adopting reactive programming.
+
+It requires a different mindset compared to imperative programming.
+
 ![Learning curve](./assets/the%20learning%20curve.png)
+
+I like to think of imperative programming as rolling a ball to it's destination.
+Where the actual program is controlling the actions of the ball. 
+Where the ball is actually controlled by the one who wants it to be in specific place.
+
+Where as reactive programming is like having to roll a ball down a hill to get where it needs to go.
+If you want the ball to go where you want it, you have to set up walls and obstacles to guide it.
+Once the ball reaches that part of the hill, the ball interfaces with the construct and continues in the direction the construct leaves it.
+
+Replace ball with data, and it is almost the same thing. 
+Reactive programming, is about setting up sequences that manipulate data as it flows. When it flows is up in the air at run time.
+The best we can do is set up our functions (constructs) that manipulate the data as it flows through the sequences we build. 
 
 Reactive streams are very much like the Java 8 stream API.
 
