@@ -175,22 +175,25 @@ An actor is a computational entity that, in response to a message it receives, c
 
 Having a few a event loop threads that do not block and are always processing work is the key to reaching maximum efficiency.
 
-Which should explain why spring states that they created the WebFlux library.
+Which should explain _why_ spring states that they created the WebFlux library.
 
- >Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with less hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. 
+ >Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with less hardware resources. 
+ Servlet 3.1 did provide an API for non-blocking I/O. 
  However, using it leads away from the rest of the Servlet API where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). 
- This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers such as Netty that are well established in the async, non-blocking space.
+ This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. 
+ That is important because of servers such as Netty that are well established in the async, non-blocking space.
  
  >The other part of the answer is functional programming. 
- Much like the addition of annotations in Java 5 created opportunities 
- — e.g. annotated REST controllers or unit tests, the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. 
- This is a boon for non-blocking applications and continuation style APIs — as popularized by CompletableFuture and ReactiveX, that allow declarative composition of asynchronous logic. 
+ Much like the addition of annotations in Java 5 created opportunities — e.g. annotated REST controllers or unit tests, the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. 
+ This is really helpful for non-blocking applications and continuation style APIs — as popularized by CompletableFuture and ReactiveX, that allow declarative composition of asynchronous logic. 
  At the programming model level Java 8 enabled Spring WebFlux to offer functional web endpoints alongside with annotated controllers.
  
- >There is also another important mechanism that we on the Spring team associate with "reactive" and that is non-blocking back pressure. In synchronous, imperative code, blocking calls serve as a natural form of back pressure that forces the caller to wait. In non-blocking code it becomes important to control the rate of events so that a fast producer does not overwhelm its destination.
+ >There is also another important mechanism that we on the Spring team associate with "reactive" and that is non-blocking back pressure. 
+ In synchronous, imperative code, blocking calls serve as a natural form of back pressure that forces the caller to wait. 
+ In non-blocking code it becomes important to control the rate of events so that a fast producer does not overwhelm its destination.
  
 
-##### Moving from Imperative to Reactive Programming
+##### Moving from synchronous Imperative to asynchronous Reactive Programming
 
 Reactive streams are very much like the Java 8 stream API.
 
