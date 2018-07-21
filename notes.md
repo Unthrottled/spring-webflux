@@ -124,7 +124,6 @@ Which means that the biggest bang for our buck would be having a few active thre
 How?
 ---
 
-todo: Asynchrony is needed in order to enable the parallel use of computing resources, on collaborating network hosts or multiple CPU cores within a single machine.
 
 This can be done by utilizing a **Non-Blocking** programming paradigm. 
 A **push-based** system does not necessarily need to block work from happening. 
@@ -156,6 +155,41 @@ Both errors and completion terminate the sequence of events created from the pub
 Rather than blocking to wait for a method to return, just have the data sent over once it is ready.
 That way work can be done while that data is getting ready to be processed.
 
+**Push-Based** programming lends itself to asynchrony.
+ Which is needed in order to enable the efficient parallel use of computing resources, 
+ on collaborating network hosts or multiple CPU cores within a single machine.
+ 
+It also makes it easier to avoid issues with thread contention as most of the code is processed inside of a **event loop**
+
+In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
+
+The reactor design pattern is an event handling pattern for handling service requests delivered concurrently to a service handler by one or more inputs. 
+The service handler then demultiplexes the incoming requests and dispatches them synchronously to the associated request handlers.
+![demultiplexes](https://en.wikipedia.org/wiki/Multiplexing#/media/File:Multiplexing_diagram.svg)
+
+An actor is a computational entity that, in response to a message it receives, can concurrently:
+
+- send a finite number of messages to other actors;
+- create a finite number of new actors;
+- designate the behavior to be used for the next message it receives.
+
+Having a few a event loop threads that do not block and are always processing work is the key to reaching maximum efficiency.
+
+Which should explain why spring states that they created the WebFlux library.
+
+ >Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with less hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. 
+ However, using it leads away from the rest of the Servlet API where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). 
+ This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers such as Netty that are well established in the async, non-blocking space.
+ 
+ >The other part of the answer is functional programming. 
+ Much like the addition of annotations in Java 5 created opportunities 
+ — e.g. annotated REST controllers or unit tests, the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. 
+ This is a boon for non-blocking applications and continuation style APIs — as popularized by CompletableFuture and ReactiveX, that allow declarative composition of asynchronous logic. 
+ At the programming model level Java 8 enabled Spring WebFlux to offer functional web endpoints alongside with annotated controllers.
+ 
+ >There is also another important mechanism that we on the Spring team associate with "reactive" and that is non-blocking back pressure. In synchronous, imperative code, blocking calls serve as a natural form of back pressure that forces the caller to wait. In non-blocking code it becomes important to control the rate of events so that a fast producer does not overwhelm its destination.
+ 
+
 ##### Moving from Imperative to Reactive Programming
 
 Reactive streams are very much like the Java 8 stream API.
@@ -183,19 +217,6 @@ Every subscriber will see the entire sequence.
  From a general perspective, a hot sequence can even emit when no subscriber is listening
   (an exception to the "nothing happens before you subscribe" rule).
 
-#### Wikipedia
-In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
-
-The reactor design pattern is an event handling pattern for handling service requests delivered concurrently to a service handler by one or more inputs. 
-The service handler then demultiplexes the incoming requests and dispatches them synchronously to the associated request handlers.
-![demultiplexes](https://en.wikipedia.org/wiki/Multiplexing#/media/File:Multiplexing_diagram.svg)
-
-An actor is a computational entity that, in response to a message it receives, can concurrently:
-
-- send a finite number of messages to other actors;
-- create a finite number of new actors;
-- designate the behavior to be used for the next message it receives.
-
 
 ### THINGS TO COVER
 - Reactor multi subscribe
@@ -214,20 +235,6 @@ An actor is a computational entity that, in response to a message it receives, c
 - Streaming multiparts?
 
 ###spring 
-
-Why was Spring WebFlux created?
-
-Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with less hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. 
-However, using it leads away from the rest of the Servlet API where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). 
-This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers such as Netty that are well established in the async, non-blocking space.
-
-The other part of the answer is functional programming. 
-Much like the addition of annotations in Java 5 created opportunities 
-— e.g. annotated REST controllers or unit tests, the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. 
-This is a boon for non-blocking applications and continuation style APIs — as popularized by CompletableFuture and ReactiveX, that allow declarative composition of asynchronous logic. 
-At the programming model level Java 8 enabled Spring WebFlux to offer functional web endpoints alongside with annotated controllers.
-
-There is also another important mechanism that we on the Spring team associate with "reactive" and that is non-blocking back pressure. In synchronous, imperative code, blocking calls serve as a natural form of back pressure that forces the caller to wait. In non-blocking code it becomes important to control the rate of events so that a fast producer does not overwhelm its destination.
 
 Reactive Streams is a small spec, also adopted in Java 9, that defines the interaction between asynchronous components with back pressure. For example a data repository — acting as Publisher, can produce data that an HTTP server — acting as Subscriber, can then write to the response. The main purpose of Reactive Streams is to allow the subscriber to control how fast or how slow the publisher will produce data.
 
