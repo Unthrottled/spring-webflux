@@ -151,19 +151,6 @@ In addition to pushing values, the error handling and completion aspects are als
 A Publisher can push new values to its Subscriber, but can also signal an error, or completion. 
 Both errors and completion terminate the sequence of events created from the publisher.
 
-#### Spring
-
-Why was Spring WebFlux created?
-
-Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with less hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. 
-However, using it leads away from the rest of the Servlet API where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). 
-This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers such as Netty that are well established in the async, non-blocking space.
-
-The other part of the answer is functional programming. 
-Much like the addition of annotations in Java 5 created opportunities 
-— e.g. annotated REST controllers or unit tests, the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. 
-This is a boon for non-blocking applications and continuation style APIs — as popularized by CompletableFuture and ReactiveX, that allow declarative composition of asynchronous logic. 
-At the programming model level Java 8 enabled Spring WebFlux to offer functional web endpoints alongside with annotated controllers.
 
 ### From Imperative to Reactive Programming
 
@@ -221,6 +208,18 @@ An actor is a computational entity that, in response to a message it receives, c
 - Streaming multiparts?
 
 ###spring 
+
+Why was Spring WebFlux created?
+
+Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with less hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. 
+However, using it leads away from the rest of the Servlet API where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). 
+This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers such as Netty that are well established in the async, non-blocking space.
+
+The other part of the answer is functional programming. 
+Much like the addition of annotations in Java 5 created opportunities 
+— e.g. annotated REST controllers or unit tests, the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. 
+This is a boon for non-blocking applications and continuation style APIs — as popularized by CompletableFuture and ReactiveX, that allow declarative composition of asynchronous logic. 
+At the programming model level Java 8 enabled Spring WebFlux to offer functional web endpoints alongside with annotated controllers.
 
 There is also another important mechanism that we on the Spring team associate with "reactive" and that is non-blocking back pressure. In synchronous, imperative code, blocking calls serve as a natural form of back pressure that forces the caller to wait. In non-blocking code it becomes important to control the rate of events so that a fast producer does not overwhelm its destination.
 
