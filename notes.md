@@ -197,7 +197,7 @@ Which should explain _why_ spring states that they created the WebFlux library.
  
 ### Moving from synchronous Imperative to asynchronous Reactive Programming
 
-Granted there is a bit of a learning curve to adopting reactive programming.
+Granted there is a bit of a learning curve to adopting non-blocking, functional, and declarative programming.
 
 It requires a different mindset compared to imperative programming.
 
@@ -243,19 +243,18 @@ Every subscriber will see the entire sequence.
 
 ### THINGS TO COVER
 - Reactor multi subscribe
-- Parallelization
-- Schedulers
-- Repeat, retry, replay
-- Reduction
 - errors
 - Merging
 - Debugging
+- Reduction
 - Testing
-- Netty
-- Event Loop/Reactor/Actors
 - Tuples in reactor
+- Repeat, retry, replay
+- Parallelization
+- Schedulers
 - Annotations/Functional routers
 - Streaming multiparts?
+- Netty
 
 ###spring 
 
