@@ -192,8 +192,9 @@ Which should explain _why_ spring states that they created the WebFlux library.
  In synchronous, imperative code, blocking calls serve as a natural form of back pressure that forces the caller to wait. 
  In non-blocking code it becomes important to control the rate of events so that a fast producer does not overwhelm its destination.
  
-
 ##### Moving from synchronous Imperative to asynchronous Reactive Programming
+
+![Learning curve](./assets/the%20learning%20curve.png)
 
 Reactive streams are very much like the Java 8 stream API.
 
