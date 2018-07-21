@@ -208,7 +208,7 @@ Here are some of the characteristics of reactive steams:
 - _Backpressure_: which is the ability for the consumer to signal the producer that the rate of emission is too high (buffering)
 - High level and a high value abstraction that is concurrency-agnostic
 
-##### Types of Streams 
+##### Types of Sequences 
 
 In the Rx family of reactive libraries,
  one can distinguish two broad categories of reactive sequences: **hot** and **cold**.
