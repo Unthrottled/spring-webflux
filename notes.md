@@ -125,7 +125,7 @@ How?
 ---
 
 This can be done by utilizing a **Non-Blocking** programming paradigm. 
-A **push-based** does not necessarily need to block work from happening. 
+A **push-based** system does not necessarily need to block work from happening. 
 When data is processed in time, then it will be directed to where it needs to go.
 Where as **pull-based** call says, `Hey, you cannot continue down the rest of this code until this one thing happens.`.
 Which essentially _blocks_ the program's flow until it can continue to be processed.
@@ -151,8 +151,11 @@ In addition to pushing values, the error handling and completion aspects are als
 A Publisher can push new values to its Subscriber, but can also signal an error, or completion. 
 Both errors and completion terminate the sequence of events created from the publisher.
 
+Rather than blocking to wait for a method to return, just have the data sent over once it is ready.
+That way work can be done while that data is getting ready to be processed.
 
-### From Imperative to Reactive Programming
+
+##### Moving from Imperative to Reactive Programming
 
 Are very, very, very, very, much like Java 8's streams.
 
