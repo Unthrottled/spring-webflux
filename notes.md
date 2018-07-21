@@ -124,6 +124,8 @@ Which means that the biggest bang for our buck would be having a few active thre
 How?
 ---
 
+todo: Asynchrony is needed in order to enable the parallel use of computing resources, on collaborating network hosts or multiple CPU cores within a single machine.
+
 This can be done by utilizing a **Non-Blocking** programming paradigm. 
 A **push-based** system does not necessarily need to block work from happening. 
 When data is processed in time, then it will be directed to where it needs to go.
@@ -171,15 +173,15 @@ In the Rx family of reactive libraries,
  one can distinguish two broad categories of reactive sequences: **hot** and **cold**.
 This distinction mainly has to do with how the reactive stream reacts to subscribers:
 
-- A Cold sequence starts anew for each Subscriber, including at the source of data.
- If the source wraps an HTTP call, a new HTTP request is made for each subscription.
-- A Hot sequence does not start from scratch for each Subscriber.
- Rather, late subscribers receive signals emitted after they subscribed. 
- Note, however, that some hot reactive streams can cache or replay the history of emissions totally or partially. 
+- **Cold Sequences**: starts anew for each Subscriber, including at the source of data. 
+Every subscriber will see the entire sequence.
+ If the source wraps an HTTP call, a new HTTP request is made for each subscription. 
+- **Hot sequences**: do not start from from the beginning for every Subscriber.
+ Rather, late subscribers receive only signals emitted after they subscribed. 
+ If a publisher was already producing, then the subscriber would only see the items currently being produced after subscription. 
+ >Note, however, that some hot reactive streams can cache or replay the history of emissions totally or partially. 
  From a general perspective, a hot sequence can even emit when no subscriber is listening
   (an exception to the "nothing happens before you subscribe" rule).
-
-Asynchrony is needed in order to enable the parallel use of computing resources, on collaborating network hosts or multiple CPU cores within a single machine.
 
 #### Wikipedia
 In computer science, the event loop, message dispatcher, message loop, message pump, or run loop is a programming construct that waits for and dispatches events or messages in a program. It works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), and then it calls the relevant event handler ("dispatches the event")
