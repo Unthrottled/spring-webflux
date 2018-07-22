@@ -7,16 +7,45 @@
 - Runs on Daemon threads
 - Basic source
 - Basic intermediaries
+    - the basics
+        - map
+        - filter
+        - flatmap
+    - default 
+    - delay
+        - Elements
+        - sequence
+        - delay until
+    - distinct
+    - do
+        - on error
+        - next
+        - request
+        - subscribe
+        - success
+    - index
+    - debug stuff
+        - log
+    - debounce
+        - limit
+    - backpressure
 - Terminal operations
-- Netty
-    - Trying to block on rest api handler
+    - Collectors
+        - list
+        - map
+            - Multimap
+            - Group By 
+    - Reduce
+    - Next
+        - Single   
+    - Then
 - Reactor multi subscribe
 - Hot/Cold sequences
 - Repeat, retry, replay
 - Merging
+- Netty
+    - Trying to block on rest api handler
 - errors
-- Debugging
-- Reduction
 - Testing
 - Tuples in reactor
 - Parallelization
