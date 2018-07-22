@@ -1,3 +1,16 @@
+Story Ideas
+- It would be cool if I could somehow be able to work in event sourcing into the example that I created.
+    - Creating a pod member
+        - Adding interests
+        - Removing interests
+    - Associate with pod
+        - Added to
+        - Removed from
+        - Validation
+    - Adding an avatar
+    - Look into Command Query Responsibility Segregation, as it applies to event sourcing.
+    
+    
 ### THINGS TO COVER
 - What?
 - Who?
