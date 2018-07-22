@@ -6,6 +6,9 @@
 - Subscription
 - Runs on Daemon threads
 - Basic source
+    - Streams
+    - Lists
+    - Sinks
 - Basic intermediaries
     - the basics
         - map
