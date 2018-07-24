@@ -9,7 +9,14 @@ Story Ideas
         - Validation
     - Adding an avatar
     - Look into Command Query Responsibility Segregation, as it applies to event sourcing.
-    
+        - [https://martinfowler.com/bliki/CQRS.html](https://martinfowler.com/bliki/CQRS.html)
+        - [https://www.culttt.com/2015/01/14/command-query-responsibility-segregation-cqrs/](https://www.culttt.com/2015/01/14/command-query-responsibility-segregation-cqrs/)
+        - [https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
+        -
+        -
+        -  
+        -
+        -
     
 ### THINGS TO COVER
 - What?
