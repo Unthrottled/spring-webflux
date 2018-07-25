@@ -4,7 +4,7 @@ services:
     build:
       dockerfile: Dockerfile-dev
       context: ./web-content
-    image: alexsimons/webflux-node-install:9.2.0
+    image: alexsimons/webflux-node-dev:9.2.0
     volumes:
       - "./:/app"
     entrypoint:
