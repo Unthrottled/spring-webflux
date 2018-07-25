@@ -53,3 +53,4 @@ class MongoConfig(private val environment: Environment) : AbstractReactiveMongoC
 }
 
 fun <T> loggerFor(clazz: Class<T>): Logger = LoggerFactory.getLogger(clazz)
+
