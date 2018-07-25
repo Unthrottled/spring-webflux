@@ -1,0 +1,68 @@
+.boxed-content {
+  background: #afafaf;
+  z-index: 10000;
+  position: relative;
+  width: 99.984%;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+body {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+  background: #5f5d5b url('../images/stripe.png') fixed;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  display: block;
+  max-width: 1500px;
+  margin: auto;
+  padding: 40px 50px;
+}
+
+.project-file-component-container {
+  padding: 1em;
+  background-color: rgba(175,175,175,0.5);
+}
+
+.list-container{
+  padding: 0.5em;
+  background-color: rgba(255,255,255,0.25);
+  border-radius: 1em;
+}
+
+.project-container{
+  padding: 1em;
+  background-color: rgba(55,55,55,0.25);
+  border-radius: 1em;
+  margin-bottom: 1em;
+  border: 0.25em double rgba(20,20,20, 0.5);
+
+}
+
+.add-image-container {
+  padding: 1em;
+  text-align: center;
+}
+
+.image-holder {
+  text-align: center;
+}
+
+.image-container {
+  padding: 1em;
+}
+
+.image-button-container {
+  display: flex;
+}
+
+.image-button-container div {
+  margin-right: 1em;
+}

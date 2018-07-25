@@ -11,7 +11,7 @@ services:
       - ./web-content:/app
   web-service:
     build: ./web-service
-    image: alexsimons/mongo-images-web-service:1.0.0
+    image: alexsimons/webflux-web-service:1.0.0
     ports:
       - "80:80"
   mongo:

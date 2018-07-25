@@ -2,9 +2,9 @@ version: "3"
 services:
   node-install:
     build:
-      dockerfile: Dockerfile-install
+      dockerfile: Dockerfile-dev
       context: ./web-content
-    image: alexsimons/nodeinstall:9.2.0
+    image: alexsimons/webflux-node-install:9.2.0
     volumes:
       - "./:/app"
     entrypoint:
