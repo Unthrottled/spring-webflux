@@ -29,11 +29,11 @@ class FluxAsyncInputStream(source: Flux<DataBuffer>) : AsyncInputStream {
      */
     override fun read(dst: ByteBuffer): Publisher<Int> {
         return this.source.takeNext()
-                .map({ dataBuffer ->
+                .map { dataBuffer ->
                     val bytesToReadCount = dataBuffer.readableByteCount()
                     dst.put(dataBuffer.asByteBuffer())
                     if (bytesToReadCount <= 0) -1 else bytesToReadCount
-                }).defaultIfEmpty(-1)
+                }.defaultIfEmpty(-1)
     }
 
     /**
@@ -46,7 +46,4 @@ class FluxAsyncInputStream(source: Flux<DataBuffer>) : AsyncInputStream {
         return Mono.just(Success.SUCCESS)
     }
 
-    companion object {
-        private val LOGGER = LoggerFactory.getLogger(FluxAsyncInputStream::class.java)
-    }
 }
