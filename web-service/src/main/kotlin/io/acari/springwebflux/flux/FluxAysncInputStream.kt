@@ -3,7 +3,6 @@ package io.acari.springwebflux.flux
 import com.mongodb.reactivestreams.client.Success
 import com.mongodb.reactivestreams.client.gridfs.AsyncInputStream
 import org.reactivestreams.Publisher
-import org.slf4j.LoggerFactory
 import org.springframework.core.io.buffer.DataBuffer
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
