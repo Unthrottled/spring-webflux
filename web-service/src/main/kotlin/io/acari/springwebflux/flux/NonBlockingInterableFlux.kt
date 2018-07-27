@@ -35,9 +35,9 @@ class NonBlockingIterableFlux<T>
     private var complete = false
 
     init {
-        Preconditions.checkNotNull(source)
-        val messaged = Flux.create<T> { stringFluxSink ->
-            source.subscribe({ sourceItem -> emitNextItem(stringFluxSink, sourceItem) },
+        val sourceStream = Preconditions.checkNotNull(source)
+        val messaged = Flux.create<T> { tFluxSink ->
+            source.subscribe({ sourceItem -> emitNextItem(tFluxSink, sourceItem) },
                     { this.accept(it) },
                     { this.run() })
         }
@@ -83,29 +83,30 @@ class NonBlockingIterableFlux<T>
     }
 
     private fun createCallback(): Mono<T> {
-        val stringConsumer = Consumer { tMonoSink: MonoSink<T> ->
+        val tConsumer = Consumer { tMonoSink: MonoSink<T> ->
             callables.offer(MonoSinkHelper(tMonoSink))
         }
-        return Mono.create(stringConsumer)
+        return Mono.create(tConsumer)
     }
 
-    private fun emitNextItem(stringFluxSink: FluxSink<T>, a: T) {
+    private fun emitNextItem(tFluxSink: FluxSink<T>, a: T) {
         if (callables.isEmpty()) {
-            bufferItem(stringFluxSink, a)
+            bufferItem(tFluxSink, a)
         } else {
-            emitToNextSubscribedCaller(stringFluxSink, a)
+            emitToNextSubscribedCaller(tFluxSink, a)
         }
     }
 
-    private fun bufferItem(stringFluxSink: FluxSink<T>, a: T) {
-        stringFluxSink.next(a)
+    private fun bufferItem(tFluxSink: FluxSink<T>, a: T) {
+        tFluxSink.next(a)
         itemBuffer.offer(a)
     }
 
-    private fun emitToNextSubscribedCaller(stringFluxSink: FluxSink<T>, a: T) {
+    //should probably keep trying
+    private fun emitToNextSubscribedCaller(tFluxSink: FluxSink<T>, a: T) {
         val nextPersonInLine = callables.poll()
         if (nextPersonInLine.isDisposed) {
-            emitNextItem(stringFluxSink, a)
+            emitNextItem(tFluxSink, a)
         } else {
             nextPersonInLine.success(a)
         }

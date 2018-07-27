@@ -11,6 +11,9 @@ class MonoSinkHelper<T>(private val monoSink: MonoSink<T>) {
 
     init {
         monoSink.onDispose({ this.disposed() })
+        monoSink.onRequest {
+            //should start the subscription
+        }
     }
 
     fun success() {
