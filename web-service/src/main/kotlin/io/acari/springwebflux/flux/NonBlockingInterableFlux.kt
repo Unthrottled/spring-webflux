@@ -85,6 +85,9 @@ class NonBlockingIterableFlux<T>
     private fun createCallback(): Mono<T> {
         val tConsumer = Consumer { tMonoSink: MonoSink<T> ->
             callables.offer(MonoSinkHelper(tMonoSink))
+            tMonoSink.onRequest {
+                //dis should be here
+            }
         }
         return Mono.create(tConsumer)
     }
