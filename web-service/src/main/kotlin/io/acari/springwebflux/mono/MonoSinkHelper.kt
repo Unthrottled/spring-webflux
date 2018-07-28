@@ -10,7 +10,7 @@ class MonoSinkHelper<T>(private val monoSink: MonoSink<T>) {
         private set
 
     init {
-        monoSink.onDispose({ this.disposed() })
+        monoSink.onDispose { this.disposed() }
     }
 
     fun success() {

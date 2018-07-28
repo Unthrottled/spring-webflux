@@ -1,10 +1,8 @@
 package io.acari.springwebflux.flux
 
-import com.google.common.base.Preconditions
 import io.acari.springwebflux.mono.MonoSinkHelper
 import reactor.core.Disposable
 import reactor.core.publisher.Flux
-import reactor.core.publisher.FluxSink
 import reactor.core.publisher.Mono
 import reactor.core.publisher.MonoSink
 import java.util.*
@@ -14,7 +12,6 @@ import java.util.function.Consumer
  * Forged in the flames of battle by alex.
  */
 
-//TODO: Would like this to be lazely evaluated
 class NonBlockingIterableFlux<T>
 /**
  * Stateful class, which allows for non-blocking
@@ -26,23 +23,12 @@ class NonBlockingIterableFlux<T>
  * to somebody.
  *
  * @param source non-null flux source.
- * @throws NullPointerException when given null source
  */
-(source: Flux<T>) : Disposable {
+(private val source: Flux<T>) : Disposable {
     private val itemBuffer = LinkedList<T>()
     private val callables = LinkedList<MonoSinkHelper<T>>()
-    private val subscription: Disposable
+    private lateinit var subscription: Disposable
     private var complete = false
-
-    init {
-        val sourceStream = Preconditions.checkNotNull(source)
-        val messaged = Flux.create<T> { tFluxSink ->
-            source.subscribe({ sourceItem -> emitNextItem(tFluxSink, sourceItem) },
-                    { this.accept(it) },
-                    { this.run() })
-        }
-        subscription = messaged.subscribe()
-    }
 
     /**
      * Cancel or dispose the underlying task or resource.
@@ -65,53 +51,58 @@ class NonBlockingIterableFlux<T>
      * because you will get their item.
      *
      *
-     * If you take a number that cannot fufilled
+     * If you take a number that cannot fulfilled
      * (the flux handed out all of it's items),
      * you will be notified by an empty return.
      *
      * @return An item in the flux based off of the current queue of callbacks.
-     * or nothing if the flux has run out of items.
+     * or nothing if the flux has completeStream out of items.
      */
-    fun takeNext(): Mono<T> {
-        return if (complete && itemBuffer.isEmpty()) {
-            Mono.empty()
-        } else if (itemBuffer.isEmpty()) {
-            createCallback()
-        } else {
-            Mono.just(itemBuffer.poll())
-        }
-    }
+    fun takeNext(): Mono<T> =
+            if (complete && itemBuffer.isEmpty()) {
+                Mono.empty()
+            } else if (itemBuffer.isEmpty()) {
+                createCallback()
+            } else {
+                Mono.just(itemBuffer.poll())
+            }
 
     private fun createCallback(): Mono<T> {
         val tConsumer = Consumer { tMonoSink: MonoSink<T> ->
             callables.offer(MonoSinkHelper(tMonoSink))
-            tMonoSink.onRequest {
-                //dis should be here
-            }
+            tMonoSink.onRequest { subscribble() }
         }
         return Mono.create(tConsumer)
     }
 
-    private fun emitNextItem(tFluxSink: FluxSink<T>, a: T) {
+    private fun jettisonNextItem(a: T) {
         if (callables.isEmpty()) {
-            bufferItem(tFluxSink, a)
+            bufferItem(a)
         } else {
-            emitToNextSubscribedCaller(tFluxSink, a)
+            emitToNextSubscribedCaller(a)
         }
     }
 
-    private fun bufferItem(tFluxSink: FluxSink<T>, a: T) {
-        tFluxSink.next(a)
+    private fun bufferItem(a: T) {
         itemBuffer.offer(a)
     }
 
-    //should probably keep trying
-    private fun emitToNextSubscribedCaller(tFluxSink: FluxSink<T>, a: T) {
+    private fun emitToNextSubscribedCaller(a: T) {
         val nextPersonInLine = callables.poll()
         if (nextPersonInLine.isDisposed) {
-            emitNextItem(tFluxSink, a)
+            jettisonNextItem(a)
         } else {
             nextPersonInLine.success(a)
+        }
+    }
+
+
+    private fun subscribble() {
+        if (!this::subscription.isInitialized) {
+            subscription = source.subscribe({ jettisonNextItem(it) },
+                    { accept(it) },
+                    { completeStream() })
+
         }
     }
 
@@ -120,7 +111,7 @@ class NonBlockingIterableFlux<T>
         callables.forEach { callable -> callable.error(b) }
     }
 
-    private fun run() {
+    private fun completeStream() {
         callables.forEach { it.success() }
         complete = true
     }
