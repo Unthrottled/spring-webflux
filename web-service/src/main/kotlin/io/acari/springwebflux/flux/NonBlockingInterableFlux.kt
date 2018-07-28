@@ -70,9 +70,9 @@ class NonBlockingIterableFlux<T>
     private fun createCallback(): Mono<T> {
         val tConsumer = Consumer { tMonoSink: MonoSink<T> ->
             callables.offer(MonoSinkHelper(tMonoSink))
-            tMonoSink.onRequest { subscribble() }
         }
         return Mono.create(tConsumer)
+                .doOnRequest { subscribble() }
     }
 
     private fun jettisonNextItem(a: T) {
