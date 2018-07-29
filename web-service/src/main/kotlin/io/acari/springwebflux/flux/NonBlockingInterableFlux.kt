@@ -12,6 +12,7 @@ import java.util.function.Consumer
  * Forged in the flames of battle by alex.
  */
 
+//todo: think about to handle non
 class NonBlockingIterableFlux<T>
 /**
  * Stateful class, which allows for non-blocking
