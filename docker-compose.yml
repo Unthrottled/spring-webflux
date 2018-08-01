@@ -7,5 +7,7 @@ services:
     image: alexsimons/spring-webflux-web-service:1.0.0
   mongo:
     image: mongo:latest
+    ports:
+      - 27017:27017
     volumes:
       - "./dataDump/:/data/db"

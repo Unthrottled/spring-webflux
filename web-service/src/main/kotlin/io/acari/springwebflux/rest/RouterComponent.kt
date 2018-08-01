@@ -7,12 +7,14 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.http.MediaType
 import org.springframework.http.codec.multipart.Part
 import org.springframework.stereotype.Component
+import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.BodyInserters.fromPublisher
 import org.springframework.web.reactive.function.server.HandlerFunction
 import org.springframework.web.reactive.function.server.RequestPredicates.*
 import org.springframework.web.reactive.function.server.RouterFunction
 import org.springframework.web.reactive.function.server.RouterFunctions.*
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.web.reactive.function.server.ServerResponse.ok
 
 /**
  * Forged in the flames of battle by alex.
@@ -24,7 +26,8 @@ class RouterComponent(private val imageHandler: ImageHandler) {
     @Bean
     fun apiRouterFunction(): RouterFunction<*> {
         return nest(path("/api"),
-                route(GET("/images"), allImagesHandler())
+                route(path("/hello"), HandlerFunction{ok().body(BodyInserters.fromObject("hello world"))})
+                        .andRoute(GET("/images"), allImagesHandler())
                         .andNest(path("/image"),
                                 route(POST("/save"), saveImageHandler())
                                         .andRoute(GET("/get/{id}"), handlerFunction())
