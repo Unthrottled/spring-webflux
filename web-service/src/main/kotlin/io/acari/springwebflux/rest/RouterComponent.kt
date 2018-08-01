@@ -14,7 +14,6 @@ import org.springframework.web.reactive.function.server.RequestPredicates.*
 import org.springframework.web.reactive.function.server.RouterFunction
 import org.springframework.web.reactive.function.server.RouterFunctions.*
 import org.springframework.web.reactive.function.server.ServerResponse
-import org.springframework.web.reactive.function.server.ServerResponse.ok
 
 /**
  * Forged in the flames of battle by alex.
@@ -26,8 +25,7 @@ class RouterComponent(private val imageHandler: ImageHandler) {
     @Bean
     fun apiRouterFunction(): RouterFunction<*> {
         return nest(path("/api"),
-                route(path("/hello"), HandlerFunction{ok().body(BodyInserters.fromObject("hello world"))})
-                        .andRoute(GET("/images"), allImagesHandler())
+                route(GET("/images"), allImagesHandler())
                         .andNest(path("/image"),
                                 route(POST("/save"), saveImageHandler())
                                         .andRoute(GET("/get/{id}"), handlerFunction())
