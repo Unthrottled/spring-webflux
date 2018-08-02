@@ -18,7 +18,7 @@ var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var ProjectFileManipulation_component_1 = require("./manipulation/ProjectFileManipulation.component");
 var ProjectFileService_1 = require("./service/ProjectFileService");
-var ProjectFile_component_1 = require("./view/ProjectFile.component");
+var PodMember_component_1 = require("./view/PodMember.component");
 var LocalProjectFile_service_1 = require("./service/LocalProjectFile.service");
 var ImageUpload_service_1 = require("./service/ImageUpload.service");
 var ProfileImage_component_1 = require("./view/ProfileImage.component");
@@ -37,7 +37,7 @@ var ProjectFileModule = /** @class */ (function () {
                 ProjectFileChoose_component_1.ProjectFileChooseComponent,
                 ProjectFileList_component_1.ProjectFileListComponent,
                 ProjectFileView_component_1.ProjectFileViewComponent,
-                ProjectFile_component_1.ProjectFileComponent,
+                PodMember_component_1.PodMemberComponent,
                 ProjectFiles_component_1.ProjectFilesComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent
             ],
@@ -45,7 +45,7 @@ var ProjectFileModule = /** @class */ (function () {
                 ProjectFileChoose_component_1.ProjectFileChooseComponent,
                 ProjectFileList_component_1.ProjectFileListComponent,
                 ProjectFileView_component_1.ProjectFileViewComponent,
-                ProjectFile_component_1.ProjectFileComponent,
+                PodMember_component_1.PodMemberComponent,
                 ProjectFiles_component_1.ProjectFilesComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent,
                 ProfileImage_component_1.ProfileImageComponent

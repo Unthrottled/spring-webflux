@@ -6,9 +6,9 @@ import {LocalProjectFile} from "../model/LocalProjectFile";
 
 @Component({
     selector: 'project-file',
-    template: require('./ProjectFile.component.htm')
+    template: require('./PodMember.component.htm')
 })
-export class ProjectFileComponent {
+export class PodMemberComponent {
 
     constructor(private projectFileService: ProjectFileService) {
     }

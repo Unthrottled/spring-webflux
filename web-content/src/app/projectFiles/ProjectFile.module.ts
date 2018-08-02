@@ -10,7 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {ProjectFileManipulationComponent} from "./manipulation/ProjectFileManipulation.component";
 import {ProjectFileService} from "./service/ProjectFileService";
-import {ProjectFileComponent} from "./view/ProjectFile.component";
+import {PodMemberComponent} from "./view/PodMember.component";
 import {LocalProjectFileService} from "./service/LocalProjectFile.service";
 import {ImageUploadService} from "./service/ImageUpload.service";
 import {ProfileImageComponent} from './view/ProfileImage.component';
@@ -27,7 +27,7 @@ import {ProfileImageComponent} from './view/ProfileImage.component';
             ProjectFileChooseComponent,
             ProjectFileListComponent,
             ProjectFileViewComponent,
-            ProjectFileComponent,
+            PodMemberComponent,
             ProjectFilesComponent,
             ProjectFileManipulationComponent
 
@@ -36,7 +36,7 @@ import {ProfileImageComponent} from './view/ProfileImage.component';
             ProjectFileChooseComponent,
             ProjectFileListComponent,
             ProjectFileViewComponent,
-            ProjectFileComponent,
+            PodMemberComponent,
             ProjectFilesComponent,
             ProjectFileManipulationComponent,
             ProfileImageComponent

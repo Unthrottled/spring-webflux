@@ -12,11 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ProjectFileService_1 = require("../service/ProjectFileService");
 var LocalProjectFile_1 = require("../model/LocalProjectFile");
-var ProjectFileComponent = /** @class */ (function () {
-    function ProjectFileComponent(projectFileService) {
+var PodMemberComponent = /** @class */ (function () {
+    function PodMemberComponent(projectFileService) {
         this.projectFileService = projectFileService;
     }
-    Object.defineProperty(ProjectFileComponent.prototype, "projectFile", {
+    Object.defineProperty(PodMemberComponent.prototype, "projectFile", {
         get: function () {
             return this._projectFile;
         },
@@ -26,7 +26,7 @@ var ProjectFileComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ProjectFileComponent.prototype, "editMode", {
+    Object.defineProperty(PodMemberComponent.prototype, "editMode", {
         //todo: remove dis when you can change remote projects.
         get: function () {
             return this.projectFile instanceof LocalProjectFile_1.LocalProjectFile;
@@ -34,16 +34,16 @@ var ProjectFileComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    ProjectFileComponent.prototype.updateFile = function (projectFile) {
+    PodMemberComponent.prototype.updateFile = function (projectFile) {
         this.projectFile = projectFile;
     };
-    ProjectFileComponent.prototype.uploadFile = function () {
+    PodMemberComponent.prototype.uploadFile = function () {
         this.projectFileService.uploadFile(this.projectFile);
     };
-    ProjectFileComponent.prototype.delete = function () {
+    PodMemberComponent.prototype.delete = function () {
         this.projectFileService.removeProjectFile(this.projectFile);
     };
-    Object.defineProperty(ProjectFileComponent.prototype, "imageBinary", {
+    Object.defineProperty(PodMemberComponent.prototype, "imageBinary", {
         get: function () {
             return this._projectFile.imageBinary();
         },
@@ -54,15 +54,15 @@ var ProjectFileComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
-    ], ProjectFileComponent.prototype, "projectFile", null);
-    ProjectFileComponent = __decorate([
+    ], PodMemberComponent.prototype, "projectFile", null);
+    PodMemberComponent = __decorate([
         core_1.Component({
             selector: 'project-file',
-            template: require('./ProjectFile.component.htm')
+            template: require('./PodMember.component.htm')
         }),
         __metadata("design:paramtypes", [ProjectFileService_1.ProjectFileService])
-    ], ProjectFileComponent);
-    return ProjectFileComponent;
+    ], PodMemberComponent);
+    return PodMemberComponent;
 }());
-exports.ProjectFileComponent = ProjectFileComponent;
-//# sourceMappingURL=ProjectFile.component.js.map
+exports.PodMemberComponent = PodMemberComponent;
+//# sourceMappingURL=PodMember.component.js.map
