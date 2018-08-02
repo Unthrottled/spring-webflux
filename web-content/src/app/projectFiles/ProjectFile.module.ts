@@ -13,6 +13,7 @@ import {ProjectFileService} from "./service/ProjectFileService";
 import {ProjectFileComponent} from "./view/ProjectFile.component";
 import {LocalProjectFileService} from "./service/LocalProjectFile.service";
 import {ImageUploadService} from "./service/ImageUpload.service";
+import {ProfileImageComponent} from './view/ProfileImage.component';
 
 @NgModule({
         imports: [
@@ -37,7 +38,8 @@ import {ImageUploadService} from "./service/ImageUpload.service";
             ProjectFileViewComponent,
             ProjectFileComponent,
             ProjectFilesComponent,
-            ProjectFileManipulationComponent
+            ProjectFileManipulationComponent,
+            ProfileImageComponent
         ],
         bootstrap: [],
         providers: [RemoteProjectFileService,

@@ -21,6 +21,7 @@ var ProjectFileService_1 = require("./service/ProjectFileService");
 var ProjectFile_component_1 = require("./view/ProjectFile.component");
 var LocalProjectFile_service_1 = require("./service/LocalProjectFile.service");
 var ImageUpload_service_1 = require("./service/ImageUpload.service");
+var ProfileImage_component_1 = require("./view/ProfileImage.component");
 var ProjectFileModule = /** @class */ (function () {
     function ProjectFileModule() {
     }
@@ -46,7 +47,8 @@ var ProjectFileModule = /** @class */ (function () {
                 ProjectFileView_component_1.ProjectFileViewComponent,
                 ProjectFile_component_1.ProjectFileComponent,
                 ProjectFiles_component_1.ProjectFilesComponent,
-                ProjectFileManipulation_component_1.ProjectFileManipulationComponent
+                ProjectFileManipulation_component_1.ProjectFileManipulationComponent,
+                ProfileImage_component_1.ProfileImageComponent
             ],
             bootstrap: [],
             providers: [RemoteProjectFile_service_1.RemoteProjectFileService,

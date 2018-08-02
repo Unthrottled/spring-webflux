@@ -1,9 +1,5 @@
 <div class="project-container">
-    <div *ngIf="editMode">
-        <project-file-manipulation [projectFile]="projectFile" (projectFileUpdated)="updateFile($event)">
-        </project-file-manipulation>
-    </div>
-    <project-file-view [projectFile]="projectFile"></project-file-view>
+    <profile-image [projectFile]="projectFile" (projectFileEmmiter)="updateFile($event)"></profile-image>
     <div class="image-button-container">
         <div class="btn btn-lg btn-danger" (click)="delete()">Delete</div>
         <div *ngIf="editMode">
