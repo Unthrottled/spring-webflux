@@ -22,6 +22,7 @@ var PodMember_component_1 = require("./view/PodMember.component");
 var LocalProjectFile_service_1 = require("./service/LocalProjectFile.service");
 var ImageUpload_service_1 = require("./service/ImageUpload.service");
 var ProfileImage_component_1 = require("./view/ProfileImage.component");
+var PersonalInformation_component_1 = require("./view/PersonalInformation.component");
 var ProjectFileModule = /** @class */ (function () {
     function ProjectFileModule() {
     }
@@ -48,7 +49,8 @@ var ProjectFileModule = /** @class */ (function () {
                 PodMember_component_1.PodMemberComponent,
                 ProjectFiles_component_1.ProjectFilesComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent,
-                ProfileImage_component_1.ProfileImageComponent
+                ProfileImage_component_1.ProfileImageComponent,
+                PersonalInformation_component_1.PersonalInformationComponent
             ],
             bootstrap: [],
             providers: [RemoteProjectFile_service_1.RemoteProjectFileService,

@@ -14,6 +14,7 @@ import {PodMemberComponent} from "./view/PodMember.component";
 import {LocalProjectFileService} from "./service/LocalProjectFile.service";
 import {ImageUploadService} from "./service/ImageUpload.service";
 import {ProfileImageComponent} from './view/ProfileImage.component';
+import {PersonalInformationComponent} from './view/PersonalInformation.component';
 
 @NgModule({
         imports: [
@@ -39,7 +40,8 @@ import {ProfileImageComponent} from './view/ProfileImage.component';
             PodMemberComponent,
             ProjectFilesComponent,
             ProjectFileManipulationComponent,
-            ProfileImageComponent
+            ProfileImageComponent,
+            PersonalInformationComponent
         ],
         bootstrap: [],
         providers: [RemoteProjectFileService,
