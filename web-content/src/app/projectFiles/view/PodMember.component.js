@@ -57,7 +57,7 @@ var PodMemberComponent = /** @class */ (function () {
     ], PodMemberComponent.prototype, "projectFile", null);
     PodMemberComponent = __decorate([
         core_1.Component({
-            selector: 'project-file',
+            selector: 'pod-member',
             template: require('./PodMember.component.htm')
         }),
         __metadata("design:paramtypes", [ProjectFileService_1.ProjectFileService])
