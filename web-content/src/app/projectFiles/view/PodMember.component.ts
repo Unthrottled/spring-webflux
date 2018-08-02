@@ -5,7 +5,7 @@ import {Observable} from "rxjs/Observable";
 import {LocalProjectFile} from "../model/LocalProjectFile";
 
 @Component({
-    selector: 'project-file',
+    selector: 'pod-member',
     template: require('./PodMember.component.htm')
 })
 export class PodMemberComponent {
