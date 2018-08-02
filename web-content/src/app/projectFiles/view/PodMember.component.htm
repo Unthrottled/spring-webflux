@@ -1,6 +1,12 @@
 <div class="project-container">
-    <profile-image [projectFile]="projectFile" (projectFileEmmiter)="updateFile($event)"></profile-image>
-    <personal-information [projectFile]="projectFile"></personal-information>
+    <div style="display: flex">
+        <div style="flex: 0.25">
+            <profile-image [projectFile]="projectFile" (projectFileEmmiter)="updateFile($event)"></profile-image>
+        </div>
+        <div style="flex-grow: 1">
+            <personal-information [projectFile]="projectFile"></personal-information>
+        </div>
+    </div>
     <div class="image-button-container">
         <div class="btn btn-lg btn-danger" (click)="delete()">Delete</div>
         <div *ngIf="editMode">
