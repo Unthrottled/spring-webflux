@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-import {BackendAPIService} from "../../services/BackendAPI.service";
-import {isDefined} from "../../util/Object.util";
+import {BackendAPIService} from "../../../services/BackendAPI.service";
+import {isDefined} from "../../../util/Object.util";
 
 @Injectable()
 export class ImageUploadService {

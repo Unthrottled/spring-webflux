@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {AppComponent} from "./app.component";
 import {HttpClientModule} from "@angular/common/http";
-import {MembersModule} from "./pod/Members.module";
+import {MembersModule} from "./pod/members/Members.module";
 import {WindowRef} from "./util/window";
 import {BackendAPIService} from "./services/BackendAPI.service";
 
