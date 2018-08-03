@@ -16,6 +16,7 @@ import {ImageUploadService} from "./service/ImageUpload.service";
 import {ProfileImageComponent} from './view/ProfileImage.component';
 import {PersonalInformationComponent} from './view/PersonalInformation.component';
 import {InterestListComponent} from './list/InterestList.component';
+import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
 
 @NgModule({
         imports: [
@@ -44,6 +45,7 @@ import {InterestListComponent} from './list/InterestList.component';
             ProfileImageComponent,
             PersonalInformationComponent,
             InterestListComponent,
+            TextSubmissionComponent,
         ],
         bootstrap: [],
         providers: [RemoteProjectFileService,

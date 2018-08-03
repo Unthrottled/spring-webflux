@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ProjectFile} from '../model/ProjectFile.model';
 import {LocalProjectFile} from '../model/LocalProjectFile';
+import {TextPayload} from '../model/TextPayload';
 
 @Component({
     selector: 'personal-information',
@@ -38,5 +39,11 @@ export class PersonalInformationComponent {
 
     get imageBinary(): Observable<any> {
         return this._projectFile.imageBinary();
+    }
+
+    private interests: TextPayload[] = [];
+
+    addInterest(textPayload: TextPayload){
+        this.interests.push(textPayload)
     }
 }

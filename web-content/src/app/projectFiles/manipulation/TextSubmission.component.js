@@ -10,32 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var InterestListComponent = /** @class */ (function () {
-    function InterestListComponent() {
-        this._interests = [];
+var TextPayload_1 = require("../model/TextPayload");
+var TextSubmissionComponent = /** @class */ (function () {
+    function TextSubmissionComponent() {
+        this.itemSubmitted = new core_1.EventEmitter();
     }
-    Object.defineProperty(InterestListComponent.prototype, "interests", {
-        get: function () {
-            return this._interests;
-        },
-        set: function (value) {
-            this._interests = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    TextSubmissionComponent.prototype.onClick = function () {
+        this.itemSubmitted.emit(new TextPayload_1.TextPayload(this.textValue));
+        this.textValue = '';
+    };
     __decorate([
-        core_1.Input(),
-        __metadata("design:type", Array),
-        __metadata("design:paramtypes", [Array])
-    ], InterestListComponent.prototype, "interests", null);
-    InterestListComponent = __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], TextSubmissionComponent.prototype, "itemSubmitted", void 0);
+    TextSubmissionComponent = __decorate([
         core_1.Component({
-            selector: 'text-list',
-            template: require('./InterestList.component.htm'),
+            selector: 'text-submission',
+            template: require('./TextSubmission.component.htm'),
         })
-    ], InterestListComponent);
-    return InterestListComponent;
+    ], TextSubmissionComponent);
+    return TextSubmissionComponent;
 }());
-exports.InterestListComponent = InterestListComponent;
-//# sourceMappingURL=InterestList.component.js.map
+exports.TextSubmissionComponent = TextSubmissionComponent;
+//# sourceMappingURL=TextSubmission.component.js.map

@@ -24,6 +24,7 @@ var ImageUpload_service_1 = require("./service/ImageUpload.service");
 var ProfileImage_component_1 = require("./view/ProfileImage.component");
 var PersonalInformation_component_1 = require("./view/PersonalInformation.component");
 var InterestList_component_1 = require("./list/InterestList.component");
+var TextSubmission_component_1 = require("./manipulation/TextSubmission.component");
 var ProjectFileModule = /** @class */ (function () {
     function ProjectFileModule() {
     }
@@ -53,6 +54,7 @@ var ProjectFileModule = /** @class */ (function () {
                 ProfileImage_component_1.ProfileImageComponent,
                 PersonalInformation_component_1.PersonalInformationComponent,
                 InterestList_component_1.InterestListComponent,
+                TextSubmission_component_1.TextSubmissionComponent,
             ],
             bootstrap: [],
             providers: [RemoteProjectFile_service_1.RemoteProjectFileService,

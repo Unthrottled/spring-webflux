@@ -14,6 +14,7 @@ var LocalProjectFile_1 = require("../model/LocalProjectFile");
 var PersonalInformationComponent = /** @class */ (function () {
     function PersonalInformationComponent() {
         this.projectFileEmmiter = new core_1.EventEmitter();
+        this.interests = [];
     }
     Object.defineProperty(PersonalInformationComponent.prototype, "projectFile", {
         get: function () {
@@ -43,6 +44,9 @@ var PersonalInformationComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    PersonalInformationComponent.prototype.addInterest = function (textPayload) {
+        this.interests.push(textPayload);
+    };
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
