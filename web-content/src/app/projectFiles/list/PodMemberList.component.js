@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ProjectFileListComponent = /** @class */ (function () {
-    function ProjectFileListComponent() {
+var PodMemberListComponent = /** @class */ (function () {
+    function PodMemberListComponent() {
         this._projectFiles = [];
     }
-    Object.defineProperty(ProjectFileListComponent.prototype, "projectFiles", {
+    Object.defineProperty(PodMemberListComponent.prototype, "projectFiles", {
         get: function () {
             return this._projectFiles;
         },
@@ -28,14 +28,14 @@ var ProjectFileListComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [Array])
-    ], ProjectFileListComponent.prototype, "projectFiles", null);
-    ProjectFileListComponent = __decorate([
+    ], PodMemberListComponent.prototype, "projectFiles", null);
+    PodMemberListComponent = __decorate([
         core_1.Component({
             selector: 'project-file-list',
-            template: require('./ProjectFileList.component.htm')
+            template: require('./PodMemberList.component.htm')
         })
-    ], ProjectFileListComponent);
-    return ProjectFileListComponent;
+    ], PodMemberListComponent);
+    return PodMemberListComponent;
 }());
-exports.ProjectFileListComponent = ProjectFileListComponent;
-//# sourceMappingURL=ProjectFileList.component.js.map
+exports.PodMemberListComponent = PodMemberListComponent;
+//# sourceMappingURL=PodMemberList.component.js.map

@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var RemoteProjectFile_service_1 = require("./service/RemoteProjectFile.service");
 var ProjectFileChoose_component_1 = require("./choose/ProjectFileChoose.component");
-var ProjectFileList_component_1 = require("./list/ProjectFileList.component");
+var PodMemberList_component_1 = require("./list/PodMemberList.component");
 var ProjectFileView_component_1 = require("./view/ProjectFileView.component");
 var ProjectFiles_component_1 = require("./ProjectFiles.component");
 var animations_1 = require("@angular/platform-browser/animations");
@@ -38,7 +38,7 @@ var ProjectFileModule = /** @class */ (function () {
             ],
             exports: [
                 ProjectFileChoose_component_1.ProjectFileChooseComponent,
-                ProjectFileList_component_1.ProjectFileListComponent,
+                PodMemberList_component_1.PodMemberListComponent,
                 ProjectFileView_component_1.ProjectFileViewComponent,
                 PodMember_component_1.PodMemberComponent,
                 ProjectFiles_component_1.ProjectFilesComponent,
@@ -46,7 +46,7 @@ var ProjectFileModule = /** @class */ (function () {
             ],
             declarations: [
                 ProjectFileChoose_component_1.ProjectFileChooseComponent,
-                ProjectFileList_component_1.ProjectFileListComponent,
+                PodMemberList_component_1.PodMemberListComponent,
                 ProjectFileView_component_1.ProjectFileViewComponent,
                 PodMember_component_1.PodMemberComponent,
                 ProjectFiles_component_1.ProjectFilesComponent,

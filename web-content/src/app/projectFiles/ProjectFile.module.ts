@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RemoteProjectFileService} from "./service/RemoteProjectFile.service";
 import {ProjectFileChooseComponent} from "./choose/ProjectFileChoose.component";
-import {ProjectFileListComponent} from "./list/ProjectFileList.component";
+import {PodMemberListComponent} from "./list/PodMemberList.component";
 import {ProjectFileViewComponent} from "./view/ProjectFileView.component";
 import {ProjectFilesComponent} from "./ProjectFiles.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -28,7 +28,7 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
         ],
         exports: [
             ProjectFileChooseComponent,
-            ProjectFileListComponent,
+            PodMemberListComponent,
             ProjectFileViewComponent,
             PodMemberComponent,
             ProjectFilesComponent,
@@ -37,7 +37,7 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
         ],
         declarations:[
             ProjectFileChooseComponent,
-            ProjectFileListComponent,
+            PodMemberListComponent,
             ProjectFileViewComponent,
             PodMemberComponent,
             ProjectFilesComponent,

@@ -3,9 +3,9 @@ import {ProjectFile} from "../model/ProjectFile.model";
 
 @Component({
     selector: 'project-file-list',
-    template: require('./ProjectFileList.component.htm')
+    template: require('./PodMemberList.component.htm')
 })
-export class ProjectFileListComponent {
+export class PodMemberListComponent {
     private _projectFiles: ProjectFile[] = [];
 
     @Input()
