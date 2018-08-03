@@ -10,14 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var LocalProjectFile_1 = require("../model/LocalProjectFile");
+var LocalAvatar_1 = require("../model/LocalAvatar");
 var Identifier_model_1 = require("../model/Identifier.model");
 var LocalProjectFileService = /** @class */ (function () {
     function LocalProjectFileService() {
     }
     LocalProjectFileService_1 = LocalProjectFileService;
     LocalProjectFileService.prototype.createLocalProject = function () {
-        return new LocalProjectFile_1.LocalProjectFile(new Identifier_model_1.Identifier(++LocalProjectFileService_1.localProjectCount + ''));
+        return new LocalAvatar_1.LocalAvatar(new Identifier_model_1.Identifier(++LocalProjectFileService_1.localProjectCount + ''));
     };
     LocalProjectFileService.localProjectCount = 0;
     LocalProjectFileService = LocalProjectFileService_1 = __decorate([

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var LocalProjectFile_1 = require("../model/LocalProjectFile");
+var LocalAvatar_1 = require("../model/LocalAvatar");
 var RemoteProjectFile_1 = require("../model/RemoteProjectFile");
 var LocalProjectFile_service_1 = require("./LocalProjectFile.service");
 var ImageUpload_service_1 = require("./ImageUpload.service");
@@ -56,7 +56,7 @@ var ProjectFileService = /** @class */ (function () {
                 console.log(error);
             });
         }
-        else if (projectFile instanceof LocalProjectFile_1.LocalProjectFile) {
+        else if (projectFile instanceof LocalAvatar_1.LocalAvatar) {
             this.removeProjectFileFromList(projectFile);
         }
     };

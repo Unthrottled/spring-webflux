@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var LocalProjectFile_1 = require("../model/LocalProjectFile");
+var LocalAvatar_1 = require("../model/LocalAvatar");
 var ProfileImageComponent = /** @class */ (function () {
     function ProfileImageComponent() {
         this.projectFileEmmiter = new core_1.EventEmitter();
@@ -28,7 +28,7 @@ var ProfileImageComponent = /** @class */ (function () {
     Object.defineProperty(ProfileImageComponent.prototype, "editMode", {
         //todo: remove dis when you can change remote projects.
         get: function () {
-            return this.projectFile instanceof LocalProjectFile_1.LocalProjectFile;
+            return this.projectFile instanceof LocalAvatar_1.LocalAvatar;
         },
         enumerable: true,
         configurable: true

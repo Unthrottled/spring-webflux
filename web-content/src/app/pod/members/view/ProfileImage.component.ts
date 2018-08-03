@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ProjectFile} from '../model/Avatar.model';
-import {LocalProjectFile} from '../model/LocalProjectFile';
+import {LocalAvatar} from '../model/LocalAvatar';
 
 @Component({
     selector: 'profile-image',
@@ -29,7 +29,7 @@ export class ProfileImageComponent {
 
     //todo: remove dis when you can change remote projects.
     get editMode(): boolean {
-        return this.projectFile instanceof LocalProjectFile;
+        return this.projectFile instanceof LocalAvatar;
     }
 
     updateFile(projectFile: ProjectFile): void {

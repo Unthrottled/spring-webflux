@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("rxjs/Observable");
 var ReplaySubject_1 = require("rxjs/ReplaySubject");
-var LocalProjectFile = /** @class */ (function () {
-    function LocalProjectFile(id) {
+var LocalAvatar = /** @class */ (function () {
+    function LocalAvatar(id) {
         this.imageBinaryRepeater = new ReplaySubject_1.ReplaySubject(1);
         this._identifier = id;
     }
-    Object.defineProperty(LocalProjectFile.prototype, "selectedFile", {
+    Object.defineProperty(LocalAvatar.prototype, "selectedFile", {
         /**
          * This is the expected data structure that will
          * be translated as a rest call to the backend.
@@ -29,10 +29,10 @@ var LocalProjectFile = /** @class */ (function () {
      * will be displayed.
      * @param {File} file preferably a image file.
      */
-    LocalProjectFile.prototype.setNewFile = function (file) {
+    LocalAvatar.prototype.setNewFile = function (file) {
         this.selectedFile = Observable_1.Observable.of(file);
     };
-    LocalProjectFile.prototype.getIdentifier = function () {
+    LocalAvatar.prototype.getIdentifier = function () {
         return this._identifier.id;
     };
     /**
@@ -40,10 +40,10 @@ var LocalProjectFile = /** @class */ (function () {
      * will be rendered by the browser.
      * @returns {Observable<MSBaseReader>}
      */
-    LocalProjectFile.prototype.imageBinary = function () {
+    LocalAvatar.prototype.imageBinary = function () {
         return this.imageBinaryRepeater;
     };
-    LocalProjectFile.prototype.readFileIntoBinary = function () {
+    LocalAvatar.prototype.readFileIntoBinary = function () {
         var _this = this;
         this._selectedFile
             .subscribe(function (file) {
@@ -54,7 +54,7 @@ var LocalProjectFile = /** @class */ (function () {
             fileReader.readAsDataURL(file);
         });
     };
-    return LocalProjectFile;
+    return LocalAvatar;
 }());
-exports.LocalProjectFile = LocalProjectFile;
-//# sourceMappingURL=LocalProjectFile.js.map
+exports.LocalAvatar = LocalAvatar;
+//# sourceMappingURL=LocalAvatar.js.map

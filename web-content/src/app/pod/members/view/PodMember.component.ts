@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {ProjectFile} from "../model/Avatar.model";
 import {ProjectFileService} from "../service/ProjectFileService";
 import {Observable} from "rxjs/Observable";
-import {LocalProjectFile} from "../model/LocalProjectFile";
+import {LocalAvatar} from "../model/LocalAvatar";
 
 @Component({
     selector: 'pod-member',
@@ -26,7 +26,7 @@ export class PodMemberComponent {
 
     //todo: remove dis when you can change remote projects.
     get editMode(): boolean {
-        return this.projectFile instanceof LocalProjectFile;
+        return this.projectFile instanceof LocalAvatar;
     }
 
     updateFile(projectFile: ProjectFile): void {
@@ -34,7 +34,7 @@ export class PodMemberComponent {
     }
 
     uploadFile(): void {
-        this.projectFileService.uploadFile(<LocalProjectFile>this.projectFile);
+        this.projectFileService.uploadFile(<LocalAvatar>this.projectFile);
     }
 
     delete(): void {

@@ -3,7 +3,7 @@ import {Observable} from "rxjs/Observable";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {Identifier} from "./Identifier.model";
 
-export class LocalProjectFile implements ProjectFile {
+export class LocalAvatar implements ProjectFile {
     private imageBinaryRepeater = new ReplaySubject<MSBaseReader>(1);
     private _identifier: Identifier;
 

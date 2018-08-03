@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from "@angular/core";
 import {ProjectFile} from "../model/Avatar.model";
-import {LocalProjectFile} from "../model/LocalProjectFile";
+import {LocalAvatar} from "../model/LocalAvatar";
 import {RemoteProjectFile} from "../model/RemoteProjectFile";
 import {IHash} from "../../../util/IHash.model";
 import {LocalProjectFileService} from "./LocalProjectFile.service";
@@ -52,7 +52,7 @@ export class ProjectFileService implements OnInit {
                 }, error=>{
                     console.log(error)
             });
-        } else if (projectFile instanceof LocalProjectFile){
+        } else if (projectFile instanceof LocalAvatar){
             this.removeProjectFileFromList(projectFile);
         }
     }
@@ -62,7 +62,7 @@ export class ProjectFileService implements OnInit {
 
     }
 
-    uploadFile(projectFile: LocalProjectFile) {
+    uploadFile(projectFile: LocalAvatar) {
         this.imageUploadService.uploadImage(projectFile.selectedFile)
             .map(imageId=>this.remoteProjectFileService.fetchRemoteProject(imageId))
             .subscribe(remoteProject=> {
