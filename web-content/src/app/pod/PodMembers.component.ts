@@ -4,9 +4,9 @@ import {ProjectFileService} from "./service/ProjectFileService";
 
 @Component({
     selector: 'project-file-component',
-    template: require('./ProjectFiles.component.htm')
+    template: require('./PodMembers.component.htm')
 })
-export class ProjectFilesComponent implements OnInit {
+export class PodMembersComponent implements OnInit {
     ngOnInit(): void {
         this.projectFileService.ngOnInit();
     }

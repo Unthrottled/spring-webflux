@@ -13,7 +13,7 @@ var router_1 = require("@angular/router");
 var animations_1 = require("@angular/platform-browser/animations");
 var app_component_1 = require("./app.component");
 var http_1 = require("@angular/common/http");
-var ProjectFile_module_1 = require("./projectFiles/ProjectFile.module");
+var Pod_module_1 = require("./pod/Pod.module");
 var window_1 = require("./util/window");
 var BackendAPI_service_1 = require("./services/BackendAPI.service");
 var AppModule = /** @class */ (function () {
@@ -26,7 +26,7 @@ var AppModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 http_1.HttpClientModule,
                 animations_1.BrowserAnimationsModule,
-                ProjectFile_module_1.ProjectFileModule
+                Pod_module_1.PodModule
             ],
             exports: [
                 router_1.RouterModule

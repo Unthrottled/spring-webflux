@@ -11,7 +11,7 @@ var RemoteProjectFile_service_1 = require("./service/RemoteProjectFile.service")
 var ProjectFileChoose_component_1 = require("./choose/ProjectFileChoose.component");
 var PodMemberList_component_1 = require("./list/PodMemberList.component");
 var ProjectFileView_component_1 = require("./view/ProjectFileView.component");
-var ProjectFiles_component_1 = require("./ProjectFiles.component");
+var PodMembers_component_1 = require("./PodMembers.component");
 var animations_1 = require("@angular/platform-browser/animations");
 var http_1 = require("@angular/common/http");
 var forms_1 = require("@angular/forms");
@@ -25,10 +25,10 @@ var ProfileImage_component_1 = require("./view/ProfileImage.component");
 var PersonalInformation_component_1 = require("./view/PersonalInformation.component");
 var InterestList_component_1 = require("./list/InterestList.component");
 var TextSubmission_component_1 = require("./manipulation/TextSubmission.component");
-var ProjectFileModule = /** @class */ (function () {
-    function ProjectFileModule() {
+var PodModule = /** @class */ (function () {
+    function PodModule() {
     }
-    ProjectFileModule = __decorate([
+    PodModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
@@ -41,7 +41,7 @@ var ProjectFileModule = /** @class */ (function () {
                 PodMemberList_component_1.PodMemberListComponent,
                 ProjectFileView_component_1.ProjectFileViewComponent,
                 PodMember_component_1.PodMemberComponent,
-                ProjectFiles_component_1.ProjectFilesComponent,
+                PodMembers_component_1.PodMembersComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent
             ],
             declarations: [
@@ -49,7 +49,7 @@ var ProjectFileModule = /** @class */ (function () {
                 PodMemberList_component_1.PodMemberListComponent,
                 ProjectFileView_component_1.ProjectFileViewComponent,
                 PodMember_component_1.PodMemberComponent,
-                ProjectFiles_component_1.ProjectFilesComponent,
+                PodMembers_component_1.PodMembersComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent,
                 ProfileImage_component_1.ProfileImageComponent,
                 PersonalInformation_component_1.PersonalInformationComponent,
@@ -64,8 +64,8 @@ var ProjectFileModule = /** @class */ (function () {
             ],
             schemas: []
         })
-    ], ProjectFileModule);
-    return ProjectFileModule;
+    ], PodModule);
+    return PodModule;
 }());
-exports.ProjectFileModule = ProjectFileModule;
-//# sourceMappingURL=ProjectFile.module.js.map
+exports.PodModule = PodModule;
+//# sourceMappingURL=Pod.module.js.map

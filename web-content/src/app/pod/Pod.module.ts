@@ -3,7 +3,7 @@ import {RemoteProjectFileService} from "./service/RemoteProjectFile.service";
 import {ProjectFileChooseComponent} from "./choose/ProjectFileChoose.component";
 import {PodMemberListComponent} from "./list/PodMemberList.component";
 import {ProjectFileViewComponent} from "./view/ProjectFileView.component";
-import {ProjectFilesComponent} from "./ProjectFiles.component";
+import {PodMembersComponent} from "./PodMembers.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
@@ -31,7 +31,7 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
             PodMemberListComponent,
             ProjectFileViewComponent,
             PodMemberComponent,
-            ProjectFilesComponent,
+            PodMembersComponent,
             ProjectFileManipulationComponent
 
         ],
@@ -40,7 +40,7 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
             PodMemberListComponent,
             ProjectFileViewComponent,
             PodMemberComponent,
-            ProjectFilesComponent,
+            PodMembersComponent,
             ProjectFileManipulationComponent,
             ProfileImageComponent,
             PersonalInformationComponent,
@@ -55,6 +55,6 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
         ],
         schemas: []
 })
-export class ProjectFileModule {
+export class PodModule {
 
 }

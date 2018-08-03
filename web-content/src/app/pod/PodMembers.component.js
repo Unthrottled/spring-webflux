@@ -11,31 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ProjectFileService_1 = require("./service/ProjectFileService");
-var ProjectFilesComponent = /** @class */ (function () {
-    function ProjectFilesComponent(projectFileService) {
+var PodMembersComponent = /** @class */ (function () {
+    function PodMembersComponent(projectFileService) {
         this.projectFileService = projectFileService;
     }
-    ProjectFilesComponent.prototype.ngOnInit = function () {
+    PodMembersComponent.prototype.ngOnInit = function () {
         this.projectFileService.ngOnInit();
     };
-    Object.defineProperty(ProjectFilesComponent.prototype, "projectFiles", {
+    Object.defineProperty(PodMembersComponent.prototype, "projectFiles", {
         get: function () {
             return this.projectFileService.projectFiles;
         },
         enumerable: true,
         configurable: true
     });
-    ProjectFilesComponent.prototype.addFile = function () {
+    PodMembersComponent.prototype.addFile = function () {
         this.projectFileService.addProject();
     };
-    ProjectFilesComponent = __decorate([
+    PodMembersComponent = __decorate([
         core_1.Component({
             selector: 'project-file-component',
-            template: require('./ProjectFiles.component.htm')
+            template: require('./PodMembers.component.htm')
         }),
         __metadata("design:paramtypes", [ProjectFileService_1.ProjectFileService])
-    ], ProjectFilesComponent);
-    return ProjectFilesComponent;
+    ], PodMembersComponent);
+    return PodMembersComponent;
 }());
-exports.ProjectFilesComponent = ProjectFilesComponent;
-//# sourceMappingURL=ProjectFiles.component.js.map
+exports.PodMembersComponent = PodMembersComponent;
+//# sourceMappingURL=PodMembers.component.js.map
