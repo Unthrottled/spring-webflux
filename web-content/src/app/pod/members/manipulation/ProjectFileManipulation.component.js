@@ -14,19 +14,19 @@ var ProjectFileManipulationComponent = /** @class */ (function () {
     function ProjectFileManipulationComponent() {
         this.projectFileUpdated = new core_1.EventEmitter();
     }
-    Object.defineProperty(ProjectFileManipulationComponent.prototype, "projectFile", {
+    Object.defineProperty(ProjectFileManipulationComponent.prototype, "avatar", {
         get: function () {
-            return this._projectFile;
+            return this._avatar;
         },
         set: function (value) {
-            this._projectFile = value;
+            this._avatar = value;
         },
         enumerable: true,
         configurable: true
     });
     ProjectFileManipulationComponent.prototype.fileChosen = function (file) {
-        this._projectFile.setNewFile(file);
-        this.projectFileUpdated.emit(this._projectFile);
+        this._avatar.setNewFile(file);
+        this.projectFileUpdated.emit(this._avatar);
     };
     __decorate([
         core_1.Output(),
@@ -36,7 +36,7 @@ var ProjectFileManipulationComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
-    ], ProjectFileManipulationComponent.prototype, "projectFile", null);
+    ], ProjectFileManipulationComponent.prototype, "avatar", null);
     ProjectFileManipulationComponent = __decorate([
         core_1.Component({
             selector: 'project-file-manipulation',

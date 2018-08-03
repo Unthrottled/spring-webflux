@@ -16,12 +16,12 @@ var PodMemberComponent = /** @class */ (function () {
     function PodMemberComponent(projectFileService) {
         this.projectFileService = projectFileService;
     }
-    Object.defineProperty(PodMemberComponent.prototype, "projectFile", {
+    Object.defineProperty(PodMemberComponent.prototype, "avatar", {
         get: function () {
-            return this._projectFile;
+            return this._avatar;
         },
         set: function (value) {
-            this._projectFile = value;
+            this._avatar = value;
         },
         enumerable: true,
         configurable: true
@@ -29,23 +29,23 @@ var PodMemberComponent = /** @class */ (function () {
     Object.defineProperty(PodMemberComponent.prototype, "editMode", {
         //todo: remove dis when you can change remote projects.
         get: function () {
-            return this.projectFile instanceof LocalAvatar_1.LocalAvatar;
+            return this.avatar instanceof LocalAvatar_1.LocalAvatar;
         },
         enumerable: true,
         configurable: true
     });
     PodMemberComponent.prototype.updateFile = function (projectFile) {
-        this.projectFile = projectFile;
+        this.avatar = projectFile;
     };
     PodMemberComponent.prototype.uploadFile = function () {
-        this.projectFileService.uploadFile(this.projectFile);
+        this.projectFileService.uploadFile(this.avatar);
     };
     PodMemberComponent.prototype.delete = function () {
-        this.projectFileService.removeProjectFile(this.projectFile);
+        this.projectFileService.removeProjectFile(this.avatar);
     };
     Object.defineProperty(PodMemberComponent.prototype, "imageBinary", {
         get: function () {
-            return this._projectFile.imageBinary();
+            return this._avatar.imageBinary();
         },
         enumerable: true,
         configurable: true
@@ -54,7 +54,7 @@ var PodMemberComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
-    ], PodMemberComponent.prototype, "projectFile", null);
+    ], PodMemberComponent.prototype, "avatar", null);
     PodMemberComponent = __decorate([
         core_1.Component({
             selector: 'pod-member',

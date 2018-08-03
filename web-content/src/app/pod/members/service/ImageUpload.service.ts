@@ -20,7 +20,7 @@ export class ImageUploadService {
                  * to the name of the parameter in the method signature
                  * in the REST controller.
                  */
-                formData.append('projectFile', reachFile);
+                formData.append('avatar', reachFile);
                 return formData
             }).flatMap(formData =>
                 this.backendAPIService.postImage(formData))

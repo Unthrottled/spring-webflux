@@ -8,23 +8,23 @@ import {Avatar} from "../model/Avatar.model";
     }
 )
 export class ProjectFileManipulationComponent {
-    private _projectFile: Avatar;
+    private _avatar: Avatar;
 
     @Output()
     private projectFileUpdated = new EventEmitter<Avatar>();
 
 
     @Input()
-    get projectFile(): Avatar {
-        return this._projectFile;
+    get avatar(): Avatar {
+        return this._avatar;
     }
 
-    set projectFile(value: Avatar) {
-        this._projectFile = value;
+    set avatar(value: Avatar) {
+        this._avatar = value;
     }
 
     fileChosen(file: File): void{
-        this._projectFile.setNewFile(file);
-        this.projectFileUpdated.emit(this._projectFile);
+        this._avatar.setNewFile(file);
+        this.projectFileUpdated.emit(this._avatar);
     }
 }

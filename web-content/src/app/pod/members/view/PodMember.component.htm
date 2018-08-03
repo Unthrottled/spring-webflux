@@ -1,10 +1,10 @@
 <div class="project-container">
     <div style="display: flex">
         <div style="flex: 0.25">
-            <profile-image [projectFile]="projectFile" (projectFileEmmiter)="updateFile($event)"></profile-image>
+            <profile-image [avatar]="avatar" (avatarEmmiter)="updateFile($event)"></profile-image>
         </div>
         <div style="flex-grow: 1">
-            <personal-information [projectFile]="projectFile"></personal-information>
+            <personal-information [avatar]="avatar"></personal-information>
         </div>
     </div>
     <div class="image-button-container">

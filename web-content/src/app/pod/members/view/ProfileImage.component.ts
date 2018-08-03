@@ -12,31 +12,31 @@ export class ProfileImageComponent {
     constructor() {
     }
 
-    private _projectFile: Avatar;
+    private _avatar: Avatar;
 
     @Output()
     private projectFileEmmiter = new EventEmitter<Avatar>();
 
 
     @Input()
-    get projectFile(): Avatar {
-        return this._projectFile;
+    get avatar(): Avatar {
+        return this._avatar;
     }
 
-    set projectFile(value: Avatar) {
-        this._projectFile = value;
+    set avatar(value: Avatar) {
+        this._avatar = value;
     }
 
     //todo: remove dis when you can change remote projects.
     get editMode(): boolean {
-        return this.projectFile instanceof LocalAvatar;
+        return this.avatar instanceof LocalAvatar;
     }
 
     updateFile(projectFile: Avatar): void {
-        this.projectFile = projectFile;
+        this.avatar = projectFile;
     }
 
     get imageBinary(): Observable<any> {
-        return this._projectFile.imageBinary();
+        return this._avatar.imageBinary();
     }
 }

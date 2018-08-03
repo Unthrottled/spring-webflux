@@ -27,7 +27,7 @@ var ImageUploadService = /** @class */ (function () {
              * to the name of the parameter in the method signature
              * in the REST controller.
              */
-            formData.append('projectFile', reachFile);
+            formData.append('avatar', reachFile);
             return formData;
         }).flatMap(function (formData) {
             return _this.backendAPIService.postImage(formData);

@@ -13,35 +13,35 @@ export class PodMemberComponent {
     constructor(private projectFileService: ProjectFileService) {
     }
 
-    private _projectFile: Avatar;
+    private _avatar: Avatar;
 
     @Input()
-    get projectFile(): Avatar {
-        return this._projectFile;
+    get avatar(): Avatar {
+        return this._avatar;
     }
 
-    set projectFile(value: Avatar) {
-        this._projectFile = value;
+    set avatar(value: Avatar) {
+        this._avatar = value;
     }
 
     //todo: remove dis when you can change remote projects.
     get editMode(): boolean {
-        return this.projectFile instanceof LocalAvatar;
+        return this.avatar instanceof LocalAvatar;
     }
 
     updateFile(projectFile: Avatar): void {
-        this.projectFile = projectFile;
+        this.avatar = projectFile;
     }
 
     uploadFile(): void {
-        this.projectFileService.uploadFile(<LocalAvatar>this.projectFile);
+        this.projectFileService.uploadFile(<LocalAvatar>this.avatar);
     }
 
     delete(): void {
-        this.projectFileService.removeProjectFile(this.projectFile);
+        this.projectFileService.removeProjectFile(this.avatar);
     }
 
     get imageBinary(): Observable<any> {
-        return this._projectFile.imageBinary();
+        return this._avatar.imageBinary();
     }
 }

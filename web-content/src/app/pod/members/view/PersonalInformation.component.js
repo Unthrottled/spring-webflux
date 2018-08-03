@@ -16,12 +16,12 @@ var PersonalInformationComponent = /** @class */ (function () {
         this.projectFileEmmiter = new core_1.EventEmitter();
         this.interests = [];
     }
-    Object.defineProperty(PersonalInformationComponent.prototype, "projectFile", {
+    Object.defineProperty(PersonalInformationComponent.prototype, "avatar", {
         get: function () {
-            return this._projectFile;
+            return this._avatar;
         },
         set: function (value) {
-            this._projectFile = value;
+            this._avatar = value;
         },
         enumerable: true,
         configurable: true
@@ -29,17 +29,17 @@ var PersonalInformationComponent = /** @class */ (function () {
     Object.defineProperty(PersonalInformationComponent.prototype, "editMode", {
         //todo: remove dis when you can change remote projects.
         get: function () {
-            return this.projectFile instanceof LocalAvatar_1.LocalAvatar;
+            return this.avatar instanceof LocalAvatar_1.LocalAvatar;
         },
         enumerable: true,
         configurable: true
     });
     PersonalInformationComponent.prototype.updateFile = function (projectFile) {
-        this.projectFile = projectFile;
+        this.avatar = projectFile;
     };
     Object.defineProperty(PersonalInformationComponent.prototype, "imageBinary", {
         get: function () {
-            return this._projectFile.imageBinary();
+            return this._avatar.imageBinary();
         },
         enumerable: true,
         configurable: true
@@ -55,7 +55,7 @@ var PersonalInformationComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
-    ], PersonalInformationComponent.prototype, "projectFile", null);
+    ], PersonalInformationComponent.prototype, "avatar", null);
     PersonalInformationComponent = __decorate([
         core_1.Component({
             selector: 'personal-information',

@@ -11,19 +11,19 @@ export class ProjectFileViewComponent {
     constructor() {
     }
 
-    private _projectFile: Avatar;
+    private _avatar: Avatar;
 
     @Input()
-    get projectFile(): Avatar {
-        return this._projectFile;
+    get avatar(): Avatar {
+        return this._avatar;
     }
 
-    set projectFile(value: Avatar) {
-        this._projectFile = value;
+    set avatar(value: Avatar) {
+        this._avatar = value;
     }
 
     get imageBinary(): Observable<any> {
-        return this._projectFile.imageBinary();
+        return this._avatar.imageBinary();
     }
 
 }

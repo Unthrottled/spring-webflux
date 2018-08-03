@@ -13,19 +13,19 @@ var core_1 = require("@angular/core");
 var ProjectFileViewComponent = /** @class */ (function () {
     function ProjectFileViewComponent() {
     }
-    Object.defineProperty(ProjectFileViewComponent.prototype, "projectFile", {
+    Object.defineProperty(ProjectFileViewComponent.prototype, "avatar", {
         get: function () {
-            return this._projectFile;
+            return this._avatar;
         },
         set: function (value) {
-            this._projectFile = value;
+            this._avatar = value;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(ProjectFileViewComponent.prototype, "imageBinary", {
         get: function () {
-            return this._projectFile.imageBinary();
+            return this._avatar.imageBinary();
         },
         enumerable: true,
         configurable: true
@@ -34,7 +34,7 @@ var ProjectFileViewComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
-    ], ProjectFileViewComponent.prototype, "projectFile", null);
+    ], ProjectFileViewComponent.prototype, "avatar", null);
     ProjectFileViewComponent = __decorate([
         core_1.Component({
             selector: 'project-file-view',

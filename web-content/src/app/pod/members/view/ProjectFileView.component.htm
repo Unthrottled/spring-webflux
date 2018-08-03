@@ -1,5 +1,5 @@
 <div *ngIf="editMode">
-    <project-file-manipulation [projectFile]="projectFile" (projectFileUpdated)="updateFile($event)">
+    <project-file-manipulation [avatar]="avatar" (avatarUpdated)="updateFile($event)">
     </project-file-manipulation>
     <div *ngIf="imageBinary | async">
         <div class="btn btn-lg btn-success" (click)="uploadFile()">Upload</div>
