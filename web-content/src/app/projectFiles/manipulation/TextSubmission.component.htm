@@ -1,8 +1,8 @@
 <div>
     <div class="row">
-        <div class="col-xs-6 col-md-4">
+        <div>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="enter interest" [(ngModel)]="textValue" />
+                <input (keyup)="submitMaybe($event)" type="text" class="form-control" placeholder="enter interest" [(ngModel)]="textValue" />
                 <div class="input-group-btn">
                     <button class="btn btn-primary" type="button" (click)="onClick()">
                         <span class="glyphicon glyphicon-ok"></span>

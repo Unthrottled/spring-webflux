@@ -17,4 +17,10 @@ export class TextSubmissionComponent {
         this.itemSubmitted.emit(new TextPayload(this.textValue))
         this.textValue = '';
     }
+
+    submitMaybe(keystrokeEvent: any){
+        if(keystrokeEvent.keyCode === 13){
+            this.onClick();
+        }
+    }
 }

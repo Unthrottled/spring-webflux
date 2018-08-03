@@ -19,6 +19,11 @@ var TextSubmissionComponent = /** @class */ (function () {
         this.itemSubmitted.emit(new TextPayload_1.TextPayload(this.textValue));
         this.textValue = '';
     };
+    TextSubmissionComponent.prototype.submitMaybe = function (keystrokeEvent) {
+        if (keystrokeEvent.keyCode === 13) {
+            this.onClick();
+        }
+    };
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
