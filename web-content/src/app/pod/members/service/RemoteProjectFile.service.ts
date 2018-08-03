@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BackendAPIService} from "../../../services/BackendAPI.service";
 import {WindowRef} from "../../../util/window";
-import {RemoteProjectFile} from "../model/RemoteProjectFile";
+import {RemoteAvatar} from "../model/RemoteAvatar";
 import {Identifier} from "../model/Identifier.model";
 import {Observable} from "rxjs/Observable";
 
@@ -11,13 +11,13 @@ export class RemoteProjectFileService {
     constructor(private backendAPISevice: BackendAPIService, private windowRef: WindowRef) {
     }
 
-    public fetchRemoteProject(fileId: string): RemoteProjectFile {
-        return new RemoteProjectFile(new Identifier(fileId),
+    public fetchRemoteProject(fileId: string): RemoteAvatar {
+        return new RemoteAvatar(new Identifier(fileId),
             this.backendAPISevice.fetchImage(fileId)
                 .map(arrayBuffer => this.convertToImageBinary(arrayBuffer)));
     }
 
-    public fetchAllRemoteProjects(): Observable<RemoteProjectFile> {
+    public fetchAllRemoteProjects(): Observable<RemoteAvatar> {
         return this.backendAPISevice.fetchAllImageIds()
             .map((response: any[]) => response)
             .flatMap(files => Observable.from(files))
@@ -25,7 +25,7 @@ export class RemoteProjectFileService {
             .map(id => this.fetchRemoteProject(id));
     }
 
-    removeProject(projectToRemove: RemoteProjectFile): Observable<boolean> {
+    removeProject(projectToRemove: RemoteAvatar): Observable<boolean> {
         return this.backendAPISevice.deleteImage(projectToRemove.getIdentifier());
     }
 

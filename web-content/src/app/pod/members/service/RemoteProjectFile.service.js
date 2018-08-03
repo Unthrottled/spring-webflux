@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
 var window_1 = require("../../../util/window");
-var RemoteProjectFile_1 = require("../model/RemoteProjectFile");
+var RemoteAvatar_1 = require("../model/RemoteAvatar");
 var Identifier_model_1 = require("../model/Identifier.model");
 var Observable_1 = require("rxjs/Observable");
 var RemoteProjectFileService = /** @class */ (function () {
@@ -22,7 +22,7 @@ var RemoteProjectFileService = /** @class */ (function () {
     }
     RemoteProjectFileService.prototype.fetchRemoteProject = function (fileId) {
         var _this = this;
-        return new RemoteProjectFile_1.RemoteProjectFile(new Identifier_model_1.Identifier(fileId), this.backendAPISevice.fetchImage(fileId)
+        return new RemoteAvatar_1.RemoteAvatar(new Identifier_model_1.Identifier(fileId), this.backendAPISevice.fetchImage(fileId)
             .map(function (arrayBuffer) { return _this.convertToImageBinary(arrayBuffer); }));
     };
     RemoteProjectFileService.prototype.fetchAllRemoteProjects = function () {

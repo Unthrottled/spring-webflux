@@ -3,14 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("rxjs/Observable");
 var ReplaySubject_1 = require("rxjs/ReplaySubject");
 var Identifier_model_1 = require("./Identifier.model");
-var RemoteProjectFile = /** @class */ (function () {
+var RemoteAvatar = /** @class */ (function () {
     /**
      *
      * @param {Identifier} identifier the unique identifier that will allow use of
      *                      the backend rest api.
      * @param {Observable<any>} remoteProjectFile project file from the backend
      */
-    function RemoteProjectFile(identifier, remoteProjectFile) {
+    function RemoteAvatar(identifier, remoteProjectFile) {
         if (identifier === void 0) { identifier = new Identifier_model_1.Identifier(); }
         if (remoteProjectFile === void 0) { remoteProjectFile = Observable_1.Observable.empty(); }
         var _this = this;
@@ -21,7 +21,7 @@ var RemoteProjectFile = /** @class */ (function () {
         this._identifier = identifier;
         this._name = this.identifier.id;
     }
-    Object.defineProperty(RemoteProjectFile.prototype, "identifier", {
+    Object.defineProperty(RemoteAvatar.prototype, "identifier", {
         get: function () {
             return this._identifier;
         },
@@ -39,20 +39,20 @@ var RemoteProjectFile = /** @class */ (function () {
      * abstraction.
      * @param {File} file
      */
-    RemoteProjectFile.prototype.setNewFile = function (file) {
+    RemoteAvatar.prototype.setNewFile = function (file) {
         //todo: me?
     };
-    RemoteProjectFile.prototype.getIdentifier = function () {
+    RemoteAvatar.prototype.getIdentifier = function () {
         return this._identifier.id;
     };
     /**
      * Actual binary received from the backend service.
      * @returns {Observable<any>}
      */
-    RemoteProjectFile.prototype.imageBinary = function () {
+    RemoteAvatar.prototype.imageBinary = function () {
         return this.imageBinaryReplay;
     };
-    return RemoteProjectFile;
+    return RemoteAvatar;
 }());
-exports.RemoteProjectFile = RemoteProjectFile;
-//# sourceMappingURL=RemoteProjectFile.js.map
+exports.RemoteAvatar = RemoteAvatar;
+//# sourceMappingURL=RemoteAvatar.js.map

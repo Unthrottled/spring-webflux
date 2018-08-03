@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from "@angular/core";
 import {ProjectFile} from "../model/Avatar.model";
 import {LocalAvatar} from "../model/LocalAvatar";
-import {RemoteProjectFile} from "../model/RemoteProjectFile";
+import {RemoteAvatar} from "../model/RemoteAvatar";
 import {IHash} from "../../../util/IHash.model";
 import {LocalProjectFileService} from "./LocalProjectFile.service";
 import {ImageUploadService} from "./ImageUpload.service";
@@ -43,9 +43,9 @@ export class ProjectFileService implements OnInit {
     }
 
     removeProjectFile(projectFile: ProjectFile) {
-        if(projectFile instanceof RemoteProjectFile){
+        if(projectFile instanceof RemoteAvatar){
             let self = this;
-            this.remoteProjectFileService.removeProject(<RemoteProjectFile>projectFile)
+            this.remoteProjectFileService.removeProject(<RemoteAvatar>projectFile)
                 .filter(b=>b)
                 .subscribe(result=>{
                     self.removeProjectFileFromList(projectFile);

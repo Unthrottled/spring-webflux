@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var LocalAvatar_1 = require("../model/LocalAvatar");
-var RemoteProjectFile_1 = require("../model/RemoteProjectFile");
+var RemoteAvatar_1 = require("../model/RemoteAvatar");
 var LocalProjectFile_service_1 = require("./LocalProjectFile.service");
 var ImageUpload_service_1 = require("./ImageUpload.service");
 var RemoteProjectFile_service_1 = require("./RemoteProjectFile.service");
@@ -46,7 +46,7 @@ var ProjectFileService = /** @class */ (function () {
         this.projectFileMap.set(project.getIdentifier(), project);
     };
     ProjectFileService.prototype.removeProjectFile = function (projectFile) {
-        if (projectFile instanceof RemoteProjectFile_1.RemoteProjectFile) {
+        if (projectFile instanceof RemoteAvatar_1.RemoteAvatar) {
             var self_1 = this;
             this.remoteProjectFileService.removeProject(projectFile)
                 .filter(function (b) { return b; })
