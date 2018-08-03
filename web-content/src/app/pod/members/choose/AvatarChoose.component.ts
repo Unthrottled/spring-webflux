@@ -2,9 +2,9 @@ import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
     selector: 'project-file-choose',
-    template: require('./ProjectFileChoose.component.htm')
+    template: require('./AvatarChoose.component.htm')
 })
-export class ProjectFileChooseComponent {
+export class AvatarChooseComponent {
 
     @Output()
     private fileSelectedEmitter = new EventEmitter<File>();

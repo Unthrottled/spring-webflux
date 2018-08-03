@@ -10,15 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ProjectFileChooseComponent = /** @class */ (function () {
-    function ProjectFileChooseComponent() {
+var AvatarChooseComponent = /** @class */ (function () {
+    function AvatarChooseComponent() {
         this.fileSelectedEmitter = new core_1.EventEmitter();
     }
-    ProjectFileChooseComponent.prototype.selectFile = function (event) {
+    AvatarChooseComponent.prototype.selectFile = function (event) {
         this.selectedFile = event.target.files.item(0);
         this.fileSelectedEmitter.emit(this.selectedFile);
     };
-    Object.defineProperty(ProjectFileChooseComponent.prototype, "selectedFile", {
+    Object.defineProperty(AvatarChooseComponent.prototype, "selectedFile", {
         get: function () {
             return this._selectedFile;
         },
@@ -31,15 +31,15 @@ var ProjectFileChooseComponent = /** @class */ (function () {
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
-    ], ProjectFileChooseComponent.prototype, "fileSelectedEmitter", void 0);
-    ProjectFileChooseComponent = __decorate([
+    ], AvatarChooseComponent.prototype, "fileSelectedEmitter", void 0);
+    AvatarChooseComponent = __decorate([
         core_1.Component({
             selector: 'project-file-choose',
-            template: require('./ProjectFileChoose.component.htm')
+            template: require('./AvatarChoose.component.htm')
         }),
         __metadata("design:paramtypes", [])
-    ], ProjectFileChooseComponent);
-    return ProjectFileChooseComponent;
+    ], AvatarChooseComponent);
+    return AvatarChooseComponent;
 }());
-exports.ProjectFileChooseComponent = ProjectFileChooseComponent;
-//# sourceMappingURL=ProjectFileChoose.component.js.map
+exports.AvatarChooseComponent = AvatarChooseComponent;
+//# sourceMappingURL=AvatarChoose.component.js.map

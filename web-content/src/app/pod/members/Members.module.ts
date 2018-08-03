@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {RemoteProjectFileService} from "./service/RemoteProjectFile.service";
-import {ProjectFileChooseComponent} from "./choose/ProjectFileChoose.component";
+import {AvatarChooseComponent} from "./choose/AvatarChoose.component";
 import {PodMemberListComponent} from "./list/PodMemberList.component";
 import {ProjectFileViewComponent} from "./view/ProjectFileView.component";
 import {PodMembersComponent} from "./PodMembers.component";
@@ -27,7 +27,7 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
 
         ],
         exports: [
-            ProjectFileChooseComponent,
+            AvatarChooseComponent,
             PodMemberListComponent,
             ProjectFileViewComponent,
             PodMemberComponent,
@@ -36,7 +36,7 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
 
         ],
         declarations:[
-            ProjectFileChooseComponent,
+            AvatarChooseComponent,
             PodMemberListComponent,
             ProjectFileViewComponent,
             PodMemberComponent,

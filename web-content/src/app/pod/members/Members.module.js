@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var RemoteProjectFile_service_1 = require("./service/RemoteProjectFile.service");
-var ProjectFileChoose_component_1 = require("./choose/ProjectFileChoose.component");
+var AvatarChoose_component_1 = require("./choose/AvatarChoose.component");
 var PodMemberList_component_1 = require("./list/PodMemberList.component");
 var ProjectFileView_component_1 = require("./view/ProjectFileView.component");
 var PodMembers_component_1 = require("./PodMembers.component");
@@ -37,7 +37,7 @@ var MembersModule = /** @class */ (function () {
                 animations_1.BrowserAnimationsModule,
             ],
             exports: [
-                ProjectFileChoose_component_1.ProjectFileChooseComponent,
+                AvatarChoose_component_1.AvatarChooseComponent,
                 PodMemberList_component_1.PodMemberListComponent,
                 ProjectFileView_component_1.ProjectFileViewComponent,
                 PodMember_component_1.PodMemberComponent,
@@ -45,7 +45,7 @@ var MembersModule = /** @class */ (function () {
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent
             ],
             declarations: [
-                ProjectFileChoose_component_1.ProjectFileChooseComponent,
+                AvatarChoose_component_1.AvatarChooseComponent,
                 PodMemberList_component_1.PodMemberListComponent,
                 ProjectFileView_component_1.ProjectFileViewComponent,
                 PodMember_component_1.PodMemberComponent,
