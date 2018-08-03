@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {ProjectFile} from "../model/ProjectFile.model";
+import {ProjectFile} from "../model/Avatar.model";
 
 @Component({
     selector: 'project-file-view',

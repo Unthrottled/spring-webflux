@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ProjectFile} from "../model/ProjectFile.model";
+import {ProjectFile} from "../model/Avatar.model";
 import {ProjectFileService} from "../service/ProjectFileService";
 import {Observable} from "rxjs/Observable";
 import {LocalProjectFile} from "../model/LocalProjectFile";

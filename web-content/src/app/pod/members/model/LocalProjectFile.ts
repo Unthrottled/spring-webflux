@@ -1,4 +1,4 @@
-import {ProjectFile} from "./ProjectFile.model";
+import {ProjectFile} from "./Avatar.model";
 import {Observable} from "rxjs/Observable";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {Identifier} from "./Identifier.model";

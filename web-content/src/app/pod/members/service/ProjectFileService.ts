@@ -1,5 +1,5 @@
 import {Injectable, OnInit} from "@angular/core";
-import {ProjectFile} from "../model/ProjectFile.model";
+import {ProjectFile} from "../model/Avatar.model";
 import {LocalProjectFile} from "../model/LocalProjectFile";
 import {RemoteProjectFile} from "../model/RemoteProjectFile";
 import {IHash} from "../../../util/IHash.model";
