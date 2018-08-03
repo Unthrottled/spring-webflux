@@ -43,6 +43,7 @@ var ProjectFileService = /** @class */ (function () {
         this.addProjectToList(items);
     };
     ProjectFileService.prototype.addProjectToList = function (project) {
+        console.log(project);
         this.projectFileMap.set(project.getIdentifier(), project);
     };
     ProjectFileService.prototype.removeProjectFile = function (projectFile) {

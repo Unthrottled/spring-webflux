@@ -9,11 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var InterestListComponent = /** @class */ (function () {
     function InterestListComponent() {
-        this.tasks = [];
+        this.interests = [];
     }
-    InterestListComponent.prototype.onClick = function () {
-        this.tasks.push({ name: this.task });
-        this.task = '';
+    InterestListComponent.prototype.intrestAdded = function (interest) {
+        this.interests.push(interest);
     };
     InterestListComponent = __decorate([
         core_1.Component({

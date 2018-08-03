@@ -39,6 +39,7 @@ export class ProjectFileService implements OnInit {
     }
 
     private addProjectToList(project: ProjectFile) {
+        console.log(project)
         this.projectFileMap.set(project.getIdentifier(), project)
     }
 

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {TextPayload} from '../model/TextPayload';
 
 
 @Component({
@@ -7,11 +8,9 @@ import {Component} from '@angular/core';
 })
 export class InterestListComponent {
 
-    task: string;
-    tasks: any[] = [];
+    interests: TextPayload[] = [];
 
-    onClick(){
-        this.tasks.push({name: this.task});
-        this.task = '';
+    intrestAdded(interest: TextPayload) {
+        this.interests.push(interest);
     }
 }
