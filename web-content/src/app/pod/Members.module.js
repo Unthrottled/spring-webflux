@@ -25,10 +25,10 @@ var ProfileImage_component_1 = require("./view/ProfileImage.component");
 var PersonalInformation_component_1 = require("./view/PersonalInformation.component");
 var InterestList_component_1 = require("./list/InterestList.component");
 var TextSubmission_component_1 = require("./manipulation/TextSubmission.component");
-var PodModule = /** @class */ (function () {
-    function PodModule() {
+var MembersModule = /** @class */ (function () {
+    function MembersModule() {
     }
-    PodModule = __decorate([
+    MembersModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
@@ -64,8 +64,8 @@ var PodModule = /** @class */ (function () {
             ],
             schemas: []
         })
-    ], PodModule);
-    return PodModule;
+    ], MembersModule);
+    return MembersModule;
 }());
-exports.PodModule = PodModule;
-//# sourceMappingURL=Pod.module.js.map
+exports.MembersModule = MembersModule;
+//# sourceMappingURL=Members.module.js.map

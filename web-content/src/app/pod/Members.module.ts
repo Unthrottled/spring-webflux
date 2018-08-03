@@ -55,6 +55,6 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
         ],
         schemas: []
 })
-export class PodModule {
+export class MembersModule {
 
 }

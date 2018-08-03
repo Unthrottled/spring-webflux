@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {AppComponent} from "./app.component";
 import {HttpClientModule} from "@angular/common/http";
-import {PodModule} from "./pod/Pod.module";
+import {MembersModule} from "./pod/Members.module";
 import {WindowRef} from "./util/window";
 import {BackendAPIService} from "./services/BackendAPI.service";
 
@@ -17,7 +17,7 @@ import {BackendAPIService} from "./services/BackendAPI.service";
         FormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        PodModule
+        MembersModule
     ],
     exports: [
         RouterModule
