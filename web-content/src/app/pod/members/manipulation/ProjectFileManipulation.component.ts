@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ProjectFile} from "../model/Avatar.model";
+import {Avatar} from "../model/Avatar.model";
 
 @Component(
     {
@@ -8,18 +8,18 @@ import {ProjectFile} from "../model/Avatar.model";
     }
 )
 export class ProjectFileManipulationComponent {
-    private _projectFile: ProjectFile;
+    private _projectFile: Avatar;
 
     @Output()
-    private projectFileUpdated = new EventEmitter<ProjectFile>();
+    private projectFileUpdated = new EventEmitter<Avatar>();
 
 
     @Input()
-    get projectFile(): ProjectFile {
+    get projectFile(): Avatar {
         return this._projectFile;
     }
 
-    set projectFile(value: ProjectFile) {
+    set projectFile(value: Avatar) {
         this._projectFile = value;
     }
 

@@ -1,9 +1,9 @@
-import {ProjectFile} from "./Avatar.model";
+import {Avatar} from "./Avatar.model";
 import {Observable} from "rxjs/Observable";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {Identifier} from "./Identifier.model";
 
-export class RemoteAvatar implements ProjectFile {
+export class RemoteAvatar implements Avatar {
     private imageBinaryReplay = new ReplaySubject<any>(1);
     private _name: string;
 

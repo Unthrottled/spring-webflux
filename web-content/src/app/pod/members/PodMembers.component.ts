@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ProjectFile} from "./model/Avatar.model";
+import {Avatar} from "./model/Avatar.model";
 import {ProjectFileService} from "./service/ProjectFileService";
 
 @Component({
@@ -13,7 +13,7 @@ export class PodMembersComponent implements OnInit {
 
     constructor(private projectFileService: ProjectFileService){}
 
-    get projectFiles(): Iterable<ProjectFile> {
+    get projectFiles(): Iterable<Avatar> {
         return this.projectFileService.projectFiles;
     }
 

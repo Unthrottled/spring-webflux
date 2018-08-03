@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {ProjectFile} from "../model/Avatar.model";
+import {Avatar} from "../model/Avatar.model";
 
 @Component({
     selector: 'project-file-view',
@@ -11,14 +11,14 @@ export class ProjectFileViewComponent {
     constructor() {
     }
 
-    private _projectFile: ProjectFile;
+    private _projectFile: Avatar;
 
     @Input()
-    get projectFile(): ProjectFile {
+    get projectFile(): Avatar {
         return this._projectFile;
     }
 
-    set projectFile(value: ProjectFile) {
+    set projectFile(value: Avatar) {
         this._projectFile = value;
     }
 

@@ -1,6 +1,6 @@
 import {Observable} from "rxjs/Observable";
 
-export interface ProjectFile {
+export interface Avatar {
     imageBinary(): Observable<any>;
     getIdentifier(): string;
     setNewFile(file: File): void;

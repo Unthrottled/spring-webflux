@@ -1,5 +1,5 @@
 import {Injectable, OnInit} from "@angular/core";
-import {ProjectFile} from "../model/Avatar.model";
+import {Avatar} from "../model/Avatar.model";
 import {LocalAvatar} from "../model/LocalAvatar";
 import {RemoteAvatar} from "../model/RemoteAvatar";
 import {IHash} from "../../../util/IHash.model";
@@ -10,7 +10,7 @@ import {RemoteProjectFileService} from "./RemoteProjectFile.service";
 
 @Injectable()
 export class ProjectFileService implements OnInit {
-    private projectFileMap: Map<String, ProjectFile> = new Map<String, ProjectFile>();
+    private projectFileMap: Map<String, Avatar> = new Map<String, Avatar>();
 
 
     constructor(private localProjectFileService: LocalProjectFileService,
@@ -29,7 +29,7 @@ export class ProjectFileService implements OnInit {
     }
 
 
-    get projectFiles(): Iterable<ProjectFile> {
+    get projectFiles(): Iterable<Avatar> {
         return this.projectFileMap.values();
     }
 
@@ -38,11 +38,11 @@ export class ProjectFileService implements OnInit {
         this.addProjectToList(items);
     }
 
-    private addProjectToList(project: ProjectFile) {
+    private addProjectToList(project: Avatar) {
         this.projectFileMap.set(project.getIdentifier(), project)
     }
 
-    removeProjectFile(projectFile: ProjectFile) {
+    removeProjectFile(projectFile: Avatar) {
         if(projectFile instanceof RemoteAvatar){
             let self = this;
             this.remoteProjectFileService.removeProject(<RemoteAvatar>projectFile)
@@ -57,7 +57,7 @@ export class ProjectFileService implements OnInit {
         }
     }
 
-    private removeProjectFileFromList(projectFile: ProjectFile) {
+    private removeProjectFileFromList(projectFile: Avatar) {
         this.projectFileMap.delete(projectFile.getIdentifier());
 
     }

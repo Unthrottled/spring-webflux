@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {ProjectFile} from '../model/Avatar.model';
+import {Avatar} from '../model/Avatar.model';
 import {LocalAvatar} from '../model/LocalAvatar';
 
 @Component({
@@ -12,18 +12,18 @@ export class ProfileImageComponent {
     constructor() {
     }
 
-    private _projectFile: ProjectFile;
+    private _projectFile: Avatar;
 
     @Output()
-    private projectFileEmmiter = new EventEmitter<ProjectFile>();
+    private projectFileEmmiter = new EventEmitter<Avatar>();
 
 
     @Input()
-    get projectFile(): ProjectFile {
+    get projectFile(): Avatar {
         return this._projectFile;
     }
 
-    set projectFile(value: ProjectFile) {
+    set projectFile(value: Avatar) {
         this._projectFile = value;
     }
 
@@ -32,7 +32,7 @@ export class ProfileImageComponent {
         return this.projectFile instanceof LocalAvatar;
     }
 
-    updateFile(projectFile: ProjectFile): void {
+    updateFile(projectFile: Avatar): void {
         this.projectFile = projectFile;
     }
 

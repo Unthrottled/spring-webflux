@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ProjectFile} from "../model/Avatar.model";
+import {Avatar} from "../model/Avatar.model";
 import {ProjectFileService} from "../service/ProjectFileService";
 import {Observable} from "rxjs/Observable";
 import {LocalAvatar} from "../model/LocalAvatar";
@@ -13,14 +13,14 @@ export class PodMemberComponent {
     constructor(private projectFileService: ProjectFileService) {
     }
 
-    private _projectFile: ProjectFile;
+    private _projectFile: Avatar;
 
     @Input()
-    get projectFile(): ProjectFile {
+    get projectFile(): Avatar {
         return this._projectFile;
     }
 
-    set projectFile(value: ProjectFile) {
+    set projectFile(value: Avatar) {
         this._projectFile = value;
     }
 
@@ -29,7 +29,7 @@ export class PodMemberComponent {
         return this.projectFile instanceof LocalAvatar;
     }
 
-    updateFile(projectFile: ProjectFile): void {
+    updateFile(projectFile: Avatar): void {
         this.projectFile = projectFile;
     }
 
