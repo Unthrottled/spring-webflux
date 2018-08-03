@@ -15,6 +15,7 @@ import {LocalProjectFileService} from "./service/LocalProjectFile.service";
 import {ImageUploadService} from "./service/ImageUpload.service";
 import {ProfileImageComponent} from './view/ProfileImage.component';
 import {PersonalInformationComponent} from './view/PersonalInformation.component';
+import {InterestListComponent} from './list/InterestList.component';
 
 @NgModule({
         imports: [
@@ -41,7 +42,8 @@ import {PersonalInformationComponent} from './view/PersonalInformation.component
             ProjectFilesComponent,
             ProjectFileManipulationComponent,
             ProfileImageComponent,
-            PersonalInformationComponent
+            PersonalInformationComponent,
+            InterestListComponent,
         ],
         bootstrap: [],
         providers: [RemoteProjectFileService,

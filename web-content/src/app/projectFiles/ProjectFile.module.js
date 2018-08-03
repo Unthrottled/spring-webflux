@@ -23,6 +23,7 @@ var LocalProjectFile_service_1 = require("./service/LocalProjectFile.service");
 var ImageUpload_service_1 = require("./service/ImageUpload.service");
 var ProfileImage_component_1 = require("./view/ProfileImage.component");
 var PersonalInformation_component_1 = require("./view/PersonalInformation.component");
+var InterestList_component_1 = require("./list/InterestList.component");
 var ProjectFileModule = /** @class */ (function () {
     function ProjectFileModule() {
     }
@@ -50,7 +51,8 @@ var ProjectFileModule = /** @class */ (function () {
                 ProjectFiles_component_1.ProjectFilesComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent,
                 ProfileImage_component_1.ProfileImageComponent,
-                PersonalInformation_component_1.PersonalInformationComponent
+                PersonalInformation_component_1.PersonalInformationComponent,
+                InterestList_component_1.InterestListComponent,
             ],
             bootstrap: [],
             providers: [RemoteProjectFile_service_1.RemoteProjectFileService,
