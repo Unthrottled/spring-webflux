@@ -38,7 +38,7 @@ var AvatarViewComponent = /** @class */ (function () {
     AvatarViewComponent = __decorate([
         core_1.Component({
             selector: 'avatar-view',
-            template: require('./ProjectFileView.component.htm')
+            template: require('./AvatarView.component.htm')
         }),
         __metadata("design:paramtypes", [])
     ], AvatarViewComponent);

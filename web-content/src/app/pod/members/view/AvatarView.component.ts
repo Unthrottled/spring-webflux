@@ -4,7 +4,7 @@ import {Avatar} from "../model/Avatar.model";
 
 @Component({
     selector: 'avatar-view',
-    template: require('./ProjectFileView.component.htm')
+    template: require('./AvatarView.component.htm')
 })
 export class AvatarViewComponent {
 
