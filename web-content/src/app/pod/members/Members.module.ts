@@ -13,7 +13,6 @@ import {ProjectFileService} from "./service/ProjectFileService";
 import {PodMemberComponent} from "./view/PodMember.component";
 import {LocalProjectFileService} from "./service/LocalProjectFile.service";
 import {ImageUploadService} from "./service/ImageUpload.service";
-import {ProfileImageComponent} from './view/ProfileImage.component';
 import {PersonalInformationComponent} from './view/PersonalInformation.component';
 import {InterestListComponent} from './list/InterestList.component';
 import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
@@ -42,7 +41,6 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
             PodMemberComponent,
             PodMembersComponent,
             ProjectFileManipulationComponent,
-            ProfileImageComponent,
             PersonalInformationComponent,
             InterestListComponent,
             TextSubmissionComponent,

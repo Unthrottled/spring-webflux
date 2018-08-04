@@ -4,8 +4,8 @@ import {Avatar} from '../model/Avatar.model';
 import {LocalAvatar} from '../model/LocalAvatar';
 
 @Component({
-    selector: 'profile-image',
-    template: require('./ProfileImage.component.htm')
+    selector: 'avatar-editor',
+    template: require('./AvatarEditor.component.htm')
 })
 export class ProfileImageComponent {
 
@@ -25,11 +25,6 @@ export class ProfileImageComponent {
 
     set avatar(value: Avatar) {
         this._avatar = value;
-    }
-
-    //todo: remove dis when you can change remote projects.
-    get editMode(): boolean {
-        return this.avatar instanceof LocalAvatar;
     }
 
     updateFile(projectFile: Avatar): void {
