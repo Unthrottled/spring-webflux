@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {RemoteProjectFileService} from "./service/RemoteProjectFile.service";
 import {AvatarChooseComponent} from "./choose/AvatarChoose.component";
 import {PodMemberListComponent} from "./list/PodMemberList.component";
-import {ProjectFileViewComponent} from "./view/ProjectFileView.component";
+import {AvatarViewComponent} from "./view/AvatarView.component";
 import {PodMembersComponent} from "./PodMembers.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
@@ -29,7 +29,7 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
         exports: [
             AvatarChooseComponent,
             PodMemberListComponent,
-            ProjectFileViewComponent,
+            AvatarViewComponent,
             PodMemberComponent,
             PodMembersComponent,
             ProjectFileManipulationComponent
@@ -38,7 +38,7 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
         declarations:[
             AvatarChooseComponent,
             PodMemberListComponent,
-            ProjectFileViewComponent,
+            AvatarViewComponent,
             PodMemberComponent,
             PodMembersComponent,
             ProjectFileManipulationComponent,

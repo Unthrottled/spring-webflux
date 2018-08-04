@@ -3,10 +3,10 @@ import {Observable} from "rxjs/Observable";
 import {Avatar} from "../model/Avatar.model";
 
 @Component({
-    selector: 'project-file-view',
+    selector: 'avatar-view',
     template: require('./ProjectFileView.component.htm')
 })
-export class ProjectFileViewComponent {
+export class AvatarViewComponent {
 
     constructor() {
     }

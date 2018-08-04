@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ProjectFileViewComponent = /** @class */ (function () {
-    function ProjectFileViewComponent() {
+var AvatarViewComponent = /** @class */ (function () {
+    function AvatarViewComponent() {
     }
-    Object.defineProperty(ProjectFileViewComponent.prototype, "avatar", {
+    Object.defineProperty(AvatarViewComponent.prototype, "avatar", {
         get: function () {
             return this._avatar;
         },
@@ -23,7 +23,7 @@ var ProjectFileViewComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ProjectFileViewComponent.prototype, "imageBinary", {
+    Object.defineProperty(AvatarViewComponent.prototype, "imageBinary", {
         get: function () {
             return this._avatar.imageBinary();
         },
@@ -34,15 +34,15 @@ var ProjectFileViewComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
-    ], ProjectFileViewComponent.prototype, "avatar", null);
-    ProjectFileViewComponent = __decorate([
+    ], AvatarViewComponent.prototype, "avatar", null);
+    AvatarViewComponent = __decorate([
         core_1.Component({
-            selector: 'project-file-view',
+            selector: 'avatar-view',
             template: require('./ProjectFileView.component.htm')
         }),
         __metadata("design:paramtypes", [])
-    ], ProjectFileViewComponent);
-    return ProjectFileViewComponent;
+    ], AvatarViewComponent);
+    return AvatarViewComponent;
 }());
-exports.ProjectFileViewComponent = ProjectFileViewComponent;
-//# sourceMappingURL=ProjectFileView.component.js.map
+exports.AvatarViewComponent = AvatarViewComponent;
+//# sourceMappingURL=AvatarView.component.js.map

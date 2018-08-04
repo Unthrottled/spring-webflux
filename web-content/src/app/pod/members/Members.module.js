@@ -10,7 +10,7 @@ var core_1 = require("@angular/core");
 var RemoteProjectFile_service_1 = require("./service/RemoteProjectFile.service");
 var AvatarChoose_component_1 = require("./choose/AvatarChoose.component");
 var PodMemberList_component_1 = require("./list/PodMemberList.component");
-var ProjectFileView_component_1 = require("./view/ProjectFileView.component");
+var AvatarView_component_1 = require("./view/AvatarView.component");
 var PodMembers_component_1 = require("./PodMembers.component");
 var animations_1 = require("@angular/platform-browser/animations");
 var http_1 = require("@angular/common/http");
@@ -39,7 +39,7 @@ var MembersModule = /** @class */ (function () {
             exports: [
                 AvatarChoose_component_1.AvatarChooseComponent,
                 PodMemberList_component_1.PodMemberListComponent,
-                ProjectFileView_component_1.ProjectFileViewComponent,
+                AvatarView_component_1.AvatarViewComponent,
                 PodMember_component_1.PodMemberComponent,
                 PodMembers_component_1.PodMembersComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent
@@ -47,7 +47,7 @@ var MembersModule = /** @class */ (function () {
             declarations: [
                 AvatarChoose_component_1.AvatarChooseComponent,
                 PodMemberList_component_1.PodMemberListComponent,
-                ProjectFileView_component_1.ProjectFileViewComponent,
+                AvatarView_component_1.AvatarViewComponent,
                 PodMember_component_1.PodMemberComponent,
                 PodMembers_component_1.PodMembersComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent,
