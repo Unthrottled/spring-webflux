@@ -2,7 +2,7 @@ import {Component, Input} from "@angular/core";
 import {Avatar} from "../model/Avatar.model";
 
 @Component({
-    selector: 'project-file-list',
+    selector: 'pod-member-list',
     template: require('./PodMemberList.component.htm')
 })
 export class PodMemberListComponent {

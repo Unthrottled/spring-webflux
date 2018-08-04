@@ -31,7 +31,7 @@ var PodMemberListComponent = /** @class */ (function () {
     ], PodMemberListComponent.prototype, "projectFiles", null);
     PodMemberListComponent = __decorate([
         core_1.Component({
-            selector: 'project-file-list',
+            selector: 'pod-member-list',
             template: require('./PodMemberList.component.htm')
         })
     ], PodMemberListComponent);
