@@ -17,6 +17,7 @@
     </label>
     <label>
         Interests
-        <text-list [interests]="interests"></text-list>
+        <text-submission (itemSubmitted)="addInterest($event)"></text-submission>
     </label>
 </div>
+<personal-information></personal-information>
