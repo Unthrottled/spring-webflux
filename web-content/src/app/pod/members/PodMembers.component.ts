@@ -17,7 +17,7 @@ export class PodMembersComponent implements OnInit {
         return this.projectFileService.projectFiles;
     }
 
-    addFile(): void {
+    addNewPodMember(): void {
         this.projectFileService.addProject();
     }
 }

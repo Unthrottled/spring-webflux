@@ -16,6 +16,16 @@ var PodMemberComponent = /** @class */ (function () {
     function PodMemberComponent(projectFileService) {
         this.projectFileService = projectFileService;
     }
+    Object.defineProperty(PodMemberComponent.prototype, "personalInformation", {
+        get: function () {
+            return this._personalInformation;
+        },
+        set: function (value) {
+            this._personalInformation = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(PodMemberComponent.prototype, "avatar", {
         get: function () {
             return this._avatar;

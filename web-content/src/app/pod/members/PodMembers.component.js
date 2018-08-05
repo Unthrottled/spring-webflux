@@ -25,7 +25,7 @@ var PodMembersComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    PodMembersComponent.prototype.addFile = function () {
+    PodMembersComponent.prototype.addNewPodMember = function () {
         this.projectFileService.addProject();
     };
     PodMembersComponent = __decorate([

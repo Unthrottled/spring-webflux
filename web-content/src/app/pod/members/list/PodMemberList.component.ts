@@ -1,19 +1,19 @@
 import {Component, Input} from "@angular/core";
-import {Avatar} from "../model/Avatar.model";
+import {PodMember} from "../model/PodMember.model";
 
 @Component({
     selector: 'pod-member-list',
     template: require('./PodMemberList.component.htm')
 })
 export class PodMemberListComponent {
-    private _projectFiles: Avatar[] = [];
+    private _podMembers: PodMember[] = [];
 
     @Input()
-    get projectFiles(): Avatar[] {
-        return this._projectFiles;
+    get podMembers(): PodMember[] {
+        return this._podMembers;
     }
 
-    set projectFiles(value: Avatar[]) {
-        this._projectFiles = value;
+    set podMembers(value: PodMember[]) {
+        this._podMembers = value;
     }
 }

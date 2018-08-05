@@ -12,14 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PodMemberListComponent = /** @class */ (function () {
     function PodMemberListComponent() {
-        this._projectFiles = [];
+        this._podMembers = [];
     }
-    Object.defineProperty(PodMemberListComponent.prototype, "projectFiles", {
+    Object.defineProperty(PodMemberListComponent.prototype, "podMembers", {
         get: function () {
-            return this._projectFiles;
+            return this._podMembers;
         },
         set: function (value) {
-            this._projectFiles = value;
+            this._podMembers = value;
         },
         enumerable: true,
         configurable: true
@@ -28,7 +28,7 @@ var PodMemberListComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Array),
         __metadata("design:paramtypes", [Array])
-    ], PodMemberListComponent.prototype, "projectFiles", null);
+    ], PodMemberListComponent.prototype, "podMembers", null);
     PodMemberListComponent = __decorate([
         core_1.Component({
             selector: 'pod-member-list',
