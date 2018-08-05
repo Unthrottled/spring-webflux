@@ -1,6 +1,18 @@
 <div class="project-container">
     <div *ngIf="editMode">
         <pod-member-editor [podMember]="podMember"></pod-member-editor>
+        <div class="image-button-container">
+            <div class="btn btn-lg btn-danger" (click)="delete()">Delete</div>
+            <div class="btn btn-lg btn-success" (click)="hideEdit()">Hide Editor</div>
+        </div>
+    </div>
+    <div *ngIf="!editMode" style="display: flex">
+        <div style="flex: 1">
+
+        </div>
+        <div (click)="showEdit()">
+            <i class="far fa-edit"></i>
+        </div>
     </div>
     <div style="display: flex">
         <avatar-view [avatar]="avatar"></avatar-view>

@@ -1,8 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Avatar} from "../model/Avatar.model";
-import {PodMemberService} from "../service/PodMember.service";
-import {Observable} from "rxjs/Observable";
-import {LocalAvatar} from "../model/LocalAvatar";
+import {Avatar} from '../model/Avatar.model';
+import {PodMemberService} from '../service/PodMember.service';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {PodMember} from '../model/PodMember.model';
 
@@ -37,19 +35,11 @@ export class PodMemberEditorComponent {
         this._podMember = value;
     }
 
-    uploadFile(): void {
-        // this.projectFileService.uploadFile(<LocalAvatar>this.avatar);
-    }
-
-    updateAvatar(avatar: Avatar): void {
-        this.podMember.setAvatar(avatar)
-    }
-
     get avatar(): Avatar {
         return this.podMember.avatar;
     }
 
-    delete(): void {
-        this.projectFileService.removePodMember(this.podMember);
+    updateAvatar(avatar: Avatar): void {
+        this.podMember.setAvatar(avatar)
     }
 }

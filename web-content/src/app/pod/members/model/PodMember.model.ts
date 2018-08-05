@@ -6,4 +6,5 @@ export interface PodMember {
     personalInformation: PersonalInformation;
     getIdentifier(): string;
     setAvatar(avatar: Avatar): void;
+
 }

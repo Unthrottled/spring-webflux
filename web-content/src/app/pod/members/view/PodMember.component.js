@@ -11,10 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PodMember_service_1 = require("../service/PodMember.service");
-var LocalPodMember_1 = require("../model/LocalPodMember");
 var PodMemberComponent = /** @class */ (function () {
     function PodMemberComponent(projectFileService) {
         this.projectFileService = projectFileService;
+        this._editMode = false;
     }
     Object.defineProperty(PodMemberComponent.prototype, "personalInformation", {
         get: function () {
@@ -34,16 +34,12 @@ var PodMemberComponent = /** @class */ (function () {
         configurable: true
     });
     Object.defineProperty(PodMemberComponent.prototype, "editMode", {
-        //todo: remove dis when you can change remote projects.
         get: function () {
-            return this.podMember instanceof LocalPodMember_1.LocalPodMember;
+            return this._editMode;
         },
         enumerable: true,
         configurable: true
     });
-    PodMemberComponent.prototype.podMemberUpdated = function (projectFile) {
-        this.podMember = projectFile;
-    };
     Object.defineProperty(PodMemberComponent.prototype, "avatar", {
         get: function () {
             return this.podMember.avatar;
@@ -51,8 +47,14 @@ var PodMemberComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    PodMemberComponent.prototype.uploadFile = function () {
-        this.projectFileService.uploadFile(this.podMember);
+    PodMemberComponent.prototype.podMemberUpdated = function (projectFile) {
+        this.podMember = projectFile;
+    };
+    PodMemberComponent.prototype.hideEdit = function () {
+        this._editMode = false;
+    };
+    PodMemberComponent.prototype.showEdit = function () {
+        this._editMode = true;
     };
     PodMemberComponent.prototype.delete = function () {
         this.projectFileService.removePodMember(this.podMember);

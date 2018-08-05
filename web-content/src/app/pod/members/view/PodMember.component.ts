@@ -1,8 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {PodMember} from "../model/PodMember.model";
-import {PodMemberService} from "../service/PodMember.service";
-import {Observable} from "rxjs/Observable";
-import {LocalPodMember} from "../model/LocalPodMember";
+import {PodMember} from '../model/PodMember.model';
+import {PodMemberService} from '../service/PodMember.service';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {Avatar} from '../model/Avatar.model';
 
@@ -30,21 +28,26 @@ export class PodMemberComponent {
         this._podMember = value;
     }
 
-    //todo: remove dis when you can change remote projects.
-    get editMode(): boolean {
-        return this.podMember instanceof LocalPodMember;
-    }
+    private _editMode: boolean = false;
 
-    podMemberUpdated(projectFile: PodMember): void {
-        this.podMember = projectFile;
+    get editMode(): boolean {
+        return this._editMode;
     }
 
     get avatar(): Avatar {
         return this.podMember.avatar;
     }
 
-    uploadFile(): void {
-        this.projectFileService.uploadFile(<LocalPodMember>this.podMember);
+    podMemberUpdated(projectFile: PodMember): void {
+        this.podMember = projectFile;
+    }
+
+    hideEdit(): void {
+        this._editMode = false
+    }
+
+    showEdit(): void {
+        this._editMode = true;
     }
 
     delete(): void {

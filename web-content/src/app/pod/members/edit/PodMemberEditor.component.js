@@ -35,12 +35,6 @@ var PodMemberEditorComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    PodMemberEditorComponent.prototype.uploadFile = function () {
-        // this.projectFileService.uploadFile(<LocalAvatar>this.avatar);
-    };
-    PodMemberEditorComponent.prototype.updateAvatar = function (avatar) {
-        this.podMember.setAvatar(avatar);
-    };
     Object.defineProperty(PodMemberEditorComponent.prototype, "avatar", {
         get: function () {
             return this.podMember.avatar;
@@ -48,8 +42,8 @@ var PodMemberEditorComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    PodMemberEditorComponent.prototype.delete = function () {
-        this.projectFileService.removePodMember(this.podMember);
+    PodMemberEditorComponent.prototype.updateAvatar = function (avatar) {
+        this.podMember.setAvatar(avatar);
     };
     __decorate([
         core_1.Input(),
