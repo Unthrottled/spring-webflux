@@ -1,4 +1,12 @@
 "use strict";
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -81,7 +89,7 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
         configurable: true
     });
     PersonalInformationEditorComponent.prototype.addInterest = function (textPayload) {
-        var interest = new Interest(uuid(), textPayload.value);
+        var interest = new Interest(uuid(), textPayload.value, this.podMember.getIdentifier());
         var action = {
             type: 'INTEREST_CAPTURED',
             payload: interest,
@@ -93,7 +101,7 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     PersonalInformationEditorComponent.prototype.removeInterest = function (interest) {
         var action = {
             type: 'INTEREST_REMOVED',
-            payload: interest,
+            payload: __assign({ podMemberIdentifier: this.podMember.getIdentifier() }, interest),
             error: false,
         };
         this.onAction.emit(action);
@@ -102,7 +110,7 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     PersonalInformationEditorComponent.prototype.fieldChanged = function (event) {
         var action = {
             type: 'PERSONAL_INFO_CAPTURED',
-            payload: event,
+            payload: __assign({ podMemberIdentifier: this.podMember.getIdentifier() }, event),
             error: false,
         };
         this.onAction.emit(action);
@@ -131,9 +139,10 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
 }());
 exports.PersonalInformationEditorComponent = PersonalInformationEditorComponent;
 var Interest = /** @class */ (function () {
-    function Interest(id, value) {
+    function Interest(id, value, podMemberIdentifier) {
         this.id = id;
         this.value = value;
+        this.podMemberIdentifier = podMemberIdentifier;
     }
     return Interest;
 }());

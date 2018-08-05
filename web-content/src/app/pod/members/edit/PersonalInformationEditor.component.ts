@@ -7,6 +7,7 @@ import {Action} from '../model/Action.model';
 const uuid = require('uuid/v1');
 
 export interface FieldChanged {
+    podMemberIdentifier: string,
     value: string,
     field: string
 }
@@ -79,7 +80,7 @@ export class PersonalInformationEditorComponent {
     }
 
     addInterest(textPayload: TextPayload) {
-        let interest = new Interest(uuid(), textPayload.value);
+        let interest = new Interest(uuid(), textPayload.value, this.podMember.getIdentifier());
         const action: Action<Interest> = {
             type: 'INTEREST_CAPTURED',
             payload: interest,
@@ -92,7 +93,10 @@ export class PersonalInformationEditorComponent {
     removeInterest(interest: Interest) {
         const action: Action<Interest> = {
             type: 'INTEREST_REMOVED',
-            payload: interest,
+            payload: {
+                podMemberIdentifier: this.podMember.getIdentifier(),
+                ...interest
+            },
             error: false,
         };
         this.onAction.emit(action);
@@ -102,7 +106,10 @@ export class PersonalInformationEditorComponent {
     fieldChanged(event: FieldChanged): void {
         const action: Action<FieldChanged> = {
             type: 'PERSONAL_INFO_CAPTURED',
-            payload: event,
+            payload: {
+                podMemberIdentifier: this.podMember.getIdentifier(),
+                ...event
+            },
             error: false,
         };
         this.onAction.emit(action);
@@ -113,9 +120,11 @@ export class Interest {
 
     id: string;
     value: string;
+    podMemberIdentifier: string;
 
-    constructor(id: string, value: string) {
+    constructor(id: string, value: string, podMemberIdentifier: string) {
         this.id = id;
         this.value = value;
+        this.podMemberIdentifier = podMemberIdentifier;
     }
 }

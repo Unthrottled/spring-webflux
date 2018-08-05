@@ -54,6 +54,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
             var uploadedAvatarAction = {
                 type: "AVATAR_UPLOADED",
                 payload: {
+                    podMemberIdentifier: _this.podMember.getIdentifier(),
                     identifier: remoteIdentifier
                 },
                 error: false

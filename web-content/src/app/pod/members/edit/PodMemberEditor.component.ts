@@ -52,6 +52,7 @@ export class PodMemberEditorComponent {
                 const uploadedAvatarAction: Action<AvatarPayload> = {
                     type: "AVATAR_UPLOADED",
                     payload: {
+                        podMemberIdentifier: this.podMember.getIdentifier(),
                         identifier: remoteIdentifier
                     },
                     error: false
@@ -70,5 +71,6 @@ export class PodMemberEditorComponent {
 }
 
 interface AvatarPayload {
+    podMemberIdentifier: string,
     identifier: string;
 }
