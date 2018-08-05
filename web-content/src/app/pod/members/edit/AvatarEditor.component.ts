@@ -7,7 +7,7 @@ import {LocalAvatar} from '../model/LocalAvatar';
     selector: 'avatar-editor',
     template: require('./AvatarEditor.component.htm')
 })
-export class ProfileImageComponent {
+export class AvatarEditorComponent {
 
     constructor() {
     }
@@ -15,7 +15,7 @@ export class ProfileImageComponent {
     private _avatar: Avatar;
 
     @Output()
-    private projectFileEmmiter = new EventEmitter<Avatar>();
+    private avatarEmmiter = new EventEmitter<Avatar>();
 
 
     @Input()
@@ -27,8 +27,8 @@ export class ProfileImageComponent {
         this._avatar = value;
     }
 
-    updateFile(projectFile: Avatar): void {
-        this.avatar = projectFile;
+    updateFile(avatar: Avatar): void {
+        this.avatar = avatar;
     }
 
     get imageBinary(): Observable<any> {
