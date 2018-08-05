@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Avatar} from "./model/Avatar.model";
+import {PodMember} from "./model/PodMember.model";
 import {PodMemberService} from "./service/PodMember.service";
 
 @Component({
@@ -14,7 +14,7 @@ export class PodMembersComponent implements OnInit {
     // todo: start here!
     constructor(private podMemberService: PodMemberService){}
 
-    get podMembers(): Iterable<Avatar> {
+    get podMembers(): Iterable<PodMember> {
         return this.podMemberService.podMembers;
     }
 

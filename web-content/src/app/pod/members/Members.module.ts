@@ -18,6 +18,8 @@ import {InterestListComponent} from './list/InterestList.component';
 import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
 import {AvatarEditorComponent} from './edit/AvatarEditor.component';
 import {PersonalInformationEditorComponent} from './edit/PersonalInformationEditor.component';
+import {RemotePodMemberService} from './service/RemotePodMember.service';
+import {LocalPodMemberService} from './service/LocalPodMember.service';
 
 @NgModule({
         imports: [
@@ -50,10 +52,13 @@ import {PersonalInformationEditorComponent} from './edit/PersonalInformationEdit
             TextSubmissionComponent,
         ],
         bootstrap: [],
-        providers: [RemoteProjectFileService,
+        providers: [
+            RemoteProjectFileService,
             PodMemberService,
             LocalProjectFileService,
-            ImageUploadService
+            ImageUploadService,
+            RemotePodMemberService,
+            LocalPodMemberService,
         ],
         schemas: []
 })

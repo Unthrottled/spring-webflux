@@ -1,9 +1,10 @@
 import {Component, Input} from '@angular/core';
-import {Avatar} from "../model/Avatar.model";
+import {PodMember} from "../model/PodMember.model";
 import {PodMemberService} from "../service/PodMember.service";
 import {Observable} from "rxjs/Observable";
-import {LocalAvatar} from "../model/LocalAvatar";
+import {LocalPodMember} from "../model/LocalPodMember";
 import {PersonalInformation} from '../model/PersonalInformation';
+import {Avatar} from '../model/Avatar.model';
 
 @Component({
     selector: 'pod-member',
@@ -25,35 +26,39 @@ export class PodMemberComponent {
         this._personalInformation = value;
     }
 
-    private _avatar: Avatar;
+    private _podMember: PodMember;
 
     @Input()
-    get avatar(): Avatar {
-        return this._avatar;
+    get podMember(): PodMember {
+        return this._podMember;
     }
 
-    set avatar(value: Avatar) {
-        this._avatar = value;
+    set podMember(value: PodMember) {
+        this._podMember = value;
     }
 
     //todo: remove dis when you can change remote projects.
     get editMode(): boolean {
-        return this.avatar instanceof LocalAvatar;
+        return this.podMember instanceof LocalPodMember;
     }
 
-    avatarUpdated(projectFile: Avatar): void {
-        this.avatar = projectFile;
+    podMemberUpdated(projectFile: PodMember): void {
+        this.podMember = projectFile;
+    }
+
+    get avatar(): Avatar {
+        return this.podMember.avatar;
     }
 
     uploadFile(): void {
-        this.projectFileService.uploadFile(<LocalAvatar>this.avatar);
+        this.projectFileService.uploadFile(<LocalPodMember>this.podMember);
     }
 
     delete(): void {
-        this.projectFileService.removeProjectFile(this.avatar);
+        this.projectFileService.removePodMember(this.podMember);
     }
 
     get imageBinary(): Observable<any> {
-        return this._avatar.imageBinary();
+        return this._podMember.avatar.imageBinary();
     }
 }

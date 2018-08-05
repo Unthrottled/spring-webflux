@@ -13,21 +13,21 @@ var core_1 = require("@angular/core");
 var PodMember_service_1 = require("./service/PodMember.service");
 var PodMembersComponent = /** @class */ (function () {
     // todo: start here!
-    function PodMembersComponent(projectFileService) {
-        this.projectFileService = projectFileService;
+    function PodMembersComponent(podMemberService) {
+        this.podMemberService = podMemberService;
     }
     PodMembersComponent.prototype.ngOnInit = function () {
-        this.projectFileService.ngOnInit();
+        this.podMemberService.ngOnInit();
     };
-    Object.defineProperty(PodMembersComponent.prototype, "projectFiles", {
+    Object.defineProperty(PodMembersComponent.prototype, "podMembers", {
         get: function () {
-            return this.projectFileService.projectFiles;
+            return this.podMemberService.podMembers;
         },
         enumerable: true,
         configurable: true
     });
     PodMembersComponent.prototype.addNewPodMember = function () {
-        this.projectFileService.addPodMember();
+        this.podMemberService.addPodMember();
     };
     PodMembersComponent = __decorate([
         core_1.Component({

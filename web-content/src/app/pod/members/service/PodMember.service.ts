@@ -1,72 +1,71 @@
 import {Injectable, OnInit} from "@angular/core";
-import {Avatar} from "../model/Avatar.model";
+import {PodMember} from "../model/PodMember.model";
 import {LocalAvatar} from "../model/LocalAvatar";
-import {RemoteAvatar} from "../model/RemoteAvatar";
-import {LocalProjectFileService} from "./LocalProjectFile.service";
+import {LocalPodMemberService} from "./LocalPodMember.service";
 import {ImageUploadService} from "./ImageUpload.service";
-import {RemoteProjectFileService} from "./RemoteProjectFile.service";
+import {RemotePodMemberService} from "./RemotePodMember.service";
 
 
 @Injectable()
 export class PodMemberService implements OnInit {
-    private projectFileMap: Map<String, Avatar> = new Map<String, Avatar>();
+    private podMemberMap: Map<String, PodMember> = new Map<String, PodMember>();
 
 
-    constructor(private localProjectFileService: LocalProjectFileService,
-                private remoteProjectFileService: RemoteProjectFileService,
+    constructor(private localPodMemberService: LocalPodMemberService,
+                private remotePodMemberService: RemotePodMemberService,
                 private imageUploadService: ImageUploadService) {
 
     }
 
     ngOnInit(): void {
-        this.remoteProjectFileService.fetchAllRemoteProjects()
-            .subscribe(remoteFile=> {
-                this.addProjectToList(remoteFile);
-            }, error=> {
-                console.log(error);
-            })
+        // this.remotePodMemberService.fetchAllRemoteProjects()
+        //     .subscribe(remoteFile=> {
+        //         this.addPodmemberToList(remoteFile);
+        //     }, error=> {
+        //         console.log(error);
+        //     })
     }
 
 
-    get projectFiles(): Iterable<Avatar> {
-        return this.projectFileMap.values();
+    get podMembers(): Iterable<PodMember> {
+        return this.podMemberMap.values();
     }
 
     addPodMember() {
-        let items = this.localProjectFileService.createLocalProject();
-        this.addProjectToList(items);
+        let items = this.localPodMemberService.createLocalPodMember();
+        this.addPodmemberToList(items);
     }
 
-    private addProjectToList(project: Avatar) {
-        this.projectFileMap.set(project.getIdentifier(), project)
+    private addPodmemberToList(podMember: PodMember) {
+        // this.podMemberMap.set(podMember.getIdentifier(), podMember)
     }
 
-    removeProjectFile(projectFile: Avatar) {
-        if(projectFile instanceof RemoteAvatar){
-            let self = this;
-            this.remoteProjectFileService.removeProject(<RemoteAvatar>projectFile)
-                .filter(b=>b)
-                .subscribe(result=>{
-                    self.removeProjectFileFromList(projectFile);
-                }, error=>{
-                    console.log(error)
-            });
-        } else if (projectFile instanceof LocalAvatar){
-            this.removeProjectFileFromList(projectFile);
-        }
+    removePodMember(podMember: PodMember) {
+        // if(podMember instanceof RemoteAvatar){
+        //     let self = this;
+        //     this.remotePodMemberService.removeProject(<RemoteAvatar>podMember)
+        //         .filter(b=>b)
+        //         .subscribe(result=>{
+        //             self.removePodMemberFromList(podMember);
+        //         }, error=>{
+        //             console.log(error)
+        //     });
+        // } else if (podMember instanceof LocalAvatar){
+        //     this.removePodMemberFromList(podMember);
+        // }
     }
 
-    private removeProjectFileFromList(projectFile: Avatar) {
-        this.projectFileMap.delete(projectFile.getIdentifier());
+    private removePodMemberFromList(podMember: PodMember) {
+        // this.podMemberMap.delete(podMember.getIdentifier());
 
     }
 
-    uploadFile(projectFile: LocalAvatar) {
-        this.imageUploadService.uploadImage(projectFile.selectedFile)
-            .map(imageId=>this.remoteProjectFileService.fetchRemoteProject(imageId))
-            .subscribe(remoteProject=> {
-                this.removeProjectFileFromList(projectFile);
-                this.projectFileMap.set(remoteProject.getIdentifier(), remoteProject);
-            });
+    uploadFile(podMember: PodMember) {
+        // this.imageUploadService.uploadImage(podMember.selectedFile)
+        //     .map(imageId=>this.remotePodMemberService.fetchRemoteProject(imageId))
+        //     .subscribe(remoteProject=> {
+        //         this.removePodMemberFromList(podMember);
+        //         this.podMemberMap.set(remoteProject.getIdentifier(), remoteProject);
+        //     });
     }
 }

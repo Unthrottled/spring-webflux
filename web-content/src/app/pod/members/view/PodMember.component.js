@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PodMember_service_1 = require("../service/PodMember.service");
-var LocalAvatar_1 = require("../model/LocalAvatar");
+var LocalPodMember_1 = require("../model/LocalPodMember");
 var PodMemberComponent = /** @class */ (function () {
     function PodMemberComponent(projectFileService) {
         this.projectFileService = projectFileService;
@@ -26,12 +26,12 @@ var PodMemberComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(PodMemberComponent.prototype, "avatar", {
+    Object.defineProperty(PodMemberComponent.prototype, "podMember", {
         get: function () {
-            return this._avatar;
+            return this._podMember;
         },
         set: function (value) {
-            this._avatar = value;
+            this._podMember = value;
         },
         enumerable: true,
         configurable: true
@@ -39,23 +39,30 @@ var PodMemberComponent = /** @class */ (function () {
     Object.defineProperty(PodMemberComponent.prototype, "editMode", {
         //todo: remove dis when you can change remote projects.
         get: function () {
-            return this.avatar instanceof LocalAvatar_1.LocalAvatar;
+            return this.podMember instanceof LocalPodMember_1.LocalPodMember;
         },
         enumerable: true,
         configurable: true
     });
-    PodMemberComponent.prototype.avatarUpdated = function (projectFile) {
-        this.avatar = projectFile;
+    PodMemberComponent.prototype.podMemberUpdated = function (projectFile) {
+        this.podMember = projectFile;
     };
+    Object.defineProperty(PodMemberComponent.prototype, "avatar", {
+        get: function () {
+            return this.podMember.avatar;
+        },
+        enumerable: true,
+        configurable: true
+    });
     PodMemberComponent.prototype.uploadFile = function () {
-        this.projectFileService.uploadFile(this.avatar);
+        this.projectFileService.uploadFile(this.podMember);
     };
     PodMemberComponent.prototype.delete = function () {
-        this.projectFileService.removeProjectFile(this.avatar);
+        this.projectFileService.removePodMember(this.podMember);
     };
     Object.defineProperty(PodMemberComponent.prototype, "imageBinary", {
         get: function () {
-            return this._avatar.imageBinary();
+            return this._podMember.avatar.imageBinary();
         },
         enumerable: true,
         configurable: true
@@ -64,7 +71,7 @@ var PodMemberComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
-    ], PodMemberComponent.prototype, "avatar", null);
+    ], PodMemberComponent.prototype, "podMember", null);
     PodMemberComponent = __decorate([
         core_1.Component({
             selector: 'pod-member',

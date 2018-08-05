@@ -26,6 +26,8 @@ var InterestList_component_1 = require("./list/InterestList.component");
 var TextSubmission_component_1 = require("./manipulation/TextSubmission.component");
 var AvatarEditor_component_1 = require("./edit/AvatarEditor.component");
 var PersonalInformationEditor_component_1 = require("./edit/PersonalInformationEditor.component");
+var RemotePodMember_service_1 = require("./service/RemotePodMember.service");
+var LocalPodMember_service_1 = require("./service/LocalPodMember.service");
 var MembersModule = /** @class */ (function () {
     function MembersModule() {
     }
@@ -59,10 +61,13 @@ var MembersModule = /** @class */ (function () {
                 TextSubmission_component_1.TextSubmissionComponent,
             ],
             bootstrap: [],
-            providers: [RemoteProjectFile_service_1.RemoteProjectFileService,
+            providers: [
+                RemoteProjectFile_service_1.RemoteProjectFileService,
                 PodMember_service_1.PodMemberService,
                 LocalProjectFile_service_1.LocalProjectFileService,
-                ImageUpload_service_1.ImageUploadService
+                ImageUpload_service_1.ImageUploadService,
+                RemotePodMember_service_1.RemotePodMemberService,
+                LocalPodMember_service_1.LocalPodMemberService,
             ],
             schemas: []
         })
