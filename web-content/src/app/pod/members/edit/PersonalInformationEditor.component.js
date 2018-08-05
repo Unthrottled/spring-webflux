@@ -82,6 +82,14 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     });
     PersonalInformationEditorComponent.prototype.addInterest = function (textPayload) {
         var interest = new Interest(uuid(), textPayload.value);
+        var action = {
+            type: 'INTEREST_CAPTURED',
+            payload: {
+                value: interest.value
+            },
+            error: false,
+        };
+        this.onAction.emit(action);
         this.personalInformation.addInterest(interest);
     };
     PersonalInformationEditorComponent.prototype.removeInterest = function (interest) {
@@ -89,11 +97,10 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     };
     PersonalInformationEditorComponent.prototype.fieldChanged = function (event) {
         var action = {
-            type: 'INTEREST_CAPTURED',
+            type: 'PERSONAL_INFO_CAPTURED',
             payload: event,
             error: false,
         };
-        console.log(action);
         this.onAction.emit(action);
     };
     __decorate([

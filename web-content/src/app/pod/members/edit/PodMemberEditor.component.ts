@@ -3,6 +3,7 @@ import {Avatar} from '../model/Avatar.model';
 import {PodMemberService} from '../service/PodMember.service';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {PodMember} from '../model/PodMember.model';
+import {Action} from '../model/Action.model';
 
 @Component({
     selector: 'pod-member-editor',
@@ -41,5 +42,9 @@ export class PodMemberEditorComponent {
 
     updateAvatar(avatar: Avatar): void {
         this.podMember.setAvatar(avatar)
+    }
+
+    postEvent<T>(action: Action<T>): void{
+        console.log(action)
     }
 }

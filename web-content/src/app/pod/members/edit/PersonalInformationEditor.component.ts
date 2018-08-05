@@ -79,6 +79,14 @@ export class PersonalInformationEditorComponent {
 
     addInterest(textPayload: TextPayload) {
         let interest = new Interest(uuid(), textPayload.value);
+        const action: Action<any> = {
+            type: 'INTEREST_CAPTURED',
+            payload: {
+                value: interest.value
+            },
+            error: false,
+        };
+        this.onAction.emit(action);
         this.personalInformation.addInterest(interest)
     }
 
@@ -88,7 +96,7 @@ export class PersonalInformationEditorComponent {
 
     fieldChanged(event: FieldChanged): void {
         const action: Action<FieldChanged> = {
-            type: 'INTEREST_CAPTURED',
+            type: 'PERSONAL_INFO_CAPTURED',
             payload: event,
             error: false,
         };

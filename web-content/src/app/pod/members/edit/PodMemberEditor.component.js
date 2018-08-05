@@ -45,6 +45,9 @@ var PodMemberEditorComponent = /** @class */ (function () {
     PodMemberEditorComponent.prototype.updateAvatar = function (avatar) {
         this.podMember.setAvatar(avatar);
     };
+    PodMemberEditorComponent.prototype.postEvent = function (action) {
+        console.log(action);
+    };
     __decorate([
         core_1.Input(),
         __metadata("design:type", Object),
