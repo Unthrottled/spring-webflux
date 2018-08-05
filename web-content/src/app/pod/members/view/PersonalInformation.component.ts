@@ -10,7 +10,6 @@ export class PersonalInformationComponent {
 
     @Output()
     private projectFileEmmiter = new EventEmitter<PersonalInformation>();
-    private interests: TextPayload[] = [];
 
     constructor() {
     }
@@ -38,16 +37,11 @@ export class PersonalInformationComponent {
         return this.personalInformation.email;
     }
 
+    get interests(): TextPayload[] {
+        return this.personalInformation.interests;
+    }
 
     get phoneNumber(): string {
         return this.personalInformation.phoneNumber;
-    }
-
-    updateFile(projectFile: PersonalInformation): void {
-        this.personalInformation = projectFile;
-    }
-
-    addInterest(textPayload: TextPayload) {
-        this.interests.push(textPayload)
     }
 }

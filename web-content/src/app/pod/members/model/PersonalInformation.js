@@ -8,6 +8,9 @@ var PersonalInformation = /** @class */ (function () {
         this.lastName = '';
         this.phoneNumber = '';
     }
+    PersonalInformation.prototype.addInterest = function (interest) {
+        this.interests.push(interest);
+    };
     return PersonalInformation;
 }());
 exports.PersonalInformation = PersonalInformation;

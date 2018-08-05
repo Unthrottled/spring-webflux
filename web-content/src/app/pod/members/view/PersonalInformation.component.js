@@ -14,7 +14,6 @@ var PersonalInformation_1 = require("../model/PersonalInformation");
 var PersonalInformationComponent = /** @class */ (function () {
     function PersonalInformationComponent() {
         this.projectFileEmmiter = new core_1.EventEmitter();
-        this.interests = [];
     }
     Object.defineProperty(PersonalInformationComponent.prototype, "personalInformation", {
         get: function () {
@@ -47,6 +46,13 @@ var PersonalInformationComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(PersonalInformationComponent.prototype, "interests", {
+        get: function () {
+            return this.personalInformation.interests;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(PersonalInformationComponent.prototype, "phoneNumber", {
         get: function () {
             return this.personalInformation.phoneNumber;
@@ -54,12 +60,6 @@ var PersonalInformationComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    PersonalInformationComponent.prototype.updateFile = function (projectFile) {
-        this.personalInformation = projectFile;
-    };
-    PersonalInformationComponent.prototype.addInterest = function (textPayload) {
-        this.interests.push(textPayload);
-    };
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)

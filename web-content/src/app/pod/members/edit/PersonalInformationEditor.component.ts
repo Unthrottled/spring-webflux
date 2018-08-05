@@ -59,6 +59,6 @@ export class PersonalInformationEditorComponent {
     }
 
     addInterest(textPayload: TextPayload) {
-        this.interests.push(textPayload)
+        this.personalInformation.addInterest(textPayload)
     }
 }

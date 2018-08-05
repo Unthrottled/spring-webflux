@@ -67,7 +67,7 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
         configurable: true
     });
     PersonalInformationEditorComponent.prototype.addInterest = function (textPayload) {
-        this.interests.push(textPayload);
+        this.personalInformation.addInterest(textPayload);
     };
     __decorate([
         core_1.Output(),

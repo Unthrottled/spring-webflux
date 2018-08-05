@@ -6,5 +6,9 @@ export class PersonalInformation {
     firstName: string = '';
     lastName: string = '';
     phoneNumber: string = '';
+
+    addInterest(interest: TextPayload): void {
+        this.interests.push(interest)
+    }
 }
 
