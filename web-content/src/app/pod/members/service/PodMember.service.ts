@@ -57,7 +57,7 @@ export class PodMemberService implements OnInit {
         this.podMembersIterator.push(podMember);
     }
 
-    removePodMember(podMember: PodMember) {
+    removePodMember(podMember: PodMember): Observable<PodMember> {
         if(podMember instanceof RemotePodMember){
             // let self = this;
             // this.remotePodMemberService.removeProject(<RemotePodMember>podMember)
@@ -70,10 +70,18 @@ export class PodMemberService implements OnInit {
         } else if (podMember instanceof LocalPodMember){
             this.removePodMemberFromList(podMember);
         }
+        const action : Action<PodMemberPayload> = {
+            type: 'POD_MEMBER_DELETED',
+            payload: {
+                identifier: podMember.getIdentifier()
+            },
+            error: false
+        };
+        return this.eventDispatchService.dispatchAction(action)
+            .map((it)=> podMember);
     }
 
     private removePodMemberFromList(podMemberToRemove: PodMember) {
-        console.log(podMemberToRemove)
         this.podMembersIterator = this.podMembersIterator.filter(it => it.getIdentifier() !== podMemberToRemove.getIdentifier())
 
     }

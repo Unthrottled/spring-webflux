@@ -70,9 +70,17 @@ var PodMemberService = /** @class */ (function () {
         else if (podMember instanceof LocalPodMember_1.LocalPodMember) {
             this.removePodMemberFromList(podMember);
         }
+        var action = {
+            type: 'POD_MEMBER_DELETED',
+            payload: {
+                identifier: podMember.getIdentifier()
+            },
+            error: false
+        };
+        return this.eventDispatchService.dispatchAction(action)
+            .map(function (it) { return podMember; });
     };
     PodMemberService.prototype.removePodMemberFromList = function (podMemberToRemove) {
-        console.log(podMemberToRemove);
         this.podMembersIterator = this.podMembersIterator.filter(function (it) { return it.getIdentifier() !== podMemberToRemove.getIdentifier(); });
     };
     PodMemberService.prototype.uploadAvatar = function (avatar) {

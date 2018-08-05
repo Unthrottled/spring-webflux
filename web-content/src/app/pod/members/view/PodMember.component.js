@@ -57,7 +57,8 @@ var PodMemberComponent = /** @class */ (function () {
         this._editMode = true;
     };
     PodMemberComponent.prototype.delete = function () {
-        this.projectFileService.removePodMember(this.podMember);
+        this.projectFileService.removePodMember(this.podMember)
+            .subscribe(function (it) { }, function (error1) { return console.warn(error1); });
     };
     __decorate([
         core_1.Input(),

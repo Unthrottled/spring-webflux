@@ -51,6 +51,7 @@ export class PodMemberComponent {
     }
 
     delete(): void {
-        this.projectFileService.removePodMember(this.podMember);
+        this.projectFileService.removePodMember(this.podMember)
+            .subscribe((it)=>{}, error1 => console.warn(error1));
     }
 }
