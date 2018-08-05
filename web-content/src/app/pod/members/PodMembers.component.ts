@@ -3,22 +3,22 @@ import {Avatar} from "./model/Avatar.model";
 import {PodMemberService} from "./service/PodMember.service";
 
 @Component({
-    selector: 'project-file-component',
+    selector: 'pod-member-component',
     template: require('./PodMembers.component.htm')
 })
 export class PodMembersComponent implements OnInit {
     ngOnInit(): void {
-        this.projectFileService.ngOnInit();
+        this.podMemberService.ngOnInit();
     }
 
     // todo: start here!
-    constructor(private projectFileService: PodMemberService){}
+    constructor(private podMemberService: PodMemberService){}
 
-    get projectFiles(): Iterable<Avatar> {
-        return this.projectFileService.projectFiles;
+    get podMembers(): Iterable<Avatar> {
+        return this.podMemberService.podMembers;
     }
 
     addNewPodMember(): void {
-        this.projectFileService.addPodMember();
+        this.podMemberService.addPodMember();
     }
 }

@@ -31,7 +31,7 @@ var PodMembersComponent = /** @class */ (function () {
     };
     PodMembersComponent = __decorate([
         core_1.Component({
-            selector: 'project-file-component',
+            selector: 'pod-member-component',
             template: require('./PodMembers.component.htm')
         }),
         __metadata("design:paramtypes", [PodMember_service_1.PodMemberService])
