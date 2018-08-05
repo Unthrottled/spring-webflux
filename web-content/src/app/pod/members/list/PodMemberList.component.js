@@ -19,7 +19,6 @@ var PodMemberListComponent = /** @class */ (function () {
             return this._podMembers;
         },
         set: function (value) {
-            console.log(value);
             this._podMembers = value;
         },
         enumerable: true,

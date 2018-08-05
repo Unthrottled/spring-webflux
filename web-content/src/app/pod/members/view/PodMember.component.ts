@@ -57,8 +57,4 @@ export class PodMemberComponent {
     delete(): void {
         this.projectFileService.removePodMember(this.podMember);
     }
-
-    get imageBinary(): Observable<any> {
-        return this._podMember.avatar.imageBinary();
-    }
 }

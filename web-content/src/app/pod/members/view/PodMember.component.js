@@ -60,13 +60,6 @@ var PodMemberComponent = /** @class */ (function () {
     PodMemberComponent.prototype.delete = function () {
         this.projectFileService.removePodMember(this.podMember);
     };
-    Object.defineProperty(PodMemberComponent.prototype, "imageBinary", {
-        get: function () {
-            return this._podMember.avatar.imageBinary();
-        },
-        enumerable: true,
-        configurable: true
-    });
     __decorate([
         core_1.Input(),
         __metadata("design:type", Object),

@@ -10,7 +10,7 @@
         </div>
     </div>
     <div style="display: flex">
-        <div style="flex: 0.25">
+        <div style="flex: 0.25" *ngIf="avatar">
             <avatar-view [avatar]="avatar"></avatar-view>
         </div>
         <div style="flex-grow: 1">
