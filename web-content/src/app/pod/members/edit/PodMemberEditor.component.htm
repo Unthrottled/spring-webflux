@@ -1,7 +1,7 @@
 <div class="project-container">
     <div style="display: flex">
         <div style="flex: 0.25">
-            <avatar-editor [avatar]="avatar"></avatar-editor>
+            <avatar-editor [avatar]="avatar" (avatarEmmiter)="updateAvatar($event)"></avatar-editor>
         </div>
         <div style="flex-grow: 1">
             <personal-information-editor [personalInformation]="personalInformation"></personal-information-editor>

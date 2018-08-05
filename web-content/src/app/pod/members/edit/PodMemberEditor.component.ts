@@ -4,12 +4,13 @@ import {PodMemberService} from "../service/PodMember.service";
 import {Observable} from "rxjs/Observable";
 import {LocalAvatar} from "../model/LocalAvatar";
 import {PersonalInformation} from '../model/PersonalInformation';
+import {PodMember} from '../model/PodMember.model';
 
 @Component({
-    selector: 'pod-member',
+    selector: 'pod-member-editor',
     template: require('./PodMemberEditor.component.htm')
 })
-export class PodMemberComponent {
+export class PodMemberEditorComponent {
 
     constructor(private projectFileService: PodMemberService) {
     }
@@ -25,30 +26,30 @@ export class PodMemberComponent {
         this._personalInformation = value;
     }
 
-    private _avatar: Avatar;
+    private _podMember: PodMember;
 
     @Input()
-    get avatar(): Avatar {
-        return this._avatar;
+    get podMember(): PodMember {
+        return this._podMember;
     }
 
-    set avatar(value: Avatar) {
-        this._avatar = value;
-    }
-
-    updateFile(projectFile: Avatar): void {
-        this.avatar = projectFile;
+    set podMember(value: PodMember) {
+        this._podMember = value;
     }
 
     uploadFile(): void {
-        this.projectFileService.uploadFile(<LocalAvatar>this.avatar);
+        // this.projectFileService.uploadFile(<LocalAvatar>this.avatar);
+    }
+
+    updateAvatar(avatar: Avatar): void {
+        this.podMember.setAvatar(this.avatar)
+    }
+
+    get avatar(): Avatar {
+        return this.podMember.avatar;
     }
 
     delete(): void {
-        this.projectFileService.removeProjectFile(this.avatar);
-    }
-
-    get imageBinary(): Observable<any> {
-        return this._avatar.imageBinary();
+        // this.projectFileService.removeProjectFile(this.avatar);
     }
 }

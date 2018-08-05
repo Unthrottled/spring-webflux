@@ -1,68 +1,23 @@
-import {Avatar} from "./Avatar.model";
-import {Observable} from "rxjs/Observable";
-import {ReplaySubject} from "rxjs/ReplaySubject";
-import {Identifier} from "./Identifier.model";
+import {Avatar} from './Avatar.model';
+import {Identifier} from './Identifier.model';
 import {PodMember} from './PodMember.model';
 import {PersonalInformation} from './PersonalInformation';
 
-export class LocalPodMember implements Avatar, PodMember {
-    private imageBinaryRepeater = new ReplaySubject<MSBaseReader>(1);
+export class LocalPodMember implements PodMember {
+    personalInformation: PersonalInformation = new PersonalInformation();
+    avatar: Avatar;
     private _identifier: Identifier;
 
-    constructor(id: Identifier) {
+    constructor(id: Identifier, avatar: Avatar) {
         this._identifier = id;
-    }
-
-    private _selectedFile: Observable<File>;
-
-    /**
-     * This is the expected data structure that will
-     * be translated as a rest call to the backend.
-     * @returns {Observable<File>}
-     */
-    get selectedFile(): Observable<File> {
-        return this._selectedFile;
-    }
-
-    set selectedFile(value: Observable<File>) {
-        this._selectedFile = value;
-        this.readFileIntoBinary();
-    }
-
-    /**
-     * Sets current project file and also
-     * reads the file into binary so that it
-     * will be displayed.
-     * @param {File} file preferably a image file.
-     */
-    setNewFile(file: File): void {
-        this.selectedFile = Observable.of(file);
+        this.avatar = avatar;
     }
 
     getIdentifier(): string {
         return this._identifier.id;
     }
 
-    /**
-     * This is the raw image data binary that
-     * will be rendered by the browser.
-     * @returns {Observable<MSBaseReader>}
-     */
-    imageBinary(): Observable<MSBaseReader> {
-        return this.imageBinaryRepeater;
+    setAvatar(avatar: Avatar): void {
+        this.avatar = avatar;
     }
-
-    private readFileIntoBinary() {
-        this._selectedFile
-            .subscribe(file => {
-                let fileReader = new FileReader();
-                fileReader.onload = event => {
-                    this.imageBinaryRepeater.next(fileReader.result);
-                };
-                fileReader.readAsDataURL(file);
-            });
-    }
-
-    avatar: Avatar;
-    personalInformation: PersonalInformation = new PersonalInformation();
 }

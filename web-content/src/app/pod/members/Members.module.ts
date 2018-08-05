@@ -20,6 +20,7 @@ import {AvatarEditorComponent} from './edit/AvatarEditor.component';
 import {PersonalInformationEditorComponent} from './edit/PersonalInformationEditor.component';
 import {RemotePodMemberService} from './service/RemotePodMember.service';
 import {LocalPodMemberService} from './service/LocalPodMember.service';
+import {PodMemberEditorComponent} from './edit/PodMemberEditor.component';
 
 @NgModule({
         imports: [
@@ -50,6 +51,7 @@ import {LocalPodMemberService} from './service/LocalPodMember.service';
             PersonalInformationEditorComponent,
             InterestListComponent,
             TextSubmissionComponent,
+            PodMemberEditorComponent,
         ],
         bootstrap: [],
         providers: [

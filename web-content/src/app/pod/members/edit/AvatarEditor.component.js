@@ -26,14 +26,8 @@ var AvatarEditorComponent = /** @class */ (function () {
     });
     AvatarEditorComponent.prototype.updateFile = function (avatar) {
         this.avatar = avatar;
+        this.avatarEmmiter.emit(this.avatar);
     };
-    Object.defineProperty(AvatarEditorComponent.prototype, "imageBinary", {
-        get: function () {
-            return this._avatar.imageBinary();
-        },
-        enumerable: true,
-        configurable: true
-    });
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)

@@ -29,9 +29,7 @@ export class AvatarEditorComponent {
 
     updateFile(avatar: Avatar): void {
         this.avatar = avatar;
+        this.avatarEmmiter.emit(this.avatar);
     }
 
-    get imageBinary(): Observable<any> {
-        return this._avatar.imageBinary();
-    }
 }

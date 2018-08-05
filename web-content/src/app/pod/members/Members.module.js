@@ -28,6 +28,7 @@ var AvatarEditor_component_1 = require("./edit/AvatarEditor.component");
 var PersonalInformationEditor_component_1 = require("./edit/PersonalInformationEditor.component");
 var RemotePodMember_service_1 = require("./service/RemotePodMember.service");
 var LocalPodMember_service_1 = require("./service/LocalPodMember.service");
+var PodMemberEditor_component_1 = require("./edit/PodMemberEditor.component");
 var MembersModule = /** @class */ (function () {
     function MembersModule() {
     }
@@ -59,6 +60,7 @@ var MembersModule = /** @class */ (function () {
                 PersonalInformationEditor_component_1.PersonalInformationEditorComponent,
                 InterestList_component_1.InterestListComponent,
                 TextSubmission_component_1.TextSubmissionComponent,
+                PodMemberEditor_component_1.PodMemberEditorComponent,
             ],
             bootstrap: [],
             providers: [

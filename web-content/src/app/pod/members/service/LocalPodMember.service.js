@@ -12,17 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var LocalPodMember_1 = require("../model/LocalPodMember");
 var Identifier_model_1 = require("../model/Identifier.model");
+var LocalProjectFile_service_1 = require("./LocalProjectFile.service");
 var LocalPodMemberService = /** @class */ (function () {
-    function LocalPodMemberService() {
+    function LocalPodMemberService(localProjectFileService) {
+        this.localProjectFileService = localProjectFileService;
     }
     LocalPodMemberService_1 = LocalPodMemberService;
     LocalPodMemberService.prototype.createLocalPodMember = function () {
-        return new LocalPodMember_1.LocalPodMember(new Identifier_model_1.Identifier(++LocalPodMemberService_1.localPodMemberCount + ''));
+        return new LocalPodMember_1.LocalPodMember(new Identifier_model_1.Identifier(++LocalPodMemberService_1.localPodMemberCount + ''), this.localProjectFileService.createLocalProject());
     };
     LocalPodMemberService.localPodMemberCount = 0;
     LocalPodMemberService = LocalPodMemberService_1 = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [LocalProjectFile_service_1.LocalProjectFileService])
     ], LocalPodMemberService);
     return LocalPodMemberService;
     var LocalPodMemberService_1;

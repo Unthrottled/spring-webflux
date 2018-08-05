@@ -11,7 +11,7 @@ export class ProjectFileManipulationComponent {
     private _avatar: Avatar;
 
     @Output()
-    private projectFileUpdated = new EventEmitter<Avatar>();
+    private avatarUpdated = new EventEmitter<Avatar>();
 
 
     @Input()
@@ -25,6 +25,6 @@ export class ProjectFileManipulationComponent {
 
     fileChosen(file: File): void{
         this._avatar.setNewFile(file);
-        this.projectFileUpdated.emit(this._avatar);
+        this.avatarUpdated.emit(this._avatar);
     }
 }

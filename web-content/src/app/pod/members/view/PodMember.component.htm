@@ -1,13 +1,6 @@
 <div class="project-container">
     <div *ngIf="editMode">
-        <div style="display: flex">
-            <div style="flex: 0.25">
-                <avatar-editor [avatar]="avatar" (avatarEmmiter)="podMemberUpdated($event)"></avatar-editor>
-            </div>
-            <div style="flex-grow: 1">
-                <personal-information-editor [personalInformation]="personalInformation"></personal-information-editor>
-            </div>
-        </div>
+        <pod-member-editor [podMember]="podMember"></pod-member-editor>
     </div>
     <div style="display: flex">
         <div style="flex: 0.25" *ngIf="avatar">
