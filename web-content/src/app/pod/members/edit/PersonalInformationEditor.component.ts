@@ -26,15 +26,6 @@ export class PersonalInformationEditorComponent {
         this._personalInformation = value;
     }
 
-    //todo: remove dis when you can change remote projects.
-    get editMode(): boolean {
-        return this.personalInformation instanceof LocalPersonalInformation;
-    }
-
-    updateFile(personalInformation: PersonalInformation): void {
-        this.personalInformation = personalInformation;
-    }
-
     addInterest(textPayload: TextPayload) {
         this.interests.push(textPayload)
     }

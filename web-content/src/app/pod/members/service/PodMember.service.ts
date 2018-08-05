@@ -2,14 +2,13 @@ import {Injectable, OnInit} from "@angular/core";
 import {Avatar} from "../model/Avatar.model";
 import {LocalAvatar} from "../model/LocalAvatar";
 import {RemoteAvatar} from "../model/RemoteAvatar";
-import {IHash} from "../../../util/IHash.model";
 import {LocalProjectFileService} from "./LocalProjectFile.service";
 import {ImageUploadService} from "./ImageUpload.service";
 import {RemoteProjectFileService} from "./RemoteProjectFile.service";
 
 
 @Injectable()
-export class ProjectFileService implements OnInit {
+export class PodMemberService implements OnInit {
     private projectFileMap: Map<String, Avatar> = new Map<String, Avatar>();
 
 
@@ -33,7 +32,7 @@ export class ProjectFileService implements OnInit {
         return this.projectFileMap.values();
     }
 
-    addProject() {
+    addPodMember() {
         let items = this.localProjectFileService.createLocalProject();
         this.addProjectToList(items);
     }

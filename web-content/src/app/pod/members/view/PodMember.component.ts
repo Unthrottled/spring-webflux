@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Avatar} from "../model/Avatar.model";
-import {ProjectFileService} from "../service/ProjectFileService";
+import {PodMemberService} from "../service/PodMember.service";
 import {Observable} from "rxjs/Observable";
 import {LocalAvatar} from "../model/LocalAvatar";
 import {PersonalInformation} from '../model/PersonalInformation';
@@ -11,7 +11,7 @@ import {PersonalInformation} from '../model/PersonalInformation';
 })
 export class PodMemberComponent {
 
-    constructor(private projectFileService: ProjectFileService) {
+    constructor(private projectFileService: PodMemberService) {
     }
 
     private _personalInformation: PersonalInformation;
@@ -41,7 +41,7 @@ export class PodMemberComponent {
         return this.avatar instanceof LocalAvatar;
     }
 
-    updateFile(projectFile: Avatar): void {
+    avatarUpdated(projectFile: Avatar): void {
         this.avatar = projectFile;
     }
 

@@ -17,13 +17,15 @@ var http_1 = require("@angular/common/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var ProjectFileManipulation_component_1 = require("./manipulation/ProjectFileManipulation.component");
-var ProjectFileService_1 = require("./service/ProjectFileService");
+var ProjectFileService_1 = require("./service/PodMember.service");
 var PodMember_component_1 = require("./view/PodMember.component");
 var LocalProjectFile_service_1 = require("./service/LocalProjectFile.service");
 var ImageUpload_service_1 = require("./service/ImageUpload.service");
 var PersonalInformation_component_1 = require("./view/PersonalInformation.component");
 var InterestList_component_1 = require("./list/InterestList.component");
 var TextSubmission_component_1 = require("./manipulation/TextSubmission.component");
+var AvatarEditor_component_1 = require("./edit/AvatarEditor.component");
+var PersonalInformationEditor_component_1 = require("./edit/PersonalInformationEditor.component");
 var MembersModule = /** @class */ (function () {
     function MembersModule() {
     }
@@ -47,16 +49,18 @@ var MembersModule = /** @class */ (function () {
                 AvatarChoose_component_1.AvatarChooseComponent,
                 PodMemberList_component_1.PodMemberListComponent,
                 AvatarView_component_1.AvatarViewComponent,
+                AvatarEditor_component_1.AvatarEditorComponent,
                 PodMember_component_1.PodMemberComponent,
                 PodMembers_component_1.PodMembersComponent,
                 ProjectFileManipulation_component_1.ProjectFileManipulationComponent,
                 PersonalInformation_component_1.PersonalInformationComponent,
+                PersonalInformationEditor_component_1.PersonalInformationEditorComponent,
                 InterestList_component_1.InterestListComponent,
                 TextSubmission_component_1.TextSubmissionComponent,
             ],
             bootstrap: [],
             providers: [RemoteProjectFile_service_1.RemoteProjectFileService,
-                ProjectFileService_1.ProjectFileService,
+                ProjectFileService_1.PodMemberService,
                 LocalProjectFile_service_1.LocalProjectFileService,
                 ImageUpload_service_1.ImageUploadService
             ],

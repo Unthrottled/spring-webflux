@@ -9,13 +9,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {ProjectFileManipulationComponent} from "./manipulation/ProjectFileManipulation.component";
-import {ProjectFileService} from "./service/ProjectFileService";
+import {PodMemberService} from "./service/PodMember.service";
 import {PodMemberComponent} from "./view/PodMember.component";
 import {LocalProjectFileService} from "./service/LocalProjectFile.service";
 import {ImageUploadService} from "./service/ImageUpload.service";
 import {PersonalInformationComponent} from './view/PersonalInformation.component';
 import {InterestListComponent} from './list/InterestList.component';
 import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
+import {AvatarEditorComponent} from './edit/AvatarEditor.component';
+import {PersonalInformationEditorComponent} from './edit/PersonalInformationEditor.component';
 
 @NgModule({
         imports: [
@@ -38,16 +40,18 @@ import {TextSubmissionComponent} from './manipulation/TextSubmission.component';
             AvatarChooseComponent,
             PodMemberListComponent,
             AvatarViewComponent,
+            AvatarEditorComponent,
             PodMemberComponent,
             PodMembersComponent,
             ProjectFileManipulationComponent,
             PersonalInformationComponent,
+            PersonalInformationEditorComponent,
             InterestListComponent,
             TextSubmissionComponent,
         ],
         bootstrap: [],
         providers: [RemoteProjectFileService,
-            ProjectFileService,
+            PodMemberService,
             LocalProjectFileService,
             ImageUploadService
         ],

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ProjectFileService_1 = require("../service/ProjectFileService");
+var ProjectFileService_1 = require("../service/PodMember.service");
 var LocalAvatar_1 = require("../model/LocalAvatar");
 var PodMemberComponent = /** @class */ (function () {
     function PodMemberComponent(projectFileService) {
@@ -44,7 +44,7 @@ var PodMemberComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    PodMemberComponent.prototype.updateFile = function (projectFile) {
+    PodMemberComponent.prototype.avatarUpdated = function (projectFile) {
         this.avatar = projectFile;
     };
     PodMemberComponent.prototype.uploadFile = function () {
@@ -70,7 +70,7 @@ var PodMemberComponent = /** @class */ (function () {
             selector: 'pod-member',
             template: require('./PodMember.component.htm')
         }),
-        __metadata("design:paramtypes", [ProjectFileService_1.ProjectFileService])
+        __metadata("design:paramtypes", [ProjectFileService_1.PodMemberService])
     ], PodMemberComponent);
     return PodMemberComponent;
 }());

@@ -1,4 +1,14 @@
 <div class="project-container">
+    <div *ngIf="editMode">
+        <div style="display: flex">
+            <div style="flex: 0.25">
+                <avatar-editor [avatar]="avatar" (avatarEmmiter)="avatarUpdated($event)"></avatar-editor>
+            </div>
+            <div style="flex-grow: 1">
+                <personal-information-editor [personalInformation]="personalInformation"></personal-information-editor>
+            </div>
+        </div>
+    </div>
     <div style="display: flex">
         <div style="flex: 0.25">
             <avatar-view [avatar]="avatar"></avatar-view>
