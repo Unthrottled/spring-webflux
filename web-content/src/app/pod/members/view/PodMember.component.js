@@ -14,7 +14,7 @@ var PodMember_service_1 = require("../service/PodMember.service");
 var PodMemberComponent = /** @class */ (function () {
     function PodMemberComponent(projectFileService) {
         this.projectFileService = projectFileService;
-        this._editMode = false;
+        this._editMode = true;
     }
     Object.defineProperty(PodMemberComponent.prototype, "personalInformation", {
         get: function () {

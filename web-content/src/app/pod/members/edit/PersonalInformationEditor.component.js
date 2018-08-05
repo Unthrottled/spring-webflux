@@ -14,6 +14,7 @@ var uuid = require('uuid/v1');
 var PersonalInformationEditorComponent = /** @class */ (function () {
     function PersonalInformationEditorComponent() {
         this.personalInformationEmmiter = new core_1.EventEmitter();
+        this.onAction = new core_1.EventEmitter();
     }
     Object.defineProperty(PersonalInformationEditorComponent.prototype, "personalInformation", {
         get: function () {
@@ -86,10 +87,23 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     PersonalInformationEditorComponent.prototype.removeInterest = function (interest) {
         this.personalInformation.removeInterest(interest);
     };
+    PersonalInformationEditorComponent.prototype.fieldChanged = function (event) {
+        var action = {
+            type: 'INTEREST_CAPTURED',
+            payload: event,
+            error: false,
+        };
+        console.log(action);
+        this.onAction.emit(action);
+    };
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
     ], PersonalInformationEditorComponent.prototype, "personalInformationEmmiter", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], PersonalInformationEditorComponent.prototype, "onAction", void 0);
     __decorate([
         core_1.Input(),
         __metadata("design:type", Object),

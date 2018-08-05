@@ -2,8 +2,14 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {TextPayload} from '../model/TextPayload';
 import {PodMember} from '../model/PodMember.model';
+import {Action} from '../model/Action.model';
 
 const uuid = require('uuid/v1');
+
+export interface FieldChanged {
+    value: string,
+    field: string
+}
 
 @Component({
     selector: 'personal-information-editor',
@@ -13,6 +19,9 @@ export class PersonalInformationEditorComponent {
 
     @Output()
     private personalInformationEmmiter = new EventEmitter<PersonalInformation>();
+
+    @Output()
+    private onAction = new EventEmitter<Action<FieldChanged>>();
 
     constructor() {
     }
@@ -75,6 +84,15 @@ export class PersonalInformationEditorComponent {
 
     removeInterest(interest: Interest) {
         this.personalInformation.removeInterest(interest);
+    }
+
+    fieldChanged(event: FieldChanged): void {
+        const action: Action<FieldChanged> = {
+            type: 'INTEREST_CAPTURED',
+            payload: event,
+            error: false,
+        };
+        this.onAction.emit(action);
     }
 }
 

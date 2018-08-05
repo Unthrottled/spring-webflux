@@ -28,7 +28,7 @@ export class PodMemberComponent {
         this._podMember = value;
     }
 
-    private _editMode: boolean = false;
+    private _editMode: boolean = true;
 
     get editMode(): boolean {
         return this._editMode;
