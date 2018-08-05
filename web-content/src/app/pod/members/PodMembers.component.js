@@ -10,8 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ProjectFileService_1 = require("./service/PodMember.service");
+var PodMember_service_1 = require("./service/PodMember.service");
 var PodMembersComponent = /** @class */ (function () {
+    // todo: start here!
     function PodMembersComponent(projectFileService) {
         this.projectFileService = projectFileService;
     }
@@ -33,7 +34,7 @@ var PodMembersComponent = /** @class */ (function () {
             selector: 'project-file-component',
             template: require('./PodMembers.component.htm')
         }),
-        __metadata("design:paramtypes", [ProjectFileService_1.PodMemberService])
+        __metadata("design:paramtypes", [PodMember_service_1.PodMemberService])
     ], PodMembersComponent);
     return PodMembersComponent;
 }());

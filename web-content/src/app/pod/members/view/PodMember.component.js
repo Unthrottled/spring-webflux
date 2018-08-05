@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ProjectFileService_1 = require("../service/PodMember.service");
+var PodMember_service_1 = require("../service/PodMember.service");
 var LocalAvatar_1 = require("../model/LocalAvatar");
 var PodMemberComponent = /** @class */ (function () {
     function PodMemberComponent(projectFileService) {
@@ -70,7 +70,7 @@ var PodMemberComponent = /** @class */ (function () {
             selector: 'pod-member',
             template: require('./PodMember.component.htm')
         }),
-        __metadata("design:paramtypes", [ProjectFileService_1.PodMemberService])
+        __metadata("design:paramtypes", [PodMember_service_1.PodMemberService])
     ], PodMemberComponent);
     return PodMemberComponent;
 }());

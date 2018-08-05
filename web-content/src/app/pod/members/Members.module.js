@@ -17,7 +17,7 @@ var http_1 = require("@angular/common/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var ProjectFileManipulation_component_1 = require("./manipulation/ProjectFileManipulation.component");
-var ProjectFileService_1 = require("./service/PodMember.service");
+var PodMember_service_1 = require("./service/PodMember.service");
 var PodMember_component_1 = require("./view/PodMember.component");
 var LocalProjectFile_service_1 = require("./service/LocalProjectFile.service");
 var ImageUpload_service_1 = require("./service/ImageUpload.service");
@@ -60,7 +60,7 @@ var MembersModule = /** @class */ (function () {
             ],
             bootstrap: [],
             providers: [RemoteProjectFile_service_1.RemoteProjectFileService,
-                ProjectFileService_1.PodMemberService,
+                PodMember_service_1.PodMemberService,
                 LocalProjectFile_service_1.LocalProjectFileService,
                 ImageUpload_service_1.ImageUploadService
             ],
