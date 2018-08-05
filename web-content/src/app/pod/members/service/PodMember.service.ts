@@ -1,11 +1,15 @@
-import {Injectable, OnInit} from "@angular/core";
-import {PodMember} from "../model/PodMember.model";
-import {LocalAvatar} from "../model/LocalAvatar";
-import {LocalPodMemberService} from "./LocalPodMember.service";
-import {ImageUploadService} from "./ImageUpload.service";
-import {RemotePodMemberService} from "./RemotePodMember.service";
+import {Injectable, OnInit} from '@angular/core';
+import {PodMember} from '../model/PodMember.model';
+import {LocalAvatar} from '../model/LocalAvatar';
+import {LocalPodMemberService} from './LocalPodMember.service';
+import {ImageUploadService} from './ImageUpload.service';
+import {RemotePodMemberService} from './RemotePodMember.service';
 import {RemotePodMember} from '../model/RemotePodMember';
 import {LocalPodMember} from '../model/LocalPodMember';
+import {Action} from '../model/Action.model';
+import {PodMemberPayload} from '../PodMembers.component';
+import {EventDispatchService} from './EventDispatch.service';
+import {Observable} from 'rxjs';
 
 
 @Injectable()
@@ -15,6 +19,7 @@ export class PodMemberService implements OnInit {
 
     constructor(private localPodMemberService: LocalPodMemberService,
                 private remotePodMemberService: RemotePodMemberService,
+                private eventDispatchService: EventDispatchService,
                 private imageUploadService: ImageUploadService) {
 
     }
@@ -33,9 +38,19 @@ export class PodMemberService implements OnInit {
         return this.podMembersIterator;
     }
 
-    addPodMember() {
-        let items = this.localPodMemberService.createLocalPodMember();
-        this.addPodMemberToList(items);
+    addPodMember(): Observable<PodMember> {
+        let podMember: PodMember = this.localPodMemberService.createLocalPodMember();
+        this.addPodMemberToList(podMember);
+        const action: Action<PodMemberPayload> = {
+            type: 'POD_MEMBER_CREATED',
+            payload: {
+                identifier: podMember.getIdentifier()
+            },
+            error: false,
+        };
+
+        return this.eventDispatchService.dispatchAction<PodMemberPayload>(action)
+            .map((it)=> podMember);
     }
 
     private addPodMemberToList(podMember: PodMember) {
@@ -63,12 +78,13 @@ export class PodMemberService implements OnInit {
 
     }
 
-    uploadFile(podMember: PodMember) {
-        // this.imageUploadService.uploadImage(podMember.selectedFile)
-        //     .map(imageId=>this.remotePodMemberService.fetchRemoteProject(imageId))
-        //     .subscribe(remoteProject=> {
-        //         this.removePodMemberFromList(podMember);
-        //         this.podMemberMap.set(remoteProject.getIdentifier(), remoteProject);
-        //     });
+    uploadAvatar(avatar: LocalAvatar) {
+        // this.imageUploadService.uploadImage(avatar.selectedFile)
+        //     .subscribe(remoteIdentifier=> )
+            // .map(imageId=>this.remotePodMemberService.fetchRemoteProject(imageId))
+            // .subscribe(remoteProject=> {
+            //     // this.removePodMemberFromList(avatar);
+            //     this.podMemberMap.set(remoteProject.getIdentifier(), remoteProject);
+            // });
     }
 }

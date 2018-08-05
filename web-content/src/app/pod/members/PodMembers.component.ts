@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {PodMember} from "./model/PodMember.model";
 import {PodMemberService} from "./service/PodMember.service";
+import {Action} from './model/Action.model';
 
 @Component({
     selector: 'pod-member-component',
@@ -21,4 +22,8 @@ export class PodMembersComponent implements OnInit {
     addNewPodMember(): void {
         this.podMemberService.addPodMember();
     }
+}
+
+export interface PodMemberPayload {
+    identifier: string
 }

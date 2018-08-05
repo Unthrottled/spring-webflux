@@ -29,6 +29,7 @@ var PersonalInformationEditor_component_1 = require("./edit/PersonalInformationE
 var RemotePodMember_service_1 = require("./service/RemotePodMember.service");
 var LocalPodMember_service_1 = require("./service/LocalPodMember.service");
 var PodMemberEditor_component_1 = require("./edit/PodMemberEditor.component");
+var EventDispatch_service_1 = require("./service/EventDispatch.service");
 var MembersModule = /** @class */ (function () {
     function MembersModule() {
     }
@@ -67,6 +68,7 @@ var MembersModule = /** @class */ (function () {
                 RemoteProjectFile_service_1.RemoteProjectFileService,
                 PodMember_service_1.PodMemberService,
                 LocalProjectFile_service_1.LocalProjectFileService,
+                EventDispatch_service_1.EventDispatchService,
                 ImageUpload_service_1.ImageUploadService,
                 RemotePodMember_service_1.RemotePodMemberService,
                 LocalPodMember_service_1.LocalPodMemberService,

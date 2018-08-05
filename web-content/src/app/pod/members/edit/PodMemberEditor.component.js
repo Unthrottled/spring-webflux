@@ -11,9 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PodMember_service_1 = require("../service/PodMember.service");
+var ImageUpload_service_1 = require("../service/ImageUpload.service");
+var EventDispatch_service_1 = require("../service/EventDispatch.service");
 var PodMemberEditorComponent = /** @class */ (function () {
-    function PodMemberEditorComponent(projectFileService) {
+    function PodMemberEditorComponent(projectFileService, eventDispatchService, imageUploadService) {
         this.projectFileService = projectFileService;
+        this.eventDispatchService = eventDispatchService;
+        this.imageUploadService = imageUploadService;
     }
     Object.defineProperty(PodMemberEditorComponent.prototype, "personalInformation", {
         get: function () {
@@ -43,11 +47,26 @@ var PodMemberEditorComponent = /** @class */ (function () {
         configurable: true
     });
     PodMemberEditorComponent.prototype.updateAvatar = function (avatar) {
+        var _this = this;
         this.podMember.setAvatar(avatar);
-        console.log(avatar);
+        this.imageUploadService.uploadImage(avatar.selectedFile)
+            .subscribe(function (remoteIdentifier) {
+            var uploadedAvatarAction = {
+                type: "AVATAR_UPLOADED",
+                payload: {
+                    identifier: remoteIdentifier
+                },
+                error: false
+            };
+            _this.postEvent(uploadedAvatarAction);
+        }, function (error) {
+            // should probably try again
+            console.warn(error);
+        });
     };
     PodMemberEditorComponent.prototype.postEvent = function (action) {
-        console.log(action);
+        this.eventDispatchService.dispatchAction(action)
+            .subscribe(function (it) { }, function (err) { });
     };
     __decorate([
         core_1.Input(),
@@ -59,7 +78,9 @@ var PodMemberEditorComponent = /** @class */ (function () {
             selector: 'pod-member-editor',
             template: require('./PodMemberEditor.component.htm')
         }),
-        __metadata("design:paramtypes", [PodMember_service_1.PodMemberService])
+        __metadata("design:paramtypes", [PodMember_service_1.PodMemberService,
+            EventDispatch_service_1.EventDispatchService,
+            ImageUpload_service_1.ImageUploadService])
     ], PodMemberEditorComponent);
     return PodMemberEditorComponent;
 }());

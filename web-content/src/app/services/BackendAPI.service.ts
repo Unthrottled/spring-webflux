@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
+import {Action} from '../pod/members/model/Action.model';
 
 @Injectable()
 export class BackendAPIService {
@@ -29,5 +30,9 @@ export class BackendAPIService {
         return this.httpClient.delete('./api/image/delete/' + _id, {
             responseType: 'json'
         }).map(response => (<Boolean>response === true));
+    }
+
+    postEvent<T>(action: Action<T>): Observable<Action<T>> {
+        return Observable.of(action);
     }
 }

@@ -21,6 +21,7 @@ import {PersonalInformationEditorComponent} from './edit/PersonalInformationEdit
 import {RemotePodMemberService} from './service/RemotePodMember.service';
 import {LocalPodMemberService} from './service/LocalPodMember.service';
 import {PodMemberEditorComponent} from './edit/PodMemberEditor.component';
+import {EventDispatchService} from './service/EventDispatch.service';
 
 @NgModule({
         imports: [
@@ -58,6 +59,7 @@ import {PodMemberEditorComponent} from './edit/PodMemberEditor.component';
             RemoteProjectFileService,
             PodMemberService,
             LocalProjectFileService,
+            EventDispatchService,
             ImageUploadService,
             RemotePodMemberService,
             LocalPodMemberService,

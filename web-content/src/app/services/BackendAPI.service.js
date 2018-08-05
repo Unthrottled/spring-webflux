@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
+var Observable_1 = require("rxjs/Observable");
 var BackendAPIService = /** @class */ (function () {
     function BackendAPIService(httpClient) {
         this.httpClient = httpClient;
@@ -34,6 +35,9 @@ var BackendAPIService = /** @class */ (function () {
         return this.httpClient.delete('./api/image/delete/' + _id, {
             responseType: 'json'
         }).map(function (response) { return (response === true); });
+    };
+    BackendAPIService.prototype.postEvent = function (action) {
+        return Observable_1.Observable.of(action);
     };
     BackendAPIService = __decorate([
         core_1.Injectable(),

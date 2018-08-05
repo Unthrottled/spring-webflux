@@ -15,10 +15,12 @@ var ImageUpload_service_1 = require("./ImageUpload.service");
 var RemotePodMember_service_1 = require("./RemotePodMember.service");
 var RemotePodMember_1 = require("../model/RemotePodMember");
 var LocalPodMember_1 = require("../model/LocalPodMember");
+var EventDispatch_service_1 = require("./EventDispatch.service");
 var PodMemberService = /** @class */ (function () {
-    function PodMemberService(localPodMemberService, remotePodMemberService, imageUploadService) {
+    function PodMemberService(localPodMemberService, remotePodMemberService, eventDispatchService, imageUploadService) {
         this.localPodMemberService = localPodMemberService;
         this.remotePodMemberService = remotePodMemberService;
+        this.eventDispatchService = eventDispatchService;
         this.imageUploadService = imageUploadService;
         this.podMemberMap = new Map();
         this.podMembersIterator = [];
@@ -39,8 +41,17 @@ var PodMemberService = /** @class */ (function () {
         configurable: true
     });
     PodMemberService.prototype.addPodMember = function () {
-        var items = this.localPodMemberService.createLocalPodMember();
-        this.addPodMemberToList(items);
+        var podMember = this.localPodMemberService.createLocalPodMember();
+        this.addPodMemberToList(podMember);
+        var action = {
+            type: 'POD_MEMBER_CREATED',
+            payload: {
+                identifier: podMember.getIdentifier()
+            },
+            error: false,
+        };
+        return this.eventDispatchService.dispatchAction(action)
+            .map(function (it) { return podMember; });
     };
     PodMemberService.prototype.addPodMemberToList = function (podMember) {
         this.podMembersIterator.push(podMember);
@@ -64,18 +75,20 @@ var PodMemberService = /** @class */ (function () {
         console.log(podMemberToRemove);
         this.podMembersIterator = this.podMembersIterator.filter(function (it) { return it.getIdentifier() !== podMemberToRemove.getIdentifier(); });
     };
-    PodMemberService.prototype.uploadFile = function (podMember) {
-        // this.imageUploadService.uploadImage(podMember.selectedFile)
-        //     .map(imageId=>this.remotePodMemberService.fetchRemoteProject(imageId))
-        //     .subscribe(remoteProject=> {
-        //         this.removePodMemberFromList(podMember);
-        //         this.podMemberMap.set(remoteProject.getIdentifier(), remoteProject);
-        //     });
+    PodMemberService.prototype.uploadAvatar = function (avatar) {
+        // this.imageUploadService.uploadImage(avatar.selectedFile)
+        //     .subscribe(remoteIdentifier=> )
+        // .map(imageId=>this.remotePodMemberService.fetchRemoteProject(imageId))
+        // .subscribe(remoteProject=> {
+        //     // this.removePodMemberFromList(avatar);
+        //     this.podMemberMap.set(remoteProject.getIdentifier(), remoteProject);
+        // });
     };
     PodMemberService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [LocalPodMember_service_1.LocalPodMemberService,
             RemotePodMember_service_1.RemotePodMemberService,
+            EventDispatch_service_1.EventDispatchService,
             ImageUpload_service_1.ImageUploadService])
     ], PodMemberService);
     return PodMemberService;

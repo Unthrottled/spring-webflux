@@ -4,6 +4,9 @@ import {PodMemberService} from '../service/PodMember.service';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {PodMember} from '../model/PodMember.model';
 import {Action} from '../model/Action.model';
+import {LocalAvatar} from '../model/LocalAvatar';
+import {ImageUploadService} from '../service/ImageUpload.service';
+import {EventDispatchService} from '../service/EventDispatch.service';
 
 @Component({
     selector: 'pod-member-editor',
@@ -11,7 +14,9 @@ import {Action} from '../model/Action.model';
 })
 export class PodMemberEditorComponent {
 
-    constructor(private projectFileService: PodMemberService) {
+    constructor(private projectFileService: PodMemberService,
+                private eventDispatchService: EventDispatchService,
+                private imageUploadService: ImageUploadService) {
     }
 
     private _personalInformation: PersonalInformation;
@@ -40,12 +45,30 @@ export class PodMemberEditorComponent {
         return this.podMember.avatar;
     }
 
-    updateAvatar(avatar: Avatar): void {
-        this.podMember.setAvatar(avatar)
-        console.log(avatar)
+    updateAvatar(avatar: LocalAvatar): void {
+        this.podMember.setAvatar(avatar);
+        this.imageUploadService.uploadImage(avatar.selectedFile)
+            .subscribe(remoteIdentifier => {
+                const uploadedAvatarAction: Action<AvatarPayload> = {
+                    type: "AVATAR_UPLOADED",
+                    payload: {
+                        identifier: remoteIdentifier
+                    },
+                    error: false
+                }
+                this.postEvent(uploadedAvatarAction)
+            }, error =>{
+                // should probably try again
+                console.warn(error)
+            } );
     }
 
     postEvent<T>(action: Action<T>): void{
-        console.log(action)
+        this.eventDispatchService.dispatchAction(action)
+            .subscribe((it)=>{}, (err)=>{})
     }
+}
+
+interface AvatarPayload {
+    identifier: string;
 }
