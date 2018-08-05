@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {TextPayload} from '../model/TextPayload';
+import {Interest} from '../edit/PersonalInformationEditor.component';
 
 @Component({
     selector: 'personal-information',
@@ -37,7 +38,7 @@ export class PersonalInformationComponent {
         return this.personalInformation.email;
     }
 
-    get interests(): TextPayload[] {
+    get interests(): Interest[] {
         return this.personalInformation.interests;
     }
 

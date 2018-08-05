@@ -11,7 +11,6 @@ var LocalPodMember = /** @class */ (function () {
         return this._identifier.id;
     };
     LocalPodMember.prototype.setAvatar = function (avatar) {
-        console.warn(avatar);
         this.avatar = avatar;
     };
     return LocalPodMember;

@@ -3,6 +3,8 @@ import {PersonalInformation} from '../model/PersonalInformation';
 import {TextPayload} from '../model/TextPayload';
 import {PodMember} from '../model/PodMember.model';
 
+const uuid = require('uuid/v1');
+
 @Component({
     selector: 'personal-information-editor',
     template: require('./PersonalInformationEditor.component.htm')
@@ -62,7 +64,27 @@ export class PersonalInformationEditorComponent {
         this.personalInformation.phoneNumber = value;
     }
 
+    get interests(): Interest[] {
+        return this.personalInformation.interests
+    }
+
     addInterest(textPayload: TextPayload) {
-        this.personalInformation.addInterest(textPayload)
+        let interest = new Interest(uuid(), textPayload.value);
+        this.personalInformation.addInterest(interest)
+    }
+
+    removeInterest(interest: Interest) {
+        this.personalInformation.removeInterest(interest);
+    }
+}
+
+export class Interest {
+
+    id: string;
+    value: string;
+
+    constructor(id: string, value: string) {
+        this.id = id;
+        this.value = value;
     }
 }

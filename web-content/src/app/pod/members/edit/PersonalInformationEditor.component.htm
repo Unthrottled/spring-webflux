@@ -18,5 +18,14 @@
     <label>
         Interests
         <text-submission (itemSubmitted)="addInterest($event)"></text-submission>
+        <div *ngFor="let removableInterest of interests">
+            <div class="list-group-item removable-interest">
+                <div style="flex: 1;">
+                    {{removableInterest.value}}
+                </div>
+                <div class="far fa-times-circle interest-removal" (click)="removeInterest(removableInterest)">
+                </div>
+            </div>
+        </div>
     </label>
 </div>

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var uuid = require('uuid/v1');
 var PersonalInformationEditorComponent = /** @class */ (function () {
     function PersonalInformationEditorComponent() {
         this.personalInformationEmmiter = new core_1.EventEmitter();
@@ -71,8 +72,19 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(PersonalInformationEditorComponent.prototype, "interests", {
+        get: function () {
+            return this.personalInformation.interests;
+        },
+        enumerable: true,
+        configurable: true
+    });
     PersonalInformationEditorComponent.prototype.addInterest = function (textPayload) {
-        this.personalInformation.addInterest(textPayload);
+        var interest = new Interest(uuid(), textPayload.value);
+        this.personalInformation.addInterest(interest);
+    };
+    PersonalInformationEditorComponent.prototype.removeInterest = function (interest) {
+        this.personalInformation.removeInterest(interest);
     };
     __decorate([
         core_1.Output(),
@@ -93,4 +105,12 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     return PersonalInformationEditorComponent;
 }());
 exports.PersonalInformationEditorComponent = PersonalInformationEditorComponent;
+var Interest = /** @class */ (function () {
+    function Interest(id, value) {
+        this.id = id;
+        this.value = value;
+    }
+    return Interest;
+}());
+exports.Interest = Interest;
 //# sourceMappingURL=PersonalInformationEditor.component.js.map

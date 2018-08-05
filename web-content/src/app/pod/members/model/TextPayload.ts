@@ -1,16 +1,16 @@
 export class TextPayload {
-    private _value: String;
+    private _value: string;
 
-    get value(): String {
+    get value(): string {
         return this._value;
     }
 
 
-    constructor(value: String) {
+    constructor(value: string) {
         this._value = value;
     }
 
-    set value(value: String) {
+    set value(value: string) {
         this._value = value;
     }
 }
