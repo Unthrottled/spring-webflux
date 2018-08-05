@@ -4,6 +4,8 @@ import {LocalAvatar} from "../model/LocalAvatar";
 import {LocalPodMemberService} from "./LocalPodMember.service";
 import {ImageUploadService} from "./ImageUpload.service";
 import {RemotePodMemberService} from "./RemotePodMember.service";
+import {RemotePodMember} from '../model/RemotePodMember';
+import {LocalPodMember} from '../model/LocalPodMember';
 
 
 @Injectable()
@@ -41,22 +43,23 @@ export class PodMemberService implements OnInit {
     }
 
     removePodMember(podMember: PodMember) {
-        // if(podMember instanceof RemoteAvatar){
-        //     let self = this;
-        //     this.remotePodMemberService.removeProject(<RemoteAvatar>podMember)
-        //         .filter(b=>b)
-        //         .subscribe(result=>{
-        //             self.removePodMemberFromList(podMember);
-        //         }, error=>{
-        //             console.log(error)
-        //     });
-        // } else if (podMember instanceof LocalAvatar){
-        //     this.removePodMemberFromList(podMember);
-        // }
+        if(podMember instanceof RemotePodMember){
+            // let self = this;
+            // this.remotePodMemberService.removeProject(<RemotePodMember>podMember)
+            //     .filter(b=>b)
+            //     .subscribe(result=>{
+            //         self.removePodMemberFromList(podMember);
+            //     }, error=>{
+            //         console.log(error)
+            // });
+        } else if (podMember instanceof LocalPodMember){
+            this.removePodMemberFromList(podMember);
+        }
     }
 
-    private removePodMemberFromList(podMember: PodMember) {
-        // this.podMemberMap.delete(podMember.getIdentifier());
+    private removePodMemberFromList(podMemberToRemove: PodMember) {
+        console.log(podMemberToRemove)
+        this.podMembersIterator = this.podMembersIterator.filter(it => it.getIdentifier() !== podMemberToRemove.getIdentifier())
 
     }
 

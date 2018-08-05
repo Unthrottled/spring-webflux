@@ -13,6 +13,8 @@ var core_1 = require("@angular/core");
 var LocalPodMember_service_1 = require("./LocalPodMember.service");
 var ImageUpload_service_1 = require("./ImageUpload.service");
 var RemotePodMember_service_1 = require("./RemotePodMember.service");
+var RemotePodMember_1 = require("../model/RemotePodMember");
+var LocalPodMember_1 = require("../model/LocalPodMember");
 var PodMemberService = /** @class */ (function () {
     function PodMemberService(localPodMemberService, remotePodMemberService, imageUploadService) {
         this.localPodMemberService = localPodMemberService;
@@ -44,21 +46,23 @@ var PodMemberService = /** @class */ (function () {
         this.podMembersIterator.push(podMember);
     };
     PodMemberService.prototype.removePodMember = function (podMember) {
-        // if(podMember instanceof RemoteAvatar){
-        //     let self = this;
-        //     this.remotePodMemberService.removeProject(<RemoteAvatar>podMember)
-        //         .filter(b=>b)
-        //         .subscribe(result=>{
-        //             self.removePodMemberFromList(podMember);
-        //         }, error=>{
-        //             console.log(error)
-        //     });
-        // } else if (podMember instanceof LocalAvatar){
-        //     this.removePodMemberFromList(podMember);
-        // }
+        if (podMember instanceof RemotePodMember_1.RemotePodMember) {
+            // let self = this;
+            // this.remotePodMemberService.removeProject(<RemotePodMember>podMember)
+            //     .filter(b=>b)
+            //     .subscribe(result=>{
+            //         self.removePodMemberFromList(podMember);
+            //     }, error=>{
+            //         console.log(error)
+            // });
+        }
+        else if (podMember instanceof LocalPodMember_1.LocalPodMember) {
+            this.removePodMemberFromList(podMember);
+        }
     };
-    PodMemberService.prototype.removePodMemberFromList = function (podMember) {
-        // this.podMemberMap.delete(podMember.getIdentifier());
+    PodMemberService.prototype.removePodMemberFromList = function (podMemberToRemove) {
+        console.log(podMemberToRemove);
+        this.podMembersIterator = this.podMembersIterator.filter(function (it) { return it.getIdentifier() !== podMemberToRemove.getIdentifier(); });
     };
     PodMemberService.prototype.uploadFile = function (podMember) {
         // this.imageUploadService.uploadImage(podMember.selectedFile)

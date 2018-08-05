@@ -50,6 +50,6 @@ export class PodMemberEditorComponent {
     }
 
     delete(): void {
-        // this.projectFileService.removeProjectFile(this.avatar);
+        this.projectFileService.removePodMember(this.podMember);
     }
 }

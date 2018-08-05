@@ -49,7 +49,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
         configurable: true
     });
     PodMemberEditorComponent.prototype.delete = function () {
-        // this.projectFileService.removeProjectFile(this.avatar);
+        this.projectFileService.removePodMember(this.podMember);
     };
     __decorate([
         core_1.Input(),

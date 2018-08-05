@@ -63,5 +63,8 @@ export class RemotePodMember implements Avatar, PodMember {
     avatar: Avatar;
     personalInformation: PersonalInformation;
 
+    setAvatar(avatar: Avatar): void {
+    }
+
 
 }
