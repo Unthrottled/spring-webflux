@@ -3,9 +3,7 @@
         <pod-member-editor [podMember]="podMember"></pod-member-editor>
     </div>
     <div style="display: flex">
-        <div style="flex: 0.25" *ngIf="avatar">
-            <avatar-view [avatar]="avatar"></avatar-view>
-        </div>
+        <avatar-view [avatar]="avatar"></avatar-view>
         <div style="flex-grow: 1">
             <personal-information [personalInformation]="personalInformation"></personal-information>
         </div>

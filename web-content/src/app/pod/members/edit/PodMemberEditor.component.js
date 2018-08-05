@@ -39,7 +39,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
         // this.projectFileService.uploadFile(<LocalAvatar>this.avatar);
     };
     PodMemberEditorComponent.prototype.updateAvatar = function (avatar) {
-        this.podMember.setAvatar(this.avatar);
+        this.podMember.setAvatar(avatar);
     };
     Object.defineProperty(PodMemberEditorComponent.prototype, "avatar", {
         get: function () {

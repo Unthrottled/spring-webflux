@@ -10,18 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var PersonalInformation_1 = require("../model/PersonalInformation");
 var PersonalInformationEditorComponent = /** @class */ (function () {
     function PersonalInformationEditorComponent() {
         this.personalInformationEmmiter = new core_1.EventEmitter();
-        this.interests = [];
     }
     Object.defineProperty(PersonalInformationEditorComponent.prototype, "personalInformation", {
         get: function () {
-            return this._personalInformation;
+            return this.podMember.personalInformation;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PersonalInformationEditorComponent.prototype, "podMember", {
+        get: function () {
+            return this._podMember;
         },
         set: function (value) {
-            this._personalInformation = value;
+            this._podMember = value;
         },
         enumerable: true,
         configurable: true
@@ -75,9 +80,9 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     ], PersonalInformationEditorComponent.prototype, "personalInformationEmmiter", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", PersonalInformation_1.PersonalInformation),
-        __metadata("design:paramtypes", [PersonalInformation_1.PersonalInformation])
-    ], PersonalInformationEditorComponent.prototype, "personalInformation", null);
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], PersonalInformationEditorComponent.prototype, "podMember", null);
     PersonalInformationEditorComponent = __decorate([
         core_1.Component({
             selector: 'personal-information-editor',

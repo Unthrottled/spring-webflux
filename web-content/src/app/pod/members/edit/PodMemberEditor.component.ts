@@ -42,7 +42,7 @@ export class PodMemberEditorComponent {
     }
 
     updateAvatar(avatar: Avatar): void {
-        this.podMember.setAvatar(this.avatar)
+        this.podMember.setAvatar(avatar)
     }
 
     get avatar(): Avatar {

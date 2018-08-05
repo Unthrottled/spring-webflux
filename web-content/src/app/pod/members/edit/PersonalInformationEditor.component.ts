@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {TextPayload} from '../model/TextPayload';
+import {PodMember} from '../model/PodMember.model';
 
 @Component({
     selector: 'personal-information-editor',
@@ -10,20 +11,23 @@ export class PersonalInformationEditorComponent {
 
     @Output()
     private personalInformationEmmiter = new EventEmitter<PersonalInformation>();
-    private interests: TextPayload[] = [];
 
     constructor() {
     }
 
-    private _personalInformation: PersonalInformation;
+    private _podMember: PodMember;
 
-    @Input()
     get personalInformation(): PersonalInformation {
-        return this._personalInformation;
+        return this.podMember.personalInformation;
     }
 
-    set personalInformation(value: PersonalInformation) {
-        this._personalInformation = value;
+    @Input()
+    get podMember(): PodMember {
+        return this._podMember;
+    }
+
+    set podMember(value: PodMember) {
+        this._podMember = value;
     }
 
     get firstName(): string {
