@@ -21,7 +21,8 @@ export class PersonalInformationEditorComponent {
     private personalInformationEmmiter = new EventEmitter<PersonalInformation>();
 
     @Output()
-    private onAction = new EventEmitter<Action<FieldChanged>>();
+    private onAction = new EventEmitter<Action<any>>();
+
 
     constructor() {
     }
@@ -79,11 +80,9 @@ export class PersonalInformationEditorComponent {
 
     addInterest(textPayload: TextPayload) {
         let interest = new Interest(uuid(), textPayload.value);
-        const action: Action<any> = {
+        const action: Action<Interest> = {
             type: 'INTEREST_CAPTURED',
-            payload: {
-                value: interest.value
-            },
+            payload: interest,
             error: false,
         };
         this.onAction.emit(action);

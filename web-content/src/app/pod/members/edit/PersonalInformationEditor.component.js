@@ -84,9 +84,7 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
         var interest = new Interest(uuid(), textPayload.value);
         var action = {
             type: 'INTEREST_CAPTURED',
-            payload: {
-                value: interest.value
-            },
+            payload: interest,
             error: false,
         };
         this.onAction.emit(action);

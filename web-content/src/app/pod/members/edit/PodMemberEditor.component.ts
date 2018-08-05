@@ -42,6 +42,7 @@ export class PodMemberEditorComponent {
 
     updateAvatar(avatar: Avatar): void {
         this.podMember.setAvatar(avatar)
+        console.log(avatar)
     }
 
     postEvent<T>(action: Action<T>): void{
