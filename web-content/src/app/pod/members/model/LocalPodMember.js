@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("rxjs/Observable");
 var ReplaySubject_1 = require("rxjs/ReplaySubject");
+var PersonalInformation_1 = require("./PersonalInformation");
 var LocalPodMember = /** @class */ (function () {
     function LocalPodMember(id) {
         this.imageBinaryRepeater = new ReplaySubject_1.ReplaySubject(1);
+        this.personalInformation = new PersonalInformation_1.PersonalInformation();
         this._identifier = id;
     }
     Object.defineProperty(LocalPodMember.prototype, "selectedFile", {

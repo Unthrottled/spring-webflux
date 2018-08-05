@@ -15,15 +15,8 @@ export class PodMemberComponent {
     constructor(private projectFileService: PodMemberService) {
     }
 
-    private _personalInformation: PersonalInformation;
-
-
     get personalInformation(): PersonalInformation {
-        return this._personalInformation;
-    }
-
-    set personalInformation(value: PersonalInformation) {
-        this._personalInformation = value;
+        return this.podMember.personalInformation
     }
 
     private _podMember: PodMember;

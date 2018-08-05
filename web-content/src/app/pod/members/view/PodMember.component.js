@@ -18,10 +18,7 @@ var PodMemberComponent = /** @class */ (function () {
     }
     Object.defineProperty(PodMemberComponent.prototype, "personalInformation", {
         get: function () {
-            return this._personalInformation;
-        },
-        set: function (value) {
-            this._personalInformation = value;
+            return this.podMember.personalInformation;
         },
         enumerable: true,
         configurable: true

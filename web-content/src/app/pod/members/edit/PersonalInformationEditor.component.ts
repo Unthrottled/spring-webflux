@@ -26,6 +26,38 @@ export class PersonalInformationEditorComponent {
         this._personalInformation = value;
     }
 
+    get firstName(): string {
+        return this.personalInformation.firstName;
+    }
+
+    set firstName(value: string) {
+        this.personalInformation.firstName = value;
+    }
+
+    get lastName(): string {
+        return this.personalInformation.lastName;
+    }
+
+    set lastName(value: string) {
+        this.personalInformation.lastName = value;
+    }
+
+    get email(): string {
+        return this.personalInformation.email;
+    }
+
+    set email(value: string) {
+        this.personalInformation.email = value;
+    }
+
+    get phoneNumber(): string {
+        return this.personalInformation.phoneNumber;
+    }
+
+    set phoneNumber(value: string) {
+        this.personalInformation.phoneNumber = value;
+    }
+
     addInterest(textPayload: TextPayload) {
         this.interests.push(textPayload)
     }

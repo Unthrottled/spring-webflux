@@ -64,5 +64,5 @@ export class LocalPodMember implements Avatar, PodMember {
     }
 
     avatar: Avatar;
-    personalInformation: PersonalInformation;
+    personalInformation: PersonalInformation = new PersonalInformation();
 }
