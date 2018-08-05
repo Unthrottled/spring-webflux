@@ -19,28 +19,29 @@ var PodMemberService = /** @class */ (function () {
         this.remotePodMemberService = remotePodMemberService;
         this.imageUploadService = imageUploadService;
         this.podMemberMap = new Map();
+        this.podMembersIterator = [];
     }
     PodMemberService.prototype.ngOnInit = function () {
         // this.remotePodMemberService.fetchAllRemoteProjects()
         //     .subscribe(remoteFile=> {
-        //         this.addPodmemberToList(remoteFile);
+        //         this.addPodMemberToList(remoteFile);
         //     }, error=> {
         //         console.log(error);
         //     })
     };
     Object.defineProperty(PodMemberService.prototype, "podMembers", {
         get: function () {
-            return this.podMemberMap.values();
+            return this.podMembersIterator;
         },
         enumerable: true,
         configurable: true
     });
     PodMemberService.prototype.addPodMember = function () {
         var items = this.localPodMemberService.createLocalPodMember();
-        this.addPodmemberToList(items);
+        this.addPodMemberToList(items);
     };
-    PodMemberService.prototype.addPodmemberToList = function (podMember) {
-        this.podMemberMap.set(podMember.getIdentifier(), podMember);
+    PodMemberService.prototype.addPodMemberToList = function (podMember) {
+        this.podMembersIterator.push(podMember);
     };
     PodMemberService.prototype.removePodMember = function (podMember) {
         // if(podMember instanceof RemoteAvatar){

@@ -9,7 +9,7 @@ import {RemotePodMemberService} from "./RemotePodMember.service";
 @Injectable()
 export class PodMemberService implements OnInit {
     private podMemberMap: Map<String, PodMember> = new Map<String, PodMember>();
-
+    private podMembersIterator: PodMember[] = [];
 
     constructor(private localPodMemberService: LocalPodMemberService,
                 private remotePodMemberService: RemotePodMemberService,
@@ -20,24 +20,24 @@ export class PodMemberService implements OnInit {
     ngOnInit(): void {
         // this.remotePodMemberService.fetchAllRemoteProjects()
         //     .subscribe(remoteFile=> {
-        //         this.addPodmemberToList(remoteFile);
+        //         this.addPodMemberToList(remoteFile);
         //     }, error=> {
         //         console.log(error);
         //     })
     }
 
 
-    get podMembers(): Iterable<PodMember> {
-        return this.podMemberMap.values();
+    get podMembers(): PodMember[] {
+        return this.podMembersIterator;
     }
 
     addPodMember() {
         let items = this.localPodMemberService.createLocalPodMember();
-        this.addPodmemberToList(items);
+        this.addPodMemberToList(items);
     }
 
-    private addPodmemberToList(podMember: PodMember) {
-        this.podMemberMap.set(podMember.getIdentifier(), podMember)
+    private addPodMemberToList(podMember: PodMember) {
+        this.podMembersIterator.push(podMember);
     }
 
     removePodMember(podMember: PodMember) {
