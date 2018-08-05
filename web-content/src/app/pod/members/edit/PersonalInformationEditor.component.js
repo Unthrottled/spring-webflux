@@ -91,6 +91,12 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
         this.personalInformation.addInterest(interest);
     };
     PersonalInformationEditorComponent.prototype.removeInterest = function (interest) {
+        var action = {
+            type: 'INTEREST_REMOVED',
+            payload: interest,
+            error: false,
+        };
+        this.onAction.emit(action);
         this.personalInformation.removeInterest(interest);
     };
     PersonalInformationEditorComponent.prototype.fieldChanged = function (event) {

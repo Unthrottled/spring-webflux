@@ -90,6 +90,12 @@ export class PersonalInformationEditorComponent {
     }
 
     removeInterest(interest: Interest) {
+        const action: Action<Interest> = {
+            type: 'INTEREST_REMOVED',
+            payload: interest,
+            error: false,
+        };
+        this.onAction.emit(action);
         this.personalInformation.removeInterest(interest);
     }
 
