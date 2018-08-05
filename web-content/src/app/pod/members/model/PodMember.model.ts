@@ -4,4 +4,5 @@ import {PersonalInformation} from './PersonalInformation';
 export interface PodMember {
     avatar: Avatar;
     personalInformation: PersonalInformation;
+    getIdentifier(): string;
 }

@@ -37,7 +37,7 @@ export class PodMemberService implements OnInit {
     }
 
     private addPodmemberToList(podMember: PodMember) {
-        // this.podMemberMap.set(podMember.getIdentifier(), podMember)
+        this.podMemberMap.set(podMember.getIdentifier(), podMember)
     }
 
     removePodMember(podMember: PodMember) {

@@ -40,7 +40,7 @@ var PodMemberService = /** @class */ (function () {
         this.addPodmemberToList(items);
     };
     PodMemberService.prototype.addPodmemberToList = function (podMember) {
-        // this.podMemberMap.set(podMember.getIdentifier(), podMember)
+        this.podMemberMap.set(podMember.getIdentifier(), podMember);
     };
     PodMemberService.prototype.removePodMember = function (podMember) {
         // if(podMember instanceof RemoteAvatar){

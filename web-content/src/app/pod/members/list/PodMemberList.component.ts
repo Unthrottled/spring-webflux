@@ -14,6 +14,7 @@ export class PodMemberListComponent {
     }
 
     set podMembers(value: PodMember[]) {
+        console.log(value)
         this._podMembers = value;
     }
 }
