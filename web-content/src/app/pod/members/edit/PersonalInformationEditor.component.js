@@ -101,7 +101,7 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     PersonalInformationEditorComponent.prototype.removeInterest = function (interest) {
         var action = {
             type: 'INTEREST_REMOVED',
-            payload: __assign({ podMemberIdentifier: this.podMember.getIdentifier() }, interest),
+            payload: __assign({}, interest),
             error: false,
         };
         this.onAction.emit(action);

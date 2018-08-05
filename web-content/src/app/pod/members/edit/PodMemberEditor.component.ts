@@ -7,6 +7,7 @@ import {Action} from '../model/Action.model';
 import {LocalAvatar} from '../model/LocalAvatar';
 import {ImageUploadService} from '../service/ImageUpload.service';
 import {EventDispatchService} from '../service/EventDispatch.service';
+import {PodMemberPersonal} from './PersonalInformationEditor.component';
 
 @Component({
     selector: 'pod-member-editor',
@@ -70,7 +71,6 @@ export class PodMemberEditorComponent {
     }
 }
 
-interface AvatarPayload {
-    podMemberIdentifier: string,
+interface AvatarPayload extends PodMemberPersonal {
     identifier: string;
 }

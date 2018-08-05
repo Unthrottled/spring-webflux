@@ -6,8 +6,7 @@ import {Action} from '../model/Action.model';
 
 const uuid = require('uuid/v1');
 
-export interface FieldChanged {
-    podMemberIdentifier: string,
+export interface FieldChanged extends PodMemberPersonal {
     value: string,
     field: string
 }
@@ -94,7 +93,6 @@ export class PersonalInformationEditorComponent {
         const action: Action<Interest> = {
             type: 'INTEREST_REMOVED',
             payload: {
-                podMemberIdentifier: this.podMember.getIdentifier(),
                 ...interest
             },
             error: false,
@@ -116,7 +114,7 @@ export class PersonalInformationEditorComponent {
     }
 }
 
-export class Interest {
+export class Interest implements PodMemberPersonal {
 
     id: string;
     value: string;
@@ -127,4 +125,8 @@ export class Interest {
         this.value = value;
         this.podMemberIdentifier = podMemberIdentifier;
     }
+}
+
+export interface PodMemberPersonal {
+    podMemberIdentifier: string
 }
