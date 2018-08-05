@@ -3,6 +3,7 @@ import {Avatar} from "../model/Avatar.model";
 import {ProjectFileService} from "../service/ProjectFileService";
 import {Observable} from "rxjs/Observable";
 import {LocalAvatar} from "../model/LocalAvatar";
+import {PersonalInformation} from '../model/PersonalInformation';
 
 @Component({
     selector: 'pod-member',
@@ -11,6 +12,17 @@ import {LocalAvatar} from "../model/LocalAvatar";
 export class PodMemberComponent {
 
     constructor(private projectFileService: ProjectFileService) {
+    }
+
+    private _personalInformation: PersonalInformation;
+
+
+    get personalInformation(): PersonalInformation {
+        return this._personalInformation;
+    }
+
+    set personalInformation(value: PersonalInformation) {
+        this._personalInformation = value;
     }
 
     private _avatar: Avatar;
@@ -22,11 +34,6 @@ export class PodMemberComponent {
 
     set avatar(value: Avatar) {
         this._avatar = value;
-    }
-
-    //todo: remove dis when you can change remote projects.
-    get editMode(): boolean {
-        return this.avatar instanceof LocalAvatar;
     }
 
     updateFile(projectFile: Avatar): void {

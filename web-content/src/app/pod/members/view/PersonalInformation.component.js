@@ -10,40 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var LocalAvatar_1 = require("../model/LocalAvatar");
 var PersonalInformationComponent = /** @class */ (function () {
     function PersonalInformationComponent() {
         this.projectFileEmmiter = new core_1.EventEmitter();
         this.interests = [];
     }
-    Object.defineProperty(PersonalInformationComponent.prototype, "avatar", {
+    Object.defineProperty(PersonalInformationComponent.prototype, "personalInformation", {
         get: function () {
-            return this._avatar;
+            return this._personalInformation;
         },
         set: function (value) {
-            this._avatar = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PersonalInformationComponent.prototype, "editMode", {
-        //todo: remove dis when you can change remote projects.
-        get: function () {
-            return this.avatar instanceof LocalAvatar_1.LocalAvatar;
+            this._personalInformation = value;
         },
         enumerable: true,
         configurable: true
     });
     PersonalInformationComponent.prototype.updateFile = function (projectFile) {
-        this.avatar = projectFile;
+        this.personalInformation = projectFile;
     };
-    Object.defineProperty(PersonalInformationComponent.prototype, "imageBinary", {
-        get: function () {
-            return this._avatar.imageBinary();
-        },
-        enumerable: true,
-        configurable: true
-    });
     PersonalInformationComponent.prototype.addInterest = function (textPayload) {
         this.interests.push(textPayload);
     };
@@ -55,7 +39,7 @@ var PersonalInformationComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
-    ], PersonalInformationComponent.prototype, "avatar", null);
+    ], PersonalInformationComponent.prototype, "personalInformation", null);
     PersonalInformationComponent = __decorate([
         core_1.Component({
             selector: 'personal-information',

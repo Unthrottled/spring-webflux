@@ -4,15 +4,13 @@
             <avatar-editor [avatar]="avatar"></avatar-editor>
         </div>
         <div style="flex-grow: 1">
-            <personal-information [avatar]="avatar"></personal-information>
+            <personal-information [personalInformation]="personalInformation"></personal-information>
         </div>
     </div>
     <div class="image-button-container">
         <div class="btn btn-lg btn-danger" (click)="delete()">Delete</div>
-        <div *ngIf="editMode">
-            <div *ngIf="imageBinary | async">
-                <div class="btn btn-lg btn-success" (click)="uploadFile()">Upload</div>
-            </div>
+        <div *ngIf="imageBinary | async">
+            <div class="btn btn-lg btn-success" (click)="uploadFile()">Upload</div>
         </div>
     </div>
 </div>

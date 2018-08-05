@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Avatar} from '../model/Avatar.model';
-import {LocalAvatar} from '../model/LocalAvatar';
+import {PersonalInformation} from '../model/PersonalInformation';
 import {TextPayload} from '../model/TextPayload';
 
 @Component({
@@ -13,32 +12,23 @@ export class PersonalInformationComponent {
     constructor() {
     }
 
-    private _avatar: Avatar;
+    private _personalInformation: PersonalInformation;
 
     @Output()
-    private projectFileEmmiter = new EventEmitter<Avatar>();
+    private projectFileEmmiter = new EventEmitter<PersonalInformation>();
 
 
     @Input()
-    get avatar(): Avatar {
-        return this._avatar;
+    get personalInformation(): PersonalInformation {
+        return this._personalInformation;
     }
 
-    set avatar(value: Avatar) {
-        this._avatar = value;
+    set personalInformation(value: PersonalInformation) {
+        this._personalInformation = value;
     }
 
-    //todo: remove dis when you can change remote projects.
-    get editMode(): boolean {
-        return this.avatar instanceof LocalAvatar;
-    }
-
-    updateFile(projectFile: Avatar): void {
-        this.avatar = projectFile;
-    }
-
-    get imageBinary(): Observable<any> {
-        return this._avatar.imageBinary();
+    updateFile(projectFile: PersonalInformation): void {
+        this.personalInformation = projectFile;
     }
 
     private interests: TextPayload[] = [];

@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Avatar} from '../model/Avatar.model';
-import {LocalAvatar} from '../model/LocalAvatar';
+import {PersonalInformation} from '../model/PersonalInformation';
 import {TextPayload} from '../model/TextPayload';
 
 @Component({
@@ -10,40 +8,34 @@ import {TextPayload} from '../model/TextPayload';
 })
 export class PersonalInformationEditorComponent {
 
+    @Output()
+    private personalInformationEmmiter = new EventEmitter<PersonalInformation>();
+    private interests: TextPayload[] = [];
+
     constructor() {
     }
 
-    private _avatar: Avatar;
-
-    @Output()
-    private projectFileEmmiter = new EventEmitter<Avatar>();
-
+    private _personalInformation: PersonalInformation;
 
     @Input()
-    get avatar(): Avatar {
-        return this._avatar;
+    get personalInformation(): PersonalInformation {
+        return this._personalInformation;
     }
 
-    set avatar(value: Avatar) {
-        this._avatar = value;
+    set personalInformation(value: PersonalInformation) {
+        this._personalInformation = value;
     }
 
     //todo: remove dis when you can change remote projects.
     get editMode(): boolean {
-        return this.avatar instanceof LocalAvatar;
+        return this.personalInformation instanceof LocalPersonalInformation;
     }
 
-    updateFile(projectFile: Avatar): void {
-        this.avatar = projectFile;
+    updateFile(personalInformation: PersonalInformation): void {
+        this.personalInformation = personalInformation;
     }
 
-    get imageBinary(): Observable<any> {
-        return this._avatar.imageBinary();
-    }
-
-    private interests: TextPayload[] = [];
-
-    addInterest(textPayload: TextPayload){
+    addInterest(textPayload: TextPayload) {
         this.interests.push(textPayload)
     }
 }
