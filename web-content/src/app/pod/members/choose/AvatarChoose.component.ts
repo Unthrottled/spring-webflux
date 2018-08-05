@@ -15,8 +15,11 @@ export class AvatarChooseComponent {
     private _selectedFile: File;
 
     selectFile(event: any): void {
-        this.selectedFile = event.target.files.item(0);
-        this.fileSelectedEmitter.emit(this.selectedFile);
+        let chosenFile = event.target.files.item(0);
+        if(chosenFile){
+            this.selectedFile = chosenFile;
+            this.fileSelectedEmitter.emit(this.selectedFile);
+        }
     }
 
 

@@ -15,8 +15,11 @@ var AvatarChooseComponent = /** @class */ (function () {
         this.fileSelectedEmitter = new core_1.EventEmitter();
     }
     AvatarChooseComponent.prototype.selectFile = function (event) {
-        this.selectedFile = event.target.files.item(0);
-        this.fileSelectedEmitter.emit(this.selectedFile);
+        var chosenFile = event.target.files.item(0);
+        if (chosenFile) {
+            this.selectedFile = chosenFile;
+            this.fileSelectedEmitter.emit(this.selectedFile);
+        }
     };
     Object.defineProperty(AvatarChooseComponent.prototype, "selectedFile", {
         get: function () {
