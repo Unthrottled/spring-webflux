@@ -15,7 +15,9 @@
         </div>
     </div>
     <div style="display: flex">
-        <avatar-view [avatar]="avatar | async"></avatar-view>
+        <div *ngIf="avatar | async">
+            <avatar-view [avatar]="avatar | async"></avatar-view>
+        </div>
         <div style="flex-grow: 1">
             <personal-information [personalInformation]="personalInformation"></personal-information>
         </div>
