@@ -6,12 +6,15 @@ import {Identifier} from "../model/Identifier.model";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class RemoteProjectFileService {
+export class RemoteAvatarService {
 
     constructor(private backendAPISevice: BackendAPIService, private windowRef: WindowRef) {
     }
 
     public fetchRemoteProject(fileId: string): RemoteAvatar {
+        return this.backendAPISevice.fetchImage(fileId)
+            .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
+            .map(base64Binary => new RemoteAvatar(fileId, base64Binary))
         return new RemoteAvatar(new Identifier(fileId),
             this.backendAPISevice.fetchImage(fileId)
                 .map(arrayBuffer => this.convertToImageBinary(arrayBuffer)));

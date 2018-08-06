@@ -1,8 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Observable_1 = require("rxjs/Observable");
 var ReplaySubject_1 = require("rxjs/ReplaySubject");
-var Identifier_model_1 = require("./Identifier.model");
 var RemoteAvatar = /** @class */ (function () {
     /**
      *
@@ -10,16 +8,10 @@ var RemoteAvatar = /** @class */ (function () {
      *                      the backend rest api.
      * @param {Observable<any>} remoteProjectFile project file from the backend
      */
-    function RemoteAvatar(identifier, remoteProjectFile) {
-        if (identifier === void 0) { identifier = new Identifier_model_1.Identifier(); }
-        if (remoteProjectFile === void 0) { remoteProjectFile = Observable_1.Observable.empty(); }
-        var _this = this;
+    function RemoteAvatar(podmemberId, binary) {
         this.imageBinaryReplay = new ReplaySubject_1.ReplaySubject(1);
-        remoteProjectFile.subscribe(function (imageBinary) {
-            _this.imageBinaryReplay.next(imageBinary);
-        });
-        this._identifier = identifier;
-        this._name = this.identifier.id;
+        this.imageBinaryReplay.next(binary);
+        this._identifier = podmemberId;
     }
     Object.defineProperty(RemoteAvatar.prototype, "identifier", {
         get: function () {
@@ -43,7 +35,7 @@ var RemoteAvatar = /** @class */ (function () {
         //todo: me?
     };
     RemoteAvatar.prototype.getIdentifier = function () {
-        return this._identifier.id;
+        return this._identifier;
     };
     /**
      * Actual binary received from the backend service.

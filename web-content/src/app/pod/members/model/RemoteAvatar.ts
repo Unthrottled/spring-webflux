@@ -5,7 +5,6 @@ import {Identifier} from "./Identifier.model";
 
 export class RemoteAvatar implements Avatar {
     private imageBinaryReplay = new ReplaySubject<any>(1);
-    private _name: string;
 
     /**
      *
@@ -13,24 +12,21 @@ export class RemoteAvatar implements Avatar {
      *                      the backend rest api.
      * @param {Observable<any>} remoteProjectFile project file from the backend
      */
-    constructor(identifier: Identifier = new Identifier(),
-                remoteProjectFile: Observable<any> = Observable.empty()) {
+    constructor(podmemberId: string, binary: string) {
 
-        remoteProjectFile.subscribe(imageBinary => {
-            this.imageBinaryReplay.next(imageBinary);
-        });
 
-        this._identifier = identifier;
-        this._name = this.identifier.id;
+        this.imageBinaryReplay.next(binary);
+
+        this._identifier = podmemberId;
     }
 
-    private _identifier: Identifier;
+    private _identifier: string;
 
-    get identifier(): Identifier {
+    get identifier(): string {
         return this._identifier;
     }
 
-    set identifier(value: Identifier) {
+    set identifier(value: string) {
         this._identifier = value;
     }
 
@@ -47,7 +43,7 @@ export class RemoteAvatar implements Avatar {
     }
 
     getIdentifier(): string {
-        return this._identifier.id;
+        return this._identifier;
     }
 
     /**

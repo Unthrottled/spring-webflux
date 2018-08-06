@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var RemoteProjectFile_service_1 = require("./service/RemoteProjectFile.service");
+var RemoteAvatar_service_1 = require("./service/RemoteAvatar.service");
 var AvatarChoose_component_1 = require("./choose/AvatarChoose.component");
 var PodMemberList_component_1 = require("./list/PodMemberList.component");
 var AvatarView_component_1 = require("./view/AvatarView.component");
@@ -65,7 +65,7 @@ var MembersModule = /** @class */ (function () {
             ],
             bootstrap: [],
             providers: [
-                RemoteProjectFile_service_1.RemoteProjectFileService,
+                RemoteAvatar_service_1.RemoteAvatarService,
                 PodMember_service_1.PodMemberService,
                 LocalProjectFile_service_1.LocalProjectFileService,
                 EventDispatch_service_1.EventDispatchService,

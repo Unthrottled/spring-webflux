@@ -4,38 +4,28 @@ import {WindowRef} from "../../../util/window";
 import {RemoteAvatar} from "../model/RemoteAvatar";
 import {Identifier} from "../model/Identifier.model";
 import {Observable} from "rxjs/Observable";
+import {PodMember} from '../model/PodMember.model';
+import {RemoteAvatarService} from './RemoteAvatar.service';
 
 @Injectable()
 export class RemotePodMemberService {
 
-    constructor(private backendAPISevice: BackendAPIService, private windowRef: WindowRef) {
+    constructor(private backendAPISevice: BackendAPIService,
+                private remoteAvatarService: RemoteAvatarService) {
     }
 
-    public fetchRemoteProject(fileId: string): RemoteAvatar {
-        return new RemoteAvatar(new Identifier(fileId),
-            this.backendAPISevice.fetchImage(fileId)
-                .map(arrayBuffer => this.convertToImageBinary(arrayBuffer)));
+    public fetchPodMember(fileId: string): Observable<PodMember> {
+        // return this.backendAPISevice.fetchImage(fileId)
+        return Observable.empty();
+
     }
 
-    public fetchAllRemoteProjects(): Observable<RemoteAvatar> {
+    public fetchAllRemoteProjects(): Observable<PodMember> {
         return this.backendAPISevice.fetchAllImageIds()
-            .map((response: any[]) => response)
-            .flatMap(files => Observable.from(files))
-            .map(identifier => identifier._id)
-            .map(id => this.fetchRemoteProject(id));
+            .flatMap(id => this.fetchPodMember(id));
     }
 
-    removeProject(projectToRemove: RemoteAvatar): Observable<boolean> {
+    removeProject(projectToRemove: PodMember): Observable<boolean> {
         return this.backendAPISevice.deleteImage(projectToRemove.getIdentifier());
-    }
-
-    private convertToImageBinary(arrayBuffer: any): any {
-        let binary = '';
-        let bytes = new Uint8Array(arrayBuffer);
-        let len = bytes.byteLength;
-        for (let i = 0; i < len; ++i) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        return 'data:image/png;base64,' + this.windowRef.nativeWindow.btoa(binary);
     }
 }

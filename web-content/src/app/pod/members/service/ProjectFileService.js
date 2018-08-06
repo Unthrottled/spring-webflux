@@ -14,7 +14,7 @@ var LocalAvatar_1 = require("../model/LocalAvatar");
 var RemoteAvatar_1 = require("../model/RemoteAvatar");
 var LocalProjectFile_service_1 = require("./LocalProjectFile.service");
 var ImageUpload_service_1 = require("./ImageUpload.service");
-var RemoteProjectFile_service_1 = require("./RemoteProjectFile.service");
+var RemoteProjectFile_service_1 = require("./RemoteAvatar.service");
 var ProjectFileService = /** @class */ (function () {
     function ProjectFileService(localProjectFileService, remoteProjectFileService, imageUploadService) {
         this.localProjectFileService = localProjectFileService;
@@ -75,7 +75,7 @@ var ProjectFileService = /** @class */ (function () {
     ProjectFileService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [LocalProjectFile_service_1.LocalProjectFileService,
-            RemoteProjectFile_service_1.RemoteProjectFileService,
+            RemoteProjectFile_service_1.RemoteAvatarService,
             ImageUpload_service_1.ImageUploadService])
     ], ProjectFileService);
     return ProjectFileService;

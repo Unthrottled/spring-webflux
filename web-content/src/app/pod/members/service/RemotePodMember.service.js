@@ -11,43 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
-var window_1 = require("../../../util/window");
-var RemoteAvatar_1 = require("../model/RemoteAvatar");
-var Identifier_model_1 = require("../model/Identifier.model");
 var Observable_1 = require("rxjs/Observable");
+var RemoteAvatar_service_1 = require("./RemoteAvatar.service");
 var RemotePodMemberService = /** @class */ (function () {
-    function RemotePodMemberService(backendAPISevice, windowRef) {
+    function RemotePodMemberService(backendAPISevice, remoteAvatarService) {
         this.backendAPISevice = backendAPISevice;
-        this.windowRef = windowRef;
+        this.remoteAvatarService = remoteAvatarService;
     }
-    RemotePodMemberService.prototype.fetchRemoteProject = function (fileId) {
-        var _this = this;
-        return new RemoteAvatar_1.RemoteAvatar(new Identifier_model_1.Identifier(fileId), this.backendAPISevice.fetchImage(fileId)
-            .map(function (arrayBuffer) { return _this.convertToImageBinary(arrayBuffer); }));
+    RemotePodMemberService.prototype.fetchPodMember = function (fileId) {
+        // return this.backendAPISevice.fetchImage(fileId)
+        return Observable_1.Observable.empty();
     };
     RemotePodMemberService.prototype.fetchAllRemoteProjects = function () {
         var _this = this;
         return this.backendAPISevice.fetchAllImageIds()
-            .map(function (response) { return response; })
-            .flatMap(function (files) { return Observable_1.Observable.from(files); })
-            .map(function (identifier) { return identifier._id; })
-            .map(function (id) { return _this.fetchRemoteProject(id); });
+            .flatMap(function (id) { return _this.fetchPodMember(id); });
     };
     RemotePodMemberService.prototype.removeProject = function (projectToRemove) {
         return this.backendAPISevice.deleteImage(projectToRemove.getIdentifier());
     };
-    RemotePodMemberService.prototype.convertToImageBinary = function (arrayBuffer) {
-        var binary = '';
-        var bytes = new Uint8Array(arrayBuffer);
-        var len = bytes.byteLength;
-        for (var i = 0; i < len; ++i) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        return 'data:image/png;base64,' + this.windowRef.nativeWindow.btoa(binary);
-    };
     RemotePodMemberService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [BackendAPI_service_1.BackendAPIService, window_1.WindowRef])
+        __metadata("design:paramtypes", [BackendAPI_service_1.BackendAPIService,
+            RemoteAvatar_service_1.RemoteAvatarService])
     ], RemotePodMemberService);
     return RemotePodMemberService;
 }());

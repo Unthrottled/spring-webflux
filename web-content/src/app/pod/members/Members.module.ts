@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {RemoteProjectFileService} from "./service/RemoteProjectFile.service";
+import {RemoteAvatarService} from "./service/RemoteAvatar.service";
 import {AvatarChooseComponent} from "./choose/AvatarChoose.component";
 import {PodMemberListComponent} from "./list/PodMemberList.component";
 import {AvatarViewComponent} from "./view/AvatarView.component";
@@ -56,7 +56,7 @@ import {EventDispatchService} from './service/EventDispatch.service';
         ],
         bootstrap: [],
         providers: [
-            RemoteProjectFileService,
+            RemoteAvatarService,
             PodMemberService,
             LocalProjectFileService,
             EventDispatchService,
