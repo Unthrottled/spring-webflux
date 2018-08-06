@@ -1,7 +1,7 @@
 <div class="project-container">
     <div>
         <div>
-            <avatar-editor [avatar]="avatar" (avatarEmmiter)="updateAvatar($event)"></avatar-editor>
+            <avatar-editor (avatarEmmiter)="updateAvatar($event)"></avatar-editor>
         </div>
         <div>
             <personal-information-editor [podMember]="podMember" (onAction)="postEvent($event)"></personal-information-editor>

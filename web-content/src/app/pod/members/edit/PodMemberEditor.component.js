@@ -13,6 +13,7 @@ var core_1 = require("@angular/core");
 var PodMember_service_1 = require("../service/PodMember.service");
 var ImageUpload_service_1 = require("../service/ImageUpload.service");
 var EventDispatch_service_1 = require("../service/EventDispatch.service");
+var rxjs_1 = require("rxjs");
 var PodMemberEditorComponent = /** @class */ (function () {
     function PodMemberEditorComponent(projectFileService, eventDispatchService, imageUploadService) {
         this.projectFileService = projectFileService;
@@ -48,7 +49,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
     });
     PodMemberEditorComponent.prototype.updateAvatar = function (avatar) {
         var _this = this;
-        this.podMember.setAvatar(avatar);
+        this.podMember.setAvatar(new rxjs_1.BehaviorSubject(avatar));
         this.imageUploadService.uploadImage(avatar.selectedFile)
             .subscribe(function (remoteIdentifier) {
             var uploadedAvatarAction = {

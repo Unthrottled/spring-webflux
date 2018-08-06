@@ -12,8 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
 var window_1 = require("../../../util/window");
-var RemoteAvatar_1 = require("../model/RemoteAvatar");
-var Identifier_model_1 = require("../model/Identifier.model");
 var Observable_1 = require("rxjs/Observable");
 var RemoteAvatarService = /** @class */ (function () {
     function RemoteAvatarService(backendAPISevice, windowRef) {
@@ -21,12 +19,13 @@ var RemoteAvatarService = /** @class */ (function () {
         this.windowRef = windowRef;
     }
     RemoteAvatarService.prototype.fetchRemoteProject = function (fileId) {
-        var _this = this;
-        return this.backendAPISevice.fetchImage(fileId)
-            .map(function (arrayBuffer) { return _this.convertToImageBinary(arrayBuffer); })
-            .map(function (base64Binary) { return new RemoteAvatar_1.RemoteAvatar(fileId, base64Binary); });
-        return new RemoteAvatar_1.RemoteAvatar(new Identifier_model_1.Identifier(fileId), this.backendAPISevice.fetchImage(fileId)
-            .map(function (arrayBuffer) { return _this.convertToImageBinary(arrayBuffer); }));
+        // return this.backendAPISevice.fetchImage(fileId)
+        //     .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
+        //     .map(base64Binary => new RemoteAvatar(fileId, base64Binary))
+        // return new RemoteAvatar(new Identifier(fileId),
+        //     this.backendAPISevice.fetchImage(fileId)
+        //         .map(arrayBuffer => this.convertToImageBinary(arrayBuffer)));
+        return Observable_1.Observable.empty();
     };
     RemoteAvatarService.prototype.fetchAllRemoteProjects = function () {
         var _this = this;
@@ -34,7 +33,7 @@ var RemoteAvatarService = /** @class */ (function () {
             .map(function (response) { return response; })
             .flatMap(function (files) { return Observable_1.Observable.from(files); })
             .map(function (identifier) { return identifier._id; })
-            .map(function (id) { return _this.fetchRemoteProject(id); });
+            .flatMap(function (id) { return _this.fetchRemoteProject(id); });
     };
     RemoteAvatarService.prototype.removeProject = function (projectToRemove) {
         return this.backendAPISevice.deleteImage(projectToRemove.getIdentifier());

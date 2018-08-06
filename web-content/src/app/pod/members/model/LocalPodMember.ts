@@ -2,13 +2,14 @@ import {Avatar} from './Avatar.model';
 import {Identifier} from './Identifier.model';
 import {PodMember} from './PodMember.model';
 import {PersonalInformation} from './PersonalInformation';
+import {Observable} from 'rxjs';
 
 export class LocalPodMember implements PodMember {
     personalInformation: PersonalInformation = new PersonalInformation();
-    avatar: Avatar;
+    avatar: Observable<Avatar>;
     private _identifier: Identifier;
 
-    constructor(id: Identifier, avatar: Avatar) {
+    constructor(id: Identifier, avatar: Observable<Avatar>) {
         this._identifier = id;
         this.avatar = avatar;
     }
@@ -17,7 +18,7 @@ export class LocalPodMember implements PodMember {
         return this._identifier.id;
     }
 
-    setAvatar(avatar: Avatar): void {
+    setAvatar(avatar: Observable<Avatar>): void {
         this.avatar = avatar;
     }
 }

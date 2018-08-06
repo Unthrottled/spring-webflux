@@ -10,33 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var LocalAvatar_1 = require("../model/LocalAvatar");
 var AvatarEditorComponent = /** @class */ (function () {
     function AvatarEditorComponent() {
         this.avatarEmmiter = new core_1.EventEmitter();
     }
-    Object.defineProperty(AvatarEditorComponent.prototype, "avatar", {
-        get: function () {
-            return this._avatar;
-        },
-        set: function (value) {
-            this._avatar = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    AvatarEditorComponent.prototype.updateFile = function (avatar) {
-        this.avatar = avatar;
-        this.avatarEmmiter.emit(this.avatar);
+    AvatarEditorComponent.prototype.updateFile = function (file) {
+        var newAvatar = new LocalAvatar_1.LocalAvatar(file);
+        this.avatarEmmiter.emit(newAvatar);
     };
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
     ], AvatarEditorComponent.prototype, "avatarEmmiter", void 0);
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [Object])
-    ], AvatarEditorComponent.prototype, "avatar", null);
     AvatarEditorComponent = __decorate([
         core_1.Component({
             selector: 'avatar-editor',

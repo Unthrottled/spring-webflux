@@ -5,7 +5,7 @@ var ReplaySubject_1 = require("rxjs/ReplaySubject");
 var LocalAvatar = /** @class */ (function () {
     function LocalAvatar(id) {
         this.imageBinaryRepeater = new ReplaySubject_1.ReplaySubject(1);
-        this._identifier = id;
+        this.setNewFile(id);
     }
     Object.defineProperty(LocalAvatar.prototype, "selectedFile", {
         /**

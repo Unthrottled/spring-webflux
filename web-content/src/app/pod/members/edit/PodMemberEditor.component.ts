@@ -8,6 +8,7 @@ import {LocalAvatar} from '../model/LocalAvatar';
 import {ImageUploadService} from '../service/ImageUpload.service';
 import {EventDispatchService} from '../service/EventDispatch.service';
 import {PodMemberPersonal} from './PersonalInformationEditor.component';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Component({
     selector: 'pod-member-editor',
@@ -42,12 +43,12 @@ export class PodMemberEditorComponent {
         this._podMember = value;
     }
 
-    get avatar(): Avatar {
+    get avatar(): Observable<Avatar> {
         return this.podMember.avatar;
     }
 
     updateAvatar(avatar: LocalAvatar): void {
-        this.podMember.setAvatar(avatar);
+        this.podMember.setAvatar(new BehaviorSubject(avatar));
         this.imageUploadService.uploadImage(avatar.selectedFile)
             .subscribe(remoteIdentifier => {
                 const uploadedAvatarAction: Action<AvatarPayload> = {

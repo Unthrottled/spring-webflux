@@ -15,7 +15,7 @@
         </div>
     </div>
     <div style="display: flex">
-        <avatar-view [avatar]="avatar"></avatar-view>
+        <avatar-view [avatar]="avatar | async"></avatar-view>
         <div style="flex-grow: 1">
             <personal-information [personalInformation]="personalInformation"></personal-information>
         </div>

@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {LocalAvatar} from "../model/LocalAvatar";
 import {Identifier} from "../model/Identifier.model";
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class LocalProjectFileService {
@@ -8,8 +9,8 @@ export class LocalProjectFileService {
 
     constructor(){}
 
-    public createLocalProject(): LocalAvatar {
-        return new LocalAvatar(new Identifier(++LocalProjectFileService.localProjectCount + ''));
+    public createLocalProject(): Observable<LocalAvatar> {
+        return Observable.empty();
     }
 
 }

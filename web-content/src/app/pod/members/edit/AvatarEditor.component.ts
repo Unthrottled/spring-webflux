@@ -17,19 +17,9 @@ export class AvatarEditorComponent {
     @Output()
     private avatarEmmiter = new EventEmitter<Avatar>();
 
-
-    @Input()
-    get avatar(): Avatar {
-        return this._avatar;
-    }
-
-    set avatar(value: Avatar) {
-        this._avatar = value;
-    }
-
-    updateFile(avatar: Avatar): void {
-        this.avatar = avatar;
-        this.avatarEmmiter.emit(this.avatar);
+    updateFile(file: File): void {
+        const newAvatar = new LocalAvatar(file);
+        this.avatarEmmiter.emit(newAvatar);
     }
 
 }

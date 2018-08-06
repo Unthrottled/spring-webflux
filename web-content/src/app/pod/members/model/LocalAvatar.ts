@@ -7,8 +7,8 @@ export class LocalAvatar implements Avatar {
     private imageBinaryRepeater = new ReplaySubject<MSBaseReader>(1);
     private _identifier: Identifier;
 
-    constructor(id: Identifier) {
-        this._identifier = id;
+    constructor(id: File) {
+        this.setNewFile(id);
     }
 
     private _selectedFile: Observable<File>;

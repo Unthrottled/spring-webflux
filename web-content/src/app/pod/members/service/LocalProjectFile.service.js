@@ -10,22 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var LocalAvatar_1 = require("../model/LocalAvatar");
-var Identifier_model_1 = require("../model/Identifier.model");
+var rxjs_1 = require("rxjs");
 var LocalProjectFileService = /** @class */ (function () {
     function LocalProjectFileService() {
     }
-    LocalProjectFileService_1 = LocalProjectFileService;
     LocalProjectFileService.prototype.createLocalProject = function () {
-        return new LocalAvatar_1.LocalAvatar(new Identifier_model_1.Identifier(++LocalProjectFileService_1.localProjectCount + ''));
+        return rxjs_1.Observable.empty();
     };
     LocalProjectFileService.localProjectCount = 0;
-    LocalProjectFileService = LocalProjectFileService_1 = __decorate([
+    LocalProjectFileService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [])
     ], LocalProjectFileService);
     return LocalProjectFileService;
-    var LocalProjectFileService_1;
 }());
 exports.LocalProjectFileService = LocalProjectFileService;
 //# sourceMappingURL=LocalProjectFile.service.js.map

@@ -3,6 +3,7 @@ import {PodMember} from '../model/PodMember.model';
 import {PodMemberService} from '../service/PodMember.service';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {Avatar} from '../model/Avatar.model';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'pod-member',
@@ -34,7 +35,7 @@ export class PodMemberComponent {
         return this._editMode;
     }
 
-    get avatar(): Avatar {
+    get avatar(): Observable<Avatar> {
         return this.podMember.avatar;
     }
 

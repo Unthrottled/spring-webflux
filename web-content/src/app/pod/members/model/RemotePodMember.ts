@@ -60,10 +60,10 @@ export class RemotePodMember implements Avatar, PodMember {
         return this.imageBinaryReplay
     }
 
-    avatar: Avatar;
+    avatar: Observable<Avatar>;
     personalInformation: PersonalInformation;
 
-    setAvatar(avatar: Avatar): void {
+    setAvatar(avatar: Observable<Avatar>): void {
     }
 
 

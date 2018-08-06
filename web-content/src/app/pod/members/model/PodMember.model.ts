@@ -1,10 +1,11 @@
 import {Avatar} from './Avatar.model';
 import {PersonalInformation} from './PersonalInformation';
+import {Observable} from 'rxjs';
 
 export interface PodMember {
-    avatar: Avatar;
+    avatar: Observable<Avatar>;
     personalInformation: PersonalInformation;
     getIdentifier(): string;
-    setAvatar(avatar: Avatar): void;
+    setAvatar(avatar: Observable<Avatar>): void;
 
 }

@@ -11,13 +11,14 @@ export class RemoteAvatarService {
     constructor(private backendAPISevice: BackendAPIService, private windowRef: WindowRef) {
     }
 
-    public fetchRemoteProject(fileId: string): RemoteAvatar {
-        return this.backendAPISevice.fetchImage(fileId)
-            .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
-            .map(base64Binary => new RemoteAvatar(fileId, base64Binary))
-        return new RemoteAvatar(new Identifier(fileId),
-            this.backendAPISevice.fetchImage(fileId)
-                .map(arrayBuffer => this.convertToImageBinary(arrayBuffer)));
+    public fetchRemoteProject(fileId: string): Observable<RemoteAvatar> {
+        // return this.backendAPISevice.fetchImage(fileId)
+        //     .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
+        //     .map(base64Binary => new RemoteAvatar(fileId, base64Binary))
+        // return new RemoteAvatar(new Identifier(fileId),
+        //     this.backendAPISevice.fetchImage(fileId)
+        //         .map(arrayBuffer => this.convertToImageBinary(arrayBuffer)));
+        return Observable.empty<RemoteAvatar>();
     }
 
     public fetchAllRemoteProjects(): Observable<RemoteAvatar> {
@@ -25,7 +26,7 @@ export class RemoteAvatarService {
             .map((response: any[]) => response)
             .flatMap(files => Observable.from(files))
             .map(identifier => identifier._id)
-            .map(id => this.fetchRemoteProject(id));
+            .flatMap(id => this.fetchRemoteProject(id));
     }
 
     removeProject(projectToRemove: RemoteAvatar): Observable<boolean> {

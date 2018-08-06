@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ProjectFileManipulationComponent = /** @class */ (function () {
     function ProjectFileManipulationComponent() {
-        this.avatarUpdated = new core_1.EventEmitter();
+        this.avatarFileChosen = new core_1.EventEmitter();
     }
     Object.defineProperty(ProjectFileManipulationComponent.prototype, "avatar", {
         get: function () {
@@ -25,13 +25,12 @@ var ProjectFileManipulationComponent = /** @class */ (function () {
         configurable: true
     });
     ProjectFileManipulationComponent.prototype.fileChosen = function (file) {
-        this._avatar.setNewFile(file);
-        this.avatarUpdated.emit(this._avatar);
+        this.avatarFileChosen.emit(file);
     };
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
-    ], ProjectFileManipulationComponent.prototype, "avatarUpdated", void 0);
+    ], ProjectFileManipulationComponent.prototype, "avatarFileChosen", void 0);
     __decorate([
         core_1.Input(),
         __metadata("design:type", Object),
