@@ -23,6 +23,7 @@ export class ImageUploadService {
                 formData.append('avatar', reachFile);
                 return formData
             }).flatMap(formData =>
-                this.backendAPIService.postImage(formData))
+                this.backendAPIService.postImage('aoe', formData))
+        // todo should fix this
     }
 }

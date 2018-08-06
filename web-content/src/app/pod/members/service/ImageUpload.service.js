@@ -30,8 +30,9 @@ var ImageUploadService = /** @class */ (function () {
             formData.append('avatar', reachFile);
             return formData;
         }).flatMap(function (formData) {
-            return _this.backendAPIService.postImage(formData);
+            return _this.backendAPIService.postImage('aoe', formData);
         });
+        // todo should fix this
     };
     ImageUploadService = __decorate([
         core_1.Injectable(),

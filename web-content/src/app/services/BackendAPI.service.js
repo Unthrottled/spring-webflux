@@ -16,25 +16,37 @@ var BackendAPIService = /** @class */ (function () {
     function BackendAPIService(httpClient) {
         this.httpClient = httpClient;
     }
-    BackendAPIService.prototype.postImage = function (formData) {
-        return this.httpClient.post('./api/image/save', formData, {
+    BackendAPIService.prototype.postImage = function (podMemberId, formData) {
+        return this.httpClient.post('./api/pod/member' + podMemberId + '/avatar', formData, {
             responseType: 'text'
         });
     };
-    BackendAPIService.prototype.fetchImage = function (_id) {
-        return this.httpClient.get('./api/image/get/' + _id, {
+    BackendAPIService.prototype.fetchImage = function (podMemberId) {
+        return this.httpClient.get('./api/pod/member' + podMemberId + '/avatar', {
             responseType: 'arraybuffer'
         });
     };
+    BackendAPIService.prototype.deleteImage = function (podMemberId) {
+        return this.httpClient.delete('./api/pod/member' + podMemberId + '/avatar', {
+            responseType: 'json'
+        }).map(function (response) { return (response === true); });
+    };
+    //todo: should go
     BackendAPIService.prototype.fetchAllImageIds = function () {
-        return this.httpClient.get('./api/images', {
+        return this.httpClient.get('', {
             responseType: 'json'
         });
     };
-    BackendAPIService.prototype.deleteImage = function (_id) {
-        return this.httpClient.delete('./api/image/delete/' + _id, {
-            responseType: 'json'
-        }).map(function (response) { return (response === true); });
+    BackendAPIService.prototype.fetchAllPodMemberIdentifiers = function () {
+        return this.httpClient.get('./api/pod/members', {
+            responseType: 'text'
+        });
+    };
+    BackendAPIService.prototype.fetchAllPodMemberInterests = function (podMemberId) {
+        return this.httpClient.get('./api/pod/member/' + podMemberId + '/interests', {
+            responseType: 'json',
+            observe: 'events'
+        }).map(function (response) { return response; });
     };
     BackendAPIService.prototype.postEvent = function (action) {
         return Observable_1.Observable.of(action);
