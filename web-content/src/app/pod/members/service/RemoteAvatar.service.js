@@ -28,12 +28,12 @@ var RemoteAvatarService = /** @class */ (function () {
         return Observable_1.Observable.empty();
     };
     RemoteAvatarService.prototype.fetchAllRemoteProjects = function () {
-        var _this = this;
-        return this.backendAPISevice.fetchAllImageIds()
-            .map(function (response) { return response; })
-            .flatMap(function (files) { return Observable_1.Observable.from(files); })
-            .map(function (identifier) { return identifier._id; })
-            .flatMap(function (id) { return _this.fetchRemoteProject(id); });
+        // return this.backendAPISevice.fetchAllPodMemberIdentifiers()
+        //     .map((response: any[]) => response)
+        //     .flatMap(files => Observable.from(files))
+        //     .map(identifier => identifier._id)
+        //     .flatMap(id => this.fetchRemoteProject(id));
+        return Observable_1.Observable.empty();
     };
     RemoteAvatarService.prototype.removeProject = function (projectToRemove) {
         return this.backendAPISevice.deleteImage(projectToRemove.getIdentifier());

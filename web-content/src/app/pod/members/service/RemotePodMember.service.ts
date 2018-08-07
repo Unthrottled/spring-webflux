@@ -21,7 +21,7 @@ export class RemotePodMemberService {
     }
 
     public fetchAllRemotePodMembers(): Observable<PodMember> {
-        return this.backendAPISevice.fetchAllImageIds()
+        return this.backendAPISevice.fetchAllPodMemberIdentifiers()
             .flatMap(id => this.fetchPodMember(id));
     }
 

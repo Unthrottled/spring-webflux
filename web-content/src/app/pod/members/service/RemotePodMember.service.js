@@ -24,7 +24,7 @@ var RemotePodMemberService = /** @class */ (function () {
     };
     RemotePodMemberService.prototype.fetchAllRemotePodMembers = function () {
         var _this = this;
-        return this.backendAPISevice.fetchAllImageIds()
+        return this.backendAPISevice.fetchAllPodMemberIdentifiers()
             .flatMap(function (id) { return _this.fetchPodMember(id); });
     };
     RemotePodMemberService.prototype.removeProject = function (projectToRemove) {

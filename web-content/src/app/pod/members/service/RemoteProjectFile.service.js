@@ -27,7 +27,7 @@ var RemoteProjectFileService = /** @class */ (function () {
     };
     RemoteProjectFileService.prototype.fetchAllRemoteProjects = function () {
         var _this = this;
-        return this.backendAPISevice.fetchAllImageIds()
+        return this.backendAPISevice.fetchAllPodMemberIdentifiers()
             .map(function (response) { return response; })
             .flatMap(function (files) { return Observable_1.Observable.from(files); })
             .map(function (identifier) { return identifier._id; })

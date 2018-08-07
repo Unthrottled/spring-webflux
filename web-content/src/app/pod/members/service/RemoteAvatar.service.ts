@@ -22,11 +22,12 @@ export class RemoteAvatarService {
     }
 
     public fetchAllRemoteProjects(): Observable<RemoteAvatar> {
-        return this.backendAPISevice.fetchAllImageIds()
-            .map((response: any[]) => response)
-            .flatMap(files => Observable.from(files))
-            .map(identifier => identifier._id)
-            .flatMap(id => this.fetchRemoteProject(id));
+        // return this.backendAPISevice.fetchAllPodMemberIdentifiers()
+        //     .map((response: any[]) => response)
+        //     .flatMap(files => Observable.from(files))
+        //     .map(identifier => identifier._id)
+        //     .flatMap(id => this.fetchRemoteProject(id));
+        return Observable.empty<RemoteAvatar>();
     }
 
     removeProject(projectToRemove: RemoteAvatar): Observable<boolean> {

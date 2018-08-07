@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Action} from '../pod/members/model/Action.model';
-import {Interest} from '../pod/members/edit/PersonalInformationEditor.component';
 
 @Injectable()
 export class BackendAPIService {
@@ -28,19 +27,10 @@ export class BackendAPIService {
         }).map(response => (<Boolean>response === true));
     }
 
-    //todo: should go
-    fetchAllImageIds(): Observable<any> {
-        return this.httpClient.get('', {
-            responseType: 'json'
-        })
-    }
-
     fetchAllPodMemberIdentifiers(): Observable<string> {
-
         return this.httpClient.get('./api/pod/members', {
-        responseType: 'text'
-            }
-        );
+            responseType: 'text'
+        })
     }
 
     fetchAllPodMemberInterests(podMemberId: string): Observable<any> {

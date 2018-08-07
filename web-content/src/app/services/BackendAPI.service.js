@@ -31,12 +31,6 @@ var BackendAPIService = /** @class */ (function () {
             responseType: 'json'
         }).map(function (response) { return (response === true); });
     };
-    //todo: should go
-    BackendAPIService.prototype.fetchAllImageIds = function () {
-        return this.httpClient.get('', {
-            responseType: 'json'
-        });
-    };
     BackendAPIService.prototype.fetchAllPodMemberIdentifiers = function () {
         return this.httpClient.get('./api/pod/members', {
             responseType: 'text'
