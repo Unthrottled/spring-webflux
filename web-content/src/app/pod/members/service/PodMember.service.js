@@ -12,8 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var LocalPodMember_service_1 = require("./LocalPodMember.service");
 var RemotePodMember_service_1 = require("./RemotePodMember.service");
-var RemotePodMember_1 = require("../model/RemotePodMember");
-var LocalPodMember_1 = require("../model/LocalPodMember");
 var EventDispatch_service_1 = require("./EventDispatch.service");
 var rxjs_1 = require("rxjs");
 var PodMemberService = /** @class */ (function () {
@@ -21,21 +19,9 @@ var PodMemberService = /** @class */ (function () {
         this.localPodMemberService = localPodMemberService;
         this.remotePodMemberService = remotePodMemberService;
         this.eventDispatchService = eventDispatchService;
-        this.podMemberMap = new Map();
         this.podMembersIterator = [];
-        this._loadingObservable = new rxjs_1.ReplaySubject();
+        this._loadingObservable = new rxjs_1.ReplaySubject(1);
     }
-    PodMemberService.prototype.ngOnInit = function () {
-        var _this = this;
-        this.remotePodMemberService.fetchAllRemotePodMembers()
-            .subscribe(function (remoteFile) {
-            _this.addPodMemberToList(remoteFile);
-        }, function (error) {
-            console.warn(error);
-        }, function () {
-            _this._loadingObservable.next(true);
-        });
-    };
     Object.defineProperty(PodMemberService.prototype, "loadingObservable", {
         get: function () {
             return this._loadingObservable;
@@ -50,6 +36,18 @@ var PodMemberService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    PodMemberService.prototype.ngOnInit = function () {
+        var _this = this;
+        this.remotePodMemberService.fetchAllRemotePodMembers()
+            .subscribe(function (remoteFile) {
+            _this.addPodMemberToList(remoteFile);
+        }, function (error) {
+            console.warn(error);
+            // this._loadingObservable.next(true);
+        }, function () {
+            // this._loadingObservable.next(true);
+        });
+    };
     PodMemberService.prototype.addPodMember = function () {
         var podMember = this.localPodMemberService.createLocalPodMember();
         this.addPodMemberToList(podMember);
@@ -63,23 +61,8 @@ var PodMemberService = /** @class */ (function () {
         return this.eventDispatchService.dispatchPodAction(action)
             .map(function (it) { return podMember; });
     };
-    PodMemberService.prototype.addPodMemberToList = function (podMember) {
-        this.podMembersIterator.push(podMember);
-    };
     PodMemberService.prototype.removePodMember = function (podMember) {
-        if (podMember instanceof RemotePodMember_1.RemotePodMember) {
-            // let self = this;
-            // this.remotePodMemberService.removeProject(<RemotePodMember>podMember)
-            //     .filter(b=>b)
-            //     .subscribe(result=>{
-            //         self.removePodMemberFromList(podMember);
-            //     }, error=>{
-            //         console.log(error)
-            // });
-        }
-        else if (podMember instanceof LocalPodMember_1.LocalPodMember) {
-            this.removePodMemberFromList(podMember);
-        }
+        this.removePodMemberFromList(podMember);
         var action = {
             type: 'POD_MEMBER_DELETED',
             payload: {
@@ -90,17 +73,11 @@ var PodMemberService = /** @class */ (function () {
         return this.eventDispatchService.dispatchPodAction(action)
             .map(function (it) { return podMember; });
     };
+    PodMemberService.prototype.addPodMemberToList = function (podMember) {
+        this.podMembersIterator.push(podMember);
+    };
     PodMemberService.prototype.removePodMemberFromList = function (podMemberToRemove) {
         this.podMembersIterator = this.podMembersIterator.filter(function (it) { return it.getIdentifier() !== podMemberToRemove.getIdentifier(); });
-    };
-    PodMemberService.prototype.uploadAvatar = function (avatar) {
-        // this.imageUploadService.uploadImage(avatar.selectedFile)
-        //     .subscribe(remoteIdentifier=> )
-        // .map(imageId=>this.remotePodMemberService.fetchRemotePersonalInformation(imageId))
-        // .subscribe(remoteProject=> {
-        //     // this.removePodMemberFromList(avatar);
-        //     this.podMemberMap.set(remoteProject.getIdentifier(), remoteProject);
-        // });
     };
     PodMemberService = __decorate([
         core_1.Injectable(),

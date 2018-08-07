@@ -29,6 +29,20 @@ var PodMembersComponent = /** @class */ (function () {
     PodMembersComponent.prototype.addNewPodMember = function () {
         this.podMemberService.addPodMember();
     };
+    Object.defineProperty(PodMembersComponent.prototype, "loading", {
+        get: function () {
+            return this.podMemberService.loadingObservable;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PodMembersComponent.prototype, "notLoading", {
+        get: function () {
+            return this.podMemberService.loadingObservable.defaultIfEmpty(false).map(function (it) { return !it; });
+        },
+        enumerable: true,
+        configurable: true
+    });
     PodMembersComponent = __decorate([
         core_1.Component({
             selector: 'pod-member-component',

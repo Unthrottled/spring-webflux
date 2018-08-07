@@ -18,7 +18,7 @@ export class PodMemberService implements OnInit {
 
     }
 
-    private _loadingObservable = new ReplaySubject<boolean>();
+    private _loadingObservable = new ReplaySubject<boolean>(1);
 
     get loadingObservable(): Observable<boolean> {
         return this._loadingObservable;
@@ -34,8 +34,9 @@ export class PodMemberService implements OnInit {
                 this.addPodMemberToList(remoteFile);
             }, error => {
                 console.warn(error);
+                // this._loadingObservable.next(true);
             }, () => {
-                this._loadingObservable.next(true);
+                // this._loadingObservable.next(true);
             })
     }
 

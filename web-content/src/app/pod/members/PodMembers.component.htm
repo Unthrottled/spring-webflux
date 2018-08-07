@@ -1,4 +1,5 @@
 <div class="project-file-component-container">
+    <loading-indicator [doneLoading]="loading"></loading-indicator>
     <pod-member-list [podMembers]="podMembers"></pod-member-list>
     <div class="add-image-container">
         <div class="btn btn-lg btn-primary" (click)="addNewPodMember()">Add Pod Member</div>

@@ -18,11 +18,11 @@ var RemoteAvatarService = /** @class */ (function () {
         this.backendAPISevice = backendAPISevice;
         this.windowRef = windowRef;
     }
-    RemoteAvatarService.prototype.fetchRemoteProject = function (fileId) {
+    RemoteAvatarService.prototype.fetchRemoteAvatar = function (podMemberId) {
         var _this = this;
-        return this.backendAPISevice.fetchImage(fileId)
+        return this.backendAPISevice.fetchImage(podMemberId)
             .map(function (arrayBuffer) { return _this.convertToImageBinary(arrayBuffer); })
-            .map(function (base64Binary) { return new RemoteAvatar_1.RemoteAvatar(fileId, base64Binary); });
+            .map(function (base64Binary) { return new RemoteAvatar_1.RemoteAvatar(podMemberId, base64Binary); });
     };
     RemoteAvatarService.prototype.convertToImageBinary = function (arrayBuffer) {
         var binary = '';

@@ -31,6 +31,7 @@ var LocalPodMember_service_1 = require("./service/LocalPodMember.service");
 var PodMemberEditor_component_1 = require("./edit/PodMemberEditor.component");
 var EventDispatch_service_1 = require("./service/EventDispatch.service");
 var RemotePersonalInformation_service_1 = require("./service/RemotePersonalInformation.service");
+var loading_indicator_component_1 = require("../../loading/loading.indicator.component");
 var MembersModule = /** @class */ (function () {
     function MembersModule() {
     }
@@ -62,6 +63,7 @@ var MembersModule = /** @class */ (function () {
                 PersonalInformationEditor_component_1.PersonalInformationEditorComponent,
                 InterestList_component_1.InterestListComponent,
                 TextSubmission_component_1.TextSubmissionComponent,
+                loading_indicator_component_1.LoadingIndicatorComponent,
                 PodMemberEditor_component_1.PodMemberEditorComponent,
             ],
             bootstrap: [],

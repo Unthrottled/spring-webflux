@@ -11,13 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
-var Observable_1 = require("rxjs/Observable");
 var RemotePersonalInformationService = /** @class */ (function () {
     function RemotePersonalInformationService(backendAPISevice) {
         this.backendAPISevice = backendAPISevice;
     }
-    RemotePersonalInformationService.prototype.fetchRemotePersonalInformation = function (fileId) {
-        return Observable_1.Observable.empty();
+    RemotePersonalInformationService.prototype.fetchRemotePersonalInformation = function (podMemberId) {
+        return this.backendAPISevice.fetchPersonalInformation(podMemberId);
     };
     RemotePersonalInformationService = __decorate([
         core_1.Injectable(),

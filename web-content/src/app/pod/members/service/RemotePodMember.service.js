@@ -22,7 +22,7 @@ var RemotePodMemberService = /** @class */ (function () {
         this.remotePersonalInformationService = remotePersonalInformationService;
     }
     RemotePodMemberService.prototype.fetchPodMember = function (podMemberId) {
-        return new RemotePodMember_1.RemotePodMember(new Identifier_model_1.Identifier(podMemberId), this.remoteAvatarService.fetchRemoteProject(podMemberId), this.remotePersonalInformationService.fetchRemotePersonalInformation(podMemberId));
+        return new RemotePodMember_1.RemotePodMember(new Identifier_model_1.Identifier(podMemberId), this.remoteAvatarService.fetchRemoteAvatar(podMemberId), this.remotePersonalInformationService.fetchRemotePersonalInformation(podMemberId));
     };
     RemotePodMemberService.prototype.fetchAllRemotePodMembers = function () {
         var _this = this;

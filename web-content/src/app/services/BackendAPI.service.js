@@ -36,10 +36,9 @@ var BackendAPIService = /** @class */ (function () {
             responseType: 'text'
         });
     };
-    BackendAPIService.prototype.fetchAllPodMemberInterests = function (podMemberId) {
-        return this.httpClient.get('./api/pod/member/' + podMemberId + '/interests', {
+    BackendAPIService.prototype.fetchPersonalInformation = function (podMemberId) {
+        return this.httpClient.get('./api/pod/member/' + podMemberId + '/information', {
             responseType: 'json',
-            observe: 'events'
         }).map(function (response) { return response; });
     };
     BackendAPIService.prototype.postPodMemberEvent = function (action, podMemberIdentifier) {

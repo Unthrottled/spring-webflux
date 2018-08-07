@@ -23,6 +23,7 @@ import {LocalPodMemberService} from './service/LocalPodMember.service';
 import {PodMemberEditorComponent} from './edit/PodMemberEditor.component';
 import {EventDispatchService} from './service/EventDispatch.service';
 import {RemotePersonalInformationService} from './service/RemotePersonalInformation.service';
+import {LoadingIndicatorComponent} from '../../loading/loading.indicator.component';
 
 @NgModule({
         imports: [
@@ -53,6 +54,7 @@ import {RemotePersonalInformationService} from './service/RemotePersonalInformat
             PersonalInformationEditorComponent,
             InterestListComponent,
             TextSubmissionComponent,
+            LoadingIndicatorComponent,
             PodMemberEditorComponent,
         ],
         bootstrap: [],
