@@ -201,7 +201,7 @@ Granted there is a bit of a learning curve to adopting non-blocking, functional,
 
 It requires a different mindset compared to imperative programming.
 
-![Learning curve](assets/the learning curve.png)
+![Learning curve](assets/the_learning_curve.png)
 
 I like to think of imperative programming as rolling a ball to it's destination.
 Where the actual program is controlling the actions of the ball. 
