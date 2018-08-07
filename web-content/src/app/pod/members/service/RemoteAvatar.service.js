@@ -12,31 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
 var window_1 = require("../../../util/window");
-var Observable_1 = require("rxjs/Observable");
+var RemoteAvatar_1 = require("../model/RemoteAvatar");
 var RemoteAvatarService = /** @class */ (function () {
     function RemoteAvatarService(backendAPISevice, windowRef) {
         this.backendAPISevice = backendAPISevice;
         this.windowRef = windowRef;
     }
     RemoteAvatarService.prototype.fetchRemoteProject = function (fileId) {
-        // return this.backendAPISevice.fetchImage(fileId)
-        //     .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
-        //     .map(base64Binary => new RemoteAvatar(fileId, base64Binary))
-        // return new RemoteAvatar(new Identifier(fileId),
-        //     this.backendAPISevice.fetchImage(fileId)
-        //         .map(arrayBuffer => this.convertToImageBinary(arrayBuffer)));
-        return Observable_1.Observable.empty();
-    };
-    RemoteAvatarService.prototype.fetchAllRemoteProjects = function () {
-        // return this.backendAPISevice.fetchAllPodMemberIdentifiers()
-        //     .map((response: any[]) => response)
-        //     .flatMap(files => Observable.from(files))
-        //     .map(identifier => identifier._id)
-        //     .flatMap(id => this.fetchRemotePersonalInformation(id));
-        return Observable_1.Observable.empty();
-    };
-    RemoteAvatarService.prototype.removeProject = function (projectToRemove) {
-        return this.backendAPISevice.deleteImage(projectToRemove.getIdentifier());
+        var _this = this;
+        return this.backendAPISevice.fetchImage(fileId)
+            .map(function (arrayBuffer) { return _this.convertToImageBinary(arrayBuffer); })
+            .map(function (base64Binary) { return new RemoteAvatar_1.RemoteAvatar(fileId, base64Binary); });
     };
     RemoteAvatarService.prototype.convertToImageBinary = function (arrayBuffer) {
         var binary = '';

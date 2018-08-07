@@ -1,9 +1,8 @@
-import {Injectable} from "@angular/core";
-import {BackendAPIService} from "../../../services/BackendAPI.service";
-import {WindowRef} from "../../../util/window";
-import {RemoteAvatar} from "../model/RemoteAvatar";
-import {Identifier} from "../model/Identifier.model";
-import {Observable} from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {BackendAPIService} from '../../../services/BackendAPI.service';
+import {WindowRef} from '../../../util/window';
+import {RemoteAvatar} from '../model/RemoteAvatar';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class RemoteAvatarService {
@@ -12,26 +11,10 @@ export class RemoteAvatarService {
     }
 
     public fetchRemoteProject(fileId: string): Observable<RemoteAvatar> {
-        // return this.backendAPISevice.fetchImage(fileId)
-        //     .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
-        //     .map(base64Binary => new RemoteAvatar(fileId, base64Binary))
-        // return new RemoteAvatar(new Identifier(fileId),
-        //     this.backendAPISevice.fetchImage(fileId)
-        //         .map(arrayBuffer => this.convertToImageBinary(arrayBuffer)));
-        return Observable.empty<RemoteAvatar>();
-    }
+        return this.backendAPISevice.fetchImage(fileId)
+            .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
+            .map(base64Binary => new RemoteAvatar(fileId, base64Binary))
 
-    public fetchAllRemoteProjects(): Observable<RemoteAvatar> {
-        // return this.backendAPISevice.fetchAllPodMemberIdentifiers()
-        //     .map((response: any[]) => response)
-        //     .flatMap(files => Observable.from(files))
-        //     .map(identifier => identifier._id)
-        //     .flatMap(id => this.fetchRemotePersonalInformation(id));
-        return Observable.empty<RemoteAvatar>();
-    }
-
-    removeProject(projectToRemove: RemoteAvatar): Observable<boolean> {
-        return this.backendAPISevice.deleteImage(projectToRemove.getIdentifier());
     }
 
     private convertToImageBinary(arrayBuffer: any): any {
