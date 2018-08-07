@@ -43,9 +43,9 @@ var PodMemberService = /** @class */ (function () {
             _this.addPodMemberToList(remoteFile);
         }, function (error) {
             console.warn(error);
-            // this._loadingObservable.next(true);
+            _this._loadingObservable.next(true);
         }, function () {
-            // this._loadingObservable.next(true);
+            _this._loadingObservable.next(true);
         });
     };
     PodMemberService.prototype.addPodMember = function () {

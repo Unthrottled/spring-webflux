@@ -34,9 +34,9 @@ export class PodMemberService implements OnInit {
                 this.addPodMemberToList(remoteFile);
             }, error => {
                 console.warn(error);
-                // this._loadingObservable.next(true);
+                this._loadingObservable.next(true);
             }, () => {
-                // this._loadingObservable.next(true);
+                this._loadingObservable.next(true);
             })
     }
 

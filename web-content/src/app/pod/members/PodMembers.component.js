@@ -36,13 +36,6 @@ var PodMembersComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(PodMembersComponent.prototype, "notLoading", {
-        get: function () {
-            return this.podMemberService.loadingObservable.defaultIfEmpty(false).map(function (it) { return !it; });
-        },
-        enumerable: true,
-        configurable: true
-    });
     PodMembersComponent = __decorate([
         core_1.Component({
             selector: 'pod-member-component',
