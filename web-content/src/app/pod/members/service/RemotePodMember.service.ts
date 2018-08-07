@@ -24,7 +24,6 @@ export class RemotePodMemberService {
             this.remoteAvatarService.fetchRemoteAvatar(podMemberId),
             this.remotePersonalInformationService.fetchRemotePersonalInformation(podMemberId)
         );
-
     }
 
     public fetchAllRemotePodMembers(): Observable<PodMember> {
