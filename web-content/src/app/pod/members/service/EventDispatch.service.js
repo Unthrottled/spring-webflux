@@ -15,7 +15,11 @@ var EventDispatchService = /** @class */ (function () {
     function EventDispatchService(backendAPI) {
         this.backendAPI = backendAPI;
     }
-    EventDispatchService.prototype.dispatchAction = function (action) {
+    EventDispatchService.prototype.dispatchPodMemberAction = function (action, podMemberIdentifier) {
+        console.log(action);
+        return this.backendAPI.postPodMemberEvent(action, podMemberIdentifier);
+    };
+    EventDispatchService.prototype.dispatchPodAction = function (action) {
         console.log(action);
         return this.backendAPI.postEvent(action);
     };

@@ -9,7 +9,12 @@ export class EventDispatchService {
     constructor(private backendAPI: BackendAPIService) {
     }
 
-    public dispatchAction<T>(action: Action<T>): Observable<Action<T>> {
+    public dispatchPodMemberAction<T>(action: Action<T>, podMemberIdentifier: string): Observable<Action<T>> {
+        console.log(action);
+        return this.backendAPI.postPodMemberEvent(action,podMemberIdentifier);
+    }
+
+    public dispatchPodAction<T>(action: Action<T>): Observable<Action<T>> {
         console.log(action);
         return this.backendAPI.postEvent(action);
     }

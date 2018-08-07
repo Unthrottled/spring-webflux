@@ -48,8 +48,7 @@ export class PodMemberEditorComponent {
                 const uploadedAvatarAction: Action<AvatarPayload> = {
                     type: "AVATAR_UPLOADED",
                     payload: {
-                        podMemberIdentifier: this.podMember.getIdentifier(),
-                        identifier: remoteIdentifier
+                        identifier: remoteIdentifier,
                     },
                     error: false
                 }
@@ -60,14 +59,11 @@ export class PodMemberEditorComponent {
             } );
     }
 
-
-
     interestAdded(interest: Interest): void {
-        const action: Action<InterestActionPayload> = {
+        const action: Action<Interest> = {
             type: 'INTEREST_CAPTURED',
             payload: {
                 ...interest,
-                podMemberIdentifier: this.podMember.getIdentifier()
             },
             error: false,
         };
@@ -75,11 +71,10 @@ export class PodMemberEditorComponent {
     }
 
     personalInformationChanged(fieldChanged: FieldChanged){
-        const action: Action<FieldChangedActionPayload> = {
+        const action: Action<FieldChanged> = {
             type: 'PERSONAL_INFO_CAPTURED',
             payload: {
                 ...fieldChanged,
-                podMemberIdentifier: this.podMember.getIdentifier(),
             },
             error: false,
         };
@@ -87,24 +82,24 @@ export class PodMemberEditorComponent {
     }
 
     interestRemoved(interest: Interest): void {
-        const action: Action<InterestActionPayload> = {
+        const action: Action<Interest> = {
             type: 'INTEREST_REMOVED',
             payload: {
-                ...interest,
-                podMemberIdentifier: this.podMember.getIdentifier()
+                ...interest
             },
             error: false,
         };
         this.postEvent(action);
     }
 
+    //todo: probably just need to dispatch to pod member event stream
     postEvent<T>(action: Action<T>): void{
-        this.eventDispatchService.dispatchAction(action)
+        this.eventDispatchService.dispatchPodMemberAction(action, this.podMember.getIdentifier())
             .subscribe((it)=>{}, (err)=>{})
     }
 }
 
-interface AvatarPayload extends PodMemberPersonal {
+interface AvatarPayload {
     identifier: string;
 }
 

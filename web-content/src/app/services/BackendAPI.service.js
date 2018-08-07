@@ -48,6 +48,9 @@ var BackendAPIService = /** @class */ (function () {
             observe: 'events'
         }).map(function (response) { return response; });
     };
+    BackendAPIService.prototype.postPodMemberEvent = function (action, podMemberIdentifier) {
+        return Observable_1.Observable.of(action);
+    };
     BackendAPIService.prototype.postEvent = function (action) {
         return Observable_1.Observable.of(action);
     };

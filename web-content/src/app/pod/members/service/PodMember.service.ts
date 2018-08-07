@@ -49,7 +49,7 @@ export class PodMemberService implements OnInit {
             error: false,
         };
 
-        return this.eventDispatchService.dispatchAction<PodMemberPayload>(action)
+        return this.eventDispatchService.dispatchPodAction<PodMemberPayload>(action)
             .map((it)=> podMember);
     }
 
@@ -77,7 +77,7 @@ export class PodMemberService implements OnInit {
             },
             error: false
         };
-        return this.eventDispatchService.dispatchAction(action)
+        return this.eventDispatchService.dispatchPodAction<PodMemberPayload>(action)
             .map((it)=> podMember);
     }
 

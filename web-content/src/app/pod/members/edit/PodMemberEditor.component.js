@@ -60,8 +60,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
             var uploadedAvatarAction = {
                 type: "AVATAR_UPLOADED",
                 payload: {
-                    podMemberIdentifier: _this.podMember.getIdentifier(),
-                    identifier: remoteIdentifier
+                    identifier: remoteIdentifier,
                 },
                 error: false
             };
@@ -74,7 +73,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
     PodMemberEditorComponent.prototype.interestAdded = function (interest) {
         var action = {
             type: 'INTEREST_CAPTURED',
-            payload: __assign({}, interest, { podMemberIdentifier: this.podMember.getIdentifier() }),
+            payload: __assign({}, interest),
             error: false,
         };
         this.postEvent(action);
@@ -82,7 +81,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
     PodMemberEditorComponent.prototype.personalInformationChanged = function (fieldChanged) {
         var action = {
             type: 'PERSONAL_INFO_CAPTURED',
-            payload: __assign({}, fieldChanged, { podMemberIdentifier: this.podMember.getIdentifier() }),
+            payload: __assign({}, fieldChanged),
             error: false,
         };
         this.postEvent(action);
@@ -90,13 +89,14 @@ var PodMemberEditorComponent = /** @class */ (function () {
     PodMemberEditorComponent.prototype.interestRemoved = function (interest) {
         var action = {
             type: 'INTEREST_REMOVED',
-            payload: __assign({}, interest, { podMemberIdentifier: this.podMember.getIdentifier() }),
+            payload: __assign({}, interest),
             error: false,
         };
         this.postEvent(action);
     };
+    //todo: probably just need to dispatch to pod member event stream
     PodMemberEditorComponent.prototype.postEvent = function (action) {
-        this.eventDispatchService.dispatchAction(action)
+        this.eventDispatchService.dispatchPodMemberAction(action, this.podMember.getIdentifier())
             .subscribe(function (it) { }, function (err) { });
     };
     __decorate([

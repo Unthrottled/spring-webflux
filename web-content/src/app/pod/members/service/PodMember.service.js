@@ -50,7 +50,7 @@ var PodMemberService = /** @class */ (function () {
             },
             error: false,
         };
-        return this.eventDispatchService.dispatchAction(action)
+        return this.eventDispatchService.dispatchPodAction(action)
             .map(function (it) { return podMember; });
     };
     PodMemberService.prototype.addPodMemberToList = function (podMember) {
@@ -77,7 +77,7 @@ var PodMemberService = /** @class */ (function () {
             },
             error: false
         };
-        return this.eventDispatchService.dispatchAction(action)
+        return this.eventDispatchService.dispatchPodAction(action)
             .map(function (it) { return podMember; });
     };
     PodMemberService.prototype.removePodMemberFromList = function (podMemberToRemove) {

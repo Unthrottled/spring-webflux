@@ -51,6 +51,10 @@ export class BackendAPIService {
         ).map((response: HttpEvent<Object>) => response)
     }
 
+    postPodMemberEvent<T>(action: Action<T>, podMemberIdentifier: string): Observable<Action<T>> {
+        return Observable.of(action);
+    }
+
     postEvent<T>(action: Action<T>): Observable<Action<T>> {
         return Observable.of(action);
     }
