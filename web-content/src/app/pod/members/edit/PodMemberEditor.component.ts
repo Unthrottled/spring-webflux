@@ -7,7 +7,7 @@ import {Action} from '../model/Action.model';
 import {LocalAvatar} from '../model/LocalAvatar';
 import {ImageUploadService} from '../service/ImageUpload.service';
 import {EventDispatchService} from '../service/EventDispatch.service';
-import {PodMemberPersonal} from './PersonalInformationEditor.component';
+import {FieldChanged, Interest, PodMemberPersonal} from './PersonalInformationEditor.component';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 @Component({
@@ -60,6 +60,44 @@ export class PodMemberEditorComponent {
             } );
     }
 
+
+
+    interestAdded(interest: Interest): void {
+        const action: Action<InterestActionPayload> = {
+            type: 'INTEREST_CAPTURED',
+            payload: {
+                ...interest,
+                podMemberIdentifier: this.podMember.getIdentifier()
+            },
+            error: false,
+        };
+        this.postEvent(action);
+    }
+
+    personalInformationChanged(fieldChanged: FieldChanged){
+        const action: Action<FieldChangedActionPayload> = {
+            type: 'PERSONAL_INFO_CAPTURED',
+            payload: {
+                ...fieldChanged,
+                podMemberIdentifier: this.podMember.getIdentifier(),
+            },
+            error: false,
+        };
+        this.postEvent(action);
+    }
+
+    interestRemoved(interest: Interest): void {
+        const action: Action<InterestActionPayload> = {
+            type: 'INTEREST_REMOVED',
+            payload: {
+                ...interest,
+                podMemberIdentifier: this.podMember.getIdentifier()
+            },
+            error: false,
+        };
+        this.postEvent(action);
+    }
+
     postEvent<T>(action: Action<T>): void{
         this.eventDispatchService.dispatchAction(action)
             .subscribe((it)=>{}, (err)=>{})
@@ -68,4 +106,12 @@ export class PodMemberEditorComponent {
 
 interface AvatarPayload extends PodMemberPersonal {
     identifier: string;
+}
+
+interface InterestActionPayload extends Interest, PodMemberPersonal{
+
+}
+
+interface FieldChangedActionPayload extends FieldChanged, PodMemberPersonal{
+
 }

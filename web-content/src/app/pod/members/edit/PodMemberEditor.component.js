@@ -1,4 +1,12 @@
 "use strict";
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,6 +70,30 @@ var PodMemberEditorComponent = /** @class */ (function () {
             // should probably try again
             console.warn(error);
         });
+    };
+    PodMemberEditorComponent.prototype.interestAdded = function (interest) {
+        var action = {
+            type: 'INTEREST_CAPTURED',
+            payload: __assign({}, interest, { podMemberIdentifier: this.podMember.getIdentifier() }),
+            error: false,
+        };
+        this.postEvent(action);
+    };
+    PodMemberEditorComponent.prototype.personalInformationChanged = function (fieldChanged) {
+        var action = {
+            type: 'PERSONAL_INFO_CAPTURED',
+            payload: __assign({}, fieldChanged, { podMemberIdentifier: this.podMember.getIdentifier() }),
+            error: false,
+        };
+        this.postEvent(action);
+    };
+    PodMemberEditorComponent.prototype.interestRemoved = function (interest) {
+        var action = {
+            type: 'INTEREST_REMOVED',
+            payload: __assign({}, interest, { podMemberIdentifier: this.podMember.getIdentifier() }),
+            error: false,
+        };
+        this.postEvent(action);
     };
     PodMemberEditorComponent.prototype.postEvent = function (action) {
         this.eventDispatchService.dispatchAction(action)

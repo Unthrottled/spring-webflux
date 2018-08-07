@@ -18,10 +18,13 @@ export interface FieldChanged extends PodMemberPersonal {
 export class PersonalInformationEditorComponent {
 
     @Output()
-    private personalInformationEmmiter = new EventEmitter<PersonalInformation>();
+    private personalInformationChanged = new EventEmitter<FieldChanged>();
 
     @Output()
-    private onAction = new EventEmitter<Action<any>>();
+    private interestRemoved = new EventEmitter<Interest>();
+    @Output()
+    private interestAdded = new EventEmitter<Interest>();
+
 
 
     constructor() {
@@ -80,51 +83,29 @@ export class PersonalInformationEditorComponent {
     }
 
     addInterest(textPayload: TextPayload) {
-        let interest = new Interest(uuid(), textPayload.value, this.podMember.getIdentifier());
-        const action: Action<Interest> = {
-            type: 'INTEREST_CAPTURED',
-            payload: interest,
-            error: false,
-        };
-        this.onAction.emit(action);
+        let interest = new Interest(uuid(), textPayload.value);
+        this.interestAdded.emit(interest);
         this.personalInformation.addInterest(interest)
     }
 
     removeInterest(interest: Interest) {
-        const action: Action<Interest> = {
-            type: 'INTEREST_REMOVED',
-            payload: {
-                ...interest
-            },
-            error: false,
-        };
-        this.onAction.emit(action);
+        this.interestRemoved.emit(interest);
         this.personalInformation.removeInterest(interest);
     }
 
     fieldChanged(event: FieldChanged): void {
-        const action: Action<FieldChanged> = {
-            type: 'PERSONAL_INFO_CAPTURED',
-            payload: {
-                podMemberIdentifier: this.podMember.getIdentifier(),
-                ...event
-            },
-            error: false,
-        };
-        this.onAction.emit(action);
+        this.personalInformationChanged.emit(event);
     }
 }
 
-export class Interest implements PodMemberPersonal {
+export class Interest {
 
     id: string;
     value: string;
-    podMemberIdentifier: string;
 
-    constructor(id: string, value: string, podMemberIdentifier: string) {
+    constructor(id: string, value: string) {
         this.id = id;
         this.value = value;
-        this.podMemberIdentifier = podMemberIdentifier;
     }
 }
 

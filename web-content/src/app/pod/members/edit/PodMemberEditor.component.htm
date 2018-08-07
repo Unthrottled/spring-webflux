@@ -4,7 +4,12 @@
             <avatar-editor (avatarEmmiter)="updateAvatar($event)"></avatar-editor>
         </div>
         <div *ngIf="personalInformation | async">
-            <personal-information-editor [personalInformation]="personalInformation | async" (onAction)="postEvent($event)"></personal-information-editor>
+            <personal-information-editor [personalInformation]="personalInformation | async"
+                                         (onAction)="postEvent($event)"
+                                         (interestAdded)="interestAdded($event)"
+                                         (interestRemoved)="interestRemoved($event)"
+                                         (personalInformationChanged)="personalInformationChanged($event)"
+            ></personal-information-editor>
         </div>
     </div>
 </div>

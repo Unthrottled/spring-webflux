@@ -1,12 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22,8 +14,9 @@ var PersonalInformation_1 = require("../model/PersonalInformation");
 var uuid = require('uuid/v1');
 var PersonalInformationEditorComponent = /** @class */ (function () {
     function PersonalInformationEditorComponent() {
-        this.personalInformationEmmiter = new core_1.EventEmitter();
-        this.onAction = new core_1.EventEmitter();
+        this.personalInformationChanged = new core_1.EventEmitter();
+        this.interestRemoved = new core_1.EventEmitter();
+        this.interestAdded = new core_1.EventEmitter();
     }
     Object.defineProperty(PersonalInformationEditorComponent.prototype, "personalInformation", {
         get: function () {
@@ -90,40 +83,29 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
         configurable: true
     });
     PersonalInformationEditorComponent.prototype.addInterest = function (textPayload) {
-        var interest = new Interest(uuid(), textPayload.value, this.podMember.getIdentifier());
-        var action = {
-            type: 'INTEREST_CAPTURED',
-            payload: interest,
-            error: false,
-        };
-        this.onAction.emit(action);
+        var interest = new Interest(uuid(), textPayload.value);
+        this.interestAdded.emit(interest);
         this.personalInformation.addInterest(interest);
     };
     PersonalInformationEditorComponent.prototype.removeInterest = function (interest) {
-        var action = {
-            type: 'INTEREST_REMOVED',
-            payload: __assign({}, interest),
-            error: false,
-        };
-        this.onAction.emit(action);
+        this.interestRemoved.emit(interest);
         this.personalInformation.removeInterest(interest);
     };
     PersonalInformationEditorComponent.prototype.fieldChanged = function (event) {
-        var action = {
-            type: 'PERSONAL_INFO_CAPTURED',
-            payload: __assign({ podMemberIdentifier: this.podMember.getIdentifier() }, event),
-            error: false,
-        };
-        this.onAction.emit(action);
+        this.personalInformationChanged.emit(event);
     };
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
-    ], PersonalInformationEditorComponent.prototype, "personalInformationEmmiter", void 0);
+    ], PersonalInformationEditorComponent.prototype, "personalInformationChanged", void 0);
     __decorate([
         core_1.Output(),
         __metadata("design:type", Object)
-    ], PersonalInformationEditorComponent.prototype, "onAction", void 0);
+    ], PersonalInformationEditorComponent.prototype, "interestRemoved", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], PersonalInformationEditorComponent.prototype, "interestAdded", void 0);
     __decorate([
         core_1.Input(),
         __metadata("design:type", PersonalInformation_1.PersonalInformation),
@@ -140,10 +122,9 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
 }());
 exports.PersonalInformationEditorComponent = PersonalInformationEditorComponent;
 var Interest = /** @class */ (function () {
-    function Interest(id, value, podMemberIdentifier) {
+    function Interest(id, value) {
         this.id = id;
         this.value = value;
-        this.podMemberIdentifier = podMemberIdentifier;
     }
     return Interest;
 }());
