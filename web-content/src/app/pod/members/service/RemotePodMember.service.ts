@@ -16,13 +16,12 @@ export class RemotePodMemberService {
     constructor(private backendAPISevice: BackendAPIService,
                 private remoteAvatarService: RemoteAvatarService,
                 private remotePersonalInformationService: RemotePersonalInformationService,
-                // private remoteAvatarService: RemotePersonalInformationService
     ) {
     }
 
     public fetchPodMember(podMemberId: string): PodMember {
         return new RemotePodMember(new Identifier(podMemberId),
-            this.remoteAvatarService.fetchRemoteProject(podMemberId),
+            this.remoteAvatarService.fetchRemoteAvatar(podMemberId),
             this.remotePersonalInformationService.fetchRemotePersonalInformation(podMemberId)
         );
 

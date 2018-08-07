@@ -12,8 +12,8 @@ export class RemotePersonalInformationService {
     constructor(private backendAPISevice: BackendAPIService) {
     }
 
-    public fetchRemotePersonalInformation(fileId: string): Observable<PersonalInformation> {
-        return Observable.empty<PersonalInformation>();
+    public fetchRemotePersonalInformation(podMemberId: string): Observable<PersonalInformation> {
+        return this.backendAPISevice.fetchPersonalInformation(podMemberId);
     }
 
 }

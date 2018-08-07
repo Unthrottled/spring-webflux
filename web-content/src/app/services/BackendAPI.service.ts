@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Action} from '../pod/members/model/Action.model';
+import {PersonalInformation} from '../pod/members/model/PersonalInformation';
 
 @Injectable()
 export class BackendAPIService {
@@ -33,12 +34,10 @@ export class BackendAPIService {
         })
     }
 
-    fetchAllPodMemberInterests(podMemberId: string): Observable<any> {
-        return this.httpClient.get('./api/pod/member/' + podMemberId + '/interests', {
+    fetchPersonalInformation(podMemberId: string): Observable<PersonalInformation> {
+        return this.httpClient.get('./api/pod/member/' + podMemberId + '/information', {
                 responseType: 'json',
-                observe: 'events'
-    }
-        ).map((response: HttpEvent<Object>) => response)
+            }).map((response: PersonalInformation) => response)
     }
 
     postPodMemberEvent<T>(action: Action<T>, podMemberIdentifier: string): Observable<Action<T>> {

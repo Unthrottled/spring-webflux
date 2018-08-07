@@ -10,10 +10,10 @@ export class RemoteAvatarService {
     constructor(private backendAPISevice: BackendAPIService, private windowRef: WindowRef) {
     }
 
-    public fetchRemoteProject(fileId: string): Observable<RemoteAvatar> {
-        return this.backendAPISevice.fetchImage(fileId)
+    public fetchRemoteAvatar(podMemberId: string): Observable<RemoteAvatar> {
+        return this.backendAPISevice.fetchImage(podMemberId)
             .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
-            .map(base64Binary => new RemoteAvatar(fileId, base64Binary))
+            .map(base64Binary => new RemoteAvatar(podMemberId, base64Binary))
 
     }
 
