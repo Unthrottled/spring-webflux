@@ -11,21 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
-var Observable_1 = require("rxjs/Observable");
+var Identifier_model_1 = require("../model/Identifier.model");
 var RemoteAvatar_service_1 = require("./RemoteAvatar.service");
+var RemotePodMember_1 = require("../model/RemotePodMember");
+var PersonalInformation_1 = require("../model/PersonalInformation");
 var RemotePodMemberService = /** @class */ (function () {
-    function RemotePodMemberService(backendAPISevice, remoteAvatarService) {
+    function RemotePodMemberService(backendAPISevice, remoteAvatarService, remotePersonalInformationService) {
         this.backendAPISevice = backendAPISevice;
         this.remoteAvatarService = remoteAvatarService;
+        this.remotePersonalInformationService = remotePersonalInformationService;
     }
-    RemotePodMemberService.prototype.fetchPodMember = function (fileId) {
-        // return this.backendAPISevice.fetchImage(fileId)
-        return Observable_1.Observable.empty();
+    RemotePodMemberService.prototype.fetchPodMember = function (podMemberId) {
+        return new RemotePodMember_1.RemotePodMember(new Identifier_model_1.Identifier(podMemberId), this.remoteAvatarService.fetchRemoteProject(podMemberId), this.remotePersonalInformationService.fetchRemoteProject(podMemberId)
+            .map(function () { return new PersonalInformation_1.PersonalInformation(); }));
     };
     RemotePodMemberService.prototype.fetchAllRemotePodMembers = function () {
         var _this = this;
         return this.backendAPISevice.fetchAllPodMemberIdentifiers()
-            .flatMap(function (id) { return _this.fetchPodMember(id); });
+            .map(function (id) { return _this.fetchPodMember(id); });
     };
     RemotePodMemberService.prototype.removeProject = function (projectToRemove) {
         return this.backendAPISevice.deleteImage(projectToRemove.getIdentifier());
@@ -33,6 +36,7 @@ var RemotePodMemberService = /** @class */ (function () {
     RemotePodMemberService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [BackendAPI_service_1.BackendAPIService,
+            RemoteAvatar_service_1.RemoteAvatarService,
             RemoteAvatar_service_1.RemoteAvatarService])
     ], RemotePodMemberService);
     return RemotePodMemberService;

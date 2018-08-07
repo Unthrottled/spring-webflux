@@ -5,66 +5,22 @@ import {Identifier} from "./Identifier.model";
 import {PodMember} from './PodMember.model';
 import {PersonalInformation} from './PersonalInformation';
 
-export class RemotePodMember implements Avatar, PodMember {
-    private imageBinaryReplay = new ReplaySubject<any>(1);
-    private _name: string;
-
-    /**
-     *
-     * @param {Identifier} identifier the unique identifier that will allow use of
-     *                      the backend rest api.
-     * @param {Observable<any>} remoteProjectFile project file from the backend
-     */
-    constructor(identifier: Identifier = new Identifier(),
-                remoteProjectFile: Observable<any> = Observable.empty()) {
-
-        remoteProjectFile.subscribe(imageBinary => {
-            this.imageBinaryReplay.next(imageBinary);
-        });
-
-        this._identifier = identifier;
-        this._name = this.identifier.id;
-    }
-
+export class RemotePodMember implements PodMember {
+    personalInformation: Observable<PersonalInformation>;
+    avatar: Observable<Avatar>;
     private _identifier: Identifier;
 
-    get identifier(): Identifier {
-        return this._identifier;
-    }
-
-    set identifier(value: Identifier) {
-        this._identifier = value;
-    }
-
-    /**
-     * Replaces the current remote project file with the new binary.
-     *
-     * I am kind of torn at the moment because one you set the binary again
-     * it is no longer a remote project file and does not fit int this current
-     * abstraction.
-     * @param {File} file
-     */
-    setNewFile(file: File): void {
-        //todo: me?
+    constructor(id: Identifier, avatar: Observable<Avatar>, personalInformation: Observable<PersonalInformation>) {
+        this._identifier = id;
+        this.avatar = avatar;
+        this.personalInformation = personalInformation;
     }
 
     getIdentifier(): string {
         return this._identifier.id;
     }
 
-    /**
-     * Actual binary received from the backend service.
-     * @returns {Observable<any>}
-     */
-    imageBinary(): Observable<any> {
-        return this.imageBinaryReplay
-    }
-
-    avatar: Observable<Avatar>;
-    personalInformation: Observable<PersonalInformation>;
-
     setAvatar(avatar: Observable<Avatar>): void {
+        this.avatar = avatar;
     }
-
-
 }

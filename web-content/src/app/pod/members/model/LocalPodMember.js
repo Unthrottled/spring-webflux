@@ -4,7 +4,7 @@ var PersonalInformation_1 = require("./PersonalInformation");
 var rxjs_1 = require("rxjs");
 var LocalPodMember = /** @class */ (function () {
     function LocalPodMember(id, avatar) {
-        this.personalInformation = rxjs_1.Observable.of(new PersonalInformation_1.PersonalInformation(this));
+        this.personalInformation = rxjs_1.Observable.of(new PersonalInformation_1.PersonalInformation());
         this._identifier = id;
         this.avatar = avatar;
     }

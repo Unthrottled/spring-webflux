@@ -1,5 +1,4 @@
 import {Interest} from '../edit/PersonalInformationEditor.component';
-import {PodMember} from './PodMember.model';
 
 export class PersonalInformation {
     interests: Interest[] = [];
@@ -7,11 +6,10 @@ export class PersonalInformation {
     firstName: string = '';
     lastName: string = '';
     phoneNumber: string = '';
-    podMember: PodMember;
 
 
-    constructor(podMember: PodMember) {
-        this.podMember = podMember;
+    constructor() {
+
     }
 
     addInterest(interest: Interest): void {

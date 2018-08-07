@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {TextPayload} from '../model/TextPayload';
-import {PodMember} from '../model/PodMember.model';
-import {Action} from '../model/Action.model';
 
 const uuid = require('uuid/v1');
 
@@ -76,10 +74,6 @@ export class PersonalInformationEditorComponent {
 
     get interests(): Interest[] {
         return this.personalInformation.interests
-    }
-
-    get podMember(): PodMember {
-        return this.personalInformation.podMember;
     }
 
     addInterest(textPayload: TextPayload) {

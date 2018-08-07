@@ -75,13 +75,6 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(PersonalInformationEditorComponent.prototype, "podMember", {
-        get: function () {
-            return this.personalInformation.podMember;
-        },
-        enumerable: true,
-        configurable: true
-    });
     PersonalInformationEditorComponent.prototype.addInterest = function (textPayload) {
         var interest = new Interest(uuid(), textPayload.value);
         this.interestAdded.emit(interest);
