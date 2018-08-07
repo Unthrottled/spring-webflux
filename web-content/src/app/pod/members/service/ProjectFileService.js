@@ -24,7 +24,7 @@ var ProjectFileService = /** @class */ (function () {
     }
     ProjectFileService.prototype.ngOnInit = function () {
         var _this = this;
-        this.remoteProjectFileService.fetchAllRemoteProjects()
+        this.remoteProjectFileService.fetchAllRemotePodMembers()
             .subscribe(function (remoteFile) {
             _this.addProjectToList(remoteFile);
         }, function (error) {

@@ -22,7 +22,7 @@ var RemotePodMemberService = /** @class */ (function () {
         // return this.backendAPISevice.fetchImage(fileId)
         return Observable_1.Observable.empty();
     };
-    RemotePodMemberService.prototype.fetchAllRemoteProjects = function () {
+    RemotePodMemberService.prototype.fetchAllRemotePodMembers = function () {
         var _this = this;
         return this.backendAPISevice.fetchAllImageIds()
             .flatMap(function (id) { return _this.fetchPodMember(id); });

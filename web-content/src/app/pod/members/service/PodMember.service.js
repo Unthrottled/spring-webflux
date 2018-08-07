@@ -11,28 +11,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var LocalPodMember_service_1 = require("./LocalPodMember.service");
-var ImageUpload_service_1 = require("./ImageUpload.service");
 var RemotePodMember_service_1 = require("./RemotePodMember.service");
 var RemotePodMember_1 = require("../model/RemotePodMember");
 var LocalPodMember_1 = require("../model/LocalPodMember");
 var EventDispatch_service_1 = require("./EventDispatch.service");
+var rxjs_1 = require("rxjs");
 var PodMemberService = /** @class */ (function () {
-    function PodMemberService(localPodMemberService, remotePodMemberService, eventDispatchService, imageUploadService) {
+    function PodMemberService(localPodMemberService, remotePodMemberService, eventDispatchService) {
         this.localPodMemberService = localPodMemberService;
         this.remotePodMemberService = remotePodMemberService;
         this.eventDispatchService = eventDispatchService;
-        this.imageUploadService = imageUploadService;
         this.podMemberMap = new Map();
         this.podMembersIterator = [];
+        this._loadingObservable = new rxjs_1.ReplaySubject();
     }
     PodMemberService.prototype.ngOnInit = function () {
-        // this.remotePodMemberService.fetchAllRemoteProjects()
-        //     .subscribe(remoteFile=> {
-        //         this.addPodMemberToList(remoteFile);
-        //     }, error=> {
-        //         console.log(error);
-        //     })
+        var _this = this;
+        this.remotePodMemberService.fetchAllRemotePodMembers()
+            .subscribe(function (remoteFile) {
+            _this.addPodMemberToList(remoteFile);
+        }, function (error) {
+            console.warn(error);
+        }, function () {
+            _this._loadingObservable.next(true);
+        });
     };
+    Object.defineProperty(PodMemberService.prototype, "loadingObservable", {
+        get: function () {
+            return this._loadingObservable;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(PodMemberService.prototype, "podMembers", {
         get: function () {
             return this.podMembersIterator;
@@ -96,8 +106,7 @@ var PodMemberService = /** @class */ (function () {
         core_1.Injectable(),
         __metadata("design:paramtypes", [LocalPodMember_service_1.LocalPodMemberService,
             RemotePodMember_service_1.RemotePodMemberService,
-            EventDispatch_service_1.EventDispatchService,
-            ImageUpload_service_1.ImageUploadService])
+            EventDispatch_service_1.EventDispatchService])
     ], PodMemberService);
     return PodMemberService;
 }());
