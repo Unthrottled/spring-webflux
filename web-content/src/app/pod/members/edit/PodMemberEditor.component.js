@@ -55,7 +55,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
     PodMemberEditorComponent.prototype.updateAvatar = function (avatar) {
         var _this = this;
         this.podMember.setAvatar(new rxjs_1.BehaviorSubject(avatar));
-        this.imageUploadService.uploadImage(avatar.selectedFile)
+        this.imageUploadService.uploadImage(avatar.selectedFile, this.podMember.getIdentifier())
             .subscribe(function (remoteIdentifier) {
             var uploadedAvatarAction = {
                 type: "AVATAR_UPLOADED",

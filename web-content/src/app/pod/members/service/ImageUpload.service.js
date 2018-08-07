@@ -16,7 +16,7 @@ var ImageUploadService = /** @class */ (function () {
     function ImageUploadService(backendAPIService) {
         this.backendAPIService = backendAPIService;
     }
-    ImageUploadService.prototype.uploadImage = function (reachFile) {
+    ImageUploadService.prototype.uploadImage = function (reachFile, podMemberId) {
         var _this = this;
         return reachFile
             .filter(Object_util_1.isDefined)
@@ -30,7 +30,7 @@ var ImageUploadService = /** @class */ (function () {
             formData.append('avatar', reachFile);
             return formData;
         }).flatMap(function (formData) {
-            return _this.backendAPIService.postImage('aoe', formData);
+            return _this.backendAPIService.postImage(podMemberId, formData);
         });
         // todo should fix this
     };

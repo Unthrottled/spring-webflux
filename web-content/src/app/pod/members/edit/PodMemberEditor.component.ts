@@ -43,7 +43,7 @@ export class PodMemberEditorComponent {
 
     updateAvatar(avatar: LocalAvatar): void {
         this.podMember.setAvatar(new BehaviorSubject(avatar));
-        this.imageUploadService.uploadImage(avatar.selectedFile)
+        this.imageUploadService.uploadImage(avatar.selectedFile, this.podMember.getIdentifier())
             .subscribe(remoteIdentifier => {
                 const uploadedAvatarAction: Action<AvatarPayload> = {
                     type: "AVATAR_UPLOADED",

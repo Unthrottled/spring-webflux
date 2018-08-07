@@ -10,7 +10,7 @@ export class ImageUploadService {
     constructor(private backendAPIService: BackendAPIService) {
     }
 
-    public uploadImage(reachFile: Observable<File>): Observable<string> {
+    public uploadImage(reachFile: Observable<File>, podMemberId: string): Observable<string> {
         return reachFile
             .filter(isDefined)
             .map(reachFile => {
@@ -23,7 +23,7 @@ export class ImageUploadService {
                 formData.append('avatar', reachFile);
                 return formData
             }).flatMap(formData =>
-                this.backendAPIService.postImage('aoe', formData))
+                this.backendAPIService.postImage(podMemberId, formData))
         // todo should fix this
     }
 }
