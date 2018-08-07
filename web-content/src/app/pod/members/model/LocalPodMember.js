@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var PersonalInformation_1 = require("./PersonalInformation");
+var rxjs_1 = require("rxjs");
 var LocalPodMember = /** @class */ (function () {
     function LocalPodMember(id, avatar) {
-        this.personalInformation = new PersonalInformation_1.PersonalInformation();
+        this.personalInformation = rxjs_1.Observable.of(new PersonalInformation_1.PersonalInformation(this));
         this._identifier = id;
         this.avatar = avatar;
     }

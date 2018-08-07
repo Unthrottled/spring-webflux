@@ -18,6 +18,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var PersonalInformation_1 = require("../model/PersonalInformation");
 var uuid = require('uuid/v1');
 var PersonalInformationEditorComponent = /** @class */ (function () {
     function PersonalInformationEditorComponent() {
@@ -26,17 +27,10 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     }
     Object.defineProperty(PersonalInformationEditorComponent.prototype, "personalInformation", {
         get: function () {
-            return this.podMember.personalInformation;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PersonalInformationEditorComponent.prototype, "podMember", {
-        get: function () {
-            return this._podMember;
+            return this._personalInformation;
         },
         set: function (value) {
-            this._podMember = value;
+            this._personalInformation = value;
         },
         enumerable: true,
         configurable: true
@@ -88,6 +82,13 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(PersonalInformationEditorComponent.prototype, "podMember", {
+        get: function () {
+            return this.personalInformation.podMember;
+        },
+        enumerable: true,
+        configurable: true
+    });
     PersonalInformationEditorComponent.prototype.addInterest = function (textPayload) {
         var interest = new Interest(uuid(), textPayload.value, this.podMember.getIdentifier());
         var action = {
@@ -125,9 +126,9 @@ var PersonalInformationEditorComponent = /** @class */ (function () {
     ], PersonalInformationEditorComponent.prototype, "onAction", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [Object])
-    ], PersonalInformationEditorComponent.prototype, "podMember", null);
+        __metadata("design:type", PersonalInformation_1.PersonalInformation),
+        __metadata("design:paramtypes", [PersonalInformation_1.PersonalInformation])
+    ], PersonalInformationEditorComponent.prototype, "personalInformation", null);
     PersonalInformationEditorComponent = __decorate([
         core_1.Component({
             selector: 'personal-information-editor',

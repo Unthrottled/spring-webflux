@@ -5,7 +5,7 @@ import {PersonalInformation} from './PersonalInformation';
 import {Observable} from 'rxjs';
 
 export class LocalPodMember implements PodMember {
-    personalInformation: PersonalInformation = new PersonalInformation();
+    personalInformation: Observable<PersonalInformation> = Observable.of(new PersonalInformation(this));
     avatar: Observable<Avatar>;
     private _identifier: Identifier;
 

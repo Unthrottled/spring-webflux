@@ -14,7 +14,7 @@ export class PodMemberComponent {
     constructor(private projectFileService: PodMemberService) {
     }
 
-    get personalInformation(): PersonalInformation {
+    get personalInformation(): Observable<PersonalInformation> {
         return this.podMember.personalInformation
     }
 

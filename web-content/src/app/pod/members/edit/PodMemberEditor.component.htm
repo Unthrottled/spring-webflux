@@ -3,8 +3,8 @@
         <div>
             <avatar-editor (avatarEmmiter)="updateAvatar($event)"></avatar-editor>
         </div>
-        <div>
-            <personal-information-editor [podMember]="podMember" (onAction)="postEvent($event)"></personal-information-editor>
+        <div *ngIf="personalInformation | async">
+            <personal-information-editor [personalInformation]="personalInformation | async" (onAction)="postEvent($event)"></personal-information-editor>
         </div>
     </div>
 </div>

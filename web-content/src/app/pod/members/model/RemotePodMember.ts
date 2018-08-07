@@ -61,7 +61,7 @@ export class RemotePodMember implements Avatar, PodMember {
     }
 
     avatar: Observable<Avatar>;
-    personalInformation: PersonalInformation;
+    personalInformation: Observable<PersonalInformation>;
 
     setAvatar(avatar: Observable<Avatar>): void {
     }

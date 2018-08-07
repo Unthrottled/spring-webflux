@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var PersonalInformation = /** @class */ (function () {
-    function PersonalInformation() {
+    function PersonalInformation(podMember) {
         this.interests = [];
         this.email = '';
         this.firstName = '';
         this.lastName = '';
         this.phoneNumber = '';
+        this.podMember = podMember;
     }
     PersonalInformation.prototype.addInterest = function (interest) {
         this.interests.push(interest);

@@ -21,15 +21,9 @@ export class PodMemberEditorComponent {
                 private imageUploadService: ImageUploadService) {
     }
 
-    private _personalInformation: PersonalInformation;
 
-
-    get personalInformation(): PersonalInformation {
-        return this._personalInformation;
-    }
-
-    set personalInformation(value: PersonalInformation) {
-        this._personalInformation = value;
+    get personalInformation(): Observable<PersonalInformation> {
+        return this.podMember.personalInformation;
     }
 
     private _podMember: PodMember;

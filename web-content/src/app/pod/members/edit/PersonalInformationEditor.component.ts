@@ -27,19 +27,16 @@ export class PersonalInformationEditorComponent {
     constructor() {
     }
 
-    private _podMember: PodMember;
+    private _personalInformation: PersonalInformation;
 
-    get personalInformation(): PersonalInformation {
-        return this.podMember.personalInformation;
-    }
 
     @Input()
-    get podMember(): PodMember {
-        return this._podMember;
+    get personalInformation(): PersonalInformation {
+        return this._personalInformation;
     }
 
-    set podMember(value: PodMember) {
-        this._podMember = value;
+    set personalInformation(value: PersonalInformation) {
+        this._personalInformation = value;
     }
 
     get firstName(): string {
@@ -76,6 +73,10 @@ export class PersonalInformationEditorComponent {
 
     get interests(): Interest[] {
         return this.personalInformation.interests
+    }
+
+    get podMember(): PodMember {
+        return this.personalInformation.podMember;
     }
 
     addInterest(textPayload: TextPayload) {
