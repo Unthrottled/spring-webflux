@@ -32,7 +32,7 @@ var RemoteAvatarService = /** @class */ (function () {
         //     .map((response: any[]) => response)
         //     .flatMap(files => Observable.from(files))
         //     .map(identifier => identifier._id)
-        //     .flatMap(id => this.fetchRemoteProject(id));
+        //     .flatMap(id => this.fetchRemotePersonalInformation(id));
         return Observable_1.Observable.empty();
     };
     RemoteAvatarService.prototype.removeProject = function (projectToRemove) {

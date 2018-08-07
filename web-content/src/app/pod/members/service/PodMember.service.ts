@@ -94,7 +94,7 @@ export class PodMemberService implements OnInit {
     uploadAvatar(avatar: LocalAvatar) {
         // this.imageUploadService.uploadImage(avatar.selectedFile)
         //     .subscribe(remoteIdentifier=> )
-            // .map(imageId=>this.remotePodMemberService.fetchRemoteProject(imageId))
+            // .map(imageId=>this.remotePodMemberService.fetchRemotePersonalInformation(imageId))
             // .subscribe(remoteProject=> {
             //     // this.removePodMemberFromList(avatar);
             //     this.podMemberMap.set(remoteProject.getIdentifier(), remoteProject);

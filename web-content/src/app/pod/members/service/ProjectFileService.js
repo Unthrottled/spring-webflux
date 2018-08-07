@@ -66,7 +66,7 @@ var ProjectFileService = /** @class */ (function () {
     ProjectFileService.prototype.uploadFile = function (projectFile) {
         var _this = this;
         this.imageUploadService.uploadImage(projectFile.selectedFile)
-            .map(function (imageId) { return _this.remoteProjectFileService.fetchRemoteProject(imageId); })
+            .map(function (imageId) { return _this.remoteProjectFileService.fetchRemotePersonalInformation(imageId); })
             .subscribe(function (remoteProject) {
             _this.removeProjectFileFromList(projectFile);
             _this.projectFileMap.set(remoteProject.getIdentifier(), remoteProject);

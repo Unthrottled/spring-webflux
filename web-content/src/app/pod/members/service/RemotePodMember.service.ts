@@ -8,13 +8,14 @@ import {PodMember} from '../model/PodMember.model';
 import {RemoteAvatarService} from './RemoteAvatar.service';
 import {RemotePodMember} from '../model/RemotePodMember';
 import {PersonalInformation} from '../model/PersonalInformation';
+import {RemotePersonalInformationService} from './RemotePersonalInformation.service';
 
 @Injectable()
 export class RemotePodMemberService {
 
     constructor(private backendAPISevice: BackendAPIService,
                 private remoteAvatarService: RemoteAvatarService,
-                private remotePersonalInformationService: RemoteAvatarService,
+                private remotePersonalInformationService: RemotePersonalInformationService,
                 // private remoteAvatarService: RemotePersonalInformationService
     ) {
     }
@@ -22,8 +23,7 @@ export class RemotePodMemberService {
     public fetchPodMember(podMemberId: string): PodMember {
         return new RemotePodMember(new Identifier(podMemberId),
             this.remoteAvatarService.fetchRemoteProject(podMemberId),
-            this.remotePersonalInformationService.fetchRemoteProject(podMemberId)
-                .map (() => new PersonalInformation())
+            this.remotePersonalInformationService.fetchRemotePersonalInformation(podMemberId)
         );
 
     }

@@ -22,6 +22,7 @@ import {RemotePodMemberService} from './service/RemotePodMember.service';
 import {LocalPodMemberService} from './service/LocalPodMember.service';
 import {PodMemberEditorComponent} from './edit/PodMemberEditor.component';
 import {EventDispatchService} from './service/EventDispatch.service';
+import {RemotePersonalInformationService} from './service/RemotePersonalInformation.service';
 
 @NgModule({
         imports: [
@@ -57,6 +58,7 @@ import {EventDispatchService} from './service/EventDispatch.service';
         bootstrap: [],
         providers: [
             RemoteAvatarService,
+            RemotePersonalInformationService,
             PodMemberService,
             LocalProjectFileService,
             EventDispatchService,

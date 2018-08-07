@@ -26,7 +26,7 @@ export class RemoteAvatarService {
         //     .map((response: any[]) => response)
         //     .flatMap(files => Observable.from(files))
         //     .map(identifier => identifier._id)
-        //     .flatMap(id => this.fetchRemoteProject(id));
+        //     .flatMap(id => this.fetchRemotePersonalInformation(id));
         return Observable.empty<RemoteAvatar>();
     }
 

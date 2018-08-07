@@ -30,6 +30,7 @@ var RemotePodMember_service_1 = require("./service/RemotePodMember.service");
 var LocalPodMember_service_1 = require("./service/LocalPodMember.service");
 var PodMemberEditor_component_1 = require("./edit/PodMemberEditor.component");
 var EventDispatch_service_1 = require("./service/EventDispatch.service");
+var RemotePersonalInformation_service_1 = require("./service/RemotePersonalInformation.service");
 var MembersModule = /** @class */ (function () {
     function MembersModule() {
     }
@@ -66,6 +67,7 @@ var MembersModule = /** @class */ (function () {
             bootstrap: [],
             providers: [
                 RemoteAvatar_service_1.RemoteAvatarService,
+                RemotePersonalInformation_service_1.RemotePersonalInformationService,
                 PodMember_service_1.PodMemberService,
                 LocalProjectFile_service_1.LocalProjectFileService,
                 EventDispatch_service_1.EventDispatchService,

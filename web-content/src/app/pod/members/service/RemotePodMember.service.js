@@ -14,7 +14,7 @@ var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
 var Identifier_model_1 = require("../model/Identifier.model");
 var RemoteAvatar_service_1 = require("./RemoteAvatar.service");
 var RemotePodMember_1 = require("../model/RemotePodMember");
-var PersonalInformation_1 = require("../model/PersonalInformation");
+var RemotePersonalInformation_service_1 = require("./RemotePersonalInformation.service");
 var RemotePodMemberService = /** @class */ (function () {
     function RemotePodMemberService(backendAPISevice, remoteAvatarService, remotePersonalInformationService) {
         this.backendAPISevice = backendAPISevice;
@@ -22,8 +22,7 @@ var RemotePodMemberService = /** @class */ (function () {
         this.remotePersonalInformationService = remotePersonalInformationService;
     }
     RemotePodMemberService.prototype.fetchPodMember = function (podMemberId) {
-        return new RemotePodMember_1.RemotePodMember(new Identifier_model_1.Identifier(podMemberId), this.remoteAvatarService.fetchRemoteProject(podMemberId), this.remotePersonalInformationService.fetchRemoteProject(podMemberId)
-            .map(function () { return new PersonalInformation_1.PersonalInformation(); }));
+        return new RemotePodMember_1.RemotePodMember(new Identifier_model_1.Identifier(podMemberId), this.remoteAvatarService.fetchRemoteProject(podMemberId), this.remotePersonalInformationService.fetchRemotePersonalInformation(podMemberId));
     };
     RemotePodMemberService.prototype.fetchAllRemotePodMembers = function () {
         var _this = this;
@@ -37,7 +36,7 @@ var RemotePodMemberService = /** @class */ (function () {
         core_1.Injectable(),
         __metadata("design:paramtypes", [BackendAPI_service_1.BackendAPIService,
             RemoteAvatar_service_1.RemoteAvatarService,
-            RemoteAvatar_service_1.RemoteAvatarService])
+            RemotePersonalInformation_service_1.RemotePersonalInformationService])
     ], RemotePodMemberService);
     return RemotePodMemberService;
 }());
