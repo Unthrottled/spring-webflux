@@ -1,9 +1,11 @@
 package io.acari.springwebflux.handler
 
 import com.mongodb.reactivestreams.client.MongoClient
+import io.acari.springwebflux.models.Event
 import io.acari.springwebflux.models.Identifier
 import io.acari.springwebflux.models.Interest
 import io.acari.springwebflux.models.PersonalInformation
+import org.reactivestreams.Publisher
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -35,6 +37,9 @@ class PodHandler(private val reactiveMongoClient: MongoClient,
         index = (++index % list.size)
         return imageHandler.fetchImage(list[index])
     }
+
+    fun saveEvent(pathVariable: String, bodyToMono: Mono<Event>): Publisher<Event> =
+            bodyToMono
 //            Flux.from(reactiveMongoClient..find())
 //            .map { it.getId() }
 //            .map { it.asObjectId() }

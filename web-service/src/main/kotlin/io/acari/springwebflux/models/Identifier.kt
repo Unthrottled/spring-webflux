@@ -1,5 +1,7 @@
 package io.acari.springwebflux.models
 
+import com.fasterxml.jackson.databind.JsonNode
+
 /**
  * Forged in the flames of battle by alex.
  */
@@ -14,3 +16,5 @@ data class PersonalInformation(
 )
 
 data class Interest(val id: String, val value: String)
+
+data class Event(val type: String, val payload: JsonNode, val error: Boolean, val meta: JsonNode)

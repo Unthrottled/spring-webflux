@@ -2,6 +2,7 @@ package io.acari.springwebflux.rest
 
 import io.acari.springwebflux.handler.ImageHandler
 import io.acari.springwebflux.handler.PodHandler
+import io.acari.springwebflux.models.Event
 import io.acari.springwebflux.models.Identifier
 import io.acari.springwebflux.models.PersonalInformation
 import org.springframework.context.annotation.Bean
@@ -33,7 +34,7 @@ class RouterComponent(private val imageHandler: ImageHandler,
                         route(POST("/avatar"), saveImageHandler())
                         .andRoute(GET("/avatar"), handlerFunction())
                         .andRoute(GET("/information"), informationHandler())
-                        .andRoute(POST("/event"), deleteImageHandler())))
+                        .andRoute(POST("/event"), podMemberEventHandler())))
                 )
                 .andOther(resources("/**", ClassPathResource("static/")))
     }
@@ -61,9 +62,9 @@ class RouterComponent(private val imageHandler: ImageHandler,
                 .body(imageHandler.saveImage(it.bodyToFlux(Part::class.java)), String::class.java)
     }
 
-    private fun deleteImageHandler() = HandlerFunction {
+    private fun podMemberEventHandler() = HandlerFunction {
         ServerResponse.ok()
-                .body(imageHandler.removeImage(it.pathVariable("id")), Boolean::class.java)
+                .body(podHandler.saveEvent(it.pathVariable("id"), it.bodyToMono(Event::class.java)), Event::class.java)
     }
 
     private fun handlerFunction() = HandlerFunction {
