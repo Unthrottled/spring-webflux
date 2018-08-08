@@ -29,6 +29,7 @@ class RouterComponent(private val imageHandler: ImageHandler,
         return nest(path("/api"),
                 nest(path("/pod"),
                     route(GET("/members"), allPodMemberHandler())
+                    .andRoute(POST("/event"), podEventHandler())
                     .andRoute(GET("/members/avatar"), allAvatarIds())
                     .andNest(path("/member/{id}"),
                         route(POST("/avatar"), saveImageHandler())
@@ -64,7 +65,11 @@ class RouterComponent(private val imageHandler: ImageHandler,
 
     private fun podMemberEventHandler() = HandlerFunction {
         ServerResponse.ok()
-                .body(podHandler.saveEvent(it.pathVariable("id"), it.bodyToMono(Event::class.java)), Event::class.java)
+                .body(podHandler.saveMemberEvent(it.pathVariable("id"), it.bodyToMono(Event::class.java)), Event::class.java)
+    }
+    private fun podEventHandler() = HandlerFunction {
+        ServerResponse.ok()
+                .body(podHandler.saveEvent(it.bodyToMono(Event::class.java)), Event::class.java)
     }
 
     private fun handlerFunction() = HandlerFunction {

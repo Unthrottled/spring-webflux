@@ -38,8 +38,10 @@ class PodHandler(private val reactiveMongoClient: MongoClient,
         return imageHandler.fetchImage(list[index])
     }
 
-    fun saveEvent(pathVariable: String, bodyToMono: Mono<Event>): Publisher<Event> =
+    fun saveMemberEvent(pathVariable: String, bodyToMono: Mono<Event>): Publisher<Event> =
             bodyToMono
+
+    fun saveEvent(bodyToMono: Mono<Event>): Publisher<Event> = bodyToMono
 //            Flux.from(reactiveMongoClient..find())
 //            .map { it.getId() }
 //            .map { it.asObjectId() }
