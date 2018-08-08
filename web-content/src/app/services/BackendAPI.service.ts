@@ -1,13 +1,17 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEvent} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Action} from '../pod/members/model/Action.model';
 import {PersonalInformation} from '../pod/members/model/PersonalInformation';
+import { catchError, map, tap} from 'rxjs/operators';
+
 
 @Injectable()
 export class BackendAPIService {
     constructor(private httpClient: HttpClient) {
     }
+    private _reqOptionsArgs= { headers: new HttpHeaders().set( 'Content-Type', 'application/json' ) };
+    private _reqOptionsArgsStream= { headers: new HttpHeaders().set( 'Content-Type', 'application/stream+json' ) };
 
 
     postImage(podMemberId: string, formData: FormData): Observable<string> {
@@ -28,10 +32,22 @@ export class BackendAPIService {
         }).map(response => (<Boolean>response === true));
     }
 
+    public handleError<T> (operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+            console.error(error);
+            console.log(`${operation} failed: ${error.message}`);
+            return Observable.of(result as T);
+        };
+    }
+
     fetchAllPodMemberIdentifiers(): Observable<string> {
-        return this.httpClient.get('./api/pod/members', {
-            responseType: 'text'
-        })
+        return this.httpClient.get<any[]>('./api/pod/members', this._reqOptionsArgsStream)
+            .pipe(catchError(this.handleError<any[]>('fetchAllPodMemberIdentifiers')))
+            .flatMap((it: any[])=> Observable.create(it))
+            .map(it => {
+                console.warn(it)
+                return it.toString();
+            });
     }
 
     fetchPersonalInformation(podMemberId: string): Observable<PersonalInformation> {

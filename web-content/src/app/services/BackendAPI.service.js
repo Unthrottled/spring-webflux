@@ -12,9 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var Observable_1 = require("rxjs/Observable");
+var operators_1 = require("rxjs/operators");
 var BackendAPIService = /** @class */ (function () {
     function BackendAPIService(httpClient) {
         this.httpClient = httpClient;
+        this._reqOptionsArgs = { headers: new http_1.HttpHeaders().set('Content-Type', 'application/json') };
+        this._reqOptionsArgsStream = { headers: new http_1.HttpHeaders().set('Content-Type', 'application/stream+json') };
     }
     BackendAPIService.prototype.postImage = function (podMemberId, formData) {
         return this.httpClient.post('./api/pod/member' + podMemberId + '/avatar', formData, {
@@ -31,9 +34,21 @@ var BackendAPIService = /** @class */ (function () {
             responseType: 'json'
         }).map(function (response) { return (response === true); });
     };
+    BackendAPIService.prototype.handleError = function (operation, result) {
+        if (operation === void 0) { operation = 'operation'; }
+        return function (error) {
+            console.error(error);
+            console.log(operation + " failed: " + error.message);
+            return Observable_1.Observable.of(result);
+        };
+    };
     BackendAPIService.prototype.fetchAllPodMemberIdentifiers = function () {
-        return this.httpClient.get('./api/pod/members', {
-            responseType: 'text'
+        return this.httpClient.get('./api/pod/members', this._reqOptionsArgsStream)
+            .pipe(operators_1.catchError(this.handleError('fetchAllPodMemberIdentifiers')))
+            .flatMap(function (it) { return Observable_1.Observable.create(it); })
+            .map(function (it) {
+            console.warn(it);
+            return it.toString();
         });
     };
     BackendAPIService.prototype.fetchPersonalInformation = function (podMemberId) {
