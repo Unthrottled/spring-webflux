@@ -1,7 +1,9 @@
 package io.acari.springwebflux.rest
 
 import io.acari.springwebflux.handler.ImageHandler
+import io.acari.springwebflux.handler.PodHandler
 import io.acari.springwebflux.models.Identifier
+import io.acari.springwebflux.models.PersonalInformation
 import org.springframework.context.annotation.Bean
 import org.springframework.core.io.ClassPathResource
 import org.springframework.http.MediaType
@@ -18,7 +20,8 @@ import org.springframework.web.reactive.function.server.ServerResponse
  * Forged in the flames of battle by alex.
  */
 @Component
-class RouterComponent(private val imageHandler: ImageHandler) {
+class RouterComponent(private val imageHandler: ImageHandler,
+                      private val podHandler: PodHandler) {
 
     @Bean
     fun apiRouterFunction(): RouterFunction<*> {
@@ -28,7 +31,7 @@ class RouterComponent(private val imageHandler: ImageHandler) {
                         .andNest(path("/member/{id}"),
                             route(POST("/avatar"), saveImageHandler())
                                 .andRoute(GET("/avatar"), handlerFunction())
-                                .andRoute(GET("/information"), handlerFunction())
+                                .andRoute(GET("/information"), informationHandler())
                                 .andRoute(POST("/event"), deleteImageHandler())))
                 )
                 .andOther(resources("/**", ClassPathResource("static/")))
@@ -36,8 +39,14 @@ class RouterComponent(private val imageHandler: ImageHandler) {
 
     private fun allPodMemberHandler() = HandlerFunction {
         ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_STREAM_JSON)
+                .body(fromPublisher(podHandler.allPodMembers(), Identifier::class.java))
+    }
+
+    private fun informationHandler() = HandlerFunction {
+        ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(fromPublisher(imageHandler.findAllNames(), Identifier::class.java))
+                .body(fromPublisher(podHandler.fetchInterests(it.pathVariable("id")), PersonalInformation::class.java))
     }
 
     private fun saveImageHandler() = HandlerFunction {
