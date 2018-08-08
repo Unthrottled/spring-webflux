@@ -20,7 +20,6 @@ import org.springframework.web.reactive.function.server.ServerResponse
 @Component
 class RouterComponent(private val imageHandler: ImageHandler) {
 
-    //todo: router not working
     @Bean
     fun apiRouterFunction(): RouterFunction<*> {
         return nest(path("/api"),
