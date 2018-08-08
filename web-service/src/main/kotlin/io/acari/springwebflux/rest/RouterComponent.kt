@@ -24,11 +24,14 @@ class RouterComponent(private val imageHandler: ImageHandler) {
     @Bean
     fun apiRouterFunction(): RouterFunction<*> {
         return nest(path("/api"),
-                route(GET("/images"), allImagesHandler())
-                        .andNest(path("/image"),
-                                route(POST("/save"), saveImageHandler())
-                                        .andRoute(GET("/get/{id}"), handlerFunction())
-                                        .andRoute(DELETE("/delete/{id}"), deleteImageHandler())))
+                nest(path("/pod"),
+                    route(GET("/members"), allImagesHandler())
+                        .andNest(path("/member/{id}"),
+                            route(POST("/avatar"), saveImageHandler())
+                                .andRoute(GET("/avatar"), handlerFunction())
+                                .andRoute(GET("/information"), handlerFunction())
+                                .andRoute(POST("/event"), deleteImageHandler())))
+                )
                 .andOther(resources("/**", ClassPathResource("static/")))
     }
 
