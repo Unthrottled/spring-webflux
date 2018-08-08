@@ -1,6 +1,6 @@
 package io.acari.springwebflux.rest
 
-import io.acari.springwebflux.ImageHandler
+import io.acari.springwebflux.handler.ImageHandler
 import io.acari.springwebflux.models.Identifier
 import org.springframework.context.annotation.Bean
 import org.springframework.core.io.ClassPathResource
@@ -24,7 +24,7 @@ class RouterComponent(private val imageHandler: ImageHandler) {
     fun apiRouterFunction(): RouterFunction<*> {
         return nest(path("/api"),
                 nest(path("/pod"),
-                    route(GET("/members"), allImagesHandler())
+                    route(GET("/members"), allPodMemberHandler())
                         .andNest(path("/member/{id}"),
                             route(POST("/avatar"), saveImageHandler())
                                 .andRoute(GET("/avatar"), handlerFunction())
@@ -34,7 +34,7 @@ class RouterComponent(private val imageHandler: ImageHandler) {
                 .andOther(resources("/**", ClassPathResource("static/")))
     }
 
-    private fun allImagesHandler() = HandlerFunction {
+    private fun allPodMemberHandler() = HandlerFunction {
         ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(fromPublisher(imageHandler.findAllNames(), Identifier::class.java))

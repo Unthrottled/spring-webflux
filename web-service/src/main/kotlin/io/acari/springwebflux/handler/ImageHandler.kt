@@ -1,4 +1,4 @@
-package io.acari.springwebflux
+package io.acari.springwebflux.handler
 
 import com.mongodb.reactivestreams.client.gridfs.GridFSBucket
 import io.acari.springwebflux.flux.DownloadStreamToFluxFactory
