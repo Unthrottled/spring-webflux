@@ -103,6 +103,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
+            oboe: 'oboe',
             'window.jQuery': 'jquery',
             Popper: ['popper.js', 'default'],
             // In case you imported plugins individually, you must also require them here:

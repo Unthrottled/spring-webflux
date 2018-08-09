@@ -4,11 +4,12 @@ import {Observable} from 'rxjs/Observable';
 import {Action} from '../pod/members/model/Action.model';
 import {PersonalInformation} from '../pod/members/model/PersonalInformation';
 import { catchError, map, tap} from 'rxjs/operators';
+import {BrokerService} from './BrokerService';
 
 
 @Injectable()
 export class BackendAPIService {
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, private brokerService: BrokerService) {
     }
     private _reqOptionsArgs= { headers: new HttpHeaders().set( 'Content-Type', 'application/json' ) };
     private _reqOptionsArgsStream= { headers: new HttpHeaders().set( 'Content-Type', 'application/stream+json' ) };
@@ -40,6 +41,7 @@ export class BackendAPIService {
     }
 
     fetchAllPodMemberIdentifiers(): Observable<string> {
+        this.brokerService.listen()
         return this.httpClient.get<any[]>('./api/pod/members', this._reqOptionsArgsStream)
             .catch((err => {
                 console.warn('aww snap', err)

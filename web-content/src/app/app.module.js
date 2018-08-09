@@ -16,6 +16,7 @@ var http_1 = require("@angular/common/http");
 var Members_module_1 = require("./pod/members/Members.module");
 var window_1 = require("./util/window");
 var BackendAPI_service_1 = require("./services/BackendAPI.service");
+var BrokerService_1 = require("./services/BrokerService");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -35,7 +36,7 @@ var AppModule = /** @class */ (function () {
                 app_component_1.AppComponent
             ],
             bootstrap: [app_component_1.AppComponent],
-            providers: [window_1.WindowRef, BackendAPI_service_1.BackendAPIService]
+            providers: [window_1.WindowRef, BackendAPI_service_1.BackendAPIService, BrokerService_1.BrokerService]
         })
     ], AppModule);
     return AppModule;
