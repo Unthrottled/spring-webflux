@@ -12,13 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var Observable_1 = require("rxjs/Observable");
-var BrokerService_1 = require("./BrokerService");
 var BackendAPIService = /** @class */ (function () {
-    function BackendAPIService(httpClient, brokerService) {
+    function BackendAPIService(httpClient) {
         this.httpClient = httpClient;
-        this.brokerService = brokerService;
-        this._reqOptionsArgs = { headers: new http_1.HttpHeaders().set('Content-Type', 'application/json') };
-        this._reqOptionsArgsStream = { headers: new http_1.HttpHeaders().set('Content-Type', 'application/stream+json') };
     }
     BackendAPIService.prototype.postImage = function (podMemberId, formData) {
         return this.httpClient.post('./api/pod/member' + podMemberId + '/avatar', formData, {
@@ -38,21 +34,29 @@ var BackendAPIService = /** @class */ (function () {
     BackendAPIService.prototype.handleError = function (operation, result) {
         if (operation === void 0) { operation = 'operation'; }
         return function (error) {
-            console.error("aoeuaoeu", error);
+            console.error('aoeuaoeu', error);
             return Observable_1.Observable.of(result);
         };
     };
     BackendAPIService.prototype.fetchAllPodMemberIdentifiers = function () {
-        this.brokerService.listen();
-        return this.httpClient.get('./api/pod/members', this._reqOptionsArgsStream)
-            .catch((function (err) {
-            console.warn('aww snap', err);
-            return [];
-        }))
-            .flatMap(function (it) { return Observable_1.Observable.create(it); })
-            .map(function (it) {
-            console.warn('foobar', it);
-            return it.toString();
+        return Observable_1.Observable.create(function (observer) {
+            oboe({
+                'url': './api/pod/members',
+                'method': 'GET',
+                'body': '',
+                'cached': false,
+                'withCredentials': true
+            }).done(function (jsonThingo) {
+                console.log('done', jsonThingo);
+                observer.next(jsonThingo);
+            }).on('done', function (jsonThingo) {
+                console.log('other done', jsonThingo);
+                observer.next(jsonThingo);
+            })
+                .fail(function (error) {
+                console.warn('oboe error', error);
+                observer.error(error);
+            });
         });
     };
     BackendAPIService.prototype.fetchPersonalInformation = function (podMemberId) {
@@ -68,7 +72,7 @@ var BackendAPIService = /** @class */ (function () {
     };
     BackendAPIService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.HttpClient, BrokerService_1.BrokerService])
+        __metadata("design:paramtypes", [http_1.HttpClient])
     ], BackendAPIService);
     return BackendAPIService;
 }());

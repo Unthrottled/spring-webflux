@@ -9,7 +9,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {MembersModule} from "./pod/members/Members.module";
 import {WindowRef} from "./util/window";
 import {BackendAPIService} from "./services/BackendAPI.service";
-import {BrokerService} from './services/BrokerService';
 
 
 @NgModule({
@@ -27,7 +26,7 @@ import {BrokerService} from './services/BrokerService';
         AppComponent
     ],
     bootstrap: [AppComponent],
-    providers: [WindowRef, BackendAPIService, BrokerService]
+    providers: [WindowRef, BackendAPIService]
 })
 export class AppModule {
 }
