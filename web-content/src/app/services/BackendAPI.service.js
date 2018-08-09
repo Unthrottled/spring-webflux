@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var Observable_1 = require("rxjs/Observable");
-var operators_1 = require("rxjs/operators");
 var BackendAPIService = /** @class */ (function () {
     function BackendAPIService(httpClient) {
         this.httpClient = httpClient;
@@ -37,17 +36,19 @@ var BackendAPIService = /** @class */ (function () {
     BackendAPIService.prototype.handleError = function (operation, result) {
         if (operation === void 0) { operation = 'operation'; }
         return function (error) {
-            console.error(error);
-            console.log(operation + " failed: " + error.message);
+            console.error("aoeuaoeu", error);
             return Observable_1.Observable.of(result);
         };
     };
     BackendAPIService.prototype.fetchAllPodMemberIdentifiers = function () {
         return this.httpClient.get('./api/pod/members', this._reqOptionsArgsStream)
-            .pipe(operators_1.catchError(this.handleError('fetchAllPodMemberIdentifiers')))
+            .catch((function (err) {
+            console.warn('aww snap', err);
+            return [];
+        }))
             .flatMap(function (it) { return Observable_1.Observable.create(it); })
             .map(function (it) {
-            console.warn(it);
+            console.warn('foobar', it);
             return it.toString();
         });
     };

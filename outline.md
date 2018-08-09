@@ -34,7 +34,8 @@ Story Ideas
         - map
         - filter
         - flatmap
-    - default 
+    - default
+    - Pipe
     - delay
         - Elements
         - sequence

@@ -34,18 +34,20 @@ export class BackendAPIService {
 
     public handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-            console.error(error);
-            console.log(`${operation} failed: ${error.message}`);
+            console.error("aoeuaoeu", error);
             return Observable.of(result as T);
         };
     }
 
     fetchAllPodMemberIdentifiers(): Observable<string> {
         return this.httpClient.get<any[]>('./api/pod/members', this._reqOptionsArgsStream)
-            .pipe(catchError(this.handleError<any[]>('fetchAllPodMemberIdentifiers')))
+            .catch((err => {
+                console.warn('aww snap', err)
+                return [];
+            }))
             .flatMap((it: any[])=> Observable.create(it))
             .map(it => {
-                console.warn(it)
+                console.warn('foobar', it)
                 return it.toString();
             });
     }
