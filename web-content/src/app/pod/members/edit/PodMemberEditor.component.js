@@ -62,7 +62,8 @@ var PodMemberEditorComponent = /** @class */ (function () {
                 payload: {
                     identifier: remoteIdentifier,
                 },
-                error: false
+                error: false,
+                meta: {}
             };
             _this.postEvent(uploadedAvatarAction);
         }, function (error) {
@@ -75,6 +76,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
             type: 'INTEREST_CAPTURED',
             payload: __assign({}, interest),
             error: false,
+            meta: {},
         };
         this.postEvent(action);
     };
@@ -83,6 +85,7 @@ var PodMemberEditorComponent = /** @class */ (function () {
             type: 'PERSONAL_INFO_CAPTURED',
             payload: __assign({}, fieldChanged),
             error: false,
+            meta: {}
         };
         this.postEvent(action);
     };
@@ -91,12 +94,13 @@ var PodMemberEditorComponent = /** @class */ (function () {
             type: 'INTEREST_REMOVED',
             payload: __assign({}, interest),
             error: false,
+            meta: {}
         };
         this.postEvent(action);
     };
     PodMemberEditorComponent.prototype.postEvent = function (action) {
         this.eventDispatchService.dispatchPodMemberAction(action, this.podMember.getIdentifier())
-            .subscribe(function (it) { }, function (err) { });
+            .subscribe(function (it) { }, console.warn);
     };
     __decorate([
         core_1.Input(),

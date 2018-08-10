@@ -57,6 +57,7 @@ var PodMemberService = /** @class */ (function () {
                 identifier: podMember.getIdentifier()
             },
             error: false,
+            meta: {}
         };
         return this.eventDispatchService.dispatchPodAction(action)
             .map(function (it) { return podMember; });
@@ -68,7 +69,8 @@ var PodMemberService = /** @class */ (function () {
             payload: {
                 identifier: podMember.getIdentifier()
             },
-            error: false
+            error: false,
+            meta: {}
         };
         return this.eventDispatchService.dispatchPodAction(action)
             .map(function (it) { return podMember; });

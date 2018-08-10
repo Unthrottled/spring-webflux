@@ -62,10 +62,14 @@ export class BackendAPIService {
     }
 
     postPodMemberEvent<T>(action: Action<T>, podMemberIdentifier: string): Observable<Action<T>> {
-        return Observable.of(action);
+        return this.httpClient.post('./api/pod/member/' + podMemberIdentifier + '/event', action, {
+            responseType: 'json'
+        }).map((it: Action<T>)=>it);
     }
 
     postEvent<T>(action: Action<T>): Observable<Action<T>> {
-        return Observable.of(action);
+        return this.httpClient.post('./api/pod/event', action, {
+            responseType: 'json'
+        }).map((it: Action<T>)=>it);
     }
 }

@@ -19,7 +19,7 @@ export class PodMembersComponent implements OnInit {
     }
 
     addNewPodMember(): void {
-        this.podMemberService.addPodMember();
+        this.podMemberService.addPodMember().subscribe(()=>{},console.warn);
     }
 
     get loading(): Observable<boolean>{

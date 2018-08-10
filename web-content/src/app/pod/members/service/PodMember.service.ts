@@ -49,6 +49,7 @@ export class PodMemberService implements OnInit {
                 identifier: podMember.getIdentifier()
             },
             error: false,
+            meta: {}
         };
 
         return this.eventDispatchService.dispatchPodAction<PodMemberPayload>(action)
@@ -62,7 +63,8 @@ export class PodMemberService implements OnInit {
             payload: {
                 identifier: podMember.getIdentifier()
             },
-            error: false
+            error: false,
+            meta: {}
         };
         return this.eventDispatchService.dispatchPodAction<PodMemberPayload>(action)
             .map((it) => podMember);

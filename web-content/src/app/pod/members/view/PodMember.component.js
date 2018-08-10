@@ -62,7 +62,7 @@ var PodMemberComponent = /** @class */ (function () {
     };
     PodMemberComponent.prototype.delete = function () {
         this.projectFileService.removePodMember(this.podMember)
-            .subscribe(function (it) { }, function (error1) { return console.warn(error1); });
+            .subscribe(function () { }, console.warn);
     };
     __decorate([
         core_1.Input(),

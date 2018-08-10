@@ -50,7 +50,8 @@ export class PodMemberEditorComponent {
                     payload: {
                         identifier: remoteIdentifier,
                     },
-                    error: false
+                    error: false,
+            meta: {}
                 }
                 this.postEvent(uploadedAvatarAction)
             }, error =>{
@@ -66,6 +67,7 @@ export class PodMemberEditorComponent {
                 ...interest,
             },
             error: false,
+            meta: {},
         };
         this.postEvent(action);
     }
@@ -77,6 +79,7 @@ export class PodMemberEditorComponent {
                 ...fieldChanged,
             },
             error: false,
+            meta: {}
         };
         this.postEvent(action);
     }
@@ -88,13 +91,14 @@ export class PodMemberEditorComponent {
                 ...interest
             },
             error: false,
+            meta: {}
         };
         this.postEvent(action);
     }
 
     postEvent<T>(action: Action<T>): void{
         this.eventDispatchService.dispatchPodMemberAction(action, this.podMember.getIdentifier())
-            .subscribe((it)=>{}, (err)=>{})
+            .subscribe((it)=>{}, console.warn)
     }
 }
 

@@ -62,10 +62,14 @@ var BackendAPIService = /** @class */ (function () {
         }).map(function (response) { return new PersonalInformation_1.PersonalInformation(response); });
     };
     BackendAPIService.prototype.postPodMemberEvent = function (action, podMemberIdentifier) {
-        return Observable_1.Observable.of(action);
+        return this.httpClient.post('./api/pod/member/' + podMemberIdentifier + '/event', action, {
+            responseType: 'json'
+        }).map(function (it) { return it; });
     };
     BackendAPIService.prototype.postEvent = function (action) {
-        return Observable_1.Observable.of(action);
+        return this.httpClient.post('./api/pod/event', action, {
+            responseType: 'json'
+        }).map(function (it) { return it; });
     };
     BackendAPIService = __decorate([
         core_1.Injectable(),

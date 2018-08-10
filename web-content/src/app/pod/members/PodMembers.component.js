@@ -26,7 +26,7 @@ var PodMembersComponent = /** @class */ (function () {
         configurable: true
     });
     PodMembersComponent.prototype.addNewPodMember = function () {
-        this.podMemberService.addPodMember();
+        this.podMemberService.addPodMember().subscribe(function () { }, console.warn);
     };
     Object.defineProperty(PodMembersComponent.prototype, "loading", {
         get: function () {
