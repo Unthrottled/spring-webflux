@@ -94,7 +94,6 @@ var PodMemberEditorComponent = /** @class */ (function () {
         };
         this.postEvent(action);
     };
-    //todo: probably just need to dispatch to pod member event stream
     PodMemberEditorComponent.prototype.postEvent = function (action) {
         this.eventDispatchService.dispatchPodMemberAction(action, this.podMember.getIdentifier())
             .subscribe(function (it) { }, function (err) { });

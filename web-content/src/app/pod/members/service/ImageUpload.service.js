@@ -32,7 +32,6 @@ var ImageUploadService = /** @class */ (function () {
         }).flatMap(function (formData) {
             return _this.backendAPIService.postImage(podMemberId, formData);
         });
-        // todo should fix this
     };
     ImageUploadService = __decorate([
         core_1.Injectable(),

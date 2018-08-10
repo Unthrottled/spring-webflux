@@ -20,6 +20,7 @@ export class PersonalInformationEditorComponent {
 
     @Output()
     private interestRemoved = new EventEmitter<Interest>();
+
     @Output()
     private interestAdded = new EventEmitter<Interest>();
 

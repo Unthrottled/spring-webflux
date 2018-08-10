@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PodMember_service_1 = require("./service/PodMember.service");
 var PodMembersComponent = /** @class */ (function () {
-    // todo: start here!
     function PodMembersComponent(podMemberService) {
         this.podMemberService = podMemberService;
     }

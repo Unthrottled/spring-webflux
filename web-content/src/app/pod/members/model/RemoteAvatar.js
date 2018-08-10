@@ -32,7 +32,6 @@ var RemoteAvatar = /** @class */ (function () {
      * @param {File} file
      */
     RemoteAvatar.prototype.setNewFile = function (file) {
-        //todo: me?
     };
     RemoteAvatar.prototype.getIdentifier = function () {
         return this._identifier;

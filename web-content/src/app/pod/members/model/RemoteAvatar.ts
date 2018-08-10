@@ -39,7 +39,6 @@ export class RemoteAvatar implements Avatar {
      * @param {File} file
      */
     setNewFile(file: File): void {
-        //todo: me?
     }
 
     getIdentifier(): string {

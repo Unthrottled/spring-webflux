@@ -92,7 +92,6 @@ export class PodMemberEditorComponent {
         this.postEvent(action);
     }
 
-    //todo: probably just need to dispatch to pod member event stream
     postEvent<T>(action: Action<T>): void{
         this.eventDispatchService.dispatchPodMemberAction(action, this.podMember.getIdentifier())
             .subscribe((it)=>{}, (err)=>{})

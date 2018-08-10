@@ -24,6 +24,5 @@ export class ImageUploadService {
                 return formData
             }).flatMap(formData =>
                 this.backendAPIService.postImage(podMemberId, formData))
-        // todo should fix this
     }
 }

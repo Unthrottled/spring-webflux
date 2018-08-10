@@ -12,7 +12,6 @@ export class PodMembersComponent implements OnInit {
         this.podMemberService.ngOnInit();
     }
 
-    // todo: start here!
     constructor(private podMemberService: PodMemberService){}
 
     get podMembers(): Iterable<PodMember> {
