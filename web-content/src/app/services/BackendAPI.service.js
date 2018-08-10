@@ -53,6 +53,9 @@ var BackendAPIService = /** @class */ (function () {
             }).fail(function (error) {
                 console.warn('oboe error', error);
                 observer.error(error);
+            }).on('end', function () {
+                console.log("the end");
+                observer.complete();
             });
         });
     };

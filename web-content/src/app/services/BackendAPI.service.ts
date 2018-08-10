@@ -46,11 +46,11 @@ export class BackendAPIService {
                 'cached': false,
                 'withCredentials': true
             }).done((jsonThingo: any) => {
-                console.log('done', jsonThingo);
                 observer.next(jsonThingo._id);
             }).fail((error: any) => {
-                console.warn('oboe error', error);
                 observer.error(error);
+            }).on('end',()=>{
+                observer.complete();
             })
         });
     }
