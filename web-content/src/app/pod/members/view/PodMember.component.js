@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PodMember_service_1 = require("../service/PodMember.service");
+var RemotePodMember_1 = require("../model/RemotePodMember");
 var PodMemberComponent = /** @class */ (function () {
     function PodMemberComponent(projectFileService) {
         this.projectFileService = projectFileService;
@@ -28,6 +29,9 @@ var PodMemberComponent = /** @class */ (function () {
             return this._podMember;
         },
         set: function (value) {
+            if (value instanceof RemotePodMember_1.RemotePodMember) {
+                this._editMode = false;
+            }
             this._podMember = value;
         },
         enumerable: true,

@@ -4,6 +4,7 @@ import {PodMemberService} from '../service/PodMember.service';
 import {PersonalInformation} from '../model/PersonalInformation';
 import {Avatar} from '../model/Avatar.model';
 import {Observable} from 'rxjs';
+import {RemotePodMember} from '../model/RemotePodMember';
 
 @Component({
     selector: 'pod-member',
@@ -26,6 +27,9 @@ export class PodMemberComponent {
     }
 
     set podMember(value: PodMember) {
+        if(value instanceof RemotePodMember){
+            this._editMode = false;
+        }
         this._podMember = value;
     }
 
