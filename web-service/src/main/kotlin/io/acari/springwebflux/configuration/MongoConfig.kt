@@ -28,6 +28,7 @@ class MongoConfig(private val environment: Environment) : AbstractReactiveMongoC
     private val eventLoopGroup = NioEventLoopGroup()
 
 
+    @Bean
     override fun reactiveMongoClient(): MongoClient {
         val property = environment.getProperty("acari.mongo.connectionString", "localhost:27017")
         log.warn("this is the db prop: $property")
@@ -46,7 +47,7 @@ class MongoConfig(private val environment: Environment) : AbstractReactiveMongoC
             environment.getProperty("acari.mongo.landingDatabase", "images")
 
     @Bean
-    fun gridFsTemplate(reactiveMongoClient: MongoClient): GridFSBucket =
+    fun gridFSBucket(reactiveMongoClient: MongoClient): GridFSBucket =
             GridFSBuckets.create(reactiveMongoClient.getDatabase(databaseName))
 
     @PreDestroy
