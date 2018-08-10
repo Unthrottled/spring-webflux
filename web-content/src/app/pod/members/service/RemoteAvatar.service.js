@@ -13,6 +13,7 @@ var core_1 = require("@angular/core");
 var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
 var window_1 = require("../../../util/window");
 var RemoteAvatar_1 = require("../model/RemoteAvatar");
+var rxjs_1 = require("rxjs");
 var RemoteAvatarService = /** @class */ (function () {
     function RemoteAvatarService(backendAPISevice, windowRef) {
         this.backendAPISevice = backendAPISevice;
@@ -20,9 +21,12 @@ var RemoteAvatarService = /** @class */ (function () {
     }
     RemoteAvatarService.prototype.fetchRemoteAvatar = function (podMemberId) {
         var _this = this;
-        return this.backendAPISevice.fetchImage(podMemberId)
+        var avatarReplay = new rxjs_1.ReplaySubject(1);
+        this.backendAPISevice.fetchImage(podMemberId)
             .map(function (arrayBuffer) { return _this.convertToImageBinary(arrayBuffer); })
-            .map(function (base64Binary) { return new RemoteAvatar_1.RemoteAvatar(podMemberId, base64Binary); });
+            .map(function (base64Binary) { return new RemoteAvatar_1.RemoteAvatar(podMemberId, base64Binary); })
+            .subscribe(avatarReplay);
+        return avatarReplay;
     };
     RemoteAvatarService.prototype.convertToImageBinary = function (arrayBuffer) {
         var binary = '';

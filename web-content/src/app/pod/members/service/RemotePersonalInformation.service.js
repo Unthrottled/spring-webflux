@@ -11,12 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var BackendAPI_service_1 = require("../../../services/BackendAPI.service");
+var rxjs_1 = require("rxjs");
 var RemotePersonalInformationService = /** @class */ (function () {
     function RemotePersonalInformationService(backendAPISevice) {
         this.backendAPISevice = backendAPISevice;
     }
     RemotePersonalInformationService.prototype.fetchRemotePersonalInformation = function (podMemberId) {
-        return this.backendAPISevice.fetchPersonalInformation(podMemberId);
+        var personalInformationReplay = new rxjs_1.ReplaySubject(1);
+        this.backendAPISevice.fetchPersonalInformation(podMemberId)
+            .subscribe(personalInformationReplay);
+        return personalInformationReplay;
     };
     RemotePersonalInformationService = __decorate([
         core_1.Injectable(),

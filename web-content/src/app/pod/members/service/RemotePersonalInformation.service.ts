@@ -5,6 +5,7 @@ import {RemoteAvatar} from "../model/RemoteAvatar";
 import {Identifier} from "../model/Identifier.model";
 import {Observable} from "rxjs/Observable";
 import {PersonalInformation} from '../model/PersonalInformation';
+import {ReplaySubject} from 'rxjs';
 
 @Injectable()
 export class RemotePersonalInformationService {
@@ -13,7 +14,10 @@ export class RemotePersonalInformationService {
     }
 
     public fetchRemotePersonalInformation(podMemberId: string): Observable<PersonalInformation> {
-        return this.backendAPISevice.fetchPersonalInformation(podMemberId);
+        const personalInformationReplay = new ReplaySubject<PersonalInformation>(1)
+        this.backendAPISevice.fetchPersonalInformation(podMemberId)
+            .subscribe(personalInformationReplay);
+        return personalInformationReplay;
     }
 
 }

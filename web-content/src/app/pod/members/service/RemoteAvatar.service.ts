@@ -3,6 +3,7 @@ import {BackendAPIService} from '../../../services/BackendAPI.service';
 import {WindowRef} from '../../../util/window';
 import {RemoteAvatar} from '../model/RemoteAvatar';
 import {Observable} from 'rxjs/Observable';
+import {ReplaySubject} from 'rxjs';
 
 @Injectable()
 export class RemoteAvatarService {
@@ -11,9 +12,12 @@ export class RemoteAvatarService {
     }
 
     public fetchRemoteAvatar(podMemberId: string): Observable<RemoteAvatar> {
-        return this.backendAPISevice.fetchImage(podMemberId)
+        const avatarReplay = new ReplaySubject<RemoteAvatar>(1);
+        this.backendAPISevice.fetchImage(podMemberId)
             .map(arrayBuffer => this.convertToImageBinary(arrayBuffer))
             .map(base64Binary => new RemoteAvatar(podMemberId, base64Binary))
+            .subscribe(avatarReplay);
+        return avatarReplay;
 
     }
 
