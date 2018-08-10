@@ -13,19 +13,19 @@ export class BackendAPIService {
     }
 
     postImage(podMemberId: string, formData: FormData): Observable<string> {
-        return this.httpClient.post('./api/pod/member' + podMemberId + '/avatar', formData, {
+        return this.httpClient.post('./api/pod/member/' + podMemberId + '/avatar', formData, {
             responseType: 'text'
         });
     }
 
     fetchImage(podMemberId: string): Observable<ArrayBuffer> {
-        return this.httpClient.get('./api/pod/member' + podMemberId + '/avatar', {
+        return this.httpClient.get('./api/pod/member/' + podMemberId + '/avatar', {
             responseType: 'arraybuffer'
         });
     }
 
     deleteImage(podMemberId: string): Observable<boolean> {
-        return this.httpClient.delete('./api/pod/member' + podMemberId + '/avatar', {
+        return this.httpClient.delete('./api/pod/member/' + podMemberId + '/avatar', {
             responseType: 'json'
         }).map(response => (<Boolean>response === true));
     }
@@ -47,12 +47,8 @@ export class BackendAPIService {
                 'withCredentials': true
             }).done((jsonThingo: any) => {
                 console.log('done', jsonThingo);
-                observer.next(jsonThingo);
-            }).on('done',(jsonThingo: any) => {
-                console.log('other done', jsonThingo);
-                observer.next(jsonThingo);
-            })
-                .fail((error: any) => {
+                observer.next(jsonThingo._id);
+            }).fail((error: any) => {
                 console.warn('oboe error', error);
                 observer.error(error);
             })

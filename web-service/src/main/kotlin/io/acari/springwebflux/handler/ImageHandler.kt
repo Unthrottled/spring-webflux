@@ -30,6 +30,7 @@ class ImageHandler(private val gridFSBucket: GridFSBucket) {
     fun fetchImage(imageId: String): Flux<ByteArray> {
         return downloadStreamToFluxFactory
                 .convert(gridFSBucket.openDownloadStream(getId(imageId)))
+
     }
 
     fun removeImage(imageId: String): Mono<Boolean> {

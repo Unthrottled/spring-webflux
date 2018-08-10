@@ -17,17 +17,17 @@ var BackendAPIService = /** @class */ (function () {
         this.httpClient = httpClient;
     }
     BackendAPIService.prototype.postImage = function (podMemberId, formData) {
-        return this.httpClient.post('./api/pod/member' + podMemberId + '/avatar', formData, {
+        return this.httpClient.post('./api/pod/member/' + podMemberId + '/avatar', formData, {
             responseType: 'text'
         });
     };
     BackendAPIService.prototype.fetchImage = function (podMemberId) {
-        return this.httpClient.get('./api/pod/member' + podMemberId + '/avatar', {
+        return this.httpClient.get('./api/pod/member/' + podMemberId + '/avatar', {
             responseType: 'arraybuffer'
         });
     };
     BackendAPIService.prototype.deleteImage = function (podMemberId) {
-        return this.httpClient.delete('./api/pod/member' + podMemberId + '/avatar', {
+        return this.httpClient.delete('./api/pod/member/' + podMemberId + '/avatar', {
             responseType: 'json'
         }).map(function (response) { return (response === true); });
     };
@@ -48,12 +48,8 @@ var BackendAPIService = /** @class */ (function () {
                 'withCredentials': true
             }).done(function (jsonThingo) {
                 console.log('done', jsonThingo);
-                observer.next(jsonThingo);
-            }).on('done', function (jsonThingo) {
-                console.log('other done', jsonThingo);
-                observer.next(jsonThingo);
-            })
-                .fail(function (error) {
+                observer.next(jsonThingo._id);
+            }).fail(function (error) {
                 console.warn('oboe error', error);
                 observer.error(error);
             });

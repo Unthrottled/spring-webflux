@@ -28,16 +28,19 @@ class MongoConfig(private val environment: Environment) : AbstractReactiveMongoC
     private val eventLoopGroup = NioEventLoopGroup()
 
 
-    override fun reactiveMongoClient(): MongoClient =
-            MongoClients.create(MongoClientSettings.builder()
-                    .streamFactoryFactory(NettyStreamFactoryFactory.builder()
-                            .eventLoopGroup(eventLoopGroup)
-                            .build())
-                    .clusterSettings(ClusterSettings.builder()
-                            .applyConnectionString(ConnectionString(
-                                    environment.getProperty("acari.mongo.connectionString", "localhost:27017")))
-                            .build())
-                    .build())
+    override fun reactiveMongoClient(): MongoClient {
+        val property = environment.getProperty("acari.mongo.connectionString", "localhost:27017")
+        log.warn("this is the db prop: $property")
+        return MongoClients.create(MongoClientSettings.builder()
+                .streamFactoryFactory(NettyStreamFactoryFactory.builder()
+                        .eventLoopGroup(eventLoopGroup)
+                        .build())
+                .clusterSettings(ClusterSettings.builder()
+                        .applyConnectionString(ConnectionString(
+                                property))
+                        .build())
+                .build())
+    }
 
     override fun getDatabaseName(): String =
             environment.getProperty("acari.mongo.landingDatabase", "images")
