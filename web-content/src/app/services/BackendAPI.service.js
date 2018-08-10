@@ -48,13 +48,10 @@ var BackendAPIService = /** @class */ (function () {
                 'cached': false,
                 'withCredentials': true
             }).done(function (jsonThingo) {
-                console.log('done', jsonThingo);
                 observer.next(jsonThingo._id);
             }).fail(function (error) {
-                console.warn('oboe error', error);
                 observer.error(error);
             }).on('end', function () {
-                console.log("the end");
                 observer.complete();
             });
         });
