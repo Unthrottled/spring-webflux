@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var Observable_1 = require("rxjs/Observable");
+var PersonalInformation_1 = require("../pod/members/model/PersonalInformation");
 var BackendAPIService = /** @class */ (function () {
     function BackendAPIService(httpClient) {
         this.httpClient = httpClient;
@@ -58,7 +59,7 @@ var BackendAPIService = /** @class */ (function () {
     BackendAPIService.prototype.fetchPersonalInformation = function (podMemberId) {
         return this.httpClient.get('./api/pod/member/' + podMemberId + '/information', {
             responseType: 'json',
-        }).map(function (response) { return response; });
+        }).map(function (response) { return new PersonalInformation_1.PersonalInformation(response); });
     };
     BackendAPIService.prototype.postPodMemberEvent = function (action, podMemberIdentifier) {
         return Observable_1.Observable.of(action);

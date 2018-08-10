@@ -58,7 +58,7 @@ export class BackendAPIService {
     fetchPersonalInformation(podMemberId: string): Observable<PersonalInformation> {
         return this.httpClient.get('./api/pod/member/' + podMemberId + '/information', {
             responseType: 'json',
-        }).map((response: PersonalInformation) => response)
+        }).map((response: any) => new PersonalInformation(response))
     }
 
     postPodMemberEvent<T>(action: Action<T>, podMemberIdentifier: string): Observable<Action<T>> {

@@ -8,7 +8,14 @@ export class PersonalInformation {
     phoneNumber: string = '';
 
 
-    constructor() {
+    constructor(personalInformation?: any) {
+        if(personalInformation){
+            this.interests = personalInformation.interests.map((it: Interest) => new Interest(it.id, it.value));
+            this.email = personalInformation.email;
+            this.firstName = personalInformation.firstName;
+            this.lastName = personalInformation.lastName;
+            this.phoneNumber = personalInformation.phoneNumber;
+        }
 
     }
 
