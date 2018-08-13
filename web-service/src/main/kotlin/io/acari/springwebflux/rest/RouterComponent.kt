@@ -65,11 +65,11 @@ class RouterComponent(private val imageHandler: ImageHandler,
 
     private fun podMemberEventHandler() = HandlerFunction {
         ServerResponse.ok()
-                .body(podHandler.saveMemberEvent(it.pathVariable("id"), it.bodyToMono(Event::class.java)), Event::class.java)
+                .body(podHandler.savePodMemberEvent(it.pathVariable("id"), it.bodyToMono(Event::class.java)), Event::class.java)
     }
     private fun podEventHandler() = HandlerFunction {
         ServerResponse.ok()
-                .body(podHandler.saveEvent(it.bodyToMono(Event::class.java)), Event::class.java)
+                .body(podHandler.savePodEvent(it.bodyToMono(String::class.java)), String::class.java)
     }
 
     private fun handlerFunction() = HandlerFunction {

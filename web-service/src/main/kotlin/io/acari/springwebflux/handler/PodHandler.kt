@@ -1,10 +1,9 @@
 package io.acari.springwebflux.handler
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.mongodb.reactivestreams.client.MongoClient
-import io.acari.springwebflux.models.Event
-import io.acari.springwebflux.models.Identifier
-import io.acari.springwebflux.models.Interest
-import io.acari.springwebflux.models.PersonalInformation
+import io.acari.springwebflux.models.*
+import io.acari.springwebflux.repository.EventRepository
 import org.reactivestreams.Publisher
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -16,14 +15,21 @@ import reactor.core.publisher.Mono
 
 @Service
 class PodHandler(private val reactiveMongoClient: MongoClient,
-                 private val imageHandler: ImageHandler){
+                 private val eventRepository: EventRepository,
+                 private val imageHandler: ImageHandler) {
+
+    private val objectMapper = jacksonObjectMapper()
 
     fun allPodMembers(): Flux<Identifier> =
-            Flux.range(0,10)
-                    .map { Identifier(it.toString()) }
+            eventRepository.findAll()
+                    .map { objectMapper.readValue(it, Event::class.java) }
+                    .map { event -> event.payload }
+                    .map { objectMapper.treeToValue(it, BasePodMemberPayload::class.java) }
+                    .map { it.identifier }
+                    .map { Identifier(it) }
 
     fun fetchInterests(pathVariable: String): Mono<PersonalInformation> =
-        Mono.just(PersonalInformation(listOf(Interest("0987654321", "Just Monika")), "party@parrot.io","Party", "Parrot", "0987654321"))
+            Mono.just(PersonalInformation(listOf(Interest("0987654321", "Just Monika")), "party@parrot.io", "Party", "Parrot", "0987654321"))
 
     private val list = listOf(
             "5b5a5f8dac546f00013b37a9",
@@ -31,22 +37,18 @@ class PodHandler(private val reactiveMongoClient: MongoClient,
             "5b5a6094ac546f00013b37ad",
             "5b5a60b2ac546f00013b37af"
     )
-    private var index=-1
+    private var index = -1
 
     fun fetchAvatar(pathVariable: String): Flux<ByteArray> {
         index = (++index % list.size)
         return imageHandler.fetchImage(list[index])
     }
 
-    fun saveMemberEvent(pathVariable: String, bodyToMono: Mono<Event>): Publisher<Event> =
+    fun savePodMemberEvent(pathVariable: String, bodyToMono: Mono<Event>): Publisher<Event> =
             bodyToMono
 
-    fun saveEvent(bodyToMono: Mono<Event>): Publisher<Event> = bodyToMono
-//            Flux.from(reactiveMongoClient..find())
-//            .map { it.getId() }
-//            .map { it.asObjectId() }
-//            .map { it.getValue() }
-//            .map { it.toHexString() }
-//            .map { Identifier(it) }
-
+    fun savePodEvent(bodyToMono: Mono<String>): Publisher<String> =
+            bodyToMono.flatMap {
+                eventRepository.save(it)
+            }
 }

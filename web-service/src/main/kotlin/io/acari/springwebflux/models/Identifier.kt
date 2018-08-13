@@ -1,6 +1,7 @@
 package io.acari.springwebflux.models
 
 import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.node.MissingNode
 
 /**
  * Forged in the flames of battle by alex.
@@ -17,4 +18,13 @@ data class PersonalInformation(
 
 data class Interest(val id: String, val value: String)
 
-data class Event(val type: String, val payload: JsonNode, val error: Boolean, val meta: JsonNode)
+interface HasPodMember {
+    val identifier: String
+}
+
+data class BasePodMemberPayload(override val identifier: String): HasPodMember
+
+data class Event(val type: String ="",
+                 val payload: JsonNode = MissingNode.getInstance(),
+                 val error: Boolean = false,
+                 val meta: JsonNode = MissingNode.getInstance())
