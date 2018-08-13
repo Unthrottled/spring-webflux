@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
 import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate
+import org.springframework.data.mongodb.core.SimpleReactiveMongoDatabaseFactory
 import javax.annotation.PreDestroy
 
 /**
@@ -46,6 +48,14 @@ class MongoConfig(private val environment: Environment) : AbstractReactiveMongoC
     @Bean
     fun gridFSBucket(reactiveMongoClient: MongoClient): GridFSBucket =
             GridFSBuckets.create(reactiveMongoClient.getDatabase(databaseName))
+
+    @Bean
+    fun reactiveMongoDatabaseFactory(reactiveMongoClient: MongoClient) =
+            SimpleReactiveMongoDatabaseFactory(reactiveMongoClient, "events")
+
+    @Bean
+    fun reactiveMongoTemplateDefined(reactiveMongoDatabaseFactory: SimpleReactiveMongoDatabaseFactory): ReactiveMongoTemplate =
+            ReactiveMongoTemplate(reactiveMongoDatabaseFactory)
 
     @PreDestroy
     fun shutdown() {

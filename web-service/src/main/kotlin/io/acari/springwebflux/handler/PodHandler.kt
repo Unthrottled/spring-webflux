@@ -1,10 +1,12 @@
 package io.acari.springwebflux.handler
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.mongodb.reactivestreams.client.MongoClient
 import io.acari.springwebflux.models.*
-import io.acari.springwebflux.repository.EventRepository
 import org.reactivestreams.Publisher
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate
+import org.springframework.data.mongodb.core.findAll
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -14,15 +16,15 @@ import reactor.core.publisher.Mono
  */
 
 @Service
-class PodHandler(private val reactiveMongoClient: MongoClient,
-                 private val eventRepository: EventRepository,
+class PodHandler(private val reactiveMongoTemplateDefined: ReactiveMongoTemplate,
                  private val imageHandler: ImageHandler) {
 
     private val objectMapper = jacksonObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
     fun allPodMembers(): Flux<Identifier> =
-            eventRepository.findAll()
-                    .map { objectMapper.readValue(it, Event::class.java) }
+            reactiveMongoTemplateDefined.findAll<String>(collectionName = "podEvents")
+                    .map {  objectMapper.readValue(it, Event::class.java) }
                     .map { event -> event.payload }
                     .map { objectMapper.treeToValue(it, BasePodMemberPayload::class.java) }
                     .map { it.identifier }
@@ -49,6 +51,6 @@ class PodHandler(private val reactiveMongoClient: MongoClient,
 
     fun savePodEvent(bodyToMono: Mono<String>): Publisher<String> =
             bodyToMono.flatMap {
-                eventRepository.save(it)
+                reactiveMongoTemplateDefined.save(it, "podEvents")
             }
 }
