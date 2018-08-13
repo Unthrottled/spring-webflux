@@ -8,7 +8,7 @@ import io.acari.springwebflux.models.PersonalInformation
 import org.springframework.context.annotation.Bean
 import org.springframework.core.io.ClassPathResource
 import org.springframework.http.MediaType
-import org.springframework.http.codec.multipart.Part
+import org.springframework.web.reactive.function.BodyExtractors
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters.fromPublisher
 import org.springframework.web.reactive.function.server.HandlerFunction
@@ -60,7 +60,7 @@ class RouterComponent(private val imageHandler: ImageHandler,
 
     private fun saveImageHandler() = HandlerFunction {
         ServerResponse.ok()
-                .body(imageHandler.saveImage(it.bodyToFlux(Part::class.java)), String::class.java)
+                .body(imageHandler.saveImage(it.body(BodyExtractors.toParts())), String::class.java)
     }
 
     private fun podMemberEventHandler() = HandlerFunction {
