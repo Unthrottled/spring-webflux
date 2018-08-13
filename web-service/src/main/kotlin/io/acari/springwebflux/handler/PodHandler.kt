@@ -2,11 +2,14 @@ package io.acari.springwebflux.handler
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.mongodb.reactivestreams.client.MongoClient
+import com.mongodb.util.JSON
 import io.acari.springwebflux.models.*
 import org.reactivestreams.Publisher
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.findAll
+import org.springframework.data.mongodb.core.query.Criteria
+import org.springframework.data.mongodb.core.query.Query
+import org.springframework.data.mongodb.core.query.Update
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -24,7 +27,7 @@ class PodHandler(private val reactiveMongoTemplateDefined: ReactiveMongoTemplate
 
     fun allPodMembers(): Flux<Identifier> =
             reactiveMongoTemplateDefined.findAll<String>(collectionName = "podEvents")
-                    .map {  objectMapper.readValue(it, Event::class.java) }
+                    .map { objectMapper.readValue(it, Event::class.java) }
                     .map { event -> event.payload }
                     .map { objectMapper.treeToValue(it, BasePodMemberPayload::class.java) }
                     .map { it.identifier }
@@ -47,7 +50,13 @@ class PodHandler(private val reactiveMongoTemplateDefined: ReactiveMongoTemplate
     }
 
     fun savePodMemberEvent(pathVariable: String, bodyToMono: Mono<Event>): Publisher<Event> =
-            bodyToMono
+            bodyToMono.flatMap { event ->
+                reactiveMongoTemplateDefined.upsert(
+                        Query.query(Criteria.where("id").`is`(pathVariable)),
+                        Update().push("events", JSON.parse(objectMapper.writeValueAsString(event))),//probably should figure out how to do this better.
+                        String::class.java, "podMemberEvents")
+                        .map { event }
+            }
 
     fun savePodEvent(bodyToMono: Mono<String>): Publisher<String> =
             bodyToMono.flatMap {
