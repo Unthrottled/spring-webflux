@@ -24,7 +24,7 @@ class DownloadStreamToFluxFactory {
                 .subscribe({ bytesRead ->
                     if (finishedReading(bytesRead)) {
                         Mono.from<Success>(gridFSDownloadStream.close())
-                                .subscribe({ _ -> }, { _ -> }, { synchronousSink.complete() })
+                                .subscribe({}, {}, { synchronousSink.complete() })
                     } else {
                         synchronousSink.next(allocate.array())
                         readStream(gridFSDownloadStream, synchronousSink)
