@@ -27,9 +27,9 @@ class PodHandler(
     fun allPodMembers(): Flux<Identifier> =
             podRepository.allPodEvents()
                     .reduce(HashMap<String, Event>()) { distinctMemberEvents, podEvent ->
-                        if (podEvent.type == "POD_MEMBER_DELETED")
+                        if (podEvent.type == POD_MEMBER_DELETED)
                             distinctMemberEvents.remove(podEvent.payload["identifier"].asText())
-                        else if (podEvent.type == "POD_MEMBER_CREATED")
+                        else if (podEvent.type == POD_MEMBER_CREATED)
                             distinctMemberEvents[podEvent.payload["identifier"].asText()] = podEvent
                         distinctMemberEvents
                     }
@@ -44,11 +44,11 @@ class PodHandler(
                 .replay()
                 .autoConnect()
         val interest = eventStream
-                .filter { it.type == "INTEREST_CAPTURED" || it.type == "INTEREST_REMOVED" }
+                .filter { it.type == INTEREST_CAPTURED || it.type == INTEREST_REMOVED }
                 .reduce(HashMap<String, Event>()) { distinctInterestEvents, interestEvent ->
-                    if (interestEvent.type == "INTEREST_REMOVED")
+                    if (interestEvent.type == INTEREST_REMOVED)
                         distinctInterestEvents.remove(interestEvent.payload["id"].asText())
-                    else if (interestEvent.type == "INTEREST_CAPTURED")
+                    else if (interestEvent.type == INTEREST_CAPTURED)
                         distinctInterestEvents[interestEvent.payload["id"].asText()] = interestEvent
                     distinctInterestEvents
                 }
@@ -60,7 +60,7 @@ class PodHandler(
                     interests
                 }
         val contactable = eventStream
-                .filter { it.type == "PERSONAL_INFO_CAPTURED" }
+                .filter { it.type == PERSONAL_INFO_CAPTURED }
                 .map { it.payload }
                 .map { objectMapper.treeToValue(it, CapturedInfoPayload::class.java) }
                 .reduce(Contact()) { accumContact, capturedInfoPayload ->
@@ -83,7 +83,7 @@ class PodHandler(
             podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
                     .replay()
                     .autoConnect()
-                    .filter { it.type == "AVATAR_UPLOADED" }
+                    .filter { it.type == AVATAR_UPLOADED }
                     .map { it.payload }
                     .map { objectMapper.treeToValue(it, AvatarUploadedPayload::class.java) }
                     .map { it.identifier }

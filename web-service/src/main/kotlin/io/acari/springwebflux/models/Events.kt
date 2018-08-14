@@ -35,6 +35,13 @@ interface HasPodMember {
 
 data class BasePodMemberPayload(override val identifier: String): HasPodMember
 
+const val POD_MEMBER_CREATED = "POD_MEMBER_CREATED"
+const val POD_MEMBER_DELETED = "POD_MEMBER_DELETED"
+const val PERSONAL_INFO_CAPTURED = "PERSONAL_INFO_CAPTURED"
+const val AVATAR_UPLOADED = "AVATAR_UPLOADED"
+const val INTEREST_CAPTURED = "INTEREST_CAPTURED"
+const val INTEREST_REMOVED = "INTEREST_REMOVED"
+
 data class Event(val type: String ="",
                  val payload: JsonNode = MissingNode.getInstance(),
                  val error: Boolean = false,
