@@ -26,12 +26,12 @@ class PodHandler(
 
     fun allPodMembers(): Flux<Identifier> =
             podRepository.allPodEvents()
-                    .reduce(HashMap<String, Event>()) { t, u ->
-                        if (u.type == "POD_MEMBER_DELETED")
-                            t.remove(u.payload["identifier"].asText())
-                        else if (u.type == "POD_MEMBER_CREATED")
-                            t[u.payload["identifier"].asText()] = u
-                        t
+                    .reduce(HashMap<String, Event>()) { distinctMemberEvents, podEvent ->
+                        if (podEvent.type == "POD_MEMBER_DELETED")
+                            distinctMemberEvents.remove(podEvent.payload["identifier"].asText())
+                        else if (podEvent.type == "POD_MEMBER_CREATED")
+                            distinctMemberEvents[podEvent.payload["identifier"].asText()] = podEvent
+                        distinctMemberEvents
                     }
                     .flatMapMany { Flux.fromIterable(it.values) }
                     .map { event -> event.payload }
@@ -39,47 +39,48 @@ class PodHandler(
                     .map { it.identifier }
                     .map { Identifier(it) }
 
-    fun fetchInterests(pathVariable: String): Mono<PersonalInformation> {
-        val eventStream = podMemberRepository.fetchPodMemberEventStream(pathVariable)
+    fun fetchInterests(podMemberIdentifier: String): Mono<PersonalInformation> {
+        val eventStream = podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
                 .replay()
                 .autoConnect()
         val interest = eventStream
                 .filter { it.type == "INTEREST_CAPTURED" || it.type == "INTEREST_REMOVED" }
-                .reduce(HashMap<String, Event>()) { t, u ->
-                    if (u.type == "INTEREST_REMOVED")
-                        t.remove(u.payload["id"].asText())
-                    else if (u.type == "INTEREST_CAPTURED")
-                        t[u.payload["id"].asText()] = u
-                    t
+                .reduce(HashMap<String, Event>()) { distinctInterestEvents, interestEvent ->
+                    if (interestEvent.type == "INTEREST_REMOVED")
+                        distinctInterestEvents.remove(interestEvent.payload["id"].asText())
+                    else if (interestEvent.type == "INTEREST_CAPTURED")
+                        distinctInterestEvents[interestEvent.payload["id"].asText()] = interestEvent
+                    distinctInterestEvents
                 }
                 .flatMapMany { Flux.fromIterable(it.values) }
                 .map { it.payload }
                 .map { objectMapper.treeToValue(it, Interest::class.java) }
-                .reduce(LinkedList()) { t: LinkedList<Interest>, u ->
-                    t.add(u)
-                    t
+                .reduce(LinkedList()) { interests: LinkedList<Interest>, interest ->
+                    interests.add(interest)
+                    interests
                 }
         val contactable = eventStream
                 .filter { it.type == "PERSONAL_INFO_CAPTURED" }
                 .map { it.payload }
                 .map { objectMapper.treeToValue(it, CapturedInfoPayload::class.java) }
-                .reduce(Contact()) { t, u ->
-                    when (u.field) {
-                        "firstName" -> t.firstName = u.value
-                        "lastName" -> t.lastName = u.value
-                        "email" -> t.email = u.value
-                        "phoneNumber" -> t.phoneNumber = u.value
+                .reduce(Contact()) { accumContact, capturedInfoPayload ->
+                    when (capturedInfoPayload.field) {
+                        "firstName" -> accumContact.firstName = capturedInfoPayload.value
+                        "lastName" -> accumContact.lastName = capturedInfoPayload.value
+                        "email" -> accumContact.email = capturedInfoPayload.value
+                        "phoneNumber" -> accumContact.phoneNumber = capturedInfoPayload.value
                     }
-                    t
+                    accumContact
                 }
 
-        return contactable.zipWith(interest)
-        { t, u -> PersonalInformation(u, t.email, t.firstName, t.lastName, t.phoneNumber) }
+        return contactable.zipWith(interest) { contact, interests ->
+            PersonalInformation(interests, contact.email, contact.firstName, contact.lastName, contact.phoneNumber)
+        }
     }
 
 
-    fun fetchAvatar(pathVariable: String): Flux<ByteArray> =
-            podMemberRepository.fetchPodMemberEventStream(pathVariable)
+    fun fetchAvatar(podMemberIdentifier: String): Flux<ByteArray> =
+            podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
                     .replay()
                     .autoConnect()
                     .filter { it.type == "AVATAR_UPLOADED" }
@@ -88,8 +89,8 @@ class PodHandler(
                     .map { it.identifier }
                     .flatMap { imageHandler.fetchImage(it) }
 
-    fun savePodMemberEvent(pathVariable: String, bodyToMono: Mono<Event>): Publisher<Event> =
-            bodyToMono.flatMap { event -> podMemberRepository.saveEvent(pathVariable, event) }
+    fun savePodMemberEvent(podMemberIdentifier: String, bodyToMono: Mono<Event>): Publisher<Event> =
+            bodyToMono.flatMap { event -> podMemberRepository.saveEvent(podMemberIdentifier, event) }
 
     fun savePodEvent(bodyToMono: Mono<String>): Publisher<String> =
             bodyToMono.flatMap {
