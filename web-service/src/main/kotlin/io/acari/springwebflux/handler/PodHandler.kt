@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.mongodb.util.JSON
 import io.acari.springwebflux.models.*
+import org.bson.Document
 import org.reactivestreams.Publisher
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.findAll
@@ -53,7 +54,7 @@ class PodHandler(private val reactiveMongoTemplateDefined: ReactiveMongoTemplate
             bodyToMono.flatMap {event ->
                 reactiveMongoTemplateDefined.upsert(
                         Query.query(Criteria.where("id").`is`(pathVariable)),
-                        Update().push("events", JSON.parse(objectMapper.writeValueAsString(event))),//probably should figure out how to do this better.
+                        Update().push("events", Document.parse(objectMapper.writeValueAsString(event))),//probably should figure out how to do this better.
                         String::class.java, "podMemberEvents")
                         .map { event }
             }
