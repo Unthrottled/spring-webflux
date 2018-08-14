@@ -13,11 +13,7 @@ import java.nio.ByteBuffer
  */
 class FluxAsyncInputStream(source: Flux<DataBuffer>) : AsyncInputStream {
 
-    private val source: NonBlockingIterableFlux<DataBuffer>
-
-    init {
-        this.source = NonBlockingIterableFlux(source)
-    }
+    private val source: NonBlockingIterableFlux<DataBuffer> = NonBlockingIterableFlux(source)
 
     /**
      * Reads a sequence of bytes from this stream into the given buffer.
