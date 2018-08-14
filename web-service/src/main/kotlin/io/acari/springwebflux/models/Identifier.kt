@@ -8,6 +8,12 @@ import com.fasterxml.jackson.databind.node.MissingNode
  */
 data class Identifier(val _id: String)
 
+interface Identifiable {
+    val identifier: String
+}
+
+data class AvatarUploadedPayload(override val identifier: String): Identifiable
+
 data class PersonalInformation(val interests: List<Interest>, override var email: String, override var firstName: String, override var lastName: String, override var phoneNumber: String): Contactable
 
 data class Contact(override var email: String = "", override var firstName: String = "", override var lastName: String = "", override var phoneNumber: String= ""): Contactable
