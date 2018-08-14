@@ -27,7 +27,7 @@ class PodHandler(private val reactiveMongoTemplateDefined: ReactiveMongoTemplate
 
     fun allPodMembers(): Flux<Identifier> =
             reactiveMongoTemplateDefined.findAll<String>(collectionName = "podEvents")
-                    .map { objectMapper.readValue(it, Event::class.java) }
+                    .map {  objectMapper.readValue(it, Event::class.java) }
                     .map { event -> event.payload }
                     .map { objectMapper.treeToValue(it, BasePodMemberPayload::class.java) }
                     .map { it.identifier }
@@ -50,7 +50,7 @@ class PodHandler(private val reactiveMongoTemplateDefined: ReactiveMongoTemplate
     }
 
     fun savePodMemberEvent(pathVariable: String, bodyToMono: Mono<Event>): Publisher<Event> =
-            bodyToMono.flatMap { event ->
+            bodyToMono.flatMap {event ->
                 reactiveMongoTemplateDefined.upsert(
                         Query.query(Criteria.where("id").`is`(pathVariable)),
                         Update().push("events", JSON.parse(objectMapper.writeValueAsString(event))),//probably should figure out how to do this better.
