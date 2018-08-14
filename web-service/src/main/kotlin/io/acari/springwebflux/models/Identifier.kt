@@ -8,15 +8,20 @@ import com.fasterxml.jackson.databind.node.MissingNode
  */
 data class Identifier(val _id: String)
 
-data class PersonalInformation(
-        val interests: List<Interest>,
-        val email: String,
-        val firstName: String,
-        val lastName: String,
-        val phoneNumber: String
-)
+data class PersonalInformation(val interests: List<Interest>, override var email: String, override var firstName: String, override var lastName: String, override var phoneNumber: String): Contactable
+
+data class Contact(override var email: String = "", override var firstName: String = "", override var lastName: String = "", override var phoneNumber: String= ""): Contactable
+
+interface Contactable {
+    var email: String
+    var firstName: String
+    var lastName: String
+    var phoneNumber: String
+}
 
 data class Interest(val id: String, val value: String)
+
+data class CapturedInfoPayload(val value: String, val field: String)
 
 interface HasPodMember {
     val identifier: String
