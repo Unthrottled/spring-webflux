@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.findAll
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 /**
  * Forged in the flames of battle by alex.
@@ -21,5 +22,8 @@ class PodRepository(private val reactiveMongoTemplateDefined: ReactiveMongoTempl
     fun allPodEvents(): Flux<Event> =
             reactiveMongoTemplateDefined.findAll<String>(collectionName = "podEvents")
                     .map { objectMapper.readValue(it, Event::class.java) }
+
+    fun saveEvent(eventJson: String): Mono<String> =
+            reactiveMongoTemplateDefined.save(eventJson, "podEvents")
 
 }
