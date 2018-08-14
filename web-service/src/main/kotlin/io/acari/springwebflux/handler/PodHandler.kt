@@ -30,6 +30,14 @@ class PodHandler(private val reactiveMongoTemplateDefined: ReactiveMongoTemplate
     fun allPodMembers(): Flux<Identifier> =
             reactiveMongoTemplateDefined.findAll<String>(collectionName = "podEvents")
                     .map { objectMapper.readValue(it, Event::class.java) }
+                    .reduce(HashMap<String, Event>()) { t, u ->
+                        if (u.type == "POD_MEMBER_DELETED")
+                            t.remove(u.payload["identifier"].asText())
+                        else if (u.type == "POD_MEMBER_CREATED")
+                            t[u.payload["identifier"].asText()] = u
+                        t
+                    }
+                    .flatMapMany { Flux.fromIterable(it.values) }
                     .map { event -> event.payload }
                     .map { objectMapper.treeToValue(it, BasePodMemberPayload::class.java) }
                     .map { it.identifier }
