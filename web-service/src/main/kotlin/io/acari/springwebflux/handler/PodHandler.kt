@@ -3,10 +3,10 @@ package io.acari.springwebflux.handler
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.acari.springwebflux.models.*
+import io.acari.springwebflux.repository.PodMemberRepository
+import io.acari.springwebflux.repository.PodRepository
 import org.bson.Document
 import org.reactivestreams.Publisher
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate
-import org.springframework.data.mongodb.core.findAll
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.Update
@@ -21,15 +21,16 @@ import java.util.*
  */
 
 @Service
-class PodHandler(private val reactiveMongoTemplateDefined: ReactiveMongoTemplate,
-                 private val imageHandler: ImageHandler) {
+class PodHandler(
+        private val podRepository: PodRepository,
+        private val podMemberRepository: PodMemberRepository,
+        private val imageHandler: ImageHandler) {
 
     private val objectMapper = jacksonObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
     fun allPodMembers(): Flux<Identifier> =
-            reactiveMongoTemplateDefined.findAll<String>(collectionName = "podEvents")
-                    .map { objectMapper.readValue(it, Event::class.java) }
+            podRepository.allPodEvents()
                     .reduce(HashMap<String, Event>()) { t, u ->
                         if (u.type == "POD_MEMBER_DELETED")
                             t.remove(u.payload["identifier"].asText())
