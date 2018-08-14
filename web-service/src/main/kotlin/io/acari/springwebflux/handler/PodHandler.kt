@@ -73,8 +73,8 @@ class PodHandler(
                     t
                 }
 
-
-        return contactable.zipWith(interest) { t, u -> PersonalInformation(u, t.email, t.firstName, t.lastName, t.phoneNumber) }
+        return contactable.zipWith(interest)
+        { t, u -> PersonalInformation(u, t.email, t.firstName, t.lastName, t.phoneNumber) }
     }
 
 
