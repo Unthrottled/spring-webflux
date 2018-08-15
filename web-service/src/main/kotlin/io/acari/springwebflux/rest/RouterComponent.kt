@@ -25,20 +25,21 @@ class RouterComponent(private val imageHandler: ImageHandler,
                       private val podHandler: PodHandler) {
 
     @Bean
-    fun apiRouterFunction(): RouterFunction<*> {
-        return nest(path("/api"),
-                nest(path("/pod"),
-                    route(GET("/members"), allPodMemberHandler())
-                    .andRoute(POST("/event"), podEventHandler())
-                    .andRoute(GET("/members/avatar"), allAvatarIds())
-                    .andNest(path("/member/{id}"),
-                        route(POST("/avatar"), saveImageHandler())
-                        .andRoute(GET("/avatar"), handlerFunction())
-                        .andRoute(GET("/information"), informationHandler())
-                        .andRoute(POST("/event"), podMemberEventHandler())))
-                )
-                .andOther(resources("/**", ClassPathResource("static/")))
-    }
+    fun staticRouterFunction(): RouterFunction<*> =
+            resources("/**", ClassPathResource("static/"))
+    @Bean
+    fun apiRouterFunction(): RouterFunction<ServerResponse> =
+            nest(path("/api"),
+                    nest(path("/pod"),
+                            route(GET("/members"), allPodMemberHandler())
+                                    .andRoute(POST("/event"), podEventHandler())
+                                    .andRoute(GET("/members/avatar"), allAvatarIds())
+                                    .andNest(path("/member/{id}"),
+                                            route(POST("/avatar"), saveImageHandler())
+                                                    .andRoute(GET("/avatar"), handlerFunction())
+                                                    .andRoute(GET("/information"), informationHandler())
+                                                    .andRoute(POST("/event"), podMemberEventHandler())))
+            )
 
     private fun allPodMemberHandler() = HandlerFunction {
         ServerResponse.ok()
