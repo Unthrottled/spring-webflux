@@ -1,13 +1,5 @@
 Story Ideas
 - It would be cool if I could somehow be able to work in event sourcing into the example that I created.
-    - Creating a pod member
-        - Adding interests
-        - Removing interests
-    - Associate with pod
-        - Added to
-        - Removed from
-        - Validation
-    - Adding an avatar
     - Look into Command Query Responsibility Segregation, as it applies to event sourcing.
         - [https://martinfowler.com/bliki/CQRS.html](https://martinfowler.com/bliki/CQRS.html)
         - [https://www.culttt.com/2015/01/14/command-query-responsibility-segregation-cqrs/](https://www.culttt.com/2015/01/14/command-query-responsibility-segregation-cqrs/)
@@ -18,61 +10,19 @@ Story Ideas
         -
         -
     
-### THINGS TO COVER
-- What?
-- Who?
-- Why?
-- How
-- Subscription
+### THINGS left TO COVER
+
+
 - Runs on Daemon threads
 - Basic source
-    - Streams
-    - Lists
     - Sinks
-- Basic intermediaries
-    - the basics
-        - map
-        - filter
-        - flatmap
-    - default
-    - Pipe
-    - delay
-        - Elements
-        - sequence
-        - delay until
-    - distinct
-    - do
-        - on error
-        - next
-        - request
-        - subscribe
-        - success
-    - index
-    - debug stuff
-        - log
-    - debounce
-        - limit
-    - backpressure
+
 - Terminal operations
-    - Collectors
-        - list
-        - map
-            - Multimap
-            - Group By 
-    - Reduce
-    - Next
-        - Single   
     - Then
+
 - Reactor multi subscribe
-- Hot/Cold sequences
-- Repeat, retry, replay
-- Merging
-- Netty
-    - Trying to block on rest api handler
 - errors
 - Testing
 - Tuples in reactor
-- Parallelization
 - Schedulers
 - Annotations/Functional routers
-- Streaming multiparts?
