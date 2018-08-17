@@ -90,22 +90,15 @@ There are at least two general programming paradigms that can improve a programâ
 
 **Multi-Threading**, is this how I get the most bang for the buck?
 
-Java developers have the ability to easily write programs using blocking code. 
+Java developers have the ability to easily write programs using blocking code.
 This practice is fine until there is a performance bottleneck arises.
 A solution would be to introduce even more threads threads, running similar blocking code.
 Scaling in resource utilization can quickly introduce thread contention and concurrency problems.
 
-Worse still, all of those new threads are just sitting there blocking and wasting resources. 
+Worse still, all of those new threads are just sitting there blocking and wasting resources that could be used to do work. 
 If you look closely, as soon as a program involves some latency 
 (notably I/O, such as a database request or a network call), resources are wasted as a thread (or many threads) now are sitting idle, waiting for responses.
 
-So the parallelization approach is not a silver bullet. 
-However, it is necessary in order to harness the full power of the hardware.
-
-Large number of performance bottle-necks, as mentioned above, occur when processes are waiting for input and output I/O. 
-Whether it be a network call, reading from disk, or even a database query. 
-
-There is a way to reach the past the point of diminishing returns when introducing concurrency and throwing more threads at a problem.
 The CPU can only do so many things at once, and adding more threads exacerbates the problem.
 
 When a thread is blocked, no work is being done by that thread. 
@@ -114,14 +107,23 @@ If another thread is added, to work on a similar process, eventually that thread
 It too, will be waiting, have to be put back into context and get some CPU time.
 There is a point where spawning more threads to work, the less efficient the tasks come come to be processed.
 
-The OS scheduler, is going to let a thread get N amount of clock time, and then it is going to context switch (which can add up as more thnigs need to be process).
+The OS scheduler, is going to let a thread get N amount of clock time, and then it is going to context switch (which can add up as more things need to be process).
 Which involves moving things out of the direct memory cache, loading up next context of the thread and then trying to process a threads work.
 
 The more threads that are in need of being processed, the more the context switching needs to happen.
 As more and more threads spin up, there is point where **thrashing** occurs. 
 Which means that all work being done for the all of the clock cycles is just setting up thread context, not doing any work (no time), and tearing down for the next thread to be processed.
 
-Which means that the biggest bang for our buck would be having a few active threads that are always doing work.
+So the parallelization approach is not a silver bullet. 
+However, it is necessary in order to harness the full power of the hardware.
+
+Large number of performance bottle-necks, as mentioned above, occur when processes are waiting for input and output I/O. 
+Whether it be a network call, reading from disk, or even a database query. 
+
+There is a way to reach the past the point of diminishing returns when introducing concurrency and throwing more threads at a problem.
+
+The biggest bang for our buck would be having a few active threads that are always doing work. 
+Never blocking and always reacting to work that needs to be done.
 
 How?
 ---
