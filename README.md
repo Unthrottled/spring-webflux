@@ -129,12 +129,14 @@ How?
 ---
 
 This can be done by utilizing a **Non-Blocking** programming paradigm. 
-A **push-based** system does not necessarily need to block work from happening. 
-When data is processed in time, then it will be directed to where it needs to go.
-Where as **pull-based** call says, `Hey, you cannot continue down the rest of this code until this one thing happens.`.
-Which essentially _blocks_ the program's flow until it can continue to be processed.
 
-The reactive programming paradigm is often presented in object-oriented languages as an extension of the Observer design pattern.
+A **pull-based** call says, `Hey, you cannot continue down the rest of this code until this one thing happens.`.
+Which essentially _blocks_ the program's flow until it can continue to be processed.
+Where as **push-based** system does not necessarily need to block work from happening. 
+When data is processed in time, then it will be directed to where it needs to go. Don't call us, we'll call you.
+
+The reactive programming paradigm is often presented in object-oriented languages as an 
+extension of the Observer design pattern.
 
 One can also compare the main reactive streams pattern with the familiar Iterator design pattern. 
 There is a duality to the Iterable-Iterator pair and Reactive Streams. 
