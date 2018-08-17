@@ -161,10 +161,10 @@ Rather than blocking to wait for a method to return, just have the data sent ove
 That way work can be done while that data is getting ready to be processed.
 
 **Push-Based** programming lends itself to asynchrony.
- Which is needed in order to enable the efficient parallel use of computing resources, 
- on collaborating network hosts or multiple CPU cores within a single machine.
+Which is needed in order to enable the efficient parallel use of computing resources. Whether they be  collaborating network hosts or multiple CPU cores within a single machine.
  
-It also makes it easier to avoid issues with thread contention as most of the code is processed inside of a **event loop**
+Remember thread contention? Having multiple threads compete for shared resources is a bit of a pain, especially when you want to add more threads!
+Issues with thread contention in non blocking code is minimal. As most of the code is processed inside of a **event loop**
 
 Wikipedia is nice and gives a handy definition of an event loop:
 
@@ -223,7 +223,7 @@ The best we can do is set up our functions (constructs) that manipulate the data
 
 Reactive streams are very much like the Java 8 stream API.
 
-Here are some of the characteristics of reactive steams:
+Here are some of the characteristics of reactive streams:
 
 - Data as a flow, is manipulated with a rich vocabulary of operators
 - Nothing happens until you subscribe
