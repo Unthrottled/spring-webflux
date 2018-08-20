@@ -1,5 +1,5 @@
 .boxed-content {
-  background: #4d89af;
+  background: rgba(0,0,0,0);
   border-radius: 1em;
   z-index: 10000;
   position: relative;
@@ -21,7 +21,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   font-weight: 300;
-  background: #364a5f url('../images/stripe.png') fixed;
+  background: url('../images/stripe.png') fixed, linear-gradient(#abe6ec,#364a5f);
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   display: block;
@@ -32,7 +32,7 @@ body {
 
 .project-file-component-container {
   padding: 1em;
-  background-color: rgba(121, 175, 173, 0.5);
+  background-color: rgba(121, 175, 173, 0.0);
 }
 
 .list-container{
