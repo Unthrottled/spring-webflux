@@ -4,7 +4,6 @@
   z-index: 10000;
   position: relative;
   width: 99.984%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 pod-member-component {
@@ -25,7 +24,7 @@ body {
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   display: block;
-  max-width: 1500px;
+  max-width: 2300px;
   margin: auto;
   padding: 40px 50px;
 }
@@ -39,6 +38,12 @@ body {
   padding: 0.5em;
   background-color: rgba(202, 255, 248, 0.25);
   border-radius: 1em;
+  overflow: auto;
+}
+
+.list-container > div {
+  display: inline-block;
+  width: 500px;
 }
 
 .project-container{
@@ -48,10 +53,6 @@ body {
   margin-bottom: 1em;
   border: 0.25em double rgba(20, 20, 20, 0.33);
 
-}
-
-.list-container {
-  margin-top: 4em;
 }
 
 .add-image-container {
