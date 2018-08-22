@@ -1,20 +1,21 @@
 <div>
-    <label>
-        First Name
-        <input [ngModel]="firstName" type="text"/>
-    </label>
-    <label>
-        Last Name
-        <input [ngModel]="lastName"  type="text"/>
-    </label>
-    <label>
-        Email
-        <input [ngModel]="email"  type="text"/>
-    </label>
-    <label>
-        Phone
-        <input [ngModel]="phoneNumber"  type="text"/>
-    </label>
+    <div class="pod-member-full-name">
+        {{firstName }} {{lastName}}
+    </div>
+    <div class="contact-info">
+        <div class="email">
+            <label>
+                <i class="far fa-envelope"></i>
+                {{email}}
+            </label>
+        </div>
+        <div class="phone-number">
+            <label>
+                <i class="fas fa-comment-alt"></i>
+                {{phoneNumber}}
+            </label>
+        </div>
+    </div>
     <label>
         Interests
         <text-list [interests]="interests"></text-list>

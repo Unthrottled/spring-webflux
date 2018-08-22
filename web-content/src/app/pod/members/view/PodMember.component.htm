@@ -1,7 +1,7 @@
 <div class="pod-member-container">
     <div>
         <div *ngIf="avatar | async">
-            <avatar-view [avatar]="avatar | async"></avatar-view>
+                <avatar-view [avatar]="avatar | async"></avatar-view>
         </div>
         <div *ngIf="editMode">
             <pod-member-editor [podMember]="podMember"></pod-member-editor>
