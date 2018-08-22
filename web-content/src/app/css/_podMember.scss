@@ -39,41 +39,53 @@
   }
 }
 
-.interest-tag{
-  position:relative;
-  margin:{
+.interest-tag {
+  position: relative;
+  margin: {
     bottom: 5px;
   }
   display: inline-block;
-  height:25px;
+  height: 25px;
   border-radius: 0 5px 5px 0;
-  padding: 0 25px 0 15px;
-  background:$tag-background;
-  color:$tag-color;
-  line-height:23px;
+  padding: 0 2em 0 1em;
+  background: $tag-background;
+  color: $tag-color;
+  font-size: 1.25em;
+  line-height: 23px;
   font-weight: 400;
 
 }
-.interest-tag:after{
-  position:absolute;
-  right:0;
-  margin:1px 7px;
-  font-weight:bold;
-  font-size:19px;
+
+.interest-tag:after {
+  position: absolute;
+  right: 0;
+  margin: 1px 7px;
+  font-weight: bold;
+  font-size: 19px;
 }
-.interest-tag:before{
-  position:absolute;
-  background:$tag-background;
-  content:"\6969";
-  color:$tag-background;
-  font-size:12px;
-  line-height:13px;
-  text-indent:6px;
-  top:3px;
-  left:-10px;
+
+.interest-tag:before {
+  position: absolute;
+  background: $tag-background;
+  content: "\6969";
+  color: $tag-background;
+  font-size: 12px;
+  line-height: 13px;
+  text-indent: 6px;
+  top: 3px;
+  left: -10px;
   width: 18px;
   height: 18px;
   transform: rotate(45deg);
-  border-left:1px solid $border-color;
-  border-bottom:1px solid $border-color;
+  border-left: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+.interest-removal {
+  margin-left: 1em;
+  margin-top: 0.1em
+}
+
+.interest-removal:hover {
+  cursor: pointer;
 }
