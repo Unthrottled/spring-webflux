@@ -71,7 +71,7 @@ export class PodMemberService implements OnInit {
     }
 
     private addPodMemberToList(podMember: PodMember) {
-        this.podMembersIterator.push(podMember);
+        this.podMembersIterator.unshift(podMember);
     }
 
     private removePodMemberFromList(podMemberToRemove: PodMember) {

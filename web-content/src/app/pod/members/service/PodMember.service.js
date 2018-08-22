@@ -76,7 +76,7 @@ var PodMemberService = /** @class */ (function () {
             .map(function (it) { return podMember; });
     };
     PodMemberService.prototype.addPodMemberToList = function (podMember) {
-        this.podMembersIterator.push(podMember);
+        this.podMembersIterator.unshift(podMember);
     };
     PodMemberService.prototype.removePodMemberFromList = function (podMemberToRemove) {
         this.podMembersIterator = this.podMembersIterator.filter(function (it) { return it.getIdentifier() !== podMemberToRemove.getIdentifier(); });
