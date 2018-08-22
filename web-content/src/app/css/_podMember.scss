@@ -3,8 +3,24 @@
   font-size: 2em;
   text-align: center;
   color: white;
-  text-shadow: -1px -1px 0 rgba(23, 250, 0, 0.75),
-  1px -1px 0 rgba(23, 250, 0, 0.75),
-  -1px 1px 0 rgba(23, 250, 0, 0.75),
-  1px 1px 0 rgba(23, 250, 0, 0.75);
+  text-shadow: -1px -1px 0 rgba(23, 23, 240, 0.75),
+  1px -1px 0 rgba(23, 23, 240, 0.75),
+  -1px 1px 0 rgba(23, 23, 240, 0.75),
+  1px 1px 0 rgba(23, 23, 240, 0.75);
+}
+
+.email {
+  color: white;
+  font-size: 1.25em;
+}
+
+.phone-number {
+  color: azure;
+  font-size: 1.25em;
+}
+
+.contact-info {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-evenly;
 }
