@@ -89,3 +89,11 @@
 .interest-removal:hover {
   cursor: pointer;
 }
+
+.information-editor-container {
+  padding: 1.25em;
+}
+.information-editor-container > label {
+  margin-bottom: 1em;
+  display: inline-block;
+}
