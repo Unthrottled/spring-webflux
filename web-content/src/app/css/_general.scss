@@ -52,7 +52,6 @@ body {
   border-radius: 1em;
   margin-bottom: 1em;
   border: 0.25em double rgba(20, 20, 20, 0.33);
-
 }
 
 .pod-member-container {
@@ -64,7 +63,6 @@ body {
 
 .add-image-container {
   padding: 1em;
-  text-align: center;
 }
 
 .image-holder {
@@ -90,4 +88,12 @@ body {
 
 .interest-removal {
   float: right;
+}
+
+.add-club-member {
+  font-size: 2em;
+}
+
+.add-club-member:hover {
+  cursor: pointer;
 }
