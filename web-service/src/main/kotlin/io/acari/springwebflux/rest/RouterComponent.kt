@@ -30,51 +30,41 @@ class RouterComponent(private val imageHandler: ImageHandler,
     @Bean
     fun apiRouterFunction(): RouterFunction<ServerResponse> =
             nest(path("/api"),
-                    nest(path("/pod"),
-                            route(GET("/members"), allPodMemberHandler())
-                                    .andRoute(POST("/event"), podEventHandler())
-                                    .andRoute(GET("/members/avatar"), allAvatarIdsHandler())
-                                    .andNest(path("/member/{id}"),
-                                            route(POST("/avatar"), saveImageHandler())
-                                                    .andRoute(GET("/avatar"), podMemberAvatarHandler())
-                                                    .andRoute(GET("/information"), podMemberInformationHandler())
-                                                    .andRoute(POST("/event"), podMemberEventHandler())))
+                nest(path("/pod"),
+                    route(GET("/members"), allPodMemberHandler())
+                        .andRoute(POST("/event"), podEventHandler())
+                        .andRoute(GET("/members/avatar"), allAvatarIdsHandler())
+                        .andNest(path("/member/{id}"),
+                            route(POST("/avatar"), saveImageHandler())
+                                .andRoute(GET("/avatar"), podMemberAvatarHandler())
+                                .andRoute(GET("/information"), podMemberInformationHandler())
+                                .andRoute(POST("/event"), podMemberEventHandler())))
             )
 
     private fun allPodMemberHandler() = HandlerFunction {
-        ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_STREAM_JSON)
-                .body(fromPublisher(podHandler.allPodMembers(), Identifier::class.java))
+        ServerResponse.ok().build()
     }
 
     private fun allAvatarIdsHandler() = HandlerFunction {
-        ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_STREAM_JSON)
-                .body(fromPublisher(imageHandler.findAllNames(), Identifier::class.java))
+        ServerResponse.ok().build()
     }
 
     private fun podMemberInformationHandler() = HandlerFunction {
-        ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(fromPublisher(podHandler.fetchInterests(it.pathVariable("id")), PersonalInformation::class.java))
+        ServerResponse.ok().build()
     }
 
     private fun saveImageHandler() = HandlerFunction {
-        ServerResponse.ok()
-                .body(imageHandler.saveImage(it.body(BodyExtractors.toParts())), String::class.java)
+        ServerResponse.ok().build()
     }
 
     private fun podMemberEventHandler() = HandlerFunction {
-        ServerResponse.ok()
-                .body(podHandler.savePodMemberEvent(it.pathVariable("id"), it.bodyToMono(Event::class.java)), Event::class.java)
+        ServerResponse.ok().build()
     }
     private fun podEventHandler() = HandlerFunction {
-        ServerResponse.ok()
-                .body(podHandler.savePodEvent(it.bodyToMono(String::class.java)), String::class.java)
+        ServerResponse.ok().build()
     }
 
     private fun podMemberAvatarHandler() = HandlerFunction {
-        ServerResponse.ok()
-                .body(podHandler.fetchAvatar(it.pathVariable("id")), ByteArray::class.java)
+        ServerResponse.ok().build()
     }
 }
