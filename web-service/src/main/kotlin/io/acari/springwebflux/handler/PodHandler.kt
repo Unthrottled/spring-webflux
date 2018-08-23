@@ -27,6 +27,12 @@ class PodHandler(
     fun allPodMembers(): Flux<Identifier> =
             Flux.empty()
 
+    fun allPodMemberEvents(podMemberIdentifier: String): Flux<Event> =
+            podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
+
+    fun allPodEvents(): Flux<Event> =
+            podRepository.allPodEvents()
+
     fun fetchInterests(podMemberIdentifier: String): Mono<PersonalInformation> {
         return Mono.empty()
     }
