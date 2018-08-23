@@ -40,7 +40,7 @@ class RouterComponent(private val imageHandler: ImageHandler,
                                 .andRoute(GET("/avatar"), podMemberAvatarHandler())
                                 .andRoute(GET("/information"), podMemberInformationHandler())
                                 .andRoute(GET("/event"), podMemberGetEventHandler())
-                ))
+                )))
 
     private fun allPodMemberHandler() = HandlerFunction {
         ServerResponse.ok().build()
