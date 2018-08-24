@@ -19,4 +19,6 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - "./dataDump/:/data/db"
+      - "mongoData:/data/db"
+volumes:
+  mongoData:
