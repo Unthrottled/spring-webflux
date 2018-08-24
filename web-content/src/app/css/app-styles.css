@@ -6,6 +6,9 @@
     border-radius: 5px;
 }
 
+pod-member-editor {
+    color: azure;
+}
 
 .app-container {
     width: 95%;
