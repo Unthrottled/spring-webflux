@@ -33,12 +33,15 @@ class RouterComponent(private val imageHandler: ImageHandler,
                     nest(path("/pod"),
                             route(GET("/members"), allPodMemberHandler())
                                     .andRoute(POST("/event"), podEventHandler())
-                                    .andRoute(GET("/members/avatar"), allAvatarIds())
+                                    .andRoute(GET("/event"), podGetEventHandler())
+                                    .andRoute(GET("/members/avatar"), allAvatarIdsHandler())
                                     .andNest(path("/member/{id}"),
                                             route(POST("/avatar"), saveImageHandler())
-                                                    .andRoute(GET("/avatar"), handlerFunction())
-                                                    .andRoute(GET("/information"), informationHandler())
-                                                    .andRoute(POST("/event"), podMemberEventHandler())))
+                                                    .andRoute(GET("/avatar"), podMemberAvatarHandler())
+                                                    .andRoute(GET("/information"), podMemberInformationHandler())
+                                                    .andRoute(POST("/event"), podMemberEventHandler())
+                                                    .andRoute(GET("/event"), podMemberGetEventHandler())
+                                    ))
             )
 
     private fun allPodMemberHandler() = HandlerFunction {
@@ -47,13 +50,13 @@ class RouterComponent(private val imageHandler: ImageHandler,
                 .body(fromPublisher(podHandler.allPodMembers(), Identifier::class.java))
     }
 
-    private fun allAvatarIds() = HandlerFunction {
+    private fun allAvatarIdsHandler() = HandlerFunction {
         ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_STREAM_JSON)
                 .body(fromPublisher(imageHandler.findAllNames(), Identifier::class.java))
     }
 
-    private fun informationHandler() = HandlerFunction {
+    private fun podMemberInformationHandler() = HandlerFunction {
         ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(fromPublisher(podHandler.fetchInterests(it.pathVariable("id")), PersonalInformation::class.java))
@@ -68,12 +71,25 @@ class RouterComponent(private val imageHandler: ImageHandler,
         ServerResponse.ok()
                 .body(podHandler.savePodMemberEvent(it.pathVariable("id"), it.bodyToMono(Event::class.java)), Event::class.java)
     }
+
+    private fun podMemberGetEventHandler() = HandlerFunction {
+        ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_STREAM_JSON)
+                .body(fromPublisher(podHandler.allPodMemberEvents(it.pathVariable("id")), Event::class.java))
+    }
+
+    private fun podGetEventHandler() = HandlerFunction {
+        ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_STREAM_JSON)
+                .body(fromPublisher(podHandler.allPodEvents(), Event::class.java))
+    }
+
     private fun podEventHandler() = HandlerFunction {
         ServerResponse.ok()
                 .body(podHandler.savePodEvent(it.bodyToMono(String::class.java)), String::class.java)
     }
 
-    private fun handlerFunction() = HandlerFunction {
+    private fun podMemberAvatarHandler() = HandlerFunction {
         ServerResponse.ok()
                 .body(podHandler.fetchAvatar(it.pathVariable("id")), ByteArray::class.java)
     }

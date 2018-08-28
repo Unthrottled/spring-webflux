@@ -4,9 +4,11 @@
     position: relative;
     width: 99.984%;
     border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+pod-member-editor {
+    color: azure;
+}
 
 .app-container {
     width: 95%;
@@ -32,7 +34,6 @@
     color: #3e3e3e;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /*!
  * Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
@@ -5968,12 +5969,14 @@ a.text-dark:focus, a.text-dark:hover {
   margin-right: 0.5em; }
 
 .boxed-content {
-  background: #afafaf;
+  background: transparent;
+  border-radius: 1em;
   z-index: 10000;
   position: relative;
-  width: 99.984%;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+  width: 99.984%; }
+
+pod-member-component {
+  border-radius: 1em; }
 
 img {
   max-width: 100%;
@@ -5984,7 +5987,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   font-weight: 300;
-  background: #5f5d5b url(stripe.ea57599555451c53af1db0db4f5b2664.png) fixed;
+  background: url(stripe.ea57599555451c53af1db0db4f5b2664.png) fixed, linear-gradient(#abe6ec, #364a5f);
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   display: block;
@@ -5994,23 +5997,33 @@ body {
 
 .project-file-component-container {
   padding: 1em;
-  background-color: rgba(175, 175, 175, 0.5); }
+  background-color: rgba(121, 175, 173, 0); }
 
 .list-container {
   padding: 0.5em;
-  background-color: rgba(255, 255, 255, 0.25);
-  border-radius: 1em; }
+  background-color: rgba(202, 255, 248, 0);
+  border-radius: 1em;
+  overflow: auto; }
+
+.list-container > div {
+  display: inline-block;
+  width: 525px; }
 
 .project-container {
   padding: 1em;
-  background-color: rgba(55, 55, 55, 0.25);
+  background-color: rgba(33, 48, 68, 0.3);
   border-radius: 1em;
   margin-bottom: 1em;
-  border: 0.25em double rgba(20, 20, 20, 0.5); }
+  border: 0.25em double rgba(20, 20, 20, 0.33); }
+
+.pod-member-container {
+  background: linear-gradient(#364a5f, #364a5f);
+  margin: 1em;
+  border-radius: 0.5em;
+  padding: 1em; }
 
 .add-image-container {
-  padding: 1em;
-  text-align: center; }
+  padding: 1em; }
 
 .image-holder {
   text-align: center; }
@@ -6019,7 +6032,12 @@ body {
   padding: 1em; }
 
 .image-button-container {
-  display: flex; }
+  display: flex;
+  justify-content: space-evenly; }
+
+.edit-button-container {
+  text-align: center;
+  font-size: 1em; }
 
 .image-button-container div {
   margin-right: 1em; }
@@ -6029,6 +6047,12 @@ body {
 
 .interest-removal {
   float: right; }
+
+.add-club-member {
+  font-size: 2em; }
+
+.add-club-member:hover {
+  cursor: pointer; }
 
 .loading-container {
   padding: 3rem; }
@@ -6565,3 +6589,83 @@ body {
     transform: scale3D(0, 0, 1); }
   20%, 60% {
     background-color: rgba(23, 250, 0, 0.75); } }
+
+.pod-member-full-name {
+  font-family: proto, serif;
+  font-size: 2em;
+  text-align: center;
+  color: white;
+  text-shadow: -1px -1px 0 rgba(23, 23, 240, 0.75), 1px -1px 0 rgba(23, 23, 240, 0.75), -1px 1px 0 rgba(23, 23, 240, 0.75), 1px 1px 0 rgba(23, 23, 240, 0.75); }
+
+.email {
+  color: white;
+  font-size: 1.25em; }
+
+.phone-number {
+  color: azure;
+  font-size: 1.25em; }
+
+.contact-info {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-evenly; }
+
+.interest-label {
+  text-align: center;
+  font-size: 1.25em;
+  color: cornsilk; }
+
+.interest-category {
+  text-align: right;
+  padding-top: 5px;
+  padding-bottom: 5px; }
+
+.interest-tag {
+  position: relative;
+  margin-bottom: 5px;
+  display: inline-block;
+  height: 25px;
+  border-radius: 0 5px 5px 0;
+  padding: 0 2em 0 1em;
+  background: #4c3fbe;
+  color: #ada8e2;
+  font-size: 1.25em;
+  line-height: 23px;
+  font-weight: 400; }
+
+.interest-tag:after {
+  position: absolute;
+  right: 0;
+  margin: 1px 7px;
+  font-weight: bold;
+  font-size: 19px; }
+
+.interest-tag:before {
+  position: absolute;
+  background: #4c3fbe;
+  content: "\6969";
+  color: #4c3fbe;
+  font-size: 12px;
+  line-height: 13px;
+  text-indent: 6px;
+  top: 3px;
+  left: -10px;
+  width: 18px;
+  height: 18px;
+  transform: rotate(45deg);
+  border-left: 1px solid #837bd3;
+  border-bottom: 1px solid #837bd3; }
+
+.interest-removal {
+  margin-left: 1em;
+  margin-top: 0.1em; }
+
+.interest-removal:hover {
+  cursor: pointer; }
+
+.information-editor-container {
+  padding: 1.25em; }
+
+.information-editor-container > label {
+  margin-bottom: 1em;
+  display: inline-block; }

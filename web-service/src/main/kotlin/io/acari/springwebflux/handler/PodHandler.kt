@@ -39,6 +39,12 @@ class PodHandler(
                     .map { it.identifier }
                     .map { Identifier(it) }
 
+    fun allPodMemberEvents(podMemberIdentifier: String): Flux<Event> =
+            podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
+
+    fun allPodEvents(): Flux<Event> =
+            podRepository.allPodEvents()
+
     fun fetchInterests(podMemberIdentifier: String): Mono<PersonalInformation> {
         val eventStream = podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
                 .replay()
