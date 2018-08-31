@@ -5910,34 +5910,37 @@ a.text-dark:focus, a.text-dark:hover {
   src: url(Protos.d7dd70a360d297f4bfb02c72a06e6df6.otf); }
 
 .welcome-header {
-  background-color: rgba(54, 144, 18, 0.28);
+  background-color: rgba(5, 114, 144, 0.28);
   padding: 0.5em;
-  color: ghostwhite;
+  text-align: center;
   font-family: 'proto', Consolas, Monaco, 'Andale Mono', monospace;
+  color: ghostwhite;
+  font-size: 3em;
   border-radius: 0.25em 1em 0.5em 1em;
-  text-shadow: -1px -1px 0 rgba(23, 250, 0, 0.75), 1px -1px 0 rgba(23, 250, 0, 0.75), -1px 1px 0 rgba(23, 250, 0, 0.75), 1px 1px 0 rgba(23, 250, 0, 0.75); }
+  text-shadow: -1px -1px 0 rgba(91, 210, 250, 0.75), 1px -1px 0 rgba(91, 210, 250, 0.75), -1px 1px 0 rgba(91, 210, 250, 0.75), 1px 1px 0 rgba(91, 210, 250, 0.75); }
 
 .welcome-container {
   padding: 2em;
-  color: black;
-  background: url(hex.1817cd71704e66700b13afee97c9f0c7.png), url(hex-right.dc8782692258eb72285cd52fe171f70c.png), #494949 !important;
+  background: #3f4249 !important;
   background-position: top left, top right !important;
+  border-radius: 0.25em 1em 0.5em 1em;
   background-repeat: repeat-y, repeat-y !important; }
 
 .welcome-bar {
   white-space: pre-wrap; }
 
 .nano-container {
+  padding: 2em;
   font-size: 1em;
   font-weight: 300;
-  color: rgba(23, 250, 0, 0.75);
+  color: rgba(91, 210, 250, 0.75);
   font-family: Consolas, Monaco, 'Andale Mono', monospace, "Lucida Console", monospace; }
 
 .nano-header {
   display: flex;
-  background: rgba(23, 250, 0, 0.75);
+  background: rgba(91, 210, 250, 0.75);
   margin-bottom: 1em;
-  color: #494949; }
+  color: #3f4249; }
 
 .nano-version {
   flex-grow: 0.25;
@@ -5961,8 +5964,8 @@ a.text-dark:focus, a.text-dark:hover {
   position: relative; }
 
 .nano-command-hotkey {
-  background: rgba(23, 250, 0, 0.75);
-  color: #494949;
+  background: rgba(91, 210, 250, 0.75);
+  color: #3f4249;
   margin-right: 0.5em; }
 
 .nano-command-label {
@@ -5987,7 +5990,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   font-weight: 300;
-  background: url(stripe.ea57599555451c53af1db0db4f5b2664.png) fixed, linear-gradient(#abe6ec, #364a5f);
+  background: url(stripe.ea57599555451c53af1db0db4f5b2664.png) fixed, linear-gradient(#ba5e57, #364a5f);
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   display: block;
@@ -6017,7 +6020,9 @@ body {
   border: 0.25em double rgba(20, 20, 20, 0.33); }
 
 .pod-member-container {
-  background: linear-gradient(#364a5f, #364a5f);
+  background: url(hex.1817cd71704e66700b13afee97c9f0c7.png), url(hex-right.dc8782692258eb72285cd52fe171f70c.png), #425668 !important;
+  background-position: top left, top right !important;
+  background-repeat: repeat-y, repeat-y !important;
   margin: 1em;
   border-radius: 0.5em;
   padding: 1em; }
@@ -6528,7 +6533,7 @@ body {
 .sk-cube-grid .sk-cube {
   width: 33%;
   height: 33%;
-  background-color: #494949;
+  background-color: #3f4249;
   opacity: 0.75;
   float: left;
   -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
@@ -6578,7 +6583,7 @@ body {
     -webkit-transform: scale3D(0, 0, 1);
     transform: scale3D(0, 0, 1); }
   20%, 60% {
-    background-color: rgba(23, 250, 0, 0.75); } }
+    background-color: rgba(91, 210, 250, 0.75); } }
 
 @keyframes sk-cubeGridScaleDelay {
   0%, 70%, 100% {
@@ -6588,14 +6593,20 @@ body {
     -webkit-transform: scale3D(0, 0, 1);
     transform: scale3D(0, 0, 1); }
   20%, 60% {
-    background-color: rgba(23, 250, 0, 0.75); } }
+    background-color: rgba(91, 210, 250, 0.75); } }
 
 .pod-member-full-name {
   font-family: proto, serif;
   font-size: 2em;
   text-align: center;
   color: white;
-  text-shadow: -1px -1px 0 rgba(23, 23, 240, 0.75), 1px -1px 0 rgba(23, 23, 240, 0.75), -1px 1px 0 rgba(23, 23, 240, 0.75), 1px 1px 0 rgba(23, 23, 240, 0.75); }
+  text-shadow: -1px -1px 0 rgba(112, 49, 43, 0.75), 1px -1px 0 rgba(112, 49, 43, 0.75), -1px 1px 0 rgba(112, 49, 43, 0.75), 1px 1px 0 rgba(112, 49, 43, 0.75); }
+
+.add-pod-member-label {
+  font-size: 2em;
+  padding-top: 1em;
+  color: whitesmoke;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.75), 1px -1px 0 rgba(0, 0, 0, 0.75), -1px 1px 0 rgba(0, 0, 0, 0.75), 1px 1px 0 rgba(0, 0, 0, 0.75); }
 
 .email {
   color: white;
