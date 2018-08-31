@@ -55,7 +55,9 @@ body {
 }
 
 .pod-member-container {
-  background: #425668;
+  background: url(../images/hex.png), url(../images/hex-right.png), #425668 !important;;
+  background-position: top left, top right !important;
+  background-repeat: repeat-y, repeat-y !important;
   margin: 1em;
   border-radius: 0.5em;
   padding: 1em;

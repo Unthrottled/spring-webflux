@@ -1,5 +1,5 @@
 <div class="project-file-component-container">
-    <loading-indicator [doneLoading]="loading"></loading-indicator>
+
     <div >
         <label>
             <span class="fa-stack fa-lg add-club-member" (click)="addNewPodMember()">
@@ -8,5 +8,21 @@
             </span>
         </label>
     </div>
+    <div class="welcome-container">
+        <p class="welcome-header">
+            Pod Supreme
+        </p>
+        <p class="nano-container">
+            Welcome to Pod Supreme. This pod cannot seem to get enough of event sourcing!
+            Their collective interests attract talent from all around (except for UI design..cough..coughs).
+
+            Add more pod members, so that Pod Supreme will be number one.
+        </p>
+        <p class="nano-container">
+            Add more pod members, so that Pod Supreme will be number one.
+        </p>
+    </div>
+    <loading-indicator [doneLoading]="loading"></loading-indicator>
     <pod-member-list [podMembers]="podMembers"></pod-member-list>
+
 </div>
