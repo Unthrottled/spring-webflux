@@ -20,7 +20,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   font-weight: 300;
-  background: url('../images/stripe.png') fixed, linear-gradient(#abe6ec,#364a5f);
+  background: url('../images/stripe.png') fixed, linear-gradient(#ba5e57,#364a5f);
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   display: block;
@@ -55,7 +55,9 @@ body {
 }
 
 .pod-member-container {
-  background: linear-gradient(#364a5f,#364a5f);
+  background: url(../images/hex.png), url(../images/hex-right.png), #425668 !important;;
+  background-position: top left, top right !important;
+  background-repeat: repeat-y, repeat-y !important;
   margin: 1em;
   border-radius: 0.5em;
   padding: 1em;

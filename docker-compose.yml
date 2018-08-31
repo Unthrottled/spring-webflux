@@ -5,6 +5,8 @@ services:
     ports:
       - 80:80
     image: alexsimons/spring-webflux-web-service:1.0.0
+    depends_on:
+      - mongo
   mongo:
     image: mongo:latest
     ports:
