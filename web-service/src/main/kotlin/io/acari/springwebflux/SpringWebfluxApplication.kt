@@ -41,7 +41,7 @@ class HelloController {
 }
 
 @Configuration
-class HelloContoller {
+class HelloConfiguration {
 
     @Bean
     fun helloController() =
