@@ -5,6 +5,16 @@
  - [Docker and Docker-Compose (should support version 3.0 compose files)](https://docs.docker.com/docker-for-mac/)
  - Alternatively MongoDB
     - Running on 
+    
+## Running Application
+
+For this workshop, we are going to need to run the application under a Spring active profile of `local`.
+
+It is easiest to run in the command line using this command:
+
+```
+./gradlew bootrun -Dspring.profiles.active=local
+```
 
 ## Introduction
 
