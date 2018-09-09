@@ -313,8 +313,8 @@ Content-Type: application/stream+json
 {
 	"type": "INTEREST_CAPTURED",
 	"payload": {
-		"id": "14040bc0-b446-11e8-88d5-5fe830a9621a",
-		"value": "RGB"
+		"id": "16463390-b446-11e8-88d5-5fe830a9621a",
+		"value": "Not Partying"
 	},
 	"error": false,
 	"meta": {}
@@ -322,8 +322,8 @@ Content-Type: application/stream+json
 {
 	"type": "INTEREST_CAPTURED",
 	"payload": {
-		"id": "16463390-b446-11e8-88d5-5fe830a9621a",
-		"value": "Not Partying"
+		"id": "14040bc0-b446-11e8-88d5-5fe830a9621a",
+		"value": "RGB"
 	},
 	"error": false,
 	"meta": {}
