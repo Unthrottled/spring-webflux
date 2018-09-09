@@ -10,8 +10,6 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.BodyExtractors
 import org.springframework.stereotype.Component
-import org.springframework.web.reactive.function.BodyInserter
-import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.BodyInserters.fromPublisher
 import org.springframework.web.reactive.function.server.HandlerFunction
 import org.springframework.web.reactive.function.server.RequestPredicates.*
@@ -61,7 +59,7 @@ class RouterComponent(private val imageHandler: ImageHandler,
   private fun allPodMemberHandler() = HandlerFunction {
     ServerResponse.ok()
         .contentType(MediaType.APPLICATION_STREAM_JSON)
-        .body(fromPublisher(podHandler.allPodMembers(), Identifier::class.java))
+        .body(fromPublisher(podHandler.projectAllPodMembers(), Identifier::class.java))
   }
 
   private fun allAvatarIdsHandler() = HandlerFunction {
@@ -73,7 +71,7 @@ class RouterComponent(private val imageHandler: ImageHandler,
   private fun podMemberInformationHandler() = HandlerFunction {
     ServerResponse.ok()
         .contentType(MediaType.APPLICATION_JSON)
-        .body(fromPublisher(podHandler.fetchInterests(it.pathVariable("id")), PersonalInformation::class.java))
+        .body(fromPublisher(podHandler.projectPersonalInformation(it.pathVariable("id")), PersonalInformation::class.java))
   }
 
   private fun saveImageHandler() = HandlerFunction {

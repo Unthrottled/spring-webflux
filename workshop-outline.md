@@ -263,8 +263,8 @@ Which looks a little something like this:
 //Pod Handler
 fun savePodMemberEvent(podMemberIdentifier: String, requestBody: Mono<Event>): Publisher<Event>
 fun savePodEvent(requestBody: Mono<String>): Publisher<String>
-fun allPodMembers(): Flux<Identifier>
-fun fetchInterests(podMemberIdentifier: String): Mono<PersonalInformation>
+fun projectAllPodMembers(): Flux<Identifier>
+fun projectPersonalInformation(podMemberIdentifier: String): Mono<PersonalInformation>
 ```
 
 ```kotlin
@@ -283,9 +283,9 @@ Implement these service methods!
 
 1. savePodMemberEvent(podMemberIdentifier: String, requestBody: Mono<Event>): Publisher<Event>
 1. savePodEvent(requestBody: Mono<String>): Publisher<String>
-1. allPodMembers(): Flux<Identifier>
+1. projectAllPodMembers(): Flux<Identifier>
 1. fetchImage(imageId: String): Flux<ByteArray>
-1. fetchInterests(podMemberIdentifier: String): Mono<PersonalInformation>
+1. projectPersonalInformation(podMemberIdentifier: String): Mono<PersonalInformation>
     1. Start off by projecting contact information
     1. Second project Interests
     1. Combine both projections

@@ -29,7 +29,7 @@ class PodHandler(
   fun allPodEvents(): Flux<Event> =
       podRepository.allPodEvents()
 
-  fun allPodMembers(): Flux<Identifier> =
+  fun projectAllPodMembers(): Flux<Identifier> =
       podRepository.allPodEvents()
           .reduce(HashMap<String, Event>()) { distinctMemberEvents, podEvent ->
             if (podEvent.type == POD_MEMBER_DELETED)
@@ -44,7 +44,7 @@ class PodHandler(
           .map { it.identifier }
           .map { Identifier(it) }
 
-  fun fetchInterests(podMemberIdentifier: String): Mono<PersonalInformation> {
+  fun projectPersonalInformation(podMemberIdentifier: String): Mono<PersonalInformation> {
     val eventStream = podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
         .replay()
         .autoConnect()
