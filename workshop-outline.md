@@ -256,7 +256,10 @@ fun allPodMembers(): Flux<Identifier>
 
 Take the time to match the handler API to the corresponding REST API we created above!
 
-#### 3
+#### 3. Implement Service Methods!
+
+Now comes the fun part!
+We'll start off easy and work our way up!
 
 
 
