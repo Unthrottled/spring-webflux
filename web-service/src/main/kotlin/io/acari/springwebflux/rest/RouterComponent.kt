@@ -30,13 +30,12 @@ class RouterComponent(private val imageHandler: ImageHandler,
   fun apiRouterFunction(): RouterFunction<ServerResponse> =
       nest(path("/api"),
           nest(path("/pod"),
-              route(GET("/members"), allPodMemberProjectionHandler())
-                  .andRoute(POST("/event"), podEventHandler())
+              route(POST("/event"), podEventHandler())
+                  .andRoute(GET("/members"), allPodMemberProjectionHandler())
                   .andNest(path("/member/{id}"),
-                      route(POST("/avatar"), savePodMemberAvatarHandler())
-                          .andRoute(GET("/avatar"), fetchPodMemberAvatarHandler())
+                      route(POST("/event"), podMemberEventHandler())
                           .andRoute(GET("/information"), podMemberInformationProjectionHandler())
-                          .andRoute(POST("/event"), podMemberEventHandler())
+                          .andRoute(GET("/avatar"), fetchPodMemberAvatarHandler())
                   ))
       )
 
