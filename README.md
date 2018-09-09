@@ -271,6 +271,8 @@ and stream the chunks of data to the client!
 
 #### 1. Create Minimal REST API
 
+In `RouterComponent` we will need to put our rest controller!
+
 As a recap, here is the following outline of what the UI is expecting in regards as a REST API:
 - POST `/api/pod/event` 
     - Accepts a `Mono<Event>` and returns the accepted `Event` as a `Mono` eg: `Mono<Event>`
