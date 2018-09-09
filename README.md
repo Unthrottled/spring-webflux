@@ -1,9 +1,9 @@
 # Event Sourced Webflux Workshop!
 
-- [Perquisites](#Perquisites)
-- [Running Application](#Running Application)
-- [Introduction](#Introduction)
-- [Current Application State](#Current Application State)
+- [Perquisites](#perquisites)
+- [Running Application](#running Application)
+- [Introduction](#introduction)
+- [Current Application State](#current Application State)
 
 - [Pre](#heading)
   * [Sub-heading](#sub-heading)
