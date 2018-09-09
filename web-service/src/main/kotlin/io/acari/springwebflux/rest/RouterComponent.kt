@@ -22,9 +22,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
  * Forged in the flames of battle by alex.
  */
 @Component
-class RouterComponent(private val imageHandler: ImageHandler,
-                      private val podHandler: PodHandler) {
-
+class RouterComponent(private val podHandler: PodHandler) {
 
   @Bean
   fun apiRouterFunction(): RouterFunction<ServerResponse> =
@@ -49,11 +47,6 @@ class RouterComponent(private val imageHandler: ImageHandler,
     ServerResponse.ok()
         .contentType(MediaType.APPLICATION_JSON)
         .body(fromPublisher(podHandler.projectPersonalInformation(it.pathVariable("id")), PersonalInformation::class.java))
-  }
-
-  private fun savePodMemberAvatarHandler() = HandlerFunction {
-    ServerResponse.ok()
-        .body(imageHandler.saveImage(it.body(BodyExtractors.toParts())), String::class.java)
   }
 
   private fun podMemberEventHandler() = HandlerFunction {
