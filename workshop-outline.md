@@ -53,6 +53,8 @@ Thankfully, they built all of it out it to a REST Contract!
 
 #### Pod Level 
 
+#### Pod Member Additons
+
 All pod member additions are handled by `POST`ing and event to the backend route `/api/pod/event`
 
 With a request body that looks like this:
@@ -70,6 +72,8 @@ With a request body that looks like this:
 
 > NOTE: The identifier is supplied by the UI
 
+#### Pod Member Removal
+
 All pod member removals are handled by `POST`ing and event to the backend route `/api/pod/event`
 
 With a request body that looks like this:
@@ -84,3 +88,30 @@ With a request body that looks like this:
   "meta": {}
 }
 ```
+
+#### List Pod Members
+
+Event streams are great and all, but that abstraction should not really matter to any other service that may want to consume our Pod Information.
+
+With that in mind, when the application first loads in the browser, the UI will first attempt to get a list of all of the pod members that currently are active in **Pod Supreme**
+
+It will `GET` this information at `/api/pod/members`.
+It is ONLY going to accept a chunked `JSON Stream`:
+
+```javascript 1.8
+transfer-encoding: chunked
+Content-Type: application/stream+json
+```
+
+With a payload that looks like this:
+
+```javascript 1.8
+{
+	"_id": "dffc6470-a712-11e8-b3de-89c3131879b4"
+}
+{
+	"_id": "bc1d6900-9fd3-11e8-b28d-df00e344ef92"
+}
+```
+
+
