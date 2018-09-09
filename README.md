@@ -19,8 +19,7 @@
             * [Pod Member Avatar Access](#avatar-access)
 - [Where the Workshop Begins!](#where-the-workshop-work-begins)
    1. [Create Minimal REST API](#1-create-minimal-rest-api)
-   1. [Wire in Services into the REST API](#2-wire-in-services-
-   into-the-rest-api)
+   1. [Wire in Services into the REST API](#2-wire-in-services-into-the-rest-api)
    1. [Implement Service Methods!](#3-implement-service-methods)
 - [Event Stream Samples](#event-stream-examples)
   * [Pod Level Event Stream](#pod-level-event-stream)
