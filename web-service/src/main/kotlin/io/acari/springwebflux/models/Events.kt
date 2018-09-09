@@ -2,6 +2,7 @@ package io.acari.springwebflux.models
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.MissingNode
+import java.util.*
 
 /**
  * Forged in the flames of battle by alex.
@@ -14,7 +15,11 @@ interface Identifiable {
 
 data class AvatarUploadedPayload(override val identifier: String): Identifiable
 
-data class PersonalInformation(val interests: List<Interest>, override var email: String, override var firstName: String, override var lastName: String, override var phoneNumber: String): Contactable
+data class PersonalInformation(val interests: List<Interest> = Collections.emptyList(),
+                               override var email: String = "",
+                               override var firstName: String = "",
+                               override var lastName: String = "",
+                               override var phoneNumber: String = ""): Contactable
 
 data class Contact(override var email: String = "", override var firstName: String = "", override var lastName: String = "", override var phoneNumber: String= ""): Contactable
 
