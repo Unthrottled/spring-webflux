@@ -23,7 +23,6 @@ import org.springframework.web.reactive.function.server.ServerResponse
  */
 @Component
 class PreBuiltRouterComponent(private val imageHandler: ImageHandler,
-                              private val podHandler: PodHandler,
                               private val preBuiltPodHandler: PreBuiltPodHandler) {
 
   @Bean
@@ -34,19 +33,12 @@ class PreBuiltRouterComponent(private val imageHandler: ImageHandler,
   fun alsoAPIRouterFunction(): RouterFunction<ServerResponse> =
       nest(path("/api"),
           nest(path("/pod"),
-              route(GET("/members"), allPodMemberHandler())
-                  .andRoute(GET("/event"), podGetEventHandler())
+              route(GET("/event"), podGetEventHandler())
                   .andNest(path("/member/{id}"),
                       route(POST("/avatar"), saveImageHandler())
                           .andRoute(GET("/event"), podMemberGetEventHandler())
                   ))
       )
-
-  private fun allPodMemberHandler() = HandlerFunction {
-    ServerResponse.ok()
-        .contentType(MediaType.APPLICATION_STREAM_JSON)
-        .body(fromPublisher(podHandler.projectAllPodMembers(), Identifier::class.java))
-  }
 
   private fun saveImageHandler() = HandlerFunction {
     ServerResponse.ok()
