@@ -24,43 +24,5 @@ import org.springframework.web.reactive.function.server.ServerResponse
 @Component
 class RouterComponent(private val podHandler: PodHandler) {
 
-  @Bean
-  fun apiRouterFunction(): RouterFunction<ServerResponse> =
-      nest(path("/api"),
-          nest(path("/pod"),
-              route(POST("/event"), podEventHandler())
-                  .andRoute(GET("/members"), allPodMemberProjectionHandler())
-                  .andNest(path("/member/{id}"),
-                      route(POST("/event"), podMemberEventHandler())
-                          .andRoute(GET("/information"), podMemberInformationProjectionHandler())
-                          .andRoute(GET("/avatar"), fetchPodMemberAvatarHandler())
-                  ))
-      )
-
-  private fun allPodMemberProjectionHandler() = HandlerFunction {
-    ServerResponse.ok()
-        .contentType(MediaType.APPLICATION_STREAM_JSON)
-        .body(fromPublisher(podHandler.projectAllPodMembers(), Identifier::class.java))
-  }
-
-  private fun podMemberInformationProjectionHandler() = HandlerFunction {
-    ServerResponse.ok()
-        .contentType(MediaType.APPLICATION_JSON)
-        .body(fromPublisher(podHandler.projectPersonalInformation(it.pathVariable("id")), PersonalInformation::class.java))
-  }
-
-  private fun podMemberEventHandler() = HandlerFunction {
-    ServerResponse.ok()
-        .body(podHandler.savePodMemberEvent(it.pathVariable("id"), it.bodyToMono(Event::class.java)), Event::class.java)
-  }
-
-  private fun podEventHandler() = HandlerFunction {
-    ServerResponse.ok()
-        .body(podHandler.savePodEvent(it.bodyToMono(String::class.java)), String::class.java)
-  }
-
-  private fun fetchPodMemberAvatarHandler() = HandlerFunction {
-    ServerResponse.ok()
-        .body(podHandler.fetchAvatar(it.pathVariable("id")), ByteArray::class.java)
-  }
+  //it all starts here :)
 }
