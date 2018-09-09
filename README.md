@@ -17,7 +17,14 @@
                 + [Interest Creation](#creation)
                 + [Interest Deletion](#deletion)
             * [Pod Member Avatar Access](#avatar-access)
-
+- [Where the Workshop Begins!](#where-the-workshop-work-begins)
+   1. [Create Minimal REST API](#1-create-minimal-rest-api)
+   1. [Wire in Services into the REST API](#2-wire-in-services-
+   into-the-rest-api)
+   1. [Implement Service Methods!](#3-implement-service-methods)
+- [Event Stream Samples](#event-stream-examples)
+  * [Pod Level Event Stream](#pod-level-event-stream)
+  * [Pod Member Level Event Stream](#pod-member-level-event-stream)
 ## Prerequisites
  - JRE 1.8
  - [Docker and Docker-Compose (should support version 3.0 compose files)](https://docs.docker.com/docker-for-mac/)
@@ -261,7 +268,7 @@ This endpoint takes the path variable and will get the current avatar from the d
 and stream the chunks of data to the client! 
 
 
-### Where Workshop Work Begins!
+### Where the Workshop Work Begins!
 
 #### 1. Create Minimal REST API
 
@@ -318,10 +325,10 @@ Implement these service methods!
     1. ????
     1. Profit!
 
-#### Event Stream Examples
+## Event Stream Examples
 
-Pod Level
----
+### Pod Level Event Stream
+
 ```javascript 1.8
 transfer-encoding: chunked
 Content-Type: application/stream+json
@@ -360,8 +367,7 @@ Content-Type: application/stream+json
 }
 ```
 
-Pod Member Level
----
+### Pod Member Level Event Stream
 
 ```javascript 1.8
 transfer-encoding: chunked
