@@ -118,7 +118,9 @@ With a payload that looks like this:
 Pod Member Level
 ---
 
-One the topic of information retrieval, all pod member information is expected to be accessible 
+#### Pod Member Information
+
+On the topic of information retrieval, all pod member information is expected to be accessible 
 by `GET`ting it at `/api/pod/member/{identifier}/information`
 
 Where it returns just content type of `application/json` and NOT 'application/stream+json'
@@ -139,3 +141,25 @@ Expected return value is as follows:
     "phoneNumber": "1234567890"
 }
 ```
+
+#### Pod Member Contact Information
+
+All pod member level contact information is persisted by `POST`ing an **FSA** to 
+`/api/pod/member/{identifier}/event`.
+
+The FSA is expected to look something like this:
+
+```javascript 1.8
+{
+    "type": "PERSONAL_INFO_CAPTURED",
+    "payload": {
+      "value": "Named Steve",
+      "field": "lastName"
+    },
+    "error": false,
+    "meta": {}
+  }
+```
+
+Where the field can be `firstName`, `lastName`, `email`, and `phoneNumber`.
+
