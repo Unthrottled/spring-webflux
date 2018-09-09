@@ -32,7 +32,7 @@ Which will be stored in as an event stream at the level of **Pod Supreme** and a
 
 A FSA maintains this type declaration. 
 
-```javascript 1.8
+```typescript 1.8
 {
   "type": string,
   "payload": any,
