@@ -51,6 +51,36 @@ Thankfully, they built all of it out it to a REST Contract!
 
 ### REST Contract details
 
-```javascript 1.8
+#### Pod Level 
 
+All pod member additions are handled by `POST`ing and event to the backend route `/api/pod/event`
+
+With a request body that looks like this:
+
+```javascript 1.8
+{
+  "type": "POD_MEMBER_CREATED",
+  "payload": {
+    "identifier": "17d16ba0-b43f-11e8-a39e-ad0592b82c90"
+  },
+  "error": false,
+  "meta": {}
+}
+```
+
+> NOTE: The identifier is supplied by the UI
+
+All pod member removals are handled by `POST`ing and event to the backend route `/api/pod/event`
+
+With a request body that looks like this:
+
+```javascript 1.8
+{
+  "type": "POD_MEMBER_DELETED",
+  "payload": {
+    "identifier": "e9e462c0-a7b8-11e8-9852-dbb438e9e7e6"
+  },
+  "error": false,
+  "meta": {}
+}
 ```
