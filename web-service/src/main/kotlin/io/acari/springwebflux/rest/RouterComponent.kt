@@ -49,14 +49,12 @@ class RouterComponent(private val imageHandler: ImageHandler,
           nest(path("/pod"),
               route(GET("/members"), allPodMemberHandler())
                   .andRoute(POST("/event"), podEventHandler())
-                  .andRoute(GET("/event"), podGetEventHandler())
                   .andRoute(GET("/members/avatar"), allAvatarIdsHandler())
                   .andNest(path("/member/{id}"),
                       route(POST("/avatar"), saveImageHandler())
                           .andRoute(GET("/avatar"), podMemberAvatarHandler())
                           .andRoute(GET("/information"), podMemberInformationHandler())
                           .andRoute(POST("/event"), podMemberEventHandler())
-                          .andRoute(GET("/event"), podMemberGetEventHandler())
                   ))
       )
 

@@ -61,7 +61,7 @@ Basically the list of pod members in Pod Supreme can be projected by a distinct
 event stream and the details of each Pod Member can be projected using unique event 
 stream for each pod member created.
 
-However, only the frontend has built, all data persistence and projections have not been built yet.
+However, only the frontend has been built, all data persistence and projections have not been built yet.
 
 Thankfully, they built all of it out it to a REST Contract!  
 
@@ -202,7 +202,6 @@ The FSA is expected to look something like this:
 
 Where the UI creates the `identifier`
 
-
 ##### Deletion
 
 All pod member level interest information is persisted by `POST`ing an **FSA** to 
@@ -224,6 +223,17 @@ The FSA is expected to look something like this:
 
 Where the UI maintains the reference the `identifier`
 
+#### Avatar Access
+
+Remember when I said that the backend has not been built for data persistence?
+Well I lied, turns out that some of the REST API has been built out.
+Those parts are the static content forwarding and Avatar Image Persistence.
+
+However the `GET` method call on `/api/pod/member/{identifier}/avatar` has not been implemented yet!
+
+This endpoint takes the path variable and will get the current avatar from the database
+and stream the chunks of data to the client! 
+
 
 ### Where Workshop Work Begins!
 
@@ -238,7 +248,9 @@ As a recap, here is the following outline of what the UI is expecting in regards
     - Accepts a `Mono<Event>` and returns the accepted `Event` as a `Mono` eg: `Mono<Event>`
     - Needs to also take advantage  of the _path variable_
 - GET ``/api/pod/member/{identifier}/information``
-    - Accepts the _path variable_ and returns an empty `Mono<PersonalInformation>`
+    - Accepts the _path variable_ and returns an empty `Mono<PersonalInformation>
+- GET ``/api/pod/member/{identifier}/information``
+    - Accepts the _path variable_ and returns an empty `Flux<ByteBuffer>`
     
 We well need to fulfill the following before we can move onto the next part.
     
