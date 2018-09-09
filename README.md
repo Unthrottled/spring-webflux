@@ -4,17 +4,26 @@
  - JRE 1.8
  - [Docker and Docker-Compose (should support version 3.0 compose files)](https://docs.docker.com/docker-for-mac/)
  - Alternatively MongoDB
-    - Running on 
+    - Running on port number 27017
     
 ## Running Application
 
-For this workshop, we are going to need to run the application under a Spring active profile of `local`.
+1. Start up mongo!
+    - If using docker just do `docker-compose up -d` at the root of this repository (also if you have mongo already running locally skip this)
+    - If not using docker, be sure that your installed instance of MongoDB is up and running on port 27017!
 
-It is easiest to run in the command line using this command:
+2. Checkout the `workshop` branch on this repository.
 
+3. Run the application!
+  - For this workshop, we are going to need to run the application under a Spring active profile of `local`.
+  - It is easiest to run in the command line using this command: 
 ```
 ./gradlew bootrun -Dspring.profiles.active=local
 ```
+> Note: You do not have to use CLI, if using intellij, just make sure that the Spring Profile is set to `local`, 
+ If using another IDE, just make sure you can run a gradle project and 
+ be able to set the Spring Profile argument is set to local eg the parameters on the cli: (-Dspring.profiles.active=local)
+
 
 ## Introduction
 
