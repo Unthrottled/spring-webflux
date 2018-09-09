@@ -163,3 +163,47 @@ The FSA is expected to look something like this:
 
 Where the field can be `firstName`, `lastName`, `email`, and `phoneNumber`.
 
+#### Pod Member Interests
+
+##### Creation
+
+All pod member level interest information is persisted by `POST`ing an **FSA** to 
+`/api/pod/member/{identifier}/event`.
+
+The FSA is expected to look something like this:
+
+```javascript 1.8
+{
+    "type": "INTEREST_CAPTURED",
+    "payload": {
+      "id": "25313000-b43f-11e8-a39e-ad0592b82c90",
+      "value": "Google Feud"
+    },
+    "error": false,
+    "meta": {}
+  }
+```
+
+Where the UI creates the `identifier`
+
+
+##### Deletion
+
+All pod member level interest information is persisted by `POST`ing an **FSA** to 
+`/api/pod/member/{identifier}/event`.
+
+The FSA is expected to look something like this:
+
+```javascript 1.8
+  {
+    "type": "INTEREST_REMOVED",
+    "payload": {
+      "id": "5a619d90-b445-11e8-88d5-5fe830a9621a",
+      "value": "Waterfall Development"
+    },
+    "error": false,
+    "meta": {}
+  }
+```
+
+Where the UI maintains the reference the `identifier`
