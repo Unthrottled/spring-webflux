@@ -22,3 +22,16 @@ We are tasked with developing an application that allows us to keep track of all
 
 - Pod Supreme members want others to also know what they are currently interested in an the moment. 
 The want the ability to add and remove interests as time progresses and they change.
+
+## Current Application State
+
+The frontend was built out to satisfy the functional portions of the requirements listed above.
+
+All data that is added to the application is done through by using events in the form of a **Flux Standard Action** or **FSA**  for short
+Which will be stored in as an event stream at the level of **Pod Supreme** and at the level of the **Pod Member**
+
+Basically the list of pod members in Pod Supreme can be projected by a distinct 
+event stream and the details of each Pod Member can be projected using unique event 
+stream for each pod member created.
+
+However, only the frontend has built, all data persistence and projections have not been built yet.  
