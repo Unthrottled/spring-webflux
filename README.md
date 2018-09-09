@@ -9,8 +9,14 @@
         + [Pod Level REST Details](#pod-level)
             * [Pod Member Additions](#pod-member-additions)
             * [Pod Member Removal](#pod-member-removal)
-            * [List Members Removal](#list-pod-members)
+            * [List Active Members](#list-pod-members)
         + [Pod Member Level REST Details](#pod-member-level)
+            * [Pod Member Information](#pod-member-information)
+            * [Pod Member Contact Information Addition](#pod-member-contact-information)
+            * [Pod Member Interests](#pod-member-interests)
+                + [Interest Creation](#creation)
+                + [Interest Deletion](#deletion)
+            * [Pod Member Avatar Access](#avatar-access)
 
 ## Prerequisites
  - JRE 1.8
