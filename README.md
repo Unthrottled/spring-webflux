@@ -1,21 +1,24 @@
 # Event Sourced Webflux Workshop!
 
-- [Perquisites](#perquisites)
-- [Running Application](#running Application)
+- [Prerequisites](#prerequisites)
+- [Running the Application](#running-the-application)
 - [Introduction](#introduction)
-- [Current Application State](#current Application State)
+    * [Project Requirements!](#requirements)
+- [Applications Current State](#current-application-state)
+    * [REST Contract Details](#rest-contract-details)
+        + [Pod Level REST Details](#pod-level)
+            * [Pod Member Additions](#pod-member-additions)
+            * [Pod Member Removal](#pod-member-removal)
+            * [List Members Removal](#list-pod-members)
+        + [Pod Member Level REST Details](#pod-member-level)
 
-- [Pre](#heading)
-  * [Sub-heading](#sub-heading)
-    + [Sub-sub-heading](#sub-sub-heading)
-
-## Perquisites
+## Prerequisites
  - JRE 1.8
  - [Docker and Docker-Compose (should support version 3.0 compose files)](https://docs.docker.com/docker-for-mac/)
  - Alternatively MongoDB
     - Running on port number 27017
     
-## Running Application
+## Running the Application
 
 1. Start up mongo!
     - If using docker just do `docker-compose up -d` at the root of this repository (also if you have mongo already running locally skip this)
@@ -85,8 +88,7 @@ Thankfully, they built all of it out it to a REST Contract!
 
 ### REST Contract details
 
-Pod Level
----- 
+#### Pod Level 
 
 #### Pod Member Additions
 
