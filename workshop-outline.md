@@ -51,7 +51,8 @@ Thankfully, they built all of it out it to a REST Contract!
 
 ### REST Contract details
 
-#### Pod Level 
+Pod Level
+---- 
 
 #### Pod Member Additons
 
@@ -114,4 +115,5 @@ With a payload that looks like this:
 }
 ```
 
-
+Pod Member Level
+---
