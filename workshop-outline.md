@@ -207,3 +207,160 @@ The FSA is expected to look something like this:
 ```
 
 Where the UI maintains the reference the `identifier`
+
+#### Event Stream Examples
+
+Pod Level
+---
+```javascript 1.8
+transfer-encoding: chunked
+Content-Type: application/stream+json
+
+{
+	"type": "POD_MEMBER_CREATED",
+	"payload": {
+		"identifier": "d7c9d570-a7b8-11e8-a8e4-afa47f95a3a1"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "POD_MEMBER_CREATED",
+	"payload": {
+		"identifier": "e9e462c0-a7b8-11e8-9852-dbb438e9e7e6"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "POD_MEMBER_CREATED",
+	"payload": {
+		"identifier": "17d16ba0-b43f-11e8-a39e-ad0592b82c90"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "POD_MEMBER_DELETED",
+	"payload": {
+		"identifier": "e9e462c0-a7b8-11e8-9852-dbb438e9e7e6"
+	},
+	"error": false,
+	"meta": {}
+}
+```
+
+Pod Member Level
+---
+
+```javascript 1.8
+transfer-encoding: chunked
+Content-Type: application/stream+json
+{
+	"type": "PERSONAL_INFO_CAPTURED",
+	"payload": {
+		"value": "Party",
+		"field": "firstName"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "PERSONAL_INFO_CAPTURED",
+	"payload": {
+		"value": "Parrot",
+		"field": "lastName"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "PERSONAL_INFO_CAPTURED",
+	"payload": {
+		"value": "party@parrot.io",
+		"field": "email"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "PERSONAL_INFO_CAPTURED",
+	"payload": {
+		"value": "1234567890",
+		"field": "phoneNumber"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "INTEREST_CAPTURED",
+	"payload": {
+		"id": "10747c60-b446-11e8-88d5-5fe830a9621a",
+		"value": "Party"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "INTEREST_CAPTURED",
+	"payload": {
+		"id": "12b91530-b446-11e8-88d5-5fe830a9621a",
+		"value": "Parrot"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "INTEREST_CAPTURED",
+	"payload": {
+		"id": "14040bc0-b446-11e8-88d5-5fe830a9621a",
+		"value": "RGB"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "INTEREST_CAPTURED",
+	"payload": {
+		"id": "16463390-b446-11e8-88d5-5fe830a9621a",
+		"value": "Not Partying"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "INTEREST_REMOVED",
+	"payload": {
+		"id": "16463390-b446-11e8-88d5-5fe830a9621a",
+		"value": "Not Partying"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "PERSONAL_INFO_CAPTURED",
+	"payload": {
+		"value": "Ultra Fast Party",
+		"field": "firstName"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "PERSONAL_INFO_CAPTURED",
+	"payload": {
+		"value": "party@parrot.io",
+		"field": "email"
+	},
+	"error": false,
+	"meta": {}
+}
+{
+	"type": "AVATAR_UPLOADED",
+	"payload": {
+		"identifier": "5b953e0dd99cc7703eef3f40"
+	},
+	"error": false,
+	"meta": {}
+}
+```
