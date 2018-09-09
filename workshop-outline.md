@@ -249,21 +249,27 @@ As a recap, here is the following outline of what the UI is expecting in regards
     - Needs to also take advantage  of the _path variable_
 - GET ``/api/pod/member/{identifier}/information``
     - Accepts the _path variable_ and returns an empty `Mono<PersonalInformation>
-- GET ``/api/pod/member/{identifier}/information``
+- GET ``/api/pod/member/{identifier}/avatar``
     - Accepts the _path variable_ and returns an empty `Flux<ByteBuffer>`
     
 We well need to fulfill the following before we can move onto the next part.
     
 #### 2. Wire in Services into the REST API
 
-It is really convenient that the `PodHandler` class has a handy API!
+It is really convenient that the `PodHandler` and `ImageHandler` classes have a handy API!
 Which looks a little something like this:
 
 ```kotlin
+//Pod Handler
 fun savePodMemberEvent(podMemberIdentifier: String, requestBody: Mono<Event>): Publisher<Event>
 fun savePodEvent(requestBody: Mono<String>): Publisher<String>
 fun fetchInterests(podMemberIdentifier: String): Mono<PersonalInformation>
 fun allPodMembers(): Flux<Identifier>
+```
+
+```kotlin
+//Image Handler
+fun fetchImage(imageId: String): Flux<ByteArray>
 ```
 
 Take the time to match the handler API to the corresponding REST API we created above!
@@ -272,8 +278,6 @@ Take the time to match the handler API to the corresponding REST API we created 
 
 Now comes the fun part!
 We'll start off easy and work our way up!
-
-
 
 #### Event Stream Examples
 

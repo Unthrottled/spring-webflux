@@ -85,13 +85,12 @@ class PodHandler(
 
   fun fetchAvatar(podMemberIdentifier: String): Flux<ByteArray> =
       podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
-          .replay()
-          .autoConnect()
           .filter { it.type == AVATAR_UPLOADED }
+          .reduce { _, u -> u  }
           .map { it.payload }
           .map { objectMapper.treeToValue(it, AvatarUploadedPayload::class.java) }
           .map { it.identifier }
-          .flatMap { imageHandler.fetchImage(it) }
+          .flatMapMany { imageHandler.fetchImage(it) }
 
   fun savePodMemberEvent(podMemberIdentifier: String, bodyToMono: Mono<Event>): Publisher<Event> =
       bodyToMono.flatMap { event -> podMemberRepository.saveEvent(podMemberIdentifier, event) }
