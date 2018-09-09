@@ -2,6 +2,7 @@ package io.acari.springwebflux.rest
 
 import io.acari.springwebflux.handler.ImageHandler
 import io.acari.springwebflux.handler.PodHandler
+import io.acari.springwebflux.handler.PreBuiltPodHandler
 import io.acari.springwebflux.models.Event
 import io.acari.springwebflux.models.Identifier
 import io.acari.springwebflux.models.PersonalInformation
@@ -22,7 +23,8 @@ import org.springframework.web.reactive.function.server.ServerResponse
  */
 @Component
 class RouterComponent(private val imageHandler: ImageHandler,
-                      private val podHandler: PodHandler) {
+                      private val podHandler: PodHandler,
+                      private val preBuiltPodHandler: PreBuiltPodHandler) {
 
   @Bean
   fun staticRouterFunction(): RouterFunction<*> =
@@ -87,13 +89,13 @@ class RouterComponent(private val imageHandler: ImageHandler,
   private fun podMemberGetEventHandler() = HandlerFunction {
     ServerResponse.ok()
         .contentType(MediaType.APPLICATION_STREAM_JSON)
-        .body(fromPublisher(podHandler.allPodMemberEvents(it.pathVariable("id")), Event::class.java))
+        .body(fromPublisher(preBuiltPodHandler.allPodMemberEvents(it.pathVariable("id")), Event::class.java))
   }
 
   private fun podGetEventHandler() = HandlerFunction {
     ServerResponse.ok()
         .contentType(MediaType.APPLICATION_STREAM_JSON)
-        .body(fromPublisher(podHandler.allPodEvents(), Event::class.java))
+        .body(fromPublisher(preBuiltPodHandler.allPodEvents(), Event::class.java))
   }
 
   private fun podEventHandler() = HandlerFunction {

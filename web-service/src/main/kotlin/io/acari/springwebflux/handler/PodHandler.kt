@@ -23,12 +23,6 @@ class PodHandler(
   private val objectMapper = jacksonObjectMapper()
       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
-  fun allPodMemberEvents(podMemberIdentifier: String): Flux<Event> =
-      podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
-
-  fun allPodEvents(): Flux<Event> =
-      podRepository.allPodEvents()
-
   fun projectAllPodMembers(): Flux<Identifier> =
       podRepository.allPodEvents()
           .reduce(HashMap<String, Event>()) { distinctMemberEvents, podEvent ->
