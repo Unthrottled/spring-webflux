@@ -1,5 +1,11 @@
 # Event Sourced Webflux Workshop!
 
+## Perquisites
+ - JRE 1.8
+ - [Docker and Docker-Compose (should support version 3.0 compose files)](https://docs.docker.com/docker-for-mac/)
+ - Alternatively MongoDB
+    - Running on 
+
 ## Introduction
 
 We are tasked with developing an application that allows us to keep track of all of the members in **Pod Supreme**.
