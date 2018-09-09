@@ -33,12 +33,15 @@ class RouterComponent(private val imageHandler: ImageHandler,
   @Bean
   fun alsoAPIRouterFunction(): RouterFunction<ServerResponse> =
       nest(path("/api"),
-          nest(path("/hello"),
-              route(GET("/world"),
-                  HandlerFunction<ServerResponse> {
-                    ServerResponse.ok()
-                        .body(BodyInserters.fromObject("Hello World"))
-                  })))
+          nest(path("/pod"),
+              route(GET("/members"), allPodMemberHandler())
+                  .andRoute(GET("/event"), podGetEventHandler())
+                  .andNest(path("/member/{id}"),
+                      route(POST("/avatar"), saveImageHandler())
+                          .andRoute(GET("/event"), podMemberGetEventHandler())
+                  ))
+      )
+
 
   @Bean
   fun apiRouterFunction(): RouterFunction<ServerResponse> =
