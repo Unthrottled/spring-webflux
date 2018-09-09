@@ -70,7 +70,7 @@ Thankfully, they built all of it out it to a REST Contract!
 Pod Level
 ---- 
 
-#### Pod Member Additons
+#### Pod Member Additions
 
 All pod member additions are handled by `POST`ing and event to the backend route `/api/pod/event`
 
@@ -223,6 +223,22 @@ The FSA is expected to look something like this:
 ```
 
 Where the UI maintains the reference the `identifier`
+
+
+### Where Workshop Work Begins!
+
+#### 1. Create Minimal REST API
+
+As a recap, here is the following outline of what the UI is expecting in regards as a REST API:
+- POST `/api/pod/event` 
+    - Accepts a `Mono<Event>` and returns the accepted `Event` as a `Mono` eg: `Mono<Event>`
+- GET `/api/pod/members`
+    - Returns a empty `Flux<Identifier>` remember that the return type _must_ be `application/stream+json`!
+- POST `/api/pod/member/{identifier}/event`
+    - Accepts a `Mono<Event>` and returns the accepted `Event` as a `Mono` eg: `Mono<Event>`
+    - Needs to also take advantage  of the _path variable_
+- GET ``/api/pod/member/{identifier}/information``
+    - Accepts the _path variable_ and returns an empty `Mono<PersonalInformation>`
 
 #### Event Stream Examples
 
