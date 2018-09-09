@@ -30,8 +30,27 @@ The frontend was built out to satisfy the functional portions of the requirement
 All data that is added to the application is done through by using events in the form of a **Flux Standard Action** or **FSA**  for short
 Which will be stored in as an event stream at the level of **Pod Supreme** and at the level of the **Pod Member**
 
+A FSA maintains this type declaration. 
+
+```javascript 1.8
+{
+  "type": string,
+  "payload": any,
+  "error": boolean,
+  "meta": any
+}
+```
+
 Basically the list of pod members in Pod Supreme can be projected by a distinct 
 event stream and the details of each Pod Member can be projected using unique event 
 stream for each pod member created.
 
-However, only the frontend has built, all data persistence and projections have not been built yet.  
+However, only the frontend has built, all data persistence and projections have not been built yet.
+
+Thankfully, they built all of it out it to a REST Contract!  
+
+### REST Contract details
+
+```javascript 1.8
+
+```
