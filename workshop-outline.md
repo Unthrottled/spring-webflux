@@ -239,6 +239,26 @@ As a recap, here is the following outline of what the UI is expecting in regards
     - Needs to also take advantage  of the _path variable_
 - GET ``/api/pod/member/{identifier}/information``
     - Accepts the _path variable_ and returns an empty `Mono<PersonalInformation>`
+    
+We well need to fulfill the following before we can move onto the next part.
+    
+#### 2. Wire in Services into the REST API
+
+It is really convenient that the `PodHandler` class has a handy API!
+Which looks a little something like this:
+
+```kotlin
+fun savePodMemberEvent(podMemberIdentifier: String, requestBody: Mono<Event>): Publisher<Event>
+fun savePodEvent(requestBody: Mono<String>): Publisher<String>
+fun fetchInterests(podMemberIdentifier: String): Mono<PersonalInformation>
+fun allPodMembers(): Flux<Identifier>
+```
+
+Take the time to match the handler API to the corresponding REST API we created above!
+
+#### 3
+
+
 
 #### Event Stream Examples
 

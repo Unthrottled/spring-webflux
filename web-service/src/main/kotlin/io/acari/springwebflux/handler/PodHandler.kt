@@ -84,7 +84,6 @@ class PodHandler(
         }
     }
 
-
     fun fetchAvatar(podMemberIdentifier: String): Flux<ByteArray> =
             podMemberRepository.fetchPodMemberEventStream(podMemberIdentifier)
                     .replay()
