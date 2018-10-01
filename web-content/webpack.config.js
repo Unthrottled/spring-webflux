@@ -24,7 +24,7 @@ var proxyPeel = proxy('/api', {
 
 module.exports = {
     entry: {
-        'stylez': './src/app/css/sassy.sass',
+        'stylez': './src/app/css/_sassy.sass',
         'app': './src/main.ts',
         'vendor': './src/vendor.ts',
         'polyfills': './src/polyfills.ts'

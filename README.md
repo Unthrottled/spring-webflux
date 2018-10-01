@@ -275,7 +275,7 @@ In `RouterComponent` we will need to put our rest controller!
 
 As a recap, here is the following outline of what the UI is expecting in regards as a REST API:
 - POST `/api/pod/event` 
-    - Accepts a `Mono<Event>` and returns the accepted `Event` as a `Mono` eg: `Mono<Event>`
+    - Accepts a `Mono<String>` and returns the accepted `Event` (which is a string) as a `Mono` eg: `Mono<String>`
 - GET `/api/pod/members`
     - Returns a empty `Flux<Identifier>` remember that the return type _must_ be `application/stream+json`!
 - POST `/api/pod/member/{identifier}/event`
